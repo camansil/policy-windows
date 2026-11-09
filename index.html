@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Policy Window Monitor — Chile</title>
+<meta name="description" content="Weekly monitor of likely policy windows in Latin America and the Caribbean. Chile pilot run, 8 September – 5 November 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="viz-root">
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#overview">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-text">Policy Window Monitor</span>
+      </a>
+      <div class="country">
+        <label for="country-select" class="sr-only">Country</label>
+        <select id="country-select" aria-label="Country">
+          <option value="CL" selected>Chile</option>
+          <option disabled>Colombia (coming soon)</option>
+          <option disabled>Mexico (coming soon)</option>
+          <option disabled>Brazil (coming soon)</option>
+        </select>
+      </div>
+    </div>
+    <nav class="wrap tabs" aria-label="Views">
+      <a href="#overview" data-view="overview">Overview <span class="tab-sub">for decision-makers</span></a>
+      <a href="#topics" data-view="topics">Topics <span class="tab-sub">for evidence producers</span></a>
+      <a href="#method" data-view="method">Method</a>
+      <a href="#data" data-view="data">Data</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="run-banner" id="run-banner"></div>
+
+    <!-- OVERVIEW -->
+    <section class="view" id="view-overview" aria-labelledby="h-overview">
+      <h1 id="h-overview" class="lead-title">Five policy windows are open in Chile; four of them hinge on the 30 November budget deadline.</h1>
+      <p class="lead">Two unpredictable problem windows opened in late October: administrative sentence reductions and pension-fund losses. In both, the problem stream is far stronger than the policy stream. Windows on the Rules on the Use of Force, migrant expulsions, tolls and regional funding closed or are closing because decisions were taken.</p>
+
+      <div class="tiles" id="tiles"></div>
+
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Where the windows are</h2>
+            <p class="panel-sub">Each topic placed by its problem and politics readiness this week. Squares show policy readiness. A window can open only through the problem or politics stream.</p>
+          </div>
+        </div>
+        <div class="legend" id="map-legend"></div>
+        <div class="map-wrap">
+          <div class="map-y-title"><span>Politics stream →</span></div>
+          <div class="map" id="window-map" role="group" aria-label="Window map: topics by problem and politics readiness"></div>
+        </div>
+        <div class="map-x-title">Problem stream →</div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Stream readiness, week by week</h2>
+            <p class="panel-sub">Each cell shows the problem, politics and policy levels for that week, top to bottom. Hatched cells were not observed.</p>
+          </div>
+          <div class="seg" role="group" aria-label="Sort topics">
+            <button type="button" class="seg-btn is-on" data-sort="status">By status</button>
+            <button type="button" class="seg-btn" data-sort="ministry">By ministry</button>
+          </div>
+        </div>
+        <div class="legend" id="level-legend"></div>
+        <div class="weekly-scroll"><table class="weekly" id="weekly"></table></div>
+      </article>
+
+      <article class="panel">
+        <h2>Decision points ahead</h2>
+        <p class="panel-sub">Scheduled moments when open windows will be settled. Click a lane to open its topic.</p>
+        <div id="calendar" class="chart"></div>
+      </article>
+
+      <div class="two-col">
+        <article class="panel">
+          <h2>National mood: presidential approval fell to 26%</h2>
+          <p class="panel-sub">Approval (%) by poll publication date. Falling approval weakens executive-driven windows.</p>
+          <div class="legend" id="approval-legend"></div>
+          <div id="approval" class="chart"></div>
+          <details class="table-view"><summary>Show as table</summary><div id="approval-table"></div></details>
+        </article>
+        <article class="panel">
+          <h2>Country context</h2>
+          <div id="context" class="context-grid one"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section class="view" id="view-topics" aria-labelledby="h-topics" hidden>
+      <h1 id="h-topics" class="lead-title">Three open windows have no evidence-based alternative in circulation yet.</h1>
+      <p class="lead">Follow a topic to keep it at the top of this page in your browser. Email alerts are planned for the next version.</p>
+
+      <div class="gaps" id="gaps"></div>
+
+      <div class="filters" role="group" aria-label="Filter topics">
+        <div class="chip-row" id="status-filter"></div>
+        <div class="filter-right">
+          <label class="sr-only" for="ministry-filter">Ministry</label>
+          <select id="ministry-filter"></select>
+          <label class="sr-only" for="topic-search">Search topics</label>
+          <input id="topic-search" type="search" placeholder="Search topics, people, ideas">
+        </div>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <!-- METHOD -->
+    <section class="view" id="view-method" aria-labelledby="h-method" hidden>
+      <h1 id="h-method" class="lead-title">How this run was made</h1>
+      <div id="method"></div>
+    </section>
+
+    <!-- DATA -->
+    <section class="view" id="view-data" aria-labelledby="h-data" hidden>
+      <h1 id="h-data" class="lead-title">Data from this run</h1>
+      <p class="lead">All validated items and ratings are open. Files are in the <code>data/</code> folder of the repository.</p>
+      <ul class="downloads">
+        <li><a href="data/chile-2026-11.json">chile-2026-11.json</a> <span>Full run: topics, weekly levels, windows, policy checks, calendar, polls, coded items</span></li>
+        <li><a href="data/topics.csv">topics.csv</a> <span>Topic summary grid</span></li>
+        <li><a href="data/coded-items.csv">coded-items.csv</a> <span>89 coded items with sources</span></li>
+      </ul>
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Coded items</h2>
+          <div class="filter-right">
+            <label class="sr-only" for="item-topic">Topic</label>
+            <select id="item-topic"></select>
+            <label class="sr-only" for="item-stream">Stream</label>
+            <select id="item-stream">
+              <option value="">All streams</option><option>Problem</option><option>Politics</option><option>Policy</option>
+            </select>
+          </div>
+        </div>
+        <div class="items-scroll"><table class="items" id="items"></table></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" id="footer"></div>
+  </footer>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="drawer" id="drawer" aria-modal="true" role="dialog" aria-labelledby="drawer-title" hidden>
+    <button type="button" class="drawer-close" id="drawer-close" aria-label="Close">×</button>
+    <div id="drawer-body"></div>
+  </aside>
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+</div>
+<script src="data/chile-2026-11.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
