@@ -1,13 +1,17 @@
-"""Build the data files for the Policy Window Monitor site (Chile run, 8 Sep - 5 Nov 2026).
+"""Build the data files for the Policy Window Monitor site (Chile).
 
-Source: research run "Policy Window Monitor v0.3 - Chile pilot run" (5 Nov 2026).
-Outputs (written to ../policy-window-monitor/data/):
+Base run: weeks W1-W8 (8 Sep - 5 Nov 2026), coded under Protocol v0.3 and defined below.
+Weekly runs: one JSON file per week in data/weekly/CL/ (e.g. 2026-W09.json), applied in order.
+Each weekly file adds a week of problem/politics levels, coded items, proposed signals for review,
+status updates, new topics, polls and calendar changes. See docs/WEEKLY_RUN.md.
+
+Outputs (data/):
   chile-2026-11.json   full run data
   chile-2026-11.js     same data as window.PWM_DATA (for static loading)
-  coded-items.csv      89 coded items
+  coded-items.csv      all coded items
   topics.csv           topic summary grid
 """
-import csv, json, os, sys
+import csv, glob, json, os, sys
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
 os.makedirs(OUT, exist_ok=True)
@@ -25,7 +29,7 @@ WEEKS = [
 
 def traj(spec):
     """spec: dict week-number -> (P, Po, Pol). Missing weeks = None (not observed)."""
-    return [list(spec[i]) if i in spec else None for i in range(1, 9)]
+    return [list(spec[i]) if i in spec else None for i in range(1, 9)]  # base run: W1-W8
 
 def rng(a, b, v):
     return {i: v for i in range(a, b + 1)}
@@ -397,14 +401,6 @@ ITEMS = [
  ("D89","2026-11-01","MiradaSur TV (secondary)","News",U["D48"],"T16","Politics","Organised interests","Truckers",-1,1,"San Antonio port blockade"),
 ]
 
-STATUS = {
-    "open": "Open window",
-    "opening": "Opening (problem window)",
-    "waiting": "Solution waiting",
-    "closing": "Closing",
-    "closed": "Closed",
-    "none": "No window",
-}
 
 CONTEXT = dict(
     executive="President José Antonio Kast (Partido Republicano), in office since 11 March 2026.",
@@ -414,68 +410,156 @@ CONTEXT = dict(
         "Cadem (1 Nov): worry about job instability 71% (+9).",
         "Feedback Research (20–30 Oct): household economy (61%) overtakes neighbourhood crime (59%).",
     ],
-    budget="Budget Law 2027 submitted 30 Sep (+1.5% spending). Mixed committee (29 Oct–5 Nov) rejected Education, primary care, SENCE and parts of Customs, Interior and Culture. Cámara floor 9–11 Nov, Senate 17–19 Nov, deadline 30 Nov (one source gives 29 Nov).",
-    cabinet="Undersecretary of Justice removed 30 Oct; 59 senior departures since March. The President ruled out a cabinet change (5 Nov).",
+    budget="Budget Law 2027 submitted 30 Sep (+1.5% spending).",
+    cabinet="Undersecretary of Justice removed 30 Oct; 59 senior departures since March.",
 )
+
+# ---------------------------------------------------------------------------
+# Protocol v0.4: problem and politics streams only; four signal levels;
+# a potential window needs both streams at level 2 or higher.
+# ---------------------------------------------------------------------------
+STATUS = {
+    "problem": "Problem window",
+    "political": "Political window",
+    "watch": "Watch (one stream)",
+    "closing": "Closing",
+    "closed": "Closed",
+    "none": "No window",
+}
+LEVELS = ["No signal", "Weak signal", "Signal", "Strong signal"]
+
+# Base run (W1-W8) to v0.4: keep problem and politics; the policy level moves to the policy check.
+for t in TOPICS:
+    t["traj"] = [lv[:2] if lv else None for lv in t["traj"]]
+    t.pop("Pol", None); t.pop("conf", None); t.pop("agenda", None)
+
+items = [dict(id=i[0], date=i[1], source=i[2], type=i[3], url=i[4], topic=i[5], stream=i[6], concept=i[7],
+              actor=i[8], strength=i[10], note=i[11], context="", quote="", week="") for i in ITEMS]
+approval = list(APPROVAL)
+calendar = list(CALENDAR)
+context = dict(CONTEXT)
+weeks = list(WEEKS)
+reviews = []
+discovery = []
+generated = "2026-11-05"
+
+def week_of(date):
+    for w in reversed(weeks):
+        if date and date >= w["start"]:
+            return w["id"]
+    return ""
+
+COUNTRY = "CL"
+weekly_files = sorted(glob.glob(os.path.join(OUT, "weekly", COUNTRY, "*.json")))
+for wf in weekly_files:
+    with open(wf, encoding="utf-8") as f:
+        W = json.load(f)
+    wk = W["week"]; weeks.append({k: wk[k] for k in ("id", "label", "start")})
+    n = len(weeks)
+    for t in TOPICS:
+        t["traj"] = (t["traj"] + [None] * n)[:n]
+    for nt in W.get("newTopics", []):
+        nt = dict(nt); nt["traj"] = [None] * n
+        TOPICS.append(nt)
+    by = {t["id"]: t for t in TOPICS}
+    for tid, lv in W["levels"].items():
+        by[tid]["traj"][n - 1] = list(lv)
+    for tid, upd in W.get("topicUpdates", {}).items():
+        by[tid].update(upd)
+    POLICY_CHECKS.update(W.get("policyChecks", {}))
+    approval += W.get("approval", [])
+    if "calendar" in W: calendar = W["calendar"]
+    context.update(W.get("context", {}))
+    for it in W.get("items", []):
+        it = dict(it); it.setdefault("context", ""); it.setdefault("quote", ""); it["week"] = wk["id"]
+        items.append(it)
+    reviews.append(dict(week=wk["id"], label=wk["label"], status=W.get("reviewStatus", "proposed"),
+                        note=W.get("note", ""), signals=W.get("signals", [])))
+    discovery += [dict(week=wk["id"], text=d) for d in W.get("discovery", [])]
+    generated = W.get("generated", generated)
+
+for it in items:
+    if not it["week"]:
+        it["week"] = week_of(it["date"]) if len(it["date"]) == 10 else ""
+
+# Current levels = latest observed week.
+for t in TOPICS:
+    last = next((lv for lv in reversed(t["traj"]) if lv), [0, 0])
+    t["P"], t["Po"] = last
+    t["policyCheck"] = t["id"] in POLICY_CHECKS and t.get("openWeek") is not None
+    assert t["status"] in STATUS, (t["id"], t["status"])
+
+windows = [t for t in TOPICS if t["status"] in ("problem", "political")]
+latest = weeks[-1]
 
 METHOD = dict(
-    period="8 September – 5 November 2026 (8 weeks)",
-    protocol="Policy Window Monitor Protocol v0.3",
+    period=f"8 September – 12 November 2026 ({len(weeks)} weeks)",
+    protocol="Policy Window Monitor Protocol v0.4",
+    levels=LEVELS,
     steps=[
-        "Cross-cutting politics scan: approval polls, cabinet events, budget calendar and votes.",
-        "Re-checked the 10 topics from the October scan and added 10 more across ministries.",
-        "Official statistics: INE employment bulletin 336, Minsal waiting-list report, Fiscal Council reports.",
-        "Congress records through media reports of sessions and votes; Sala Cuna and vape-tax stages verified.",
-        "Coded 89 items; assigned stream levels per topic and week; detected windows; ran policy checks on 9 topics.",
+        "Collected W9 (6–12 Nov) from the Chile source log: news, radio and TV sites, polls, official statistics and Congress news.",
+        "Coded each item to a topic, a stream and one concept, with its context (programme, speaker) and a short quote where one supports the code.",
+        "Weighed concepts by corroboration across independent sources in the same week.",
+        "Proposed problem and politics levels for every topic, with a rationale, and listed them in the Review tab.",
+        "Re-rated W1–W8 under v0.4: the policy level was dropped from the weekly grid and windows were re-flagged with the two-stream rule.",
+        "Added one topic (fuel prices) through the discovery net.",
     ],
-    volume="18 web searches, about 170 results screened, 89 items coded.",
+    volume=f"{len(items)} coded items in total; {sum(1 for i in items if i['week'] == latest['id'])} new in {latest['id']}.",
     rules=[
-        "A stream level carries forward up to 2 weeks without new items, then drops one level.",
+        "A potential window is flagged when the problem and politics streams are both at level 2 or 3 in the same week.",
+        "Whichever stream reached level 2 first sets the coupling: problem window (consequential) or political window (doctrinal).",
+        "The politics level is lowered by one when approval or national mood is clearly against the move, or when coalition arithmetic suggests blocking.",
         "Executive signals take precedence over congressional ones.",
-        "A mixed-committee rejection of a budget chapter counts as blocking and lowers politics by one level.",
+        "A level carries forward up to two weeks without new items, then drops one level.",
+        "The policy stream is checked only for topics where a window has been flagged.",
     ],
     limitations=[
-        "Congress open data (senado.cl, camara.cl) and InfoLobby not queried directly; urgencies come from media.",
-        "Cadem September weekly values not retrieved; no Chilean poll aggregator identified.",
-        "Talk shows and podcasts not covered systematically (1 item).",
-        "Evidence repositories not queried; evidence states come from analyst knowledge and need verification.",
-        "Topics not verified (grey, not absent): constitutional security reform, ACOT bills, housing, water, environmental permitting, lithium, gender violence, state modernisation, social-benefit targeting.",
-        "Weekly levels are reliable from W4; W1–W3 are thin except for Sala Cuna. Weeks with no observation are shown as 'not observed'.",
-        "Single analyst, no double coding yet. Ratings are provisional.",
+        f"{latest['id']} levels are proposed and await human review (Review tab). Earlier weeks were rated by one analyst without double coding.",
+        "Floor results of the Cámara budget votes (10–12 Nov) were not yet available by chapter when this run was coded.",
+        "Audio and video sources (talk shows, podcasts, radio) were read through their written coverage; no transcription yet.",
+        "El Mercurio is behind a full paywall; La Tercera and El País are metered.",
+        "Evidence states in policy checks come from analyst knowledge and need verification in Epistemonikos, Cochrane, Campbell or 3ie.",
     ],
     validation=[
-        "Sala Cuna (Senate vote 8 Sep): flagged in W1 as an open window on the decision agenda. Pass.",
-        "Rules on the Use of Force (7 Oct) and expulsions (20 Oct): flagged, then moved to closed/closing. Pass.",
-        "Sentence reductions: detected in W7, with up to 7 days of lag. Pass.",
-        "Risks: Colombia's vape tax would have produced a false positive without a country filter; pension losses became visible only when the regulator reported them; secondary outlets give conflicting poll figures.",
+        "Sala Cuna, Rules on the Use of Force and expulsions were flagged before their decisions. Pass.",
+        "Sentence reductions detected in W7, within 7 days. Pass.",
+        "The v0.4 two-stream rule would not have flagged tolls (T16) and regional funding (T17), both decided through politics alone with a weak problem stream. Politics-only decisions are a known blind spot of the rule.",
+        "Calles sin Violencia → FOCO moves from 'open' (v0.3) to 'watch' (v0.4): the budget decision is going ahead without public attention.",
     ],
     nextVersion=[
-        "Add a country filter to collection.",
-        "Make the mixed-committee blocking rule explicit.",
-        "Add the decay rule to the protocol.",
-        "Require senado.cl, camara.cl and InfoLobby data for confidence grade A.",
+        "Version 2: prediction — how stories are being prepared and how coverage will shift the agenda (journalists as a user group).",
+        "Read Cámara and Senate records directly for votes by chapter.",
+        "Transcribe the weekly political review programmes.",
     ],
 )
 
-SRC_CSV = os.path.join(OUT, "sources", "chile-sources.csv")
+SRC_CSV = os.path.join(OUT, "sources", "cl.csv")
 with open(SRC_CSV, encoding="utf-8") as f:
     SOURCE_LOG = list(csv.DictReader(f))
 
+n_prob = sum(t["status"] == "problem" for t in TOPICS)
+n_pol = sum(t["status"] == "political" for t in TOPICS)
 data = dict(
     sourceLog=SOURCE_LOG,
-    meta=dict(country="Chile", iso="CL", run="2026-11", generated="2026-11-05",
-              title="Policy Window Monitor — Chile", protocol="v0.3",
-              note="Pilot run. Ratings are provisional: one analyst, no double coding. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
-    weeks=WEEKS, statusLabels=STATUS, topics=TOPICS, policyChecks=POLICY_CHECKS,
-    calendar=CALENDAR, approval=APPROVAL, context=CONTEXT, method=METHOD,
-    items=[dict(id=i[0], date=i[1], source=i[2], type=i[3], url=i[4], topic=i[5], stream=i[6], concept=i[7],
-                actor=i[8], direction=i[9], strength=i[10], note=i[11]) for i in ITEMS],
+    meta=dict(country="Chile", iso="CL", run="2026-11", generated=generated, latestWeek=latest["id"],
+              title="Policy Window Monitor — Chile", protocol="v0.4",
+              headline=f"{len(windows)} policy windows are open in Chile: {n_prob} opened by a problem, {n_pol} by politics. Fuel prices opened a new problem window this week.",
+              topicsHeadline="Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
+              note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
+    weeks=weeks, statusLabels=STATUS, levels=LEVELS, topics=TOPICS, policyChecks=POLICY_CHECKS,
+    calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery,
+    items=items,
 )
 
-assert len(ITEMS) == 89, len(ITEMS)
 ids = {t["id"] for t in TOPICS}
-for it in data["items"]:
+for it in items:
     assert it["topic"] in ids or it["topic"] == "Cross-cutting", it
+item_ids = {i["id"] for i in items}
+assert len(item_ids) == len(items), "duplicate item ids"
+for r in reviews:
+    for sg in r["signals"]:
+        for x in sg["items"]:
+            assert x in item_ids, (sg, x)
 
 with open(os.path.join(OUT, "chile-2026-11.json"), "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=1)
@@ -484,13 +568,13 @@ with open(os.path.join(OUT, "chile-2026-11.js"), "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False)
     f.write(";\n")
 with open(os.path.join(OUT, "coded-items.csv"), "w", encoding="utf-8", newline="") as f:
-    w = csv.writer(f)
-    w.writerow(["id", "date", "source", "source_type", "url", "topic", "stream", "concept", "actor", "direction", "strength", "note"])
-    for i in ITEMS:
-        w.writerow(i)
+    cols = ["id", "week", "date", "source", "type", "url", "topic", "stream", "concept", "actor", "strength", "note", "context", "quote"]
+    w = csv.writer(f); w.writerow(cols)
+    for i in items:
+        w.writerow([i.get(c, "") for c in cols])
 with open(os.path.join(OUT, "topics.csv"), "w", encoding="utf-8", newline="") as f:
     w = csv.writer(f)
-    w.writerow(["id", "topic", "ministry", "cap_major_topic", "problem", "politics", "policy", "status", "window_type", "coupling", "opened", "timing", "agenda_level", "confidence"])
+    w.writerow(["id", "topic", "ministry", "cap_major_topic", "problem", "politics", "status", "window_type", "coupling", "opened", "timing", "open_week", "close_week"])
     for t in TOPICS:
-        w.writerow([t["id"], t["name"], t["ministry"], t["cap"], t["P"], t["Po"], t["Pol"], t["statusLabel"], t["type"], t["coupling"], t["opened"], t["timing"], t["agenda"], t["conf"]])
-print("ok", len(TOPICS), "topics", len(ITEMS), "items")
+        w.writerow([t["id"], t["name"], t["ministry"], t["cap"], t["P"], t["Po"], t["statusLabel"], t["type"], t["coupling"], t["opened"], t["timing"], t.get("openWeek") or "", t.get("closeWeek") or ""])
+print("ok", len(TOPICS), "topics", len(items), "items", len(weeks), "weeks", len(windows), "windows")

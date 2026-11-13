@@ -621,10 +621,13 @@
   "country": "Chile",
   "iso": "CL",
   "run": "2026-11",
-  "generated": "2026-11-05",
+  "generated": "2026-11-13",
+  "latestWeek": "W9",
   "title": "Policy Window Monitor — Chile",
-  "protocol": "v0.3",
-  "note": "Pilot run. Ratings are provisional: one analyst, no double coding. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."
+  "protocol": "v0.4",
+  "headline": "7 policy windows are open in Chile: 3 opened by a problem, 4 by politics. Fuel prices opened a new problem window this week.",
+  "topicsHeadline": "Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
+  "note": "Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."
  },
  "weeks": [
   {
@@ -666,16 +669,27 @@
    "id": "W8",
    "label": "27 Oct–5 Nov",
    "start": "2026-10-27"
+  },
+  {
+   "id": "W9",
+   "label": "6–12 Nov",
+   "start": "2026-11-06"
   }
  ],
  "statusLabels": {
-  "open": "Open window",
-  "opening": "Opening (problem window)",
-  "waiting": "Solution waiting",
+  "problem": "Problem window",
+  "political": "Political window",
+  "watch": "Watch (one stream)",
   "closing": "Closing",
   "closed": "Closed",
   "none": "No window"
  },
+ "levels": [
+  "No signal",
+  "Weak signal",
+  "Signal",
+  "Strong signal"
+ ],
  "topics": [
   {
    "id": "T01",
@@ -684,44 +698,40 @@
    "ministry": "Seguridad Pública",
    "cap": "12 Law & Crime",
    "P": 3,
-   "Po": 2,
-   "Pol": 3,
+   "Po": 1,
    "status": "closed",
    "statusLabel": "Closed (decision 7 Oct)",
    "type": "Political window",
    "coupling": "Doctrinal",
    "opened": "Politics, before the period",
    "timing": "Predictable (vote 7 Oct)",
-   "agenda": "Decision → closed",
-   "conf": "A",
    "traj": [
     null,
     null,
     null,
     [
      3,
-     2,
+     2
+    ],
+    [
+     3,
      3
     ],
     [
      3,
-     3,
-     3
+     2
     ],
     [
      3,
-     2,
-     3
+     2
     ],
     [
      3,
-     2,
-     3
+     2
     ],
     [
      3,
-     2,
-     3
+     1
     ]
    ],
    "openWeek": null,
@@ -735,9 +745,10 @@
     "Martín Arrau (Minister of Security)",
     "Senator Cristián Vial"
    ],
-   "changed": "Sent to promulgation after three years in Congress. The debate now moves to implementation.",
+   "changed": "No new activity. Crime remains a top concern; implementation is the next decision point.",
    "closing": "Decision taken",
-   "reopen": "Implementation controversy or a use-of-force incident"
+   "reopen": "Implementation controversy or a use-of-force incident",
+   "policyCheck": false
   },
   {
    "id": "T02",
@@ -747,47 +758,43 @@
    "cap": "12 Law & Crime",
    "P": 1,
    "Po": 3,
-   "Pol": 2,
-   "status": "open",
-   "statusLabel": "Potential window",
-   "type": "Political window",
-   "coupling": "Doctrinal",
+   "status": "watch",
+   "statusLabel": "Watch: politics only",
+   "type": "—",
+   "coupling": "—",
    "opened": "Politics, W4",
    "timing": "Predictable (budget deadline 30 Nov)",
-   "agenda": "Decision",
-   "conf": "B",
    "traj": [
     null,
     null,
     null,
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      1,
-     3,
-     2
+     3
     ],
     [
      1,
-     3,
-     2
+     3
     ],
     [
      1,
-     3,
-     2
+     3
+    ],
+    [
+     1,
+     3
     ]
    ],
    "openWeek": 4,
-   "closeWeek": null,
+   "closeWeek": 6,
    "problem": "Level 2 in W4–W5, then 1 as attention faded. Problem broker: Carolina Tohá, who calls the programme central to reversing the rise in homicides.",
    "politics": "The 2027 budget replaces Calles sin Violencia with FOCO. Barrio Prioritario is cut 43.4%; the crime-prevention undersecretariat gets +2.9%.",
    "policy": "Two named alternatives compete. Undersecretary Pilar Giannini says FOCO has a stronger design and measurement; no evaluation of either is published.",
@@ -798,9 +805,10 @@
    "entrepreneurs": [
     "Pilar Giannini (Undersecretary)"
    ],
-   "changed": "Problem stream fell to level 1 in W6; the window stays open through politics and policy until the budget vote. The 2026 budget of the programme is reported as $26,017m (The Clinic) and $13,441m (El Mostrador).",
-   "closing": null,
-   "reopen": null
+   "changed": "Under the v0.4 rule this is no longer a window: the problem stream has been weak since W6, so the budget decision on Plan FOCO is moving on politics alone. The Cámara voted the Security budget on 10–12 Nov; results not yet coded.",
+   "closing": "Attention faded (W6)",
+   "reopen": "A rise in homicides, or an evaluation of either plan",
+   "policyCheck": true
   },
   {
    "id": "T03",
@@ -809,16 +817,13 @@
    "ministry": "Interior",
    "cap": "9 Immigration",
    "P": 1,
-   "Po": 2,
-   "Pol": 3,
-   "status": "closing",
-   "statusLabel": "Closing",
+   "Po": 1,
+   "status": "closed",
+   "statusLabel": "Closed (law dispatched 20 Oct)",
    "type": "Political window",
    "coupling": "Doctrinal",
    "opened": "Politics, W7",
    "timing": "Predictable (vote 20 Oct)",
-   "agenda": "Decision → closing",
-   "conf": "A",
    "traj": [
     null,
     null,
@@ -828,13 +833,15 @@
     null,
     [
      2,
-     3,
      3
     ],
     [
      1,
-     2,
-     3
+     2
+    ],
+    [
+     1,
+     1
     ]
    ],
    "openWeek": 7,
@@ -847,9 +854,10 @@
    "entrepreneurs": [
     "José García Ruminot (Segpres)"
    ],
-   "changed": "Expulsions decision taken; the detention reform failed.",
+   "changed": "No new activity.",
    "closing": "Decision taken; action failed (60-day detention)",
-   "reopen": "Detention reform or irregular-entry offence revived"
+   "reopen": "Detention reform or irregular-entry offence revived",
+   "policyCheck": false
   },
   {
    "id": "T04",
@@ -859,54 +867,47 @@
    "cap": "12 Law & Crime",
    "P": 3,
    "Po": 2,
-   "Pol": 2,
-   "status": "opening",
-   "statusLabel": "Potential window",
+   "status": "problem",
+   "statusLabel": "Problem window",
    "type": "Problem window",
    "coupling": "Consequential",
    "opened": "Problem, W7",
-   "timing": "Unpredictable (accusation Nov–Dec)",
-   "agenda": "Governmental",
-   "conf": "A",
+   "timing": "Unpredictable (accusation not yet filed)",
    "traj": [
     [
      0,
+     0
+    ],
+    [
      0,
      0
     ],
     [
      0,
+     0
+    ],
+    [
      0,
      0
     ],
     [
      0,
-     0,
      0
     ],
     [
-     0,
-     0,
-     0
-    ],
-    [
-     0,
-     0,
-     0
-    ],
-    [
-     0,
      0,
      0
     ],
     [
      3,
-     2,
      2
     ],
     [
      3,
-     2,
+     2
+    ],
+    [
+     3,
      2
     ]
    ],
@@ -924,9 +925,10 @@
    "entrepreneurs": [
     "Fernando Rabat (Minister of Justice)"
    ],
-   "changed": "The largest focusing event of the period. Presidential approval fell 7 points since the case began.",
+   "changed": "Cadem (8 Nov): the sentence reductions are the top reason people give for disapproving of the President (43%). The opposition had not filed the constitutional accusation by 12 Nov; parties disagree on timing. Politics stays at 2 because UDI will not back it.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": true
   },
   {
    "id": "T05",
@@ -934,17 +936,14 @@
    "short": "Pension fund losses",
    "ministry": "Trabajo y Previsión Social",
    "cap": "13 Social Welfare",
-   "P": 2,
+   "P": 1,
    "Po": 2,
-   "Pol": 1,
-   "status": "opening",
-   "statusLabel": "Potential window (weak policy stream)",
+   "status": "closing",
+   "statusLabel": "Closing: attention fading",
    "type": "Problem window",
    "coupling": "Consequential",
    "opened": "Problem, W7",
    "timing": "Unpredictable",
-   "agenda": "Governmental",
-   "conf": "B",
    "traj": [
     null,
     null,
@@ -954,17 +953,19 @@
     null,
     [
      3,
-     2,
-     1
+     2
     ],
     [
      2,
-     2,
-     1
+     2
+    ],
+    [
+     1,
+     2
     ]
    ],
    "openWeek": 7,
-   "closeWeek": null,
+   "closeWeek": 9,
    "problem": "The Superintendent told the Cámara Labour committee (26 Oct) derivative losses were about US$10.1bn at 30 Sep, easing to about US$7bn by 20 Oct. Fund E −7.56% and Fund D −4.73% year to date. Attention fading after October's rebound.",
    "politics": "Sanction process against 7 AFPs opened (20 Oct) and a committee session held. No executive bill.",
    "policy": "Compensation and duration limits are mentioned, but no actor meets the entrepreneur definition.",
@@ -973,9 +974,10 @@
     "Joaquín Cortez (Superintendent of Pensions)"
    ],
    "entrepreneurs": [],
-   "changed": "Problem stream weakening in W8 as funds recovered.",
-   "closing": null,
-   "reopen": null
+   "changed": "Fund E rose 8.4% between 24 Oct and 11 Nov. The Cámara admitted the 'Devuelvan la plata' compensation bill (3 Nov); the Superintendent asked to wait for the investigation. Problem stream drops to 1, so the window is closing.",
+   "closing": "Attention fading as Fund E recovers",
+   "reopen": "New losses, sanction results, or the compensation bill moving",
+   "policyCheck": true
   },
   {
    "id": "T06",
@@ -985,54 +987,47 @@
    "cap": "5 Labor",
    "P": 3,
    "Po": 2,
-   "Pol": 2,
-   "status": "opening",
-   "statusLabel": "Potential window",
+   "status": "problem",
+   "statusLabel": "Problem window",
    "type": "Problem window",
    "coupling": "Consequential",
    "opened": "Problem, before the period",
    "timing": "Predictable (SENCE budget, 30 Nov)",
-   "agenda": "Governmental",
-   "conf": "B",
    "traj": [
     [
      2,
+     2
+    ],
+    [
      2,
      2
     ],
     [
      2,
+     2
+    ],
+    [
      2,
      2
     ],
     [
      2,
-     2,
      2
     ],
     [
      2,
-     2,
      2
     ],
     [
-     2,
-     2,
-     2
-    ],
-    [
-     2,
-     2,
-     2
-    ],
-    [
-     2,
      2,
      2
     ],
     [
      3,
-     2,
+     2
+    ],
+    [
+     3,
      2
     ]
    ],
@@ -1048,9 +1043,10 @@
    "entrepreneurs": [
     "Tomás Rau (Minister of Labour)"
    ],
-   "changed": "Problem stream rose to level 3 with the 29 Oct INE release.",
+   "changed": "Cadem (8 Nov): rising unemployment is the second reason for disapproval (42%) and, with fuel prices, the issue people most want solved. Next INE release around 27 Nov.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": true
   },
   {
    "id": "T07",
@@ -1060,54 +1056,47 @@
    "cap": "5 Labor",
    "P": 2,
    "Po": 3,
-   "Pol": 3,
-   "status": "open",
-   "statusLabel": "Open window",
+   "status": "political",
+   "statusLabel": "Political window",
    "type": "Political window",
    "coupling": "Doctrinal (employment frame)",
    "opened": "Politics, before the period",
    "timing": "Predictable (target before Feb 2027)",
-   "agenda": "Decision",
-   "conf": "A",
    "traj": [
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
+     3
+    ],
+    [
+     2,
      3
     ]
    ],
@@ -1122,9 +1111,10 @@
     "Tomás Rau (Minister of Labour)",
     "Fundación ChileMujeres"
    ],
-   "changed": "Financing restored in committee on 4 Nov; the bill moves to the Hacienda committee.",
+   "changed": "No new step found this week; the bill is in the Cámara Hacienda committee.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": true
   },
   {
    "id": "T08",
@@ -1134,42 +1124,38 @@
    "cap": "1 Macroeconomics",
    "P": 2,
    "Po": 3,
-   "Pol": 3,
-   "status": "open",
-   "statusLabel": "Open window",
+   "status": "political",
+   "statusLabel": "Political window",
    "type": "Political window",
    "coupling": "Doctrinal",
    "opened": "Politics, W4",
    "timing": "Predictable (30 Nov)",
-   "agenda": "Decision",
-   "conf": "A",
    "traj": [
     null,
     null,
     null,
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
      3
     ],
     [
      2,
-     3,
+     3
+    ],
+    [
+     2,
      3
     ]
    ],
@@ -1185,9 +1171,10 @@
    "entrepreneurs": [
     "Jorge Quiroz (Minister of Finance)"
    ],
-   "changed": "Mixed committee rejected Education, primary care and SENCE (5 Nov). Floor votes 9–11 and 17–19 Nov.",
+   "changed": "The Cámara approved the budget in general on 9 Nov and voted 2,242 amendments on 10–12 Nov (results by chapter not yet coded). Senate next; deadline 29–30 Nov. Imacec for September was +0.2%; Q3 GDP is due 18 Nov.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": true
   },
   {
    "id": "T09",
@@ -1197,43 +1184,39 @@
    "cap": "3 Health",
    "P": 2,
    "Po": 3,
-   "Pol": 2,
-   "status": "open",
-   "statusLabel": "Open window",
+   "status": "political",
+   "statusLabel": "Political window",
    "type": "Political window",
    "coupling": "Doctrinal, with problem counter-mobilisation",
    "opened": "Politics, W4",
    "timing": "Predictable (30 Nov)",
-   "agenda": "Decision",
-   "conf": "A",
    "traj": [
     null,
     null,
     null,
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
+    ],
+    [
+     2,
+     3
     ]
    ],
    "openWeek": 4,
@@ -1249,9 +1232,10 @@
    "entrepreneurs": [
     "Sen. Juan Luis Castro"
    ],
-   "changed": "Ricarte Soto partly restored; primary care rejected in committee.",
+   "changed": "The government said it will restore rejected funds in the Cámara; primary care had been rejected on a tied vote in the mixed committee. Floor results not yet coded.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": true
   },
   {
    "id": "T10",
@@ -1261,15 +1245,12 @@
    "cap": "3 Health",
    "P": 1,
    "Po": 1,
-   "Pol": 1,
    "status": "none",
-   "statusLabel": "No window (latent)",
+   "statusLabel": "No window",
    "type": "—",
    "coupling": "—",
    "opened": "—",
    "timing": "Unpredictable",
-   "agenda": "—",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1280,6 +1261,9 @@
     null,
     [
      1,
+     1
+    ],
+    [
      1,
      1
     ]
@@ -1292,9 +1276,10 @@
    "frames": "—",
    "brokers": [],
    "entrepreneurs": [],
-   "changed": "Quiet in the period; next Minsal report could move it.",
+   "changed": "Quiet; the next Minsal report could move it.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
   },
   {
    "id": "T11",
@@ -1304,15 +1289,12 @@
    "cap": "3 Health",
    "P": 1,
    "Po": 2,
-   "Pol": 1,
-   "status": "none",
-   "statusLabel": "No window",
+   "status": "watch",
+   "statusLabel": "Watch: politics only",
    "type": "—",
    "coupling": "—",
    "opened": "—",
    "timing": "Predictable (30 Nov)",
-   "agenda": "—",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1323,8 +1305,11 @@
     null,
     [
      1,
-     2,
-     1
+     2
+    ],
+    [
+     1,
+     2
     ]
    ],
    "openWeek": null,
@@ -1337,7 +1322,8 @@
    "entrepreneurs": [],
    "changed": "Tied to the health budget vote.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
   },
   {
    "id": "T12",
@@ -1347,15 +1333,12 @@
    "cap": "3 Health",
    "P": 0,
    "Po": 1,
-   "Pol": 2,
-   "status": "waiting",
-   "statusLabel": "Solution waiting for a window",
+   "status": "none",
+   "statusLabel": "No window (bill not filed)",
    "type": "—",
    "coupling": "—",
    "opened": "Policy first (June)",
    "timing": "Unpredictable (no bill)",
-   "agenda": "—",
-   "conf": "B",
    "traj": [
     null,
     null,
@@ -1364,18 +1347,19 @@
     null,
     [
      0,
-     1,
-     2
+     1
     ],
     [
      0,
-     1,
-     2
+     1
     ],
     [
      0,
-     1,
-     2
+     1
+    ],
+    [
+     0,
+     1
     ]
    ],
    "openWeek": null,
@@ -1389,9 +1373,10 @@
     "Jorge Quiroz (Minister of Finance)",
     "U. de Chile specialists"
    ],
-   "changed": "Precondition met on 17 Oct. Trigger to watch: Hacienda filing the bill.",
+   "changed": "No Chilean signal. The idea is ready, but under v0.4 a topic without problem and politics signals is not a window. Trigger to watch: Hacienda filing the bill.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
   },
   {
    "id": "T13",
@@ -1401,15 +1386,12 @@
    "cap": "12 Law & Crime",
    "P": 1,
    "Po": 2,
-   "Pol": 3,
    "status": "closed",
-   "statusLabel": "Closed (Ley 21.850); Customs budget pending",
+   "statusLabel": "Closed (Ley 21.850, 17 Oct)",
    "type": "Political window",
    "coupling": "Doctrinal",
    "opened": "Background",
    "timing": "Predictable (30 Nov)",
-   "agenda": "Decision",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1418,18 +1400,19 @@
     null,
     [
      1,
-     2,
-     3
+     2
     ],
     [
      1,
-     2,
-     3
+     2
     ],
     [
      1,
-     2,
-     3
+     2
+    ],
+    [
+     1,
+     2
     ]
    ],
    "openWeek": null,
@@ -1442,9 +1425,10 @@
    "entrepreneurs": [
     "Sen. Miguel Becker"
    ],
-   "changed": "Decision taken on 17 Oct; contents to verify.",
+   "changed": "Customs budget cut still pending in the budget vote.",
    "closing": "Decision taken",
-   "reopen": "Customs budget cut"
+   "reopen": "Customs budget cut",
+   "policyCheck": false
   },
   {
    "id": "T14",
@@ -1454,41 +1438,37 @@
    "cap": "6 Education",
    "P": 2,
    "Po": 2,
-   "Pol": 2,
-   "status": "open",
-   "statusLabel": "Open window (blocked in committee)",
+   "status": "political",
+   "statusLabel": "Political window (blocking possible)",
    "type": "Political window",
    "coupling": "Doctrinal",
    "opened": "Politics, W4",
    "timing": "Predictable (30 Nov)",
-   "agenda": "Decision",
-   "conf": "B",
    "traj": [
     null,
     null,
     null,
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
-     3,
-     2
+     3
     ],
     [
      2,
+     2
+    ],
+    [
      2,
      2
     ]
@@ -1505,9 +1485,10 @@
    "entrepreneurs": [
     "Opposition members of the mixed committee"
    ],
-   "changed": "Education budget rejected in committee on 5 Nov.",
+   "changed": "Education reached the Cámara floor with its whole chapter rejected; the government announced it would restore funds. Politics stays at 2 because committee arithmetic suggests blocking.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": true
   },
   {
    "id": "T15",
@@ -1517,15 +1498,12 @@
    "cap": "6 Education",
    "P": 1,
    "Po": 1,
-   "Pol": 3,
-   "status": "waiting",
-   "statusLabel": "Solution waiting (stalled)",
+   "status": "none",
+   "statusLabel": "No window",
    "type": "—",
    "coupling": "—",
    "opened": "Policy first (2025)",
    "timing": "Unpredictable",
-   "agenda": "—",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1536,8 +1514,11 @@
     null,
     [
      1,
+     1
+    ],
+    [
      1,
-     3
+     1
     ]
    ],
    "openWeek": null,
@@ -1548,9 +1529,10 @@
    "frames": "—",
    "brokers": [],
    "entrepreneurs": [],
-   "changed": "Stalled.",
+   "changed": "Stalled in the Senate.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
   },
   {
    "id": "T16",
@@ -1559,16 +1541,13 @@
    "ministry": "Obras Públicas / Energía",
    "cap": "10 Transportation / 8 Energy",
    "P": 1,
-   "Po": 2,
-   "Pol": 3,
-   "status": "closing",
-   "statusLabel": "Closing",
-   "type": "Political window",
-   "coupling": "Doctrinal",
+   "Po": 1,
+   "status": "closed",
+   "statusLabel": "Closed (decided without a flagged window)",
+   "type": "—",
+   "coupling": "—",
    "opened": "Politics, W6",
    "timing": "Predictable (1 Jan 2027)",
-   "agenda": "Decision → closing",
-   "conf": "B",
    "traj": [
     null,
     null,
@@ -1577,21 +1556,22 @@
     null,
     [
      1,
-     2,
-     3
+     2
     ],
     [
      1,
-     2,
-     3
+     2
     ],
     [
      1,
-     2,
-     3
+     2
+    ],
+    [
+     1,
+     1
     ]
    ],
-   "openWeek": 6,
+   "openWeek": null,
    "closeWeek": 8,
    "problem": "Cost of living concern; no specific new indicator.",
    "politics": "Announcement in W6: Autopista Central toll cut of 10–25% from January 2027 in exchange for a 20-month concession extension; lower electricity prices in 2027. Criteria: 44% oppose the concession mechanism vs 41% in favour.",
@@ -1599,9 +1579,10 @@
    "frames": "Relief for households vs concession giveaway.",
    "brokers": [],
    "entrepreneurs": [],
-   "changed": "Decision taken; takes effect 1 Jan 2027.",
+   "changed": "Decided through politics alone. The v0.4 rule would not have flagged it, because the problem stream stayed weak.",
    "closing": "Decision taken",
-   "reopen": "Concession controversy"
+   "reopen": "Concession controversy",
+   "policyCheck": false
   },
   {
    "id": "T17",
@@ -1610,47 +1591,43 @@
    "ministry": "Interior (Subdere)",
    "cap": "20 Government Operations",
    "P": 1,
-   "Po": 3,
-   "Pol": 3,
-   "status": "closing",
-   "statusLabel": "Closing (agreement 4 Nov)",
-   "type": "Political window",
-   "coupling": "Doctrinal",
+   "Po": 2,
+   "status": "closed",
+   "statusLabel": "Closed (agreement 4 Nov; no window flagged)",
+   "type": "—",
+   "coupling": "—",
    "opened": "Politics, W4",
    "timing": "Predictable (30 Nov)",
-   "agenda": "Decision",
-   "conf": "C",
    "traj": [
     null,
     null,
     null,
     [
      1,
-     3,
      3
     ],
     [
      1,
-     3,
      3
     ],
     [
      1,
-     3,
      3
     ],
     [
      1,
-     3,
      3
     ],
     [
      1,
-     3,
      3
+    ],
+    [
+     1,
+     2
     ]
    ],
-   "openWeek": 4,
+   "openWeek": null,
    "closeWeek": 8,
    "problem": "Ley Cholito (responsible pet ownership) line cut 86% ($3,634m to $514m).",
    "politics": "Minister of Finance celebrated an agreement with the regional governors on 4 Nov.",
@@ -1660,9 +1637,10 @@
    "entrepreneurs": [
     "Regional governors"
    ],
-   "changed": "Agreement reached; pending the floor vote.",
+   "changed": "Agreement with regional governors; decided through politics alone.",
    "closing": "Decision taken (pending floor)",
-   "reopen": "Floor reversal"
+   "reopen": "Floor reversal",
+   "policyCheck": false
   },
   {
    "id": "T18",
@@ -1670,17 +1648,14 @@
    "short": "Storm response",
    "ministry": "Interior / Senapred",
    "cap": "15 Disasters",
-   "P": 2,
+   "P": 1,
    "Po": 1,
-   "Pol": 0,
    "status": "none",
    "statusLabel": "No window",
    "type": "—",
    "coupling": "—",
    "opened": "—",
    "timing": "Unpredictable",
-   "agenda": "—",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1690,13 +1665,15 @@
     null,
     [
      2,
-     1,
-     0
+     1
     ],
     [
      2,
+     1
+    ],
+    [
      1,
-     0
+     1
     ]
    ],
    "openWeek": null,
@@ -1707,9 +1684,10 @@
    "frames": "—",
    "brokers": [],
    "entrepreneurs": [],
-   "changed": "Problem without politics or policy.",
+   "changed": "Attention faded.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
   },
   {
    "id": "T19",
@@ -1719,15 +1697,12 @@
    "cap": "19 International Affairs",
    "P": 0,
    "Po": 1,
-   "Pol": 1,
    "status": "none",
    "statusLabel": "No window",
    "type": "—",
    "coupling": "—",
    "opened": "—",
    "timing": "Unpredictable",
-   "agenda": "—",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1737,12 +1712,14 @@
     null,
     [
      0,
-     1,
      1
     ],
     [
      0,
-     1,
+     1
+    ],
+    [
+     0,
      1
     ]
    ],
@@ -1756,7 +1733,8 @@
    "entrepreneurs": [],
    "changed": "Statement only.",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
   },
   {
    "id": "T20",
@@ -1766,15 +1744,12 @@
    "cap": "13 Social Welfare",
    "P": 0,
    "Po": 0,
-   "Pol": 0,
    "status": "none",
    "statusLabel": "No signal found",
    "type": "—",
    "coupling": "—",
    "opened": "—",
    "timing": "—",
-   "agenda": "—",
-   "conf": "C",
    "traj": [
     null,
     null,
@@ -1785,6 +1760,9 @@
     null,
     [
      0,
+     0
+    ],
+    [
      0,
      0
     ]
@@ -1799,7 +1777,52 @@
    "entrepreneurs": [],
    "changed": "—",
    "closing": null,
-   "reopen": null
+   "reopen": null,
+   "policyCheck": false
+  },
+  {
+   "id": "T21",
+   "name": "Fuel prices and the Mepco stabilisation mechanism",
+   "short": "Fuel prices (Mepco)",
+   "ministry": "Hacienda / Energía",
+   "cap": "8 Energy",
+   "status": "problem",
+   "statusLabel": "Problem window (new)",
+   "type": "Problem window",
+   "coupling": "Consequential",
+   "opened": "Problem, W9",
+   "timing": "Predictable (weekly price updates; bill under 'discusión inmediata')",
+   "openWeek": 9,
+   "closeWeek": null,
+   "problem": "Sixth consecutive rise in fuel prices (+$40 per litre from 12 Nov). Gasoline rose 4.5% in October's CPI, which put annual inflation at 4.5%. Cadem (8 Nov): fuel prices and unemployment are the issues people most want the government to solve.",
+   "politics": "After the extended political committee on 9 Nov, the President announced a bill capping each rise at $20 per litre for 90 days, with 'discusión inmediata' urgency and the backing of governing-party presidents and bench heads. Reactions in Congress were mixed.",
+   "policy": "Executive bill to change Mepco; Hacienda considering fiscal savings to moderate rises. Bonuses for taxi drivers, school transport and artisanal fishers were extended in September.",
+   "frames": "'Social urgency' (President) vs 'fuel is still cheap for the region' (Minister Mas).",
+   "brokers": [],
+   "entrepreneurs": [
+    "President José Antonio Kast",
+    "Jorge Quiroz (Minister of Finance)"
+   ],
+   "changed": "New topic this week. Entered through the discovery net: a coverage spike plus poll salience.",
+   "closing": null,
+   "reopen": null,
+   "traj": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+     3,
+     3
+    ]
+   ],
+   "P": 3,
+   "Po": 3,
+   "policyCheck": true
   }
  ],
  "policyChecks": {
@@ -1952,25 +1975,27 @@
    "evidence": "Several systematic reviews exist",
    "applicability": "Medium",
    "evidenceNote": "IARC Handbook vol. 14: sufficient evidence that tobacco taxes prevent initiation and uptake among young people. Trigger: Hacienda filing the bill."
+  },
+  "T21": {
+   "ideas": [
+    "Cap each Mepco rise at $20 per litre for 90 days",
+    "Use fiscal savings to moderate rises",
+    "Targeted bonuses for transport and fishing sectors (extended in September)"
+   ],
+   "entrepreneurs": [
+    "President Kast and Minister Quiroz (bill)",
+    "Governing-party presidents and bench heads"
+   ],
+   "bills": [
+    "Mepco bill announced 9 Nov with 'discusión inmediata'; filing not verified by 12 Nov",
+    "Bonus extension bill (sent to the Cámara 30 Sep)"
+   ],
+   "evidence": "Reviews exist on fuel subsidies; none found on price-smoothing funds",
+   "applicability": "Medium",
+   "evidenceNote": "Cross-country work on energy subsidies finds general fuel-price support is regressive and costly compared with targeted transfers. No synthesis found on price-smoothing funds such as Mepco."
   }
  },
  "calendar": [
-  {
-   "date": "2026-11-06",
-   "end": null,
-   "label": "Comité político",
-   "short": "Comité político",
-   "lane": "Cabinet",
-   "topic": null
-  },
-  {
-   "date": "2026-11-09",
-   "end": "2026-11-11",
-   "label": "Cámara floor vote",
-   "short": "Cámara",
-   "lane": "Budget 2027",
-   "topic": "T08"
-  },
   {
    "date": "2026-11-17",
    "end": "2026-11-19",
@@ -1988,9 +2013,9 @@
    "topic": "T08"
   },
   {
-   "date": "2026-11-30",
+   "date": "2026-11-29",
    "end": null,
-   "label": "Budget deadline",
+   "label": "Budget deadline (29–30 Nov)",
    "short": "Deadline",
    "lane": "Budget 2027",
    "topic": "T08",
@@ -1998,6 +2023,22 @@
   },
   {
    "date": "2026-11-10",
+   "end": "2026-11-22",
+   "label": "Mepco bill under 'discusión inmediata' (if filed)",
+   "short": "Mepco bill",
+   "lane": "Fuel prices",
+   "topic": "T21"
+  },
+  {
+   "date": "2026-11-19",
+   "end": null,
+   "label": "Next weekly fuel price update (approx.)",
+   "short": "Price update",
+   "lane": "Fuel prices",
+   "topic": "T21"
+  },
+  {
+   "date": "2026-11-13",
    "end": "2026-12-20",
    "label": "Constitutional accusation (filing and vote)",
    "short": "Accusation filing and vote",
@@ -2005,12 +2046,36 @@
    "topic": "T04"
   },
   {
-   "date": "2026-11-10",
+   "date": "2026-11-13",
    "end": "2027-01-31",
    "label": "Hacienda committee and floor; target before Feb",
    "short": "Hacienda committee, floor",
    "lane": "Sala Cuna",
    "topic": "T07"
+  },
+  {
+   "date": "2026-11-18",
+   "end": null,
+   "label": "GDP Q3 release (Banco Central)",
+   "short": "GDP Q3",
+   "lane": "Employment and economy",
+   "topic": "T06"
+  },
+  {
+   "date": "2026-11-27",
+   "end": null,
+   "label": "INE unemployment release (approx.)",
+   "short": "INE",
+   "lane": "Employment and economy",
+   "topic": "T06"
+  },
+  {
+   "date": "2026-12-30",
+   "end": null,
+   "label": "INE unemployment release (approx.)",
+   "short": "INE",
+   "lane": "Employment and economy",
+   "topic": "T06"
   },
   {
    "date": "2027-01-01",
@@ -2019,22 +2084,6 @@
    "short": "Toll cut in force",
    "lane": "Tolls",
    "topic": "T16"
-  },
-  {
-   "date": "2026-11-27",
-   "end": null,
-   "label": "INE unemployment release (approx.)",
-   "short": "INE",
-   "lane": "Employment",
-   "topic": "T06"
-  },
-  {
-   "date": "2026-12-30",
-   "end": null,
-   "label": "INE unemployment release (approx.)",
-   "short": "INE",
-   "lane": "Employment",
-   "topic": "T06"
   }
  ],
  "approval": [
@@ -2079,57 +2128,264 @@
    "date": "2026-10-25",
    "approve": 27,
    "disapprove": 64
+  },
+  {
+   "poll": "Cadem",
+   "date": "2026-11-08",
+   "approve": 29,
+   "disapprove": 68
+  },
+  {
+   "poll": "Criteria",
+   "date": "2026-11-08",
+   "approve": 24,
+   "disapprove": 67
   }
  ],
  "context": {
   "executive": "President José Antonio Kast (Partido Republicano), in office since 11 March 2026.",
-  "approvalNote": "Cadem monthly averages: September 35%, October 30%. Approval fell below 30% in W7 and reached 26% on 1 Nov, the lowest since March.",
+  "approvalNote": "Cadem: approval fell from 35% (September average) to 26% on 1 Nov, then rose to 29% on 8 Nov. Criteria fell to 24% on 8 Nov. The two polls moved in opposite directions this week.",
   "problems": [
-   "CEP 96 priorities: crime 57%, health 42%, education 28%, drug trafficking 28%, pensions 18%.",
-   "Cadem (1 Nov): worry about job instability 71% (+9).",
-   "Feedback Research (20–30 Oct): household economy (61%) overtakes neighbourhood crime (59%)."
+   "Cadem (8 Nov): unemployment and fuel prices are the issues people most want the government to solve.",
+   "Cadem (8 Nov): reasons for disapproval: sentence reductions 43%, rising unemployment 42%.",
+   "CEP 96 priorities: crime 57%, health 42%, education 28%, drug trafficking 28%, pensions 18%."
   ],
-  "budget": "Budget Law 2027 submitted 30 Sep (+1.5% spending). Mixed committee (29 Oct–5 Nov) rejected Education, primary care, SENCE and parts of Customs, Interior and Culture. Cámara floor 9–11 Nov, Senate 17–19 Nov, deadline 30 Nov (one source gives 29 Nov).",
-  "cabinet": "Undersecretary of Justice removed 30 Oct; 59 senior departures since March. The President ruled out a cabinet change (5 Nov)."
+  "budget": "Budget Law 2027: the mixed committee dispatched it on 6 Nov with Education and Science rejected. The Cámara approved it in general on 9 Nov and voted 2,242 amendments on 10–12 Nov. Senate 17–19 Nov; deadline 29–30 Nov.",
+  "cabinet": "The President joined an extended political committee on 9 Nov and announced the fuel bill afterwards. He travels to China on 14 Nov. No cabinet change."
  },
  "method": {
-  "period": "8 September – 5 November 2026 (8 weeks)",
-  "protocol": "Policy Window Monitor Protocol v0.3",
-  "steps": [
-   "Cross-cutting politics scan: approval polls, cabinet events, budget calendar and votes.",
-   "Re-checked the 10 topics from the October scan and added 10 more across ministries.",
-   "Official statistics: INE employment bulletin 336, Minsal waiting-list report, Fiscal Council reports.",
-   "Congress records through media reports of sessions and votes; Sala Cuna and vape-tax stages verified.",
-   "Coded 89 items; assigned stream levels per topic and week; detected windows; ran policy checks on 9 topics."
+  "period": "8 September – 12 November 2026 (9 weeks)",
+  "protocol": "Policy Window Monitor Protocol v0.4",
+  "levels": [
+   "No signal",
+   "Weak signal",
+   "Signal",
+   "Strong signal"
   ],
-  "volume": "18 web searches, about 170 results screened, 89 items coded.",
+  "steps": [
+   "Collected W9 (6–12 Nov) from the Chile source log: news, radio and TV sites, polls, official statistics and Congress news.",
+   "Coded each item to a topic, a stream and one concept, with its context (programme, speaker) and a short quote where one supports the code.",
+   "Weighed concepts by corroboration across independent sources in the same week.",
+   "Proposed problem and politics levels for every topic, with a rationale, and listed them in the Review tab.",
+   "Re-rated W1–W8 under v0.4: the policy level was dropped from the weekly grid and windows were re-flagged with the two-stream rule.",
+   "Added one topic (fuel prices) through the discovery net."
+  ],
+  "volume": "109 coded items in total; 21 new in W9.",
   "rules": [
-   "A stream level carries forward up to 2 weeks without new items, then drops one level.",
+   "A potential window is flagged when the problem and politics streams are both at level 2 or 3 in the same week.",
+   "Whichever stream reached level 2 first sets the coupling: problem window (consequential) or political window (doctrinal).",
+   "The politics level is lowered by one when approval or national mood is clearly against the move, or when coalition arithmetic suggests blocking.",
    "Executive signals take precedence over congressional ones.",
-   "A mixed-committee rejection of a budget chapter counts as blocking and lowers politics by one level."
+   "A level carries forward up to two weeks without new items, then drops one level.",
+   "The policy stream is checked only for topics where a window has been flagged."
   ],
   "limitations": [
-   "Congress open data (senado.cl, camara.cl) and InfoLobby not queried directly; urgencies come from media.",
-   "Cadem September weekly values not retrieved; no Chilean poll aggregator identified.",
-   "Talk shows and podcasts not covered systematically (1 item).",
-   "Evidence repositories not queried; evidence states come from analyst knowledge and need verification.",
-   "Topics not verified (grey, not absent): constitutional security reform, ACOT bills, housing, water, environmental permitting, lithium, gender violence, state modernisation, social-benefit targeting.",
-   "Weekly levels are reliable from W4; W1–W3 are thin except for Sala Cuna. Weeks with no observation are shown as 'not observed'.",
-   "Single analyst, no double coding yet. Ratings are provisional."
+   "W9 levels are proposed and await human review (Review tab). Earlier weeks were rated by one analyst without double coding.",
+   "Floor results of the Cámara budget votes (10–12 Nov) were not yet available by chapter when this run was coded.",
+   "Audio and video sources (talk shows, podcasts, radio) were read through their written coverage; no transcription yet.",
+   "El Mercurio is behind a full paywall; La Tercera and El País are metered.",
+   "Evidence states in policy checks come from analyst knowledge and need verification in Epistemonikos, Cochrane, Campbell or 3ie."
   ],
   "validation": [
-   "Sala Cuna (Senate vote 8 Sep): flagged in W1 as an open window on the decision agenda. Pass.",
-   "Rules on the Use of Force (7 Oct) and expulsions (20 Oct): flagged, then moved to closed/closing. Pass.",
-   "Sentence reductions: detected in W7, with up to 7 days of lag. Pass.",
-   "Risks: Colombia's vape tax would have produced a false positive without a country filter; pension losses became visible only when the regulator reported them; secondary outlets give conflicting poll figures."
+   "Sala Cuna, Rules on the Use of Force and expulsions were flagged before their decisions. Pass.",
+   "Sentence reductions detected in W7, within 7 days. Pass.",
+   "The v0.4 two-stream rule would not have flagged tolls (T16) and regional funding (T17), both decided through politics alone with a weak problem stream. Politics-only decisions are a known blind spot of the rule.",
+   "Calles sin Violencia → FOCO moves from 'open' (v0.3) to 'watch' (v0.4): the budget decision is going ahead without public attention."
   ],
   "nextVersion": [
-   "Add a country filter to collection.",
-   "Make the mixed-committee blocking rule explicit.",
-   "Add the decay rule to the protocol.",
-   "Require senado.cl, camara.cl and InfoLobby data for confidence grade A."
+   "Version 2: prediction — how stories are being prepared and how coverage will shift the agenda (journalists as a user group).",
+   "Read Cámara and Senate records directly for votes by chapter.",
+   "Transcribe the weekly political review programmes."
   ]
  },
+ "reviews": [
+  {
+   "week": "W9",
+   "label": "6–12 Nov",
+   "status": "proposed",
+   "note": "First run under Protocol v0.4. All topics re-rated on problem and politics only; earlier weeks re-labelled under the v0.4 window rule. W9 levels are proposed and await review.",
+   "signals": [
+    {
+     "topic": "T21",
+     "stream": "Problem",
+     "prev": null,
+     "proposed": 3,
+     "concepts": [
+      "Indicator change",
+      "Salience"
+     ],
+     "items": [
+      "D97",
+      "D98",
+      "D91"
+     ],
+     "rationale": "A sixth consecutive price rise and gasoline's jump in October's CPI are indicator changes, corroborated by three sources. Cadem places fuel prices among the issues people most want solved, which meets the 'top concern' test for level 3."
+    },
+    {
+     "topic": "T21",
+     "stream": "Politics",
+     "prev": null,
+     "proposed": 3,
+     "concepts": [
+      "Agenda tool used (urgency)",
+      "Coalition or vote"
+     ],
+     "items": [
+      "D95",
+      "D96",
+      "D100"
+     ],
+     "rationale": "The executive announced a bill with 'discusión inmediata', the strongest urgency, after agreeing it with governing-party leaders. Approval is low, but mood favours action on fuel prices, so no level is deducted. Problem came first (Cadem 8 Nov, bill 9 Nov), so this is a problem window."
+    },
+    {
+     "topic": "T04",
+     "stream": "Problem",
+     "prev": 3,
+     "proposed": 3,
+     "concepts": [
+      "Salience"
+     ],
+     "items": [
+      "D93"
+     ],
+     "rationale": "The sentence reductions remain the top reason for disapproving of the President, a sign that attention is sustained."
+    },
+    {
+     "topic": "T04",
+     "stream": "Politics",
+     "prev": 2,
+     "proposed": 2,
+     "concepts": [
+      "Coalition or vote",
+      "Organised forces"
+     ],
+     "items": [
+      "D104",
+      "D105"
+     ],
+     "rationale": "The accusation is announced but not filed, the opposition disagrees on timing, and UDI will not support it. A formal step is pending, but the coalition arithmetic suggests blocking, so it stays at 2."
+    },
+    {
+     "topic": "T05",
+     "stream": "Problem",
+     "prev": 2,
+     "proposed": 1,
+     "concepts": [
+      "Indicator change"
+     ],
+     "items": [
+      "D106"
+     ],
+     "rationale": "Fund E has recovered strongly since late October and coverage has fallen. With the problem stream below 2, the window is marked as closing (attention fading)."
+    },
+    {
+     "topic": "T05",
+     "stream": "Politics",
+     "prev": 2,
+     "proposed": 2,
+     "concepts": [
+      "Coalition or vote"
+     ],
+     "items": [
+      "D107"
+     ],
+     "rationale": "The compensation bill was admitted and the sanction process continues; a formal step exists, so politics stays at 2."
+    },
+    {
+     "topic": "T06",
+     "stream": "Problem",
+     "prev": 3,
+     "proposed": 3,
+     "concepts": [
+      "Salience"
+     ],
+     "items": [
+      "D92",
+      "D93"
+     ],
+     "rationale": "Unemployment is a leading reason for disapproval and the top concern in Cadem, corroborated by two outlets."
+    },
+    {
+     "topic": "T08",
+     "stream": "Politics",
+     "prev": 3,
+     "proposed": 3,
+     "concepts": [
+      "Coalition or vote",
+      "Agenda tool used (budget)"
+     ],
+     "items": [
+      "D102",
+      "D103"
+     ],
+     "rationale": "The Cámara approved the budget in general and voted on amendments: decisive use of the budget tool with a scheduled deadline."
+    },
+    {
+     "topic": "T08",
+     "stream": "Problem",
+     "prev": 2,
+     "proposed": 2,
+     "concepts": [
+      "Indicator change"
+     ],
+     "items": [
+      "D108"
+     ],
+     "rationale": "Weak growth (Imacec +0.2%, Q3 likely negative) keeps the fiscal problem at signal level."
+    },
+    {
+     "topic": "T09",
+     "stream": "Politics",
+     "prev": 3,
+     "proposed": 3,
+     "concepts": [
+      "Agenda tool used (budget)"
+     ],
+     "items": [
+      "D109"
+     ],
+     "rationale": "The executive announced restoration amendments for rejected health and education funds."
+    },
+    {
+     "topic": "T14",
+     "stream": "Politics",
+     "prev": 2,
+     "proposed": 2,
+     "concepts": [
+      "Coalition or vote"
+     ],
+     "items": [
+      "D101"
+     ],
+     "rationale": "Education reached the floor rejected. A restoration is promised (level 3 step), lowered by one because the committee vote suggests it could be blocked again."
+    },
+    {
+     "topic": "Cross-cutting",
+     "stream": "Politics",
+     "prev": null,
+     "proposed": null,
+     "concepts": [
+      "Government approval"
+     ],
+     "items": [
+      "D90",
+      "D94"
+     ],
+     "rationale": "Polls diverge: Cadem 29% (+3), Criteria 24% (−1). Approval stays low but is not moving sharply, so no topic's politics level is lowered on approval grounds this week."
+    }
+   ]
+  }
+ ],
+ "discovery": [
+  {
+   "week": "W9",
+   "text": "Fuel prices: coverage spike across six logged outlets plus Cadem salience → entered as T21."
+  },
+  {
+   "week": "W9",
+   "text": "Inflation (CPI 4.5%) and growth (Imacec +0.2%) are tracked as indicators inside T21 and T08 rather than as separate topics."
+  }
+ ],
  "items": [
   {
    "id": "D01",
@@ -2141,9 +2397,11 @@
    "stream": "Politics",
    "concept": "Vote, one chamber",
    "actor": "Senate",
-   "direction": 1,
    "strength": 3,
-   "note": "Passed in particular; financing formula falls"
+   "note": "Passed in particular; financing formula falls",
+   "context": "",
+   "quote": "",
+   "week": "W1"
   },
   {
    "id": "D02",
@@ -2155,9 +2413,11 @@
    "stream": "Politics",
    "concept": "Vote",
    "actor": "Senate",
-   "direction": -1,
    "strength": 2,
-   "note": "0.35% contribution fails quorum; co-payment kept"
+   "note": "0.35% contribution fails quorum; co-payment kept",
+   "context": "",
+   "quote": "",
+   "week": "W1"
   },
   {
    "id": "D03",
@@ -2169,9 +2429,11 @@
    "stream": "Policy",
    "concept": "Frame",
    "actor": "Yasna Provoste, DC senator",
-   "direction": 0,
    "strength": 2,
-   "note": "Opposes using unemployment insurance"
+   "note": "Opposes using unemployment insurance",
+   "context": "",
+   "quote": "",
+   "week": "W1"
   },
   {
    "id": "D04",
@@ -2183,9 +2445,11 @@
    "stream": "Politics",
    "concept": "Urgency (discusión inmediata)",
    "actor": "José García Ruminot, Segpres",
-   "direction": 1,
    "strength": 3,
-   "note": "Maximum urgency in the Cámara"
+   "note": "Maximum urgency in the Cámara",
+   "context": "",
+   "quote": "",
+   "week": "W2"
   },
   {
    "id": "D05",
@@ -2197,9 +2461,11 @@
    "stream": "Politics",
    "concept": "Committee",
    "actor": "José Carlos Meza, committee chair",
-   "direction": 1,
    "strength": 2,
-   "note": "Vote set for 20 Oct"
+   "note": "Vote set for 20 Oct",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D06",
@@ -2211,9 +2477,11 @@
    "stream": "Politics",
    "concept": "Vote",
    "actor": "Cámara Labour committee",
-   "direction": 1,
    "strength": 3,
-   "note": "Approved 13–0"
+   "note": "Approved 13–0",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D07",
@@ -2225,9 +2493,11 @@
    "stream": "Policy",
    "concept": "Idea adopted",
    "actor": "Tomás Rau",
-   "direction": 1,
    "strength": 3,
-   "note": "Amendments; target before February"
+   "note": "Amendments; target before February",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D08",
@@ -2239,9 +2509,11 @@
    "stream": "Politics",
    "concept": "Organised forces",
    "actor": "Ximena Ossandón, RN",
-   "direction": 0,
    "strength": 2,
-   "note": "Employer contribution strains the deal"
+   "note": "Employer contribution strains the deal",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D09",
@@ -2253,9 +2525,11 @@
    "stream": "Policy",
    "concept": "Entrepreneur",
    "actor": "Fundación ChileMujeres",
-   "direction": 1,
    "strength": 2,
-   "note": "Proposes a 0.30% contribution"
+   "note": "Proposes a 0.30% contribution",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D10",
@@ -2267,9 +2541,11 @@
    "stream": "Politics",
    "concept": "Vote",
    "actor": "Cámara Labour committee",
-   "direction": 1,
    "strength": 3,
-   "note": "0.30% restored; to Hacienda committee"
+   "note": "0.30% restored; to Hacienda committee",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D11",
@@ -2281,9 +2557,11 @@
    "stream": "Policy",
    "concept": "Competing frame",
    "actor": "Opposition",
-   "direction": -1,
    "strength": 1,
-   "note": "'Negocio' frame"
+   "note": "'Negocio' frame",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D12",
@@ -2295,9 +2573,11 @@
    "stream": "Problem",
    "concept": "Frame",
    "actor": "Ministerio del Trabajo",
-   "direction": 1,
    "strength": 2,
-   "note": "Female unemployment above 10%"
+   "note": "Female unemployment above 10%",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D13",
@@ -2309,9 +2589,11 @@
    "stream": "Politics",
    "concept": "Vote",
    "actor": "Martín Arrau",
-   "direction": 1,
    "strength": 3,
-   "note": "RUF passed 29–15–1"
+   "note": "RUF passed 29–15–1",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D14",
@@ -2323,9 +2605,11 @@
    "stream": "Policy",
    "concept": "Competing frame",
    "actor": "Juan Luis Castro, PS",
-   "direction": 0,
    "strength": 2,
-   "note": "Cámara 111–23–5; proportionality critique"
+   "note": "Cámara 111–23–5; proportionality critique",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D15",
@@ -2337,9 +2621,11 @@
    "stream": "Politics",
    "concept": "Government intention",
    "actor": "President Kast",
-   "direction": 1,
    "strength": 2,
-   "note": "Celebrates; bill from previous government"
+   "note": "Celebrates; bill from previous government",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D16",
@@ -2351,9 +2637,11 @@
    "stream": "Policy",
    "concept": "Bill with specific intervention",
    "actor": "Congress",
-   "direction": 1,
    "strength": 3,
-   "note": "Eight graduated rules"
+   "note": "Eight graduated rules",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D17",
@@ -2365,9 +2653,11 @@
    "stream": "Problem",
    "concept": "Salience",
    "actor": "CEP",
-   "direction": 1,
    "strength": 3,
-   "note": "Crime 57%, health 42% as priorities"
+   "note": "Crime 57%, health 42% as priorities",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D18",
@@ -2379,9 +2669,11 @@
    "stream": "Politics",
    "concept": "Passage",
    "actor": "Congress",
-   "direction": 1,
    "strength": 3,
-   "note": "Home entry with judicial order"
+   "note": "Home entry with judicial order",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D19",
@@ -2393,9 +2685,11 @@
    "stream": "Policy",
    "concept": "Bill with specific intervention",
    "actor": "Senate",
-   "direction": 1,
    "strength": 3,
-   "note": "37–0–1; re-entry ban 3→5 years"
+   "note": "37–0–1; re-entry ban 3→5 years",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D20",
@@ -2407,9 +2701,11 @@
    "stream": "Politics",
    "concept": "Government intention",
    "actor": "García Ruminot; Longton",
-   "direction": 1,
    "strength": 2,
-   "note": "Promulgation soon"
+   "note": "Promulgation soon",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D21",
@@ -2421,9 +2717,11 @@
    "stream": "Politics",
    "concept": "Vote (blocking)",
    "actor": "President Kast vs deputies",
-   "direction": -1,
    "strength": 2,
-   "note": "60-day detention rejected"
+   "note": "60-day detention rejected",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D22",
@@ -2435,9 +2733,11 @@
    "stream": "Problem",
    "concept": "Indicator",
    "actor": "Undersecretariat of the Interior",
-   "direction": 0,
    "strength": 1,
-   "note": "1,468 expulsions"
+   "note": "1,468 expulsions",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D23",
@@ -2449,9 +2749,11 @@
    "stream": "Problem",
    "concept": "Salience",
    "actor": "CEP",
-   "direction": -1,
    "strength": 2,
-   "note": "Immigration concern 21→13%"
+   "note": "Immigration concern 21→13%",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D24",
@@ -2463,9 +2765,11 @@
    "stream": "Problem",
    "concept": "Focusing event",
    "actor": "Fernando Rabat",
-   "direction": 1,
    "strength": 3,
-   "note": "56 reductions"
+   "note": "56 reductions",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D25",
@@ -2477,9 +2781,11 @@
    "stream": "Policy",
    "concept": "Entrepreneur",
    "actor": "Fernando Rabat",
-   "direction": 1,
    "strength": 2,
-   "note": "Announces bill; revocation"
+   "note": "Announces bill; revocation",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D26",
@@ -2491,9 +2797,11 @@
    "stream": "Problem",
    "concept": "Salience",
    "actor": "Cadem",
-   "direction": 1,
    "strength": 3,
-   "note": "92% reject reductions"
+   "note": "92% reject reductions",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D27",
@@ -2505,9 +2813,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Cadem",
-   "direction": -1,
    "strength": 3,
-   "note": "77% disapprove of the minister"
+   "note": "77% disapprove of the minister",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D28",
@@ -2519,9 +2829,11 @@
    "stream": "Policy",
    "concept": "Idea mentioned",
    "actor": "Cadem",
-   "direction": 1,
    "strength": 1,
-   "note": "60% back ending pardons"
+   "note": "60% back ending pardons",
+   "context": "",
+   "quote": "",
+   "week": "W6"
   },
   {
    "id": "D29",
@@ -2533,9 +2845,11 @@
    "stream": "Politics",
    "concept": "Organised forces",
    "actor": "Opposition",
-   "direction": 1,
    "strength": 2,
-   "note": "Accusation confirmed"
+   "note": "Accusation confirmed",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D30",
@@ -2547,9 +2861,11 @@
    "stream": "Problem",
    "concept": "Problem broker",
    "actor": "Daniela Serrano, PC",
-   "direction": 1,
    "strength": 2,
-   "note": "Minister left without answers"
+   "note": "Minister left without answers",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D31",
@@ -2561,9 +2877,11 @@
    "stream": "Politics",
    "concept": "Event within government",
    "actor": "Silva replaced by Soto",
-   "direction": 0,
    "strength": 3,
-   "note": "Undersecretary removed"
+   "note": "Undersecretary removed",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D32",
@@ -2575,9 +2893,11 @@
    "stream": "Politics",
    "concept": "Event within government",
    "actor": "Executive",
-   "direction": -1,
    "strength": 2,
-   "note": "59 senior departures"
+   "note": "59 senior departures",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D33",
@@ -2589,9 +2909,11 @@
    "stream": "Politics",
    "concept": "Coalition behaviour",
    "actor": "UDI",
-   "direction": -1,
    "strength": 3,
-   "note": "Refuses to back the accusation"
+   "note": "Refuses to back the accusation",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D34",
@@ -2603,9 +2925,11 @@
    "stream": "Problem",
    "concept": "Indicator change",
    "actor": "Opposition",
-   "direction": 1,
    "strength": 2,
-   "note": "Three chapters; 115 foreign nationals"
+   "note": "Three chapters; 115 foreign nationals",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D35",
@@ -2617,9 +2941,11 @@
    "stream": "Problem",
    "concept": "Problem broker",
    "actor": "Jaime Gajardo",
-   "direction": 1,
    "strength": 2,
-   "note": "Legal arguments"
+   "note": "Legal arguments",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D36",
@@ -2631,9 +2957,11 @@
    "stream": "Politics",
    "concept": "Government intention",
    "actor": "President Kast",
-   "direction": 0,
    "strength": 2,
-   "note": "No cabinet change"
+   "note": "No cabinet change",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D37",
@@ -2645,9 +2973,11 @@
    "stream": "Politics",
    "concept": "Event within government",
    "actor": "Gonzalo Arenas",
-   "direction": 0,
    "strength": 1,
-   "note": "Comité político on 6 Nov"
+   "note": "Comité político on 6 Nov",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D38",
@@ -2659,9 +2989,11 @@
    "stream": "Problem",
    "concept": "Indicator",
    "actor": "Superintendencia de Pensiones",
-   "direction": 1,
    "strength": 2,
-   "note": "Fund D −2.29%, E −5.75% (Jan–Aug)"
+   "note": "Fund D −2.29%, E −5.75% (Jan–Aug)",
+   "context": "",
+   "quote": "",
+   "week": "W6"
   },
   {
    "id": "D39",
@@ -2673,9 +3005,11 @@
    "stream": "Problem",
    "concept": "Problem broker",
    "actor": "Joaquín Cortez",
-   "direction": 1,
    "strength": 3,
-   "note": "Losses above US$10bn"
+   "note": "Losses above US$10bn",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D40",
@@ -2687,9 +3021,11 @@
    "stream": "Politics",
    "concept": "Regulator action",
    "actor": "Superintendencia de Pensiones",
-   "direction": 1,
    "strength": 2,
-   "note": "Sanction process against 7 AFPs (date approx.)"
+   "note": "Sanction process against 7 AFPs (date approx.)",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D41",
@@ -2701,9 +3037,11 @@
    "stream": "Problem",
    "concept": "Indicator easing",
    "actor": "Pedro Pizarro",
-   "direction": -1,
    "strength": 2,
-   "note": "Fund E +3.16% in Oct; −7.56% year to date"
+   "note": "Fund E +3.16% in Oct; −7.56% year to date",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D42",
@@ -2715,9 +3053,11 @@
    "stream": "Problem",
    "concept": "Frame",
    "actor": "Joaquín Cortez",
-   "direction": 0,
    "strength": 2,
-   "note": "Duration, not derivatives"
+   "note": "Duration, not derivatives",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D43",
@@ -2729,9 +3069,11 @@
    "stream": "Problem",
    "concept": "Competing frame",
    "actor": "Columnist",
-   "direction": 0,
    "strength": 1,
-   "note": "US$7.7bn (Bloomberg, secondary)"
+   "note": "US$7.7bn (Bloomberg, secondary)",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D44",
@@ -2743,9 +3085,11 @@
    "stream": "Problem",
    "concept": "Indicator",
    "actor": "INE",
-   "direction": 1,
    "strength": 3,
-   "note": "Unemployment 9.8%, +1.3 pp"
+   "note": "Unemployment 9.8%, +1.3 pp",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D45",
@@ -2757,9 +3101,11 @@
    "stream": "Problem",
    "concept": "Indicator",
    "actor": "INE",
-   "direction": 1,
    "strength": 2,
-   "note": "Manufacturing −8.1%, ICT −20.8%"
+   "note": "Manufacturing −8.1%, ICT −20.8%",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D46",
@@ -2771,9 +3117,11 @@
    "stream": "Problem",
    "concept": "Frame",
    "actor": "Emol",
-   "direction": 1,
    "strength": 2,
-   "note": "Highest since 2021; −102,875 jobs"
+   "note": "Highest since 2021; −102,875 jobs",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D47",
@@ -2785,9 +3133,11 @@
    "stream": "Problem",
    "concept": "Salience",
    "actor": "INE",
-   "direction": 1,
    "strength": 2,
-   "note": "Over 1 million unemployed"
+   "note": "Over 1 million unemployed",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D48",
@@ -2799,9 +3149,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Cadem",
-   "direction": 1,
    "strength": 3,
-   "note": "Job-instability worry 71%"
+   "note": "Job-instability worry 71%",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D49",
@@ -2813,9 +3165,11 @@
    "stream": "Problem",
    "concept": "Salience",
    "actor": "Feedback Research",
-   "direction": 1,
    "strength": 2,
-   "note": "Economy 61% overtakes crime 59%"
+   "note": "Economy 61% overtakes crime 59%",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D50",
@@ -2827,9 +3181,11 @@
    "stream": "Politics",
    "concept": "Vote (blocking)",
    "actor": "Mixed budget committee",
-   "direction": -1,
    "strength": 3,
-   "note": "Education, SENCE and primary care rejected"
+   "note": "Education, SENCE and primary care rejected",
+   "context": "",
+   "quote": "",
+   "week": "W9"
   },
   {
    "id": "D51",
@@ -2841,9 +3197,11 @@
    "stream": "Politics",
    "concept": "Budget tool",
    "actor": "Executive",
-   "direction": 1,
    "strength": 3,
-   "note": "Budget submitted; +1.5%"
+   "note": "Budget submitted; +1.5%",
+   "context": "",
+   "quote": "",
+   "week": "W4"
   },
   {
    "id": "D52",
@@ -2855,9 +3213,11 @@
    "stream": "Problem",
    "concept": "Problem broker",
    "actor": "Consejo Fiscal Autónomo",
-   "direction": 1,
    "strength": 3,
-   "note": "Revenue risk"
+   "note": "Revenue risk",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D53",
@@ -2869,9 +3229,11 @@
    "stream": "Problem",
    "concept": "Report",
    "actor": "Paula Benavides",
-   "direction": 1,
    "strength": 2,
-   "note": "0.5% vs 1.2% spending growth"
+   "note": "0.5% vs 1.2% spending growth",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D54",
@@ -2883,9 +3245,11 @@
    "stream": "Problem",
    "concept": "Report",
    "actor": "Consejo Fiscal Autónomo",
-   "direction": 1,
    "strength": 2,
-   "note": "Debt above 45% likely"
+   "note": "Debt above 45% likely",
+   "context": "",
+   "quote": "",
+   "week": "W4"
   },
   {
    "id": "D55",
@@ -2897,9 +3261,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Criteria",
-   "direction": 0,
    "strength": 2,
-   "note": "58% see spending as inefficient"
+   "note": "58% see spending as inefficient",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D56",
@@ -2911,9 +3277,11 @@
    "stream": "Politics",
    "concept": "Vote (blocking)",
    "actor": "Mixed budget committee",
-   "direction": -1,
    "strength": 3,
-   "note": "Education budget rejected"
+   "note": "Education budget rejected",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D57",
@@ -2925,9 +3293,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Cadem",
-   "direction": -1,
    "strength": 2,
-   "note": "Approval 32%, disapproval 63%"
+   "note": "Approval 32%, disapproval 63%",
+   "context": "",
+   "quote": "",
+   "week": "W4"
   },
   {
    "id": "D58",
@@ -2939,9 +3309,11 @@
    "stream": "Problem",
    "concept": "Problem broker",
    "actor": "Juan Luis Castro",
-   "direction": 1,
    "strength": 3,
-   "note": "Ricarte Soto cut of $28,000m"
+   "note": "Ricarte Soto cut of $28,000m",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D59",
@@ -2953,9 +3325,11 @@
    "stream": "Problem",
    "concept": "Feedback",
    "actor": "Castro; health unions",
-   "direction": 1,
    "strength": 2,
-   "note": "Mental health and dental cuts"
+   "note": "Mental health and dental cuts",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D60",
@@ -2967,9 +3341,11 @@
    "stream": "Politics",
    "concept": "Budget amendment",
    "actor": "Executive",
-   "direction": 1,
    "strength": 3,
-   "note": "Ricarte Soto supplemented"
+   "note": "Ricarte Soto supplemented",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D61",
@@ -2981,9 +3357,11 @@
    "stream": "Politics",
    "concept": "Vote",
    "actor": "Mixed budget committee",
-   "direction": 0,
    "strength": 3,
-   "note": "Health 13–11; primary care rejected"
+   "note": "Health 13–11; primary care rejected",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D62",
@@ -2995,9 +3373,11 @@
    "stream": "Policy",
    "concept": "Idea mentioned",
    "actor": "Juan Luis Castro",
-   "direction": 0,
    "strength": 2,
-   "note": "Per-capita rise via programme merger"
+   "note": "Per-capita rise via programme merger",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D63",
@@ -3009,9 +3389,11 @@
    "stream": "Problem",
    "concept": "Record indicator",
    "actor": "Minsal",
-   "direction": 1,
    "strength": 2,
-   "note": "458,109 pending surgeries"
+   "note": "458,109 pending surgeries",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D64",
@@ -3023,9 +3405,11 @@
    "stream": "Problem",
    "concept": "Report",
    "actor": "Minsal",
-   "direction": 0,
    "strength": 1,
-   "note": "Glosa 06, Q1 report"
+   "note": "Glosa 06, Q1 report",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D65",
@@ -3037,9 +3421,11 @@
    "stream": "Problem",
    "concept": "Salience",
    "actor": "Criteria",
-   "direction": 1,
    "strength": 1,
-   "note": "Health concern rising"
+   "note": "Health concern rising",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D66",
@@ -3051,9 +3437,11 @@
    "stream": "Policy",
    "concept": "Idea mentioned",
    "actor": "Jorge Quiroz",
-   "direction": 1,
    "strength": 2,
-   "note": "Vape tax being drafted"
+   "note": "Vape tax being drafted",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D67",
@@ -3065,9 +3453,11 @@
    "stream": "Policy",
    "concept": "Entrepreneur",
    "actor": "U. de Chile specialists",
-   "direction": 1,
    "strength": 2,
-   "note": "Tax to protect adolescents"
+   "note": "Tax to protect adolescents",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D68",
@@ -3079,9 +3469,11 @@
    "stream": "Politics",
    "concept": "Precondition met",
    "actor": "Executive",
-   "direction": 1,
    "strength": 2,
-   "note": "Ley 21.850 published"
+   "note": "Ley 21.850 published",
+   "context": "",
+   "quote": "",
+   "week": "W6"
   },
   {
    "id": "D69",
@@ -3093,9 +3485,11 @@
    "stream": "Policy",
    "concept": "Bill with specific intervention",
    "actor": "Executive",
-   "direction": 1,
    "strength": 2,
-   "note": "Article 10 on contraband"
+   "note": "Article 10 on contraband",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D70",
@@ -3107,9 +3501,11 @@
    "stream": "Policy",
    "concept": "Bill (member's motion)",
    "actor": "Miguel Becker",
-   "direction": 1,
    "strength": 1,
-   "note": "Penalties up to 20 years"
+   "note": "Penalties up to 20 years",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D71",
@@ -3121,9 +3517,11 @@
    "stream": "Politics",
    "concept": "Budget tool",
    "actor": "Jorge Quiroz",
-   "direction": -1,
    "strength": 3,
-   "note": "Calles sin Violencia ended; Ley Cholito −86%"
+   "note": "Calles sin Violencia ended; Ley Cholito −86%",
+   "context": "",
+   "quote": "",
+   "week": "W4"
   },
   {
    "id": "D72",
@@ -3135,9 +3533,11 @@
    "stream": "Politics",
    "concept": "Budget tool",
    "actor": "Undersecretariat of Security",
-   "direction": -1,
    "strength": 3,
-   "note": "$26,017m; Barrio Prioritario −43.4%"
+   "note": "$26,017m; Barrio Prioritario −43.4%",
+   "context": "",
+   "quote": "",
+   "week": "W4"
   },
   {
    "id": "D73",
@@ -3149,9 +3549,11 @@
    "stream": "Problem",
    "concept": "Problem broker",
    "actor": "Carolina Tohá",
-   "direction": 1,
    "strength": 2,
-   "note": "Homicide reversal; $13,441m"
+   "note": "Homicide reversal; $13,441m",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D74",
@@ -3163,9 +3565,11 @@
    "stream": "Policy",
    "concept": "Entrepreneur",
    "actor": "Pilar Giannini",
-   "direction": 1,
    "strength": 2,
-   "note": "'Reformulated as FOCO'"
+   "note": "'Reformulated as FOCO'",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D75",
@@ -3177,9 +3581,11 @@
    "stream": "Problem",
    "concept": "Competing frame",
    "actor": "Carolina Tohá",
-   "direction": -1,
    "strength": 1,
-   "note": "'Marketing' frame"
+   "note": "'Marketing' frame",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D76",
@@ -3191,9 +3597,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Criteria",
-   "direction": 0,
    "strength": 2,
-   "note": "44% oppose vs 41% support the concession mechanism"
+   "note": "44% oppose vs 41% support the concession mechanism",
+   "context": "",
+   "quote": "",
+   "week": "W6"
   },
   {
    "id": "D77",
@@ -3205,9 +3613,11 @@
    "stream": "Policy",
    "concept": "Idea adopted",
    "actor": "Executive",
-   "direction": 1,
    "strength": 3,
-   "note": "Toll cut of 10–25%"
+   "note": "Toll cut of 10–25%",
+   "context": "",
+   "quote": "",
+   "week": "W6"
   },
   {
    "id": "D78",
@@ -3219,9 +3629,11 @@
    "stream": "Problem",
    "concept": "Feedback",
    "actor": "Criteria",
-   "direction": 1,
    "strength": 2,
-   "note": "Government worst rated on storms"
+   "note": "Government worst rated on storms",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D79",
@@ -3233,9 +3645,11 @@
    "stream": "Politics",
    "concept": "Government intention",
    "actor": "President Kast",
-   "direction": 0,
    "strength": 1,
-   "note": "Coalición de las Américas"
+   "note": "Coalición de las Américas",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D80",
@@ -3247,9 +3661,11 @@
    "stream": "Politics",
    "concept": "Agreement",
    "actor": "Quiroz; regional governors",
-   "direction": 1,
    "strength": 2,
-   "note": "Agreement with governors"
+   "note": "Agreement with governors",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D81",
@@ -3261,9 +3677,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Cadem",
-   "direction": -1,
    "strength": 3,
-   "note": "Approval 26%, disapproval 69%"
+   "note": "Approval 26%, disapproval 69%",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D82",
@@ -3275,9 +3693,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Cadem",
-   "direction": -1,
    "strength": 2,
-   "note": "Approval 33→29%"
+   "note": "Approval 33→29%",
+   "context": "",
+   "quote": "",
+   "week": "W7"
   },
   {
    "id": "D83",
@@ -3289,9 +3709,11 @@
    "stream": "Politics",
    "concept": "National mood",
    "actor": "Criteria",
-   "direction": -1,
    "strength": 2,
-   "note": "82% say government below expectations"
+   "note": "82% say government below expectations",
+   "context": "",
+   "quote": "",
+   "week": "W5"
   },
   {
    "id": "D84",
@@ -3303,9 +3725,11 @@
    "stream": "Politics",
    "concept": "Committee",
    "actor": "Tomás Rau",
-   "direction": 1,
    "strength": 2,
-   "note": "Senate Education committee approval"
+   "note": "Senate Education committee approval",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D85",
@@ -3317,9 +3741,11 @@
    "stream": "Politics",
    "concept": "Committee",
    "actor": "Senate Hacienda committee",
-   "direction": 1,
    "strength": 2,
-   "note": "0.35% approved"
+   "note": "0.35% approved",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D86",
@@ -3331,9 +3757,11 @@
    "stream": "Politics",
    "concept": "Stalled",
    "actor": "Senate Education committee",
-   "direction": -1,
    "strength": 1,
-   "note": "FES stalled"
+   "note": "FES stalled",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D87",
@@ -3345,9 +3773,11 @@
    "stream": "Politics",
    "concept": "Committee",
    "actor": "Gustavo Sanhueza",
-   "direction": 0,
    "strength": 1,
-   "note": "Doubts on debt relief"
+   "note": "Doubts on debt relief",
+   "context": "",
+   "quote": "",
+   "week": ""
   },
   {
    "id": "D88",
@@ -3359,9 +3789,11 @@
    "stream": "Problem",
    "concept": "Indicator",
    "actor": "INE",
-   "direction": 0,
    "strength": 1,
-   "note": "Foreigners' unemployment 7.0%; informality 26.4%"
+   "note": "Foreigners' unemployment 7.0%; informality 26.4%",
+   "context": "",
+   "quote": "",
+   "week": "W8"
   },
   {
    "id": "D89",
@@ -3373,9 +3805,331 @@
    "stream": "Politics",
    "concept": "Organised interests",
    "actor": "Truckers",
-   "direction": -1,
    "strength": 1,
-   "note": "San Antonio port blockade"
+   "note": "San Antonio port blockade",
+   "context": "",
+   "quote": "",
+   "week": "W8"
+  },
+  {
+   "id": "D90",
+   "date": "2026-11-08",
+   "source": "Emol",
+   "type": "Poll",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/08/1216497/cadem-principales-razones-desaprobacion-kast.html",
+   "topic": "Cross-cutting",
+   "stream": "Politics",
+   "concept": "Government approval",
+   "actor": "Cadem",
+   "strength": 2,
+   "note": "Approval 29% (+3), disapproval 68%",
+   "context": "Cadem Plaza Pública, published Sunday 8 Nov",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D91",
+   "date": "2026-11-08",
+   "source": "Meganoticias",
+   "type": "Poll",
+   "url": "https://www.meganoticias.cl/nacional/535920-cadem-aprobacion-presidente-jose-antonio-kast-bajo-30-por-ciento-desempleo-precio-bencinas-dcv-08-11-2026.html",
+   "topic": "T21",
+   "stream": "Problem",
+   "concept": "Salience",
+   "actor": "Cadem",
+   "strength": 3,
+   "note": "Fuel prices among the main issues people want solved",
+   "context": "Cadem Plaza Pública, 8 Nov",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D92",
+   "date": "2026-11-08",
+   "source": "Radio Agricultura",
+   "type": "Poll",
+   "url": "https://www.radioagricultura.cl/noticias/nacional/cadem-aprobacion-presidencial-sube-tres-puntos-pero-no-supera-el-30-y-desempleo-aparece-como-mayo-preocupacion_20261108/",
+   "topic": "T06",
+   "stream": "Problem",
+   "concept": "Salience",
+   "actor": "Cadem",
+   "strength": 3,
+   "note": "Unemployment appears as the top concern",
+   "context": "Cadem Plaza Pública, 8 Nov",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D93",
+   "date": "2026-11-08",
+   "source": "Emol",
+   "type": "Poll",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/08/1216497/cadem-principales-razones-desaprobacion-kast.html",
+   "topic": "T04",
+   "stream": "Problem",
+   "concept": "Salience",
+   "actor": "Cadem",
+   "strength": 2,
+   "note": "Sentence reductions top reason for disapproval (43%); unemployment 42%",
+   "context": "Cadem Plaza Pública, 8 Nov",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D94",
+   "date": "2026-11-08",
+   "source": "Emol",
+   "type": "Poll",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/08/1216465/desaprobacion-aprobacion-encuesta-criteria.html",
+   "topic": "Cross-cutting",
+   "stream": "Politics",
+   "concept": "Government approval",
+   "actor": "Criteria",
+   "strength": 2,
+   "note": "Approval 24% (−1), disapproval 67%",
+   "context": "Agenda Criteria, 8 Nov",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D95",
+   "date": "2026-11-09",
+   "source": "Pauta",
+   "type": "News",
+   "url": "https://www.pauta.cl/actualidad/2026/11/09/kast-anuncia-proyecto-para-limitar-a-20-las-alzas-de-bencinas-y-diesel-durante-90-dias.html",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Agenda tool used (urgency)",
+   "actor": "President Kast",
+   "strength": 3,
+   "note": "Bill to cap rises at $20/litre for 90 days, with 'discusión inmediata'",
+   "context": "Press point at La Moneda after the extended political committee",
+   "quote": "Estamos pensando en cómo abordar los próximos 90 días",
+   "week": "W9"
+  },
+  {
+   "id": "D96",
+   "date": "2026-11-09",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/09/1216550/kast-anuncia-contencion-alza-combustible.html",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Coalition or vote",
+   "actor": "President Kast; party presidents and bench heads",
+   "strength": 2,
+   "note": "Bill prepared with governing-party presidents and bench heads",
+   "context": "Same press point, 9 Nov",
+   "quote": "hoy día hay una urgencia social que el gobierno aborda con responsabilidad",
+   "week": "W9"
+  },
+  {
+   "id": "D97",
+   "date": "2026-11-09",
+   "source": "El Desconcierto",
+   "type": "News",
+   "url": "https://eldesconcierto.cl/actualidad/valor-los-combustibles-kast-confirma-sexta-alza-consecutiva-y-anuncia-proyecto-subida-maxima-20-n5463888",
+   "topic": "T21",
+   "stream": "Problem",
+   "concept": "Indicator change",
+   "actor": "Executive",
+   "strength": 3,
+   "note": "Sixth consecutive rise, +$40/litre from 12 Nov",
+   "context": "News report",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D98",
+   "date": "2026-11-06",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Economia/2026/11/06/1216291/ipc-inflacion-economia-ine.html",
+   "topic": "T21",
+   "stream": "Problem",
+   "concept": "Indicator change",
+   "actor": "INE",
+   "strength": 2,
+   "note": "October CPI +0.5%, annual 4.5%; gasoline +4.5%",
+   "context": "INE release reported by Emol",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D99",
+   "date": "2026-11-10",
+   "source": "The Clinic",
+   "type": "News",
+   "url": "https://www.theclinic.cl/2026/11/10/biministro-mas-ante-nueva-alza-de-las-bencinas-nuestros-combustibles-aunque-no-lo-crean-siguen-siendo-baratos-respecto-a-la-region/",
+   "topic": "T21",
+   "stream": "Problem",
+   "concept": "Frame consensus",
+   "actor": "Daniel Mas, Minister of Economy and Mining",
+   "strength": 1,
+   "note": "Competing frame: fuel still cheap for the region",
+   "context": "Ministerial statement reported by The Clinic",
+   "quote": "Nuestros combustibles, aunque no lo crean, siguen siendo baratos respecto a la región",
+   "week": "W9"
+  },
+  {
+   "id": "D100",
+   "date": "2026-11-09",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/09/1216566/reacciones-parlamentarias-plan-kast-bencinas.html",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Coalition or vote",
+   "actor": "Congress",
+   "strength": 1,
+   "note": "Mixed reactions in Congress to the fuel bill",
+   "context": "News report",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D101",
+   "date": "2026-11-06",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/06/1216294/presupuesto-pendiente-mixta.html",
+   "topic": "T14",
+   "stream": "Politics",
+   "concept": "Coalition or vote",
+   "actor": "Mixed budget committee",
+   "strength": 3,
+   "note": "Education and Science chapters rejected; government must restore them in the Cámara",
+   "context": "News report",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D102",
+   "date": "2026-11-09",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/09/1216571/presupuesto-debate-camara.html",
+   "topic": "T08",
+   "stream": "Politics",
+   "concept": "Coalition or vote",
+   "actor": "Cámara de Diputados",
+   "strength": 3,
+   "note": "Budget approved in general; 2,242 amendments; deadline 29 Nov",
+   "context": "News report",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D103",
+   "date": "2026-11-06",
+   "source": "Cámara de Diputados",
+   "type": "Congress record",
+   "url": "https://www.camara.cl/cms/2026/11/06/mixta-despacho-presupuesto-2027-y-la-camara-se-apronta-para-su-tratamiento/",
+   "topic": "T08",
+   "stream": "Politics",
+   "concept": "Agenda tool used (budget)",
+   "actor": "Mixed budget committee",
+   "strength": 2,
+   "note": "Mixed committee dispatched the budget (boletín 18702); floor in four sessions",
+   "context": "Cámara news service",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D104",
+   "date": "2026-11-09",
+   "source": "The Clinic",
+   "type": "News",
+   "url": "https://www.theclinic.cl/2026/11/09/las-diferencias-que-persisten-en-la-oposicion-a-dos-semanas-haber-anunciado-una-ac-contra-rabat-que-aun-no-ve-la-luz/",
+   "topic": "T04",
+   "stream": "Politics",
+   "concept": "Coalition or vote",
+   "actor": "Opposition parties",
+   "strength": 2,
+   "note": "Accusation still not filed; parties disagree on timing",
+   "context": "News report",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D105",
+   "date": "2026-11-08",
+   "source": "La Tercera",
+   "type": "News",
+   "url": "https://www.latercera.com/etiqueta/acusacion-constitucional",
+   "topic": "T04",
+   "stream": "Politics",
+   "concept": "Organised forces",
+   "actor": "Jaime Gajardo, PC deputy",
+   "strength": 1,
+   "note": "Says the government is pushing Congress to an accusation",
+   "context": "Interview reported by La Tercera, 8 Nov",
+   "quote": "El gobierno con su actitud está empujando al Congreso a utilizar esta herramienta",
+   "week": "W9"
+  },
+  {
+   "id": "D106",
+   "date": "2026-11-11",
+   "source": "Diario Financiero",
+   "type": "News",
+   "url": "https://www.df.cl/df-mas/como-cuido-mis-lucas/afp-aun-queda-vida-en-el-fondo-e",
+   "topic": "T05",
+   "stream": "Problem",
+   "concept": "Indicator change",
+   "actor": "Asociación de AFP",
+   "strength": 2,
+   "note": "Fund E up 8.4% between 24 Oct and 11 Nov (easing)",
+   "context": "DF+ personal-finance section",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D107",
+   "date": "2026-11-03",
+   "source": "Pauta",
+   "type": "News",
+   "url": "https://www.pauta.cl/actualidad/2026/11/03/cortez-pide-esperar-investigacion-por-perdidas-del-fondo-e-tras-avance-de-proyecto-que-exige-compensaciones-a-las-afp.html",
+   "topic": "T05",
+   "stream": "Politics",
+   "concept": "Coalition or vote",
+   "actor": "Cámara de Diputados; Joaquín Cortez",
+   "strength": 2,
+   "note": "Compensation bill admitted; Superintendent asks to wait for the investigation",
+   "context": "News report (late item from W8)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D108",
+   "date": "2026-11-02",
+   "source": "Banco Central",
+   "type": "Official statistics",
+   "url": "https://www.bcentral.cl/contenido/-/detalle/prensa/nota-de-prensa/imacec-septiembre-2026",
+   "topic": "T08",
+   "stream": "Problem",
+   "concept": "Indicator change",
+   "actor": "Banco Central",
+   "strength": 2,
+   "note": "Imacec September +0.2%; mining −12.1%; GDP Q3 due 18 Nov",
+   "context": "Central bank press release (late item from W8)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D109",
+   "date": "2026-11-06",
+   "source": "Pauta",
+   "type": "News",
+   "url": "https://www.pauta.cl/actualidad/2026/11/06/presupuesto-2027-pasa-a-la-camara-con-educacion-rechazada-y-gobierno-anuncia-reposicion-de-fondos.html",
+   "topic": "T09",
+   "stream": "Politics",
+   "concept": "Agenda tool used (budget)",
+   "actor": "Jorge Quiroz",
+   "strength": 2,
+   "note": "Government announces it will restore rejected funds",
+   "context": "News report",
+   "quote": "",
+   "week": "W9"
   }
  ]
 }

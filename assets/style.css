@@ -171,9 +171,9 @@ table.weekly { border-collapse: separate; border-spacing: 0; width: 100%; min-wi
 .weekly .tlink { background: none; border: 0; font: inherit; color: var(--text-primary); cursor: pointer; text-align: left; padding: 0; display: flex; gap: 8px; align-items: center; }
 .weekly .tlink:hover span.n { text-decoration: underline; }
 .weekly .tmin { color: var(--text-muted); font-size: 11.5px; display: block; padding-left: 18px; }
-.wk { display: grid; grid-template-rows: repeat(3, 9px); gap: 2px; width: 100%; min-width: 46px; padding: 3px; border-radius: 6px; border: 1.5px solid transparent; position: relative; cursor: default; }
+.wk { display: grid; grid-template-rows: repeat(2, 12px); gap: 2px; width: 100%; min-width: 46px; padding: 3px; border-radius: 6px; border: 1.5px solid transparent; position: relative; cursor: default; }
 .wk span { border-radius: 2px; display: block; }
-.wk.na { background: repeating-linear-gradient(135deg, var(--grid) 0 3px, transparent 3px 7px); height: 37px; border-radius: 6px; }
+.wk.na { background: repeating-linear-gradient(135deg, var(--grid) 0 3px, transparent 3px 7px); height: 35px; border-radius: 6px; }
 .wk.open-mark { border-color: var(--text-primary); }
 .wk .mk { position: absolute; top: -9px; right: -5px; font-size: 10px; line-height: 1; background: var(--surface-1); border-radius: 50%; padding: 1px 2px; color: var(--text-primary); font-weight: 700; }
 .l0 { background: var(--l0); } .l1 { background: var(--l1); } .l2 { background: var(--l2); } .l3 { background: var(--l3); }
@@ -257,7 +257,7 @@ table.weekly { border-collapse: separate; border-spacing: 0; width: 100%; min-wi
 .check-grid h4 { margin: 4px 0 2px; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
 .evidence-box { margin-top: 12px; padding: 12px 14px; background: var(--surface-2); border-radius: 10px; font-size: 14px; }
 .evidence-box .ev-state { font-weight: 600; }
-.mini-traj { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-top: 8px; }
+.mini-traj { display: grid; grid-template-columns: repeat(var(--nweeks, 9), 1fr); gap: 4px; margin-top: 8px; }
 .mini-traj .wl { font-size: 10.5px; color: var(--text-muted); text-align: center; margin-top: 2px; }
 .item-list { list-style: none; padding: 0 !important; margin: 0; }
 .item-list li { padding: 8px 0; border-bottom: 1px solid var(--grid); display: grid; grid-template-columns: 82px 1fr; gap: 10px; }
@@ -316,3 +316,39 @@ table.items { border-collapse: collapse; width: 100%; font-size: 13px; min-width
 .src-groups li b { font-weight: 600; margin-left: 4px; }
 .src-groups .missing li { background: transparent; border-style: dashed; color: var(--text-secondary); }
 .items-scroll.tall { max-height: none; }
+
+/* ---- Protocol v0.4 statuses (problem / political / watch) ---- */
+.dot.political { background: var(--st-open); }
+.dot.problem { background: var(--st-opening); }
+.dot.watch { background: transparent; border: 2px solid var(--st-waiting); }
+.chip.political { border-left-color: var(--st-open); }
+.chip.problem { border-left-color: var(--st-opening); }
+.chip.watch { border-left-color: var(--st-waiting); border-left-style: dashed; }
+.card.political { border-top-color: var(--st-open); }
+.card.problem { border-top-color: var(--st-opening); }
+.card.watch { border-top-color: var(--st-waiting); }
+th.proposed small::after { content: " · proposed"; color: var(--st-opening); font-weight: 600; }
+.wk.proposed { outline: 1.5px dashed var(--st-opening); outline-offset: 1px; }
+.quote { font-style: italic; color: var(--text-secondary); }
+.ctx { font-size: 12px; color: var(--text-muted); }
+
+/* ---- Review tab ---- */
+.review-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.review-tally { display: flex; gap: 14px; font-size: 13px; color: var(--text-secondary); }
+.review-tally b { color: var(--text-primary); }
+.signal { background: var(--surface-1); border: 1px solid var(--border); border-left: 4px solid var(--border-strong); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; box-shadow: var(--shadow); }
+.signal.approved { border-left-color: var(--l3); }
+.signal.changed { border-left-color: var(--st-open); }
+.signal.rejected { border-left-color: var(--st-opening); opacity: .8; }
+.signal-top { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.signal h3 { margin: 0; font-size: 15px; }
+.signal .lvchange { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); }
+.signal .rationale { margin: 8px 0; }
+.signal details summary { cursor: pointer; font-size: 13px; color: var(--text-secondary); }
+.signal .ev { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 8px; }
+.signal .ev li { border-top: 1px solid var(--grid); padding-top: 8px; font-size: 13.5px; }
+.decide { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; }
+.decide .btn.is-on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
+.decide select, .decide input { font: inherit; font-size: 13px; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface-1); color: var(--text-primary); }
+.decide input { flex: 1; min-width: 180px; }
+.review-out { width: 100%; min-height: 120px; font: 12px/1.4 ui-monospace, monospace; margin-top: 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2, var(--surface-1)); color: var(--text-primary); padding: 8px; }

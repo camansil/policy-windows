@@ -34,6 +34,7 @@
       <a href="#sources" data-view="sources">Sources</a>
       <a href="#method" data-view="method">Method</a>
       <a href="#data" data-view="data">Data</a>
+      <a href="#review" data-view="review" class="tab-review">Review <span class="tab-sub">reviewers</span></a>
     </nav>
   </header>
 
@@ -42,8 +43,8 @@
 
     <!-- OVERVIEW -->
     <section class="view" id="view-overview" aria-labelledby="h-overview">
-      <h1 id="h-overview" class="lead-title">Five policy windows are open in Chile; four of them hinge on the 30 November budget deadline.</h1>
-      <p class="lead">Two unpredictable problem windows opened in late October: administrative sentence reductions and pension-fund losses. In both, the problem stream is far stronger than the policy stream. Windows on the Rules on the Use of Force, migrant expulsions, tolls and regional funding closed or are closing because decisions were taken.</p>
+      <h1 id="h-overview" class="lead-title"></h1>
+      <p class="lead">This week a sixth straight fuel price rise, and the President's bill to cap further rises, opened a problem window on fuel prices. The window on pension-fund losses is closing as Fund E recovers. Four political windows hinge on the budget deadline at the end of November. Under Protocol v0.4, the replacement of Calles sin Violencia is now on watch: the budget decision is going ahead without public attention.</p>
 
       <div class="tiles" id="tiles"></div>
 
@@ -51,7 +52,7 @@
         <div class="panel-head">
           <div>
             <h2>Where the windows are</h2>
-            <p class="panel-sub">Each topic placed by its problem and politics readiness this week. Squares show policy readiness. A window can open only through the problem or politics stream.</p>
+            <p class="panel-sub">Each topic placed by its problem and politics levels in the latest week. A potential window needs both streams at level 2 or higher (shaded zone).</p>
           </div>
         </div>
         <div class="legend" id="map-legend"></div>
@@ -65,8 +66,8 @@
       <article class="panel">
         <div class="panel-head">
           <div>
-            <h2>Stream readiness, week by week</h2>
-            <p class="panel-sub">Each cell shows the problem, politics and policy levels for that week, top to bottom. Hatched cells were not observed.</p>
+            <h2>Problem and politics signals, week by week</h2>
+            <p class="panel-sub">Each cell shows the problem (top) and politics (bottom) level for that week. Hatched cells were not observed. The latest week is proposed and awaits review.</p>
           </div>
           <div class="seg" role="group" aria-label="Sort topics">
             <button type="button" class="seg-btn is-on" data-sort="status">By status</button>
@@ -85,8 +86,8 @@
 
       <div class="two-col">
         <article class="panel">
-          <h2>National mood: presidential approval fell to 26%</h2>
-          <p class="panel-sub">Approval (%) by poll publication date. Falling approval weakens executive-driven windows.</p>
+          <h2>Government approval: below 30% in both polls</h2>
+          <p class="panel-sub">Approval (%) by poll publication date. Low approval weakens windows that depend on the executive.</p>
           <div class="legend" id="approval-legend"></div>
           <div id="approval" class="chart"></div>
           <details class="table-view"><summary>Show as table</summary><div id="approval-table"></div></details>
@@ -100,7 +101,7 @@
 
     <!-- TOPICS -->
     <section class="view" id="view-topics" aria-labelledby="h-topics" hidden>
-      <h1 id="h-topics" class="lead-title">Three open windows have no evidence-based alternative in circulation yet.</h1>
+      <h1 id="h-topics" class="lead-title"></h1>
       <p class="lead">Follow a topic to keep it at the top of this page in your browser. Email alerts are planned for the next version.</p>
 
       <div class="gaps" id="gaps"></div>
@@ -141,7 +142,7 @@
       <ul class="downloads">
         <li><a href="data/chile-2026-11.json">chile-2026-11.json</a> <span>Full run: topics, weekly levels, windows, policy checks, calendar, polls, coded items</span></li>
         <li><a href="data/topics.csv">topics.csv</a> <span>Topic summary grid</span></li>
-        <li><a href="data/coded-items.csv">coded-items.csv</a> <span>89 coded items with sources</span></li>
+        <li><a href="data/coded-items.csv">coded-items.csv</a> <span>All coded items with sources, context and quotes</span></li>
       </ul>
       <article class="panel">
         <div class="panel-head">
@@ -157,6 +158,12 @@
         </div>
         <div class="items-scroll"><table class="items" id="items"></table></div>
       </article>
+    </section>
+    <!-- REVIEW (reviewers' back end) -->
+    <section class="view" id="view-review" aria-labelledby="h-review" hidden>
+      <h1 id="h-review" class="lead-title">Review the week's proposed signals</h1>
+      <p class="lead">Each card is a proposed level for one stream of one topic, with the rationale and the coded items behind it. Approve, change or reject each one. Decisions are kept in this browser; copy them out when you finish so they can be applied to the data.</p>
+      <div id="review"></div>
     </section>
   </main>
 

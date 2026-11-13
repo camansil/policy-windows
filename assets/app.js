@@ -8,9 +8,13 @@
   const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const byId = Object.fromEntries(D.topics.map((t) => [t.id, t]));
-  const LEVEL = ["No signal", "Emerging", "Ready", "Strong"];
-  const STREAMS = [["P", "Problem"], ["Po", "Politics"], ["Pol", "Policy"]];
-  const STATUS_ORDER = ["open", "opening", "waiting", "closing", "closed", "none"];
+  const LEVEL = D.levels || ["No signal", "Weak signal", "Signal", "Strong signal"];
+  const STREAMS = [["P", "Problem"], ["Po", "Politics"]];
+  const STATUS_ORDER = ["problem", "political", "watch", "closing", "closed", "none"];
+  const NW = D.weeks.length, LATEST = D.weeks[NW - 1];
+  const REVIEW = (D.reviews || []).find((r) => r.week === LATEST.id);
+  const proposedWeek = REVIEW && REVIEW.status === "proposed" ? LATEST.id : null;
+  const itemById = Object.fromEntries(D.items.map((i) => [i.id, i]));
   const STATUS = D.statusLabels;
   const SVGNS = "http://www.w3.org/2000/svg";
 
@@ -40,13 +44,15 @@
   const lvPill = (v, title) => `<span class="lv l${v}" title="${esc(title || LEVEL[v])}">${v}</span>`;
   const dot = (st) => `<span class="dot ${st}" aria-hidden="true"></span>`;
   const badge = (t) => `<span class="badge">${dot(t.status)}${esc(t.statusLabel)}</span>`;
-  const pips = (n) => `<span class="pips" aria-label="Policy readiness ${n} of 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
   const streamsTip = (t, lv) => STREAMS.map(([k, n], i) => `${n}: <b>${lv[i]} ${LEVEL[lv[i]]}</b>`).join("<br>");
   const fmtDate = (iso) => { const m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; const p = iso.split("-"); return p.length === 3 ? `${+p[2]} ${m[+p[1] - 1]}` : iso; };
 
   /* ---------- banner + footer ---------- */
   $("#run-banner").innerHTML =
-    `<span class="pill">${esc(D.meta.country)}</span><span>Run: ${esc(D.method.period)}</span><span>Protocol ${esc(D.meta.protocol)}</span><span>${D.items.length} coded items · ${D.topics.length} topics</span><span class="warn">Pilot run: ratings are provisional.</span>`;
+    `<span class="pill">${esc(D.meta.country)}</span><span>Latest week: ${esc(LATEST.id)} (${esc(LATEST.label)})</span><span>Protocol ${esc(D.meta.protocol)}</span><span>${D.items.length} coded items · ${D.topics.length} topics</span>` +
+    (proposedWeek ? `<span class="warn">${esc(proposedWeek)} levels are proposed and await <a href="#review">review</a>.</span>` : "");
+  $("#h-overview").textContent = D.meta.headline || "";
+  $("#h-topics").textContent = D.meta.topicsHeadline || "";
   $("#footer").innerHTML = `<p>${esc(D.meta.note)}</p><p>Policy Window Monitor applies Kingdon's Multiple Streams Framework, adapted for Latin America, to weekly data. Data and code are open. Generated ${esc(D.meta.generated)}.</p>`;
 
 
@@ -61,11 +67,11 @@
   /* ---------- tiles ---------- */
   function renderTiles() {
     const groups = [
-      ["open", "Open windows", "On the decision agenda"],
-      ["opening", "Opening", "New problem windows"],
-      ["waiting", "Solutions waiting", "Idea ready, no window"],
-      ["closing", "Closing or closed", "Decision taken"],
-      ["none", "No window", "Monitored, not ready"],
+      ["problem", "Problem windows"],
+      ["political", "Political windows"],
+      ["watch", "Watch"],
+      ["closing", "Closing or closed"],
+      ["none", "No window"],
     ];
     $("#tiles").innerHTML = groups.map(([st, label]) => {
       const list = D.topics.filter((t) => (st === "closing" ? t.status === "closing" || t.status === "closed" : t.status === st));
@@ -78,9 +84,8 @@
   function renderMap() {
     const legend = $("#map-legend");
     legend.innerHTML = STATUS_ORDER.map((s) => `<span class="legend-item">${dot(s)}${esc(STATUS[s])}</span>`).join("") +
-      `<span class="legend-item"><span class="swatch zone-both"></span>Problem and politics both ready</span>` +
-      `<span class="legend-item"><span class="swatch zone-one"></span>One opening stream ready (window if policy is ready)</span>` +
-      `<span class="legend-item">${pips(2)} Policy readiness</span>`;
+      `<span class="legend-item"><span class="swatch zone-both"></span>Both streams signalling: potential window</span>` +
+      `<span class="legend-item"><span class="swatch zone-one"></span>One stream signalling: watch</span>`;
     const map = $("#window-map");
     let html = "";
     for (let po = 3; po >= 0; po--) {
@@ -90,7 +95,7 @@
         const items = D.topics.filter((t) => t.P === p && t.Po === po)
           .sort((a, b) => STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status));
         html += `<div class="cell ${zone}" aria-label="Problem ${p}, politics ${po}">` +
-          items.map((t) => `<button type="button" class="chip ${t.status}" data-topic="${t.id}"><span class="chip-name">${esc(t.short)}</span>${pips(t.Pol)}</button>`).join("") +
+          items.map((t) => `<button type="button" class="chip ${t.status}" data-topic="${t.id}"><span class="chip-name">${esc(t.short)}</span></button>`).join("") +
           `</div>`;
       }
     }
@@ -99,7 +104,7 @@
     $$(".chip", map).forEach((c) => {
       const t = byId[c.dataset.topic];
       c.addEventListener("click", () => openTopic(t.id));
-      bindTip(c, () => `<b>${esc(t.name)}</b><br>${esc(t.statusLabel)}${t.type !== "—" ? " · " + esc(t.type) : ""}<br>${streamsTip(t, [t.P, t.Po, t.Pol])}`);
+      bindTip(c, () => `<b>${esc(t.name)}</b><br>${esc(t.statusLabel)}<br>${streamsTip(t, [t.P, t.Po])}`);
     });
   }
 
@@ -108,24 +113,25 @@
   function renderLevelLegend() {
     $("#level-legend").innerHTML = [0, 1, 2, 3].map((v) => `<span class="legend-item"><span class="swatch l${v}"></span>${v} ${LEVEL[v]}</span>`).join("") +
       `<span class="legend-item"><span class="swatch" style="background:repeating-linear-gradient(135deg,var(--grid) 0 3px,transparent 3px 7px);border:1px solid var(--grid)"></span>Not observed</span>` +
-      `<span class="legend-item"><span class="swatch" style="border:1.5px solid var(--text-primary)"></span>Window opened</span>` +
+      `<span class="legend-item"><span class="swatch" style="border:1.5px solid var(--text-primary)"></span>Window flagged</span>` +
+      (proposedWeek ? `<span class="legend-item"><span class="swatch" style="outline:1.5px dashed var(--st-opening);outline-offset:1px"></span>Proposed, awaiting review</span>` : "") +
       `<span class="legend-item"><b>×</b>&nbsp;Window closed or closing</span>`;
   }
   function renderWeekly() {
     const rows = D.topics.slice().sort((a, b) => weeklySort === "status"
       ? STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status) || a.id.localeCompare(b.id)
       : a.ministry.localeCompare(b.ministry) || a.id.localeCompare(b.id));
-    let h = `<thead><tr><th class="topic-h">Topic</th><th>Now<small>P · Po · Pol</small></th>` +
-      D.weeks.map((w) => `<th>${w.id}<small>${esc(w.label)}</small></th>`).join("") + `</tr></thead><tbody>`;
+    let h = `<thead><tr><th class="topic-h">Topic</th><th>Now<small>P · Po</small></th>` +
+      D.weeks.map((w) => `<th class="${w.id === proposedWeek ? "proposed" : ""}">${w.id}<small>${esc(w.label)}</small></th>`).join("") + `</tr></thead><tbody>`;
     rows.forEach((t) => {
       h += `<tr><td class="tname"><button type="button" class="tlink" data-topic="${t.id}">${dot(t.status)}<span class="n">${esc(t.short)}</span></button><span class="tmin">${esc(t.ministry)}</span></td>`;
-      h += `<td><span class="cur">${lvPill(t.P, "Problem")}${lvPill(t.Po, "Politics")}${lvPill(t.Pol, "Policy")}</span></td>`;
+      h += `<td><span class="cur">${lvPill(t.P, "Problem")}${lvPill(t.Po, "Politics")}</span></td>`;
       t.traj.forEach((lv, i) => {
         const wk = i + 1;
-        const openM = t.openWeek === wk ? " open-mark" : "";
+        const openM = (t.openWeek === wk ? " open-mark" : "") + (D.weeks[i].id === proposedWeek ? " proposed" : "");
         const mk = t.closeWeek === wk ? `<span class="mk" aria-label="closed">×</span>` : "";
         if (!lv) h += `<td><div class="wk na${openM}" data-t="${t.id}" data-w="${i}" tabindex="0" aria-label="${esc(t.short)} ${D.weeks[i].id}: not observed">${mk}</div></td>`;
-        else h += `<td><div class="wk${openM}" data-t="${t.id}" data-w="${i}" tabindex="0" aria-label="${esc(t.short)} ${D.weeks[i].id}: problem ${lv[0]}, politics ${lv[1]}, policy ${lv[2]}">${lv.map((v) => `<span class="l${v}"></span>`).join("")}${mk}</div></td>`;
+        else h += `<td><div class="wk${openM}" data-t="${t.id}" data-w="${i}" tabindex="0" aria-label="${esc(t.short)} ${D.weeks[i].id}: problem ${lv[0]}, politics ${lv[1]}">${lv.map((v) => `<span class="l${v}"></span>`).join("")}${mk}</div></td>`;
       });
       h += `</tr>`;
     });
@@ -135,7 +141,7 @@
       const t = byId[c.dataset.t], i = +c.dataset.w, w = D.weeks[i], lv = t.traj[i];
       bindTip(c, () => `<b>${esc(t.short)}</b> · ${w.id} (${esc(w.label)})<br>` +
         (lv ? streamsTip(t, lv) : "Not observed") +
-        (t.openWeek === i + 1 ? "<br><b>Window opened</b>" : "") + (t.closeWeek === i + 1 ? "<br><b>Window closed / closing</b>" : ""));
+        (D.weeks[i].id === proposedWeek ? "<br><i>Proposed, awaiting review</i>" : "") + (t.openWeek === i + 1 ? "<br><b>Window flagged</b>" : "") + (t.closeWeek === i + 1 ? "<br><b>Window closed / closing</b>" : ""));
     });
   }
   $$(".seg-btn").forEach((b) => b.addEventListener("click", () => {
@@ -174,7 +180,8 @@
       svgText(g, 10, y + laneH / 2 + 3, lane, { class: "t-strong" });
       evs.forEach((e, ei) => {
         const cy = y + 14;
-        const col = topic ? `var(--st-${topic.status === "closing" ? "closed" : topic.status})` : "var(--text-secondary)";
+        const stVar = { problem: "opening", political: "open", watch: "waiting", closing: "closed", closed: "closed", none: "none" };
+        const col = topic ? `var(--st-${stVar[topic.status] || "none"})` : "var(--text-secondary)";
         let mark;
         if (e.end) {
           mark = svgEl("rect", { x: X(e.date), y: cy - 5, width: Math.max(6, X(e.end) - X(e.date)), height: 10, rx: 5, fill: col, "fill-opacity": 0.85 }, g);
@@ -182,7 +189,7 @@
           const cx = X(e.date), s = e.key ? 8 : 6;
           mark = svgEl("path", { d: `M${cx} ${cy - s}l${s} ${s}l${-s} ${s}l${-s} ${-s}z`, fill: col, stroke: "var(--surface-1)", "stroke-width": 1.5 }, g);
         }
-        const multi = lane === "Budget 2027";
+        const multi = evs.length > 1 && evs.some((x) => x.end) && evs.some((x) => !x.end);
         let lx, ly, anchor;
         const mid = e.end ? (X(e.date) + X(e.end)) / 2 : X(e.date);
         if (multi) { lx = mid; ly = ei % 2 === 1 ? cy - 11 : cy + 21; anchor = "middle"; }
@@ -210,7 +217,7 @@
     const polls = [["Cadem", "var(--st-open)"], ["Criteria", "var(--st-opening)"]];
     $("#approval-legend").innerHTML = polls.map(([p, c]) => `<span class="legend-item"><span class="swatch" style="background:${c};height:3px;width:16px"></span>${p}</span>`).join("");
     const W = 560, H = 240, l = 36, r = 76, t = 14, b = 30;
-    const x0 = dnum("2026-10-01"), x1 = dnum("2026-11-05");
+    const x0 = dnum("2026-10-01"), x1 = dnum(D.meta.generated);
     const X = (iso) => l + (dnum(iso) - x0) / (x1 - x0) * (W - l - r);
     const yMin = 20, yMax = 40, Y = (v) => t + (yMax - v) / (yMax - yMin) * (H - t - b);
     const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Presidential approval by poll, October to November 2026" });
@@ -246,11 +253,11 @@
   /* ---------- topics view ---------- */
   const GAPS = [
     { title: "Windows without an evidence-based alternative", text: "Strong problem streams, but no mature solution in circulation. Evidence produced now could shape the response.",
-      items: [["T04", "Rules and safeguards for sentence-reduction eligibility"], ["T05", "Risk and duration rules for conservative pension funds"], ["T06", "An employment package beyond Sala Cuna"]] },
-    { title: "Solutions waiting for a window", text: "An idea and its advocates are ready, but neither the problem nor the politics stream is.",
-      items: [["T12", "Watch for Hacienda filing the bill"], ["T15", "Stalled in the Senate since January"]] },
-    { title: "Evidence that could still move decisions before 30 Nov", text: "Open budget windows where specific evidence could inform the floor votes on 9–11 and 17–19 November.",
-      items: [["T02", "Evaluations of Calles sin Violencia or Plan FOCO"], ["T09", "Primary-care financing and immunisation"], ["T14", "Digital education programmes"]] },
+      items: [["T21", "Alternatives to capping fuel prices, such as targeted support"], ["T04", "Rules and safeguards for sentence-reduction eligibility"], ["T06", "An employment package beyond Sala Cuna"]] },
+    { title: "On watch: one stream signalling", text: "Decisions can still be taken here through politics alone, without public attention.",
+      items: [["T02", "Budget replaces Calles sin Violencia with Plan FOCO"], ["T11", "Primary-care mental health budget line"], ["T05", "Closing as Fund E recovers; compensation bill pending"]] },
+    { title: "Evidence that could still move decisions before the budget deadline", text: "Open windows where specific evidence could inform the Senate votes (17–19 Nov) or the fuel bill.",
+      items: [["T09", "Primary-care financing and immunisation"], ["T14", "Digital education programmes"], ["T21", "Price-smoothing funds and fuel subsidies"]] },
   ];
   function renderGaps() {
     $("#gaps").innerHTML = GAPS.map((g) => `<div class="gap"><h3>${esc(g.title)}</h3><p>${esc(g.text)}</p><ul>` +
@@ -260,7 +267,7 @@
 
   let activeStatus = "all", activeMinistry = "", query = "";
   function renderFilters() {
-    const opts = [["all", "All"], ["following", "Following"], ["open", STATUS.open], ["opening", STATUS.opening], ["waiting", STATUS.waiting], ["closing", "Closing or closed"], ["none", STATUS.none]];
+    const opts = [["all", "All"], ["following", "Following"], ["problem", STATUS.problem], ["political", STATUS.political], ["watch", STATUS.watch], ["closing", "Closing or closed"], ["none", STATUS.none]];
     const count = (k) => k === "all" ? D.topics.length : k === "following" ? following.size : D.topics.filter((t) => (k === "closing" ? ["closing", "closed"].includes(t.status) : t.status === k)).length;
     $("#status-filter").innerHTML = opts.map(([k, l]) => `<button type="button" class="fchip ${activeStatus === k ? "is-on" : ""}" data-k="${k}" aria-pressed="${activeStatus === k}">${["all", "following"].includes(k) ? "" : dot(k)}${esc(l)} <span class="count">${count(k)}</span></button>`).join("");
     $$("#status-filter .fchip").forEach((b) => b.addEventListener("click", () => { activeStatus = b.dataset.k; renderCards(); }));
@@ -292,8 +299,8 @@
       <article class="card ${t.status}">
         <div class="card-top"><div><div class="meta">${esc(t.id)} · ${esc(t.ministry)}</div><h3>${esc(t.name)}</h3></div></div>
         <div>${badge(t)}</div>
-        <div class="streams"><span>Problem ${lvPill(t.P)}</span><span>Politics ${lvPill(t.Po)}</span><span>Policy ${lvPill(t.Pol)}</span></div>
-        ${t.type !== "—" ? `<div class="meta">${esc(t.type)} · ${esc(t.coupling)} coupling · ${esc(t.timing)}</div>` : `<div class="meta">${esc(t.timing)}</div>`}
+        <div class="streams"><span>Problem ${lvPill(t.P)}</span><span>Politics ${lvPill(t.Po)}</span></div>
+        ${["problem", "political", "closing"].includes(t.status) && t.type !== "—" ? `<div class="meta">${esc(t.coupling)} coupling · ${esc(t.timing)}</div>` : `<div class="meta">${esc(t.timing)}</div>`}
         <p class="changed">${esc(t.changed)}</p>
         <div class="card-actions">
           <button type="button" class="follow" data-follow="${t.id}" aria-pressed="${following.has(t.id)}">${following.has(t.id) ? "★ Following" : "☆ Follow"}</button>
@@ -316,26 +323,28 @@
     if (location.hash.slice(1) !== name) { location.hash = name; return; }
     renderDrawer(id);
   }
+  const itemLi = (i) => `<li><span class="d">${esc(i.date || "n.d.")}<br>${esc(i.week || "")} · ${esc(i.stream)}</span><span>${esc(i.concept)}: ${esc(i.note)}` +
+    (i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : "") +
+    `<br><span class="src">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a>${i.context ? " · " + esc(i.context) : ""} · strength ${i.strength}</span></span></li>`;
   function renderDrawer(id) {
     const t = byId[id]; if (!t) return;
-    const pc = D.policyChecks[id];
+    const pc = t.policyCheck ? D.policyChecks[id] : null;
     const items = D.items.filter((i) => i.topic === id).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-    const traj = t.traj.map((lv, i) => `<div><div class="wk ${lv ? "" : "na"}${t.openWeek === i + 1 ? " open-mark" : ""}">${lv ? lv.map((v) => `<span class="l${v}"></span>`).join("") : ""}${t.closeWeek === i + 1 ? '<span class="mk">×</span>' : ""}</div><div class="wl">${D.weeks[i].id}</div></div>`).join("");
+    const traj = t.traj.map((lv, i) => `<div><div class="wk ${lv ? "" : "na"}${t.openWeek === i + 1 ? " open-mark" : ""}${D.weeks[i].id === proposedWeek ? " proposed" : ""}">${lv ? lv.map((v) => `<span class="l${v}"></span>`).join("") : ""}${t.closeWeek === i + 1 ? '<span class="mk">×</span>' : ""}</div><div class="wl">${D.weeks[i].id}</div></div>`).join("");
+    const isWin = ["problem", "political", "closing"].includes(t.status) && t.type !== "—";
     $("#drawer-body").innerHTML = `
       <div class="eyebrow">${esc(t.id)} · ${esc(t.ministry)} · CAP ${esc(t.cap)}</div>
       <h2 id="drawer-title">${esc(t.name)}</h2>
       <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">${badge(t)}<button type="button" class="follow" data-follow="${t.id}" aria-pressed="${following.has(t.id)}">${following.has(t.id) ? "★ Following" : "☆ Follow this topic"}</button></div>
       <dl class="facts">
-        <div><dt>Window type</dt><dd>${esc(t.type)}</dd></div>
-        <div><dt>Coupling</dt><dd>${esc(t.coupling)}</dd></div>
-        <div><dt>Opened by</dt><dd>${esc(t.opened)}</dd></div>
+        <div><dt>Window type</dt><dd>${esc(isWin ? t.type : "—")}</dd></div>
+        <div><dt>Coupling</dt><dd>${esc(isWin ? t.coupling : "—")}</dd></div>
+        <div><dt>Opened by</dt><dd>${esc(isWin ? t.opened : "—")}</dd></div>
         <div><dt>Timing</dt><dd>${esc(t.timing)}</dd></div>
-        <div><dt>Agenda level</dt><dd>${esc(t.agenda)}</dd></div>
-        <div><dt>Confidence</dt><dd>${esc(t.conf)}</dd></div>
       </dl>
-      ${STREAMS.map(([k, n]) => `<div class="stream-block"><div class="sname">${n}<br>${lvPill(t[k])} <span class="note">${LEVEL[t[k]]}</span></div><p>${esc(t[{ P: "problem", Po: "politics", Pol: "policy" }[k]])}</p></div>`).join("")}
-      <section><h3>Week by week</h3><div class="mini-traj">${traj}</div><p class="note">Rows in each cell: problem, politics, policy.</p></section>
-      <section><h3>What changed this period</h3><p>${esc(t.changed)}</p>
+      ${STREAMS.map(([k, n]) => `<div class="stream-block"><div class="sname">${n}<br>${lvPill(t[k])} <span class="note">${LEVEL[t[k]]}</span></div><p>${esc(t[{ P: "problem", Po: "politics" }[k]])}</p></div>`).join("")}
+      <section><h3>Week by week</h3><div class="mini-traj" style="--nweeks:${NW}">${traj}</div><p class="note">Top bar: problem. Bottom bar: politics.${proposedWeek ? " " + esc(proposedWeek) + " is proposed and awaits review." : ""}</p></section>
+      <section><h3>What changed</h3><p>${esc(t.changed)}</p>
         ${t.closing ? `<p><b>Closing reason (Kingdon):</b> ${esc(t.closing)}. <b>Could reopen if:</b> ${esc(t.reopen)}.</p>` : ""}</section>
       <section><h3>Frames and actors</h3>
         <p><b>Frames:</b> ${esc(t.frames)}</p>
@@ -344,18 +353,19 @@
           <div><h4>Policy entrepreneurs</h4>${t.entrepreneurs.length ? `<ul>${t.entrepreneurs.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>` : `<p class="note">None qualify</p>`}</div>
         </div></section>
       ${pc ? `<section><h3>Policy stream check</h3>
+        <p class="note">Run because a window was flagged for this topic. ${esc(t.policy || "")}</p>
         <div class="check-grid">
           <div><h4>Ideas in circulation</h4><ul>${pc.ideas.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
           <div><h4>Entrepreneurs</h4><ul>${pc.entrepreneurs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul><h4>Bills</h4><ul>${pc.bills.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
         </div>
         <div class="evidence-box"><div><span class="ev-state">Evidence: ${esc(pc.evidence)}</span> · Applicability to Chile: ${esc(pc.applicability)}</div><div>${esc(pc.evidenceNote)}</div><div class="note">Evidence state from analyst knowledge; to verify in Epistemonikos, Cochrane, Campbell or 3ie.</div></div>
-      </section>` : ""}
+      </section>` : `<section><h3>Policy stream</h3><p class="note">The policy stream is checked only once a window is flagged for a topic.${t.policy ? " Noted so far: " + esc(t.policy) : ""}</p></section>`}
       <section><h3>Sources consulted (${new Set(items.map((i) => i.source)).size})</h3>
         <div class="src-groups">${srcGroups(items)}</div>
         ${missingCore(items)}
       </section>
       <section><h3>Coded items (${items.length})</h3>
-        ${items.length ? `<ul class="item-list">${items.map((i) => `<li><span class="d">${esc(i.date || "n.d.")}<br>${esc(i.stream)}</span><span><span class="dir ${i.direction > 0 ? "up" : i.direction < 0 ? "down" : ""}" title="Signal direction">${i.direction > 0 ? "▲" : i.direction < 0 ? "▼" : "●"}</span> ${esc(i.concept)}: ${esc(i.note)}<br><span class="src">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · strength ${i.strength}</span></span></li>`).join("")}</ul>` : `<p class="note">No items coded for this topic in the period.</p>`}
+        ${items.length ? `<ul class="item-list">${items.map(itemLi).join("")}</ul>` : `<p class="note">No items coded for this topic.</p>`}
       </section>`;
     $("#drawer [data-follow]").addEventListener("click", (e) => toggleFollow(e.currentTarget.dataset.follow));
     lastFocus = lastFocus || document.activeElement;
@@ -408,20 +418,21 @@
     const li = (a) => a.map((x) => `<li>${esc(x)}</li>`).join("");
     $("#method").innerHTML = `
       <p class="lead">${esc(m.protocol)} applied to Chile for ${esc(m.period)}. ${esc(m.volume)}</p>
-      <article class="panel"><h2>Rules applied</h2>
-        <table class="rules-table"><thead><tr><th>Level</th><th>Problem</th><th>Politics</th><th>Policy</th></tr></thead><tbody>
-          <tr><td>${lvPill(0)} No signal</td><td>No salient change</td><td>No government or congressional activity</td><td>No idea in circulation</td></tr>
-          <tr><td>${lvPill(1)} Emerging</td><td>Attention without new data or a problem broker</td><td>Statements only, or public demand without action</td><td>Ideas mentioned, no entrepreneur</td></tr>
-          <tr><td>${lvPill(2)} Ready</td><td>Indicator, report or feedback framed by a problem broker; attention above baseline</td><td>Formal step (bill, announcement, budget line) with mood not opposed</td><td>Entrepreneur advocates a named idea, or a bill contains it</td></tr>
-          <tr><td>${lvPill(3)} Strong</td><td>Focusing event or record indicator; top "most important problem"; frames converging</td><td>Decisive agenda tool (urgency, budget item, passage in one chamber)</td><td>Entrepreneur plus a bill, or adopted by government</td></tr>
+      <article class="panel"><h2>Stream levels</h2>
+        <table class="rules-table"><thead><tr><th>Level</th><th>Problem stream</th><th>Politics stream</th></tr></thead><tbody>
+          <tr><td>${lvPill(0)} ${esc(LEVEL[0])}</td><td>No salient change</td><td>No change in approval, government action or congressional activity on the topic</td></tr>
+          <tr><td>${lvPill(1)} ${esc(LEVEL[1])}</td><td>Attention without new data, from a single source</td><td>Statements only, or public demand without government action</td></tr>
+          <tr><td>${lvPill(2)} ${esc(LEVEL[2])}</td><td>Indicator change, report, feedback or focusing event, corroborated by several sources; attention above the topic's baseline</td><td>A formal step (bill, announcement, working group, budget line) with national mood and approval not opposed</td></tr>
+          <tr><td>${lvPill(3)} ${esc(LEVEL[3])}</td><td>Focusing event or record indicator with sustained attention, or the topic among the top "most important problems"; frames converging</td><td>Decisive use of agenda tools (urgency, budget item, passage in one chamber) with mood supportive or neutral</td></tr>
         </tbody></table>
-        <p class="panel-sub" style="margin-top:12px">A <b>potential window</b> needs two streams at level 2 or 3, opened by the problem or politics stream. Whichever of those was ready first sets the type: <b>problem window</b> (consequential coupling) or <b>political window</b> (doctrinal coupling). If the policy stream was ready first, the topic is a <b>solution waiting for a window</b>. Open windows are re-assessed weekly; closing reasons follow Kingdon.</p>
+        <p class="panel-sub" style="margin-top:12px">A <b>potential window</b> is flagged when both streams are at level 2 or 3 in the same week. If the problem stream got there first it is a <b>problem window</b> (consequential coupling); if politics came first, a <b>political window</b> (doctrinal coupling). Topics with one stream at level 2 or 3 are on <b>watch</b>. Every open window is re-assessed weekly; closing reasons follow Kingdon. The policy stream is checked only once a window is flagged.</p>
       </article>
       <div class="method-grid">
-        <article class="panel"><h2>Steps</h2><ol>${li(m.steps)}</ol></article>
-        <article class="panel"><h2>Operational rules adopted in this run</h2><ul>${li(m.rules)}</ul></article>
+        <article class="panel"><h2>Steps in this run</h2><ol>${li(m.steps)}</ol></article>
+        <article class="panel"><h2>Rules applied</h2><ul>${li(m.rules)}</ul></article>
         <article class="panel"><h2>Limitations</h2><ul>${li(m.limitations)}</ul></article>
-        <article class="panel"><h2>Validation</h2><ul>${li(m.validation)}</ul><h3 style="margin-top:14px">Proposed for v0.4</h3><ul>${li(m.nextVersion)}</ul></article>
+        <article class="panel"><h2>Validation</h2><ul>${li(m.validation)}</ul><h3 style="margin-top:14px">Next</h3><ul>${li(m.nextVersion)}</ul></article>
+        ${(D.discovery || []).length ? `<article class="panel"><h2>Discovery net</h2><ul>${D.discovery.map((d) => `<li><b>${esc(d.week)}</b> ${esc(d.text)}</li>`).join("")}</ul></article>` : ""}
       </div>`;
   }
 
@@ -432,10 +443,70 @@
     const draw = () => {
       const tv = topicSel.value, sv = $("#item-stream").value;
       const rows = D.items.filter((i) => (!tv || i.topic === tv) && (!sv || i.stream === sv));
-      $("#items").innerHTML = `<thead><tr><th>ID</th><th>Date</th><th>Topic</th><th>Stream</th><th>Concept</th><th>Actor</th><th>Dir.</th><th>Str.</th><th>Note</th><th>Source</th></tr></thead><tbody>` +
-        rows.map((i) => `<tr><td class="num">${esc(i.id)}</td><td class="num">${esc(i.date || "n.d.")}</td><td>${i.topic === "Cross-cutting" ? "Cross-cutting" : `<a href="#topic-${i.topic.toLowerCase()}">${esc(byId[i.topic].short)}</a>`}</td><td>${esc(i.stream)}</td><td>${esc(i.concept)}</td><td>${esc(i.actor)}</td><td class="num">${i.direction > 0 ? "+1" : i.direction}</td><td class="num">${i.strength}</td><td>${esc(i.note)}</td><td><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a></td></tr>`).join("") + `</tbody>`;
+      $("#items").innerHTML = `<thead><tr><th>ID</th><th>Week</th><th>Date</th><th>Topic</th><th>Stream</th><th>Concept</th><th>Actor</th><th>Str.</th><th>Note</th><th>Context and quote</th><th>Source</th></tr></thead><tbody>` +
+        rows.slice().reverse().map((i) => `<tr><td class="num">${esc(i.id)}</td><td class="num">${esc(i.week)}</td><td class="num">${esc(i.date || "n.d.")}</td><td>${i.topic === "Cross-cutting" ? "Cross-cutting" : `<a href="#topic-${i.topic.toLowerCase()}">${esc(byId[i.topic].short)}</a>`}</td><td>${esc(i.stream)}</td><td>${esc(i.concept)}</td><td>${esc(i.actor)}</td><td class="num">${i.strength}</td><td>${esc(i.note)}</td><td>${esc(i.context)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}</td><td><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a></td></tr>`).join("") + `</tbody>`;
     };
     topicSel.addEventListener("change", draw); $("#item-stream").addEventListener("change", draw); draw();
+  }
+
+  /* ---------- review (reviewers' back end) ---------- */
+  const RKEY = "pwm-review-" + (D.meta.iso || "CL") + "-" + (REVIEW ? REVIEW.week : "");
+  let decisions = {};
+  try { decisions = JSON.parse(localStorage.getItem(RKEY) || "{}"); } catch (e) { /* storage unavailable */ }
+  const saveDecisions = () => { try { localStorage.setItem(RKEY, JSON.stringify(decisions)); } catch (e) { /* ignore */ } };
+  const sigKey = (sg) => sg.topic + ":" + sg.stream;
+  function renderReview() {
+    const host = $("#review");
+    if (!REVIEW || !REVIEW.signals.length) { host.innerHTML = `<p class="empty">No proposed signals waiting for review.</p>`; return; }
+    const sigs = REVIEW.signals;
+    const tally = { approve: 0, change: 0, reject: 0 };
+    sigs.forEach((sg) => { const d = decisions[sigKey(sg)]; if (d) tally[d.decision]++; });
+    const pending = sigs.length - tally.approve - tally.change - tally.reject;
+    const lvOpt = (sel) => [0, 1, 2, 3].map((v) => `<option value="${v}" ${v === sel ? "selected" : ""}>${v} ${esc(LEVEL[v])}</option>`).join("");
+    host.innerHTML = `
+      <div class="review-head"><div class="review-tally"><span>Week <b>${esc(REVIEW.week)}</b> (${esc(REVIEW.label)})</span><span><b>${sigs.length}</b> signals</span><span><b>${tally.approve}</b> approved</span><span><b>${tally.change}</b> changed</span><span><b>${tally.reject}</b> rejected</span><span><b>${pending}</b> pending</span></div>
+        <div><button type="button" class="btn" id="rv-copy">Copy decisions (CSV)</button> <button type="button" class="btn" id="rv-clear">Clear</button></div></div>
+      <p class="note-line">${esc(REVIEW.note)}</p>
+      ${sigs.map((sg, k) => {
+        const d = decisions[sigKey(sg)] || {};
+        const t = byId[sg.topic];
+        const cls = d.decision === "approve" ? "approved" : d.decision === "change" ? "changed" : d.decision === "reject" ? "rejected" : "";
+        const prev = sg.prev == null ? "new" : `${sg.prev}`;
+        return `<article class="signal ${cls}" data-k="${k}">
+          <div class="signal-top"><h3>${t ? `<a href="#topic-${t.id.toLowerCase()}">${esc(t.short)}</a>` : "Cross-cutting"} · ${esc(sg.stream)}</h3>
+            <span class="lvchange">${sg.proposed == null ? "No level change" : `${sg.prev == null ? "" : lvPill(sg.prev) + " →"} ${lvPill(sg.proposed)} ${esc(LEVEL[sg.proposed])}${sg.prev == null ? " (new)" : ""}`}</span></div>
+          <div class="ctx">Concepts: ${sg.concepts.map(esc).join(", ")}</div>
+          <p class="rationale">${esc(sg.rationale)}</p>
+          <details><summary>Evidence: ${sg.items.length} coded item${sg.items.length === 1 ? "" : "s"}</summary><ul class="ev">${sg.items.map((x) => itemById[x]).filter(Boolean).map((i) =>
+            `<li><b>${esc(i.concept)}</b>: ${esc(i.note)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}<br><span class="ctx">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · ${esc(i.date)}${i.context ? " · " + esc(i.context) : ""}</span></li>`).join("")}</ul></details>
+          <div class="decide" role="group" aria-label="Decision">
+            <button type="button" class="btn ${d.decision === "approve" ? "is-on" : ""}" data-d="approve">Approve</button>
+            <button type="button" class="btn ${d.decision === "change" ? "is-on" : ""}" data-d="change">Change</button>
+            <button type="button" class="btn ${d.decision === "reject" ? "is-on" : ""}" data-d="reject">Reject</button>
+            ${sg.proposed == null ? "" : `<label class="sr-only" for="lv-${k}">Level</label><select id="lv-${k}" data-lv ${d.decision === "change" ? "" : "disabled"}>${lvOpt(d.level != null ? d.level : sg.proposed)}</select>`}
+            <label class="sr-only" for="nt-${k}">Note</label><input id="nt-${k}" data-note type="text" placeholder="Note (optional)" value="${esc(d.note || "")}">
+          </div></article>`;
+      }).join("")}
+      <textarea class="review-out" id="rv-out" readonly hidden aria-label="Decisions as CSV"></textarea>`;
+    $$(".signal", host).forEach((card) => {
+      const sg = sigs[+card.dataset.k], key = sigKey(sg);
+      const upd = (patch) => { decisions[key] = Object.assign({ decision: null, level: sg.proposed, note: "" }, decisions[key] || {}, patch); saveDecisions(); };
+      $$("[data-d]", card).forEach((b) => b.addEventListener("click", () => { upd({ decision: b.dataset.d, at: new Date().toISOString() }); renderReview(); }));
+      const sel = $("[data-lv]", card); if (sel) sel.addEventListener("change", () => upd({ level: +sel.value }));
+      const nt = $("[data-note]", card); nt.addEventListener("change", () => upd({ note: nt.value }));
+    });
+    $("#rv-copy").addEventListener("click", () => {
+      const q = (x) => `"${String(x == null ? "" : x).replace(/"/g, '""')}"`;
+      const rows = [["week", "topic", "stream", "proposed", "decision", "final_level", "note", "decided_at"]].concat(sigs.map((sg) => {
+        const d = decisions[sigKey(sg)] || {};
+        const fin = d.decision === "reject" ? "" : d.decision === "change" ? d.level : sg.proposed;
+        return [REVIEW.week, sg.topic, sg.stream, sg.proposed, d.decision || "pending", fin, d.note || "", d.at || ""];
+      }));
+      const csv = rows.map((r) => r.map(q).join(",")).join("\n");
+      const out = $("#rv-out"); out.hidden = false; out.value = csv; out.select();
+      if (navigator.clipboard) navigator.clipboard.writeText(csv).catch(() => {});
+    });
+    $("#rv-clear").addEventListener("click", () => { decisions = {}; saveDecisions(); renderReview(); });
   }
 
   /* ---------- routing ---------- */
@@ -449,7 +520,7 @@
       showView(currentView || "overview"); renderDrawer(id); return;
     }
     if (!$("#drawer").hidden) closeDrawer(false);
-    showView(["overview", "topics", "sources", "method", "data"].includes(h) ? h : "overview");
+    showView(["overview", "topics", "sources", "method", "data", "review"].includes(h) ? h : "overview");
   }
   function showView(v) {
     currentView = v;
@@ -461,6 +532,6 @@
 
   /* ---------- init ---------- */
   renderTiles(); renderMap(); renderLevelLegend(); renderWeekly(); renderCalendar(); renderApproval(); renderContext();
-  renderGaps(); initMinistry(); renderCards(); renderSources(); renderMethod(); renderItems();
+  renderGaps(); initMinistry(); renderCards(); renderSources(); renderMethod(); renderItems(); renderReview();
   route();
 })();
