@@ -305,3 +305,14 @@ table.items { border-collapse: collapse; width: 100%; font-size: 13px; min-width
   .tab-sub { display: none; }
   input[type=search] { min-width: 0; width: 100%; }
 }
+
+.note-line { color: var(--text-secondary); font-size: 13.5px; margin-top: 12px; }
+.acc { font-size: 12px; white-space: nowrap; }
+.acc.open { color: var(--l3); }
+.acc.closed { color: var(--st-opening); font-weight: 600; }
+.src-groups h4 { margin: 10px 0 4px; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+.src-groups ul { list-style: none; padding: 0 !important; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.src-groups li { background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; color: var(--text-primary); }
+.src-groups li b { font-weight: 600; margin-left: 4px; }
+.src-groups .missing li { background: transparent; border-style: dashed; color: var(--text-secondary); }
+.items-scroll.tall { max-height: none; }

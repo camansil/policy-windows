@@ -31,6 +31,7 @@
     <nav class="wrap tabs" aria-label="Views">
       <a href="#overview" data-view="overview">Overview <span class="tab-sub">for decision-makers</span></a>
       <a href="#topics" data-view="topics">Topics <span class="tab-sub">for evidence producers</span></a>
+      <a href="#sources" data-view="sources">Sources</a>
       <a href="#method" data-view="method">Method</a>
       <a href="#data" data-view="data">Data</a>
     </nav>
@@ -114,6 +115,17 @@
         </div>
       </div>
       <div class="cards" id="cards"></div>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="view" id="view-sources" aria-labelledby="h-sources" hidden>
+      <h1 id="h-sources" class="lead-title">Chile source log</h1>
+      <p class="lead">The outlets, programmes, podcasts, polls, indicators and moments the monitor watches in Chile. The log is curated by people who know the country and grows over time. The last column shows how many coded items in this run came from each source.</p>
+      <div class="filters" role="group" aria-label="Filter sources">
+        <div class="chip-row" id="source-type-filter"></div>
+      </div>
+      <div class="items-scroll tall"><table class="items" id="source-log"></table></div>
+      <p class="note-line" id="source-gap"></p>
     </section>
 
     <!-- METHOD -->

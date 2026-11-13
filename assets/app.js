@@ -49,6 +49,15 @@
     `<span class="pill">${esc(D.meta.country)}</span><span>Run: ${esc(D.method.period)}</span><span>Protocol ${esc(D.meta.protocol)}</span><span>${D.items.length} coded items · ${D.topics.length} topics</span><span class="warn">Pilot run: ratings are provisional.</span>`;
   $("#footer").innerHTML = `<p>${esc(D.meta.note)}</p><p>Policy Window Monitor applies Kingdon's Multiple Streams Framework, adapted for Latin America, to weekly data. Data and code are open. Generated ${esc(D.meta.generated)}.</p>`;
 
+
+  /* ---------- source log ---------- */
+  const LOG = D.sourceLog || [];
+  const reEsc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  LOG.forEach((e) => { e._re = (e.match || "").split("|").filter(Boolean).map((m) => new RegExp("(^|[^\\p{L}\\p{N}])" + reEsc(m.trim()) + "($|[^\\p{L}\\p{N}])", "iu")); });
+  const itemMatches = (e, i) => e._re.some((r) => r.test(i.source) || r.test(i.actor));
+  const CORE_TYPES = ["Written press and online news", "Radio and TV news", "Political interviews, talk shows and podcasts", "Opinion polls and poll aggregators"];
+  const accClass = (a) => /paywall|subscription/i.test(a) ? "closed" : (/^open/i.test(a) ? "open" : "");
+
   /* ---------- tiles ---------- */
   function renderTiles() {
     const groups = [
@@ -341,6 +350,10 @@
         </div>
         <div class="evidence-box"><div><span class="ev-state">Evidence: ${esc(pc.evidence)}</span> · Applicability to Chile: ${esc(pc.applicability)}</div><div>${esc(pc.evidenceNote)}</div><div class="note">Evidence state from analyst knowledge; to verify in Epistemonikos, Cochrane, Campbell or 3ie.</div></div>
       </section>` : ""}
+      <section><h3>Sources consulted (${new Set(items.map((i) => i.source)).size})</h3>
+        <div class="src-groups">${srcGroups(items)}</div>
+        ${missingCore(items)}
+      </section>
       <section><h3>Coded items (${items.length})</h3>
         ${items.length ? `<ul class="item-list">${items.map((i) => `<li><span class="d">${esc(i.date || "n.d.")}<br>${esc(i.stream)}</span><span><span class="dir ${i.direction > 0 ? "up" : i.direction < 0 ? "down" : ""}" title="Signal direction">${i.direction > 0 ? "▲" : i.direction < 0 ? "▼" : "●"}</span> ${esc(i.concept)}: ${esc(i.note)}<br><span class="src">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · strength ${i.strength}</span></span></li>`).join("")}</ul>` : `<p class="note">No items coded for this topic in the period.</p>`}
       </section>`;
@@ -359,6 +372,35 @@
   $("#drawer-close").addEventListener("click", () => closeDrawer(true));
   $("#drawer-backdrop").addEventListener("click", () => closeDrawer(true));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(true); });
+
+
+  function srcGroups(items) {
+    if (!items.length) return `<p class="note">No sources coded for this topic in the period.</p>`;
+    const byType = {};
+    items.forEach((i) => { (byType[i.type] = byType[i.type] || {}); byType[i.type][i.source] = (byType[i.type][i.source] || 0) + 1; });
+    return Object.keys(byType).sort().map((ty) => `<h4>${esc(ty)}</h4><ul>${Object.entries(byType[ty]).sort((a, b) => b[1] - a[1]).map(([n, c]) => `<li>${esc(n)}<b>×${c}</b></li>`).join("")}</ul>`).join("");
+  }
+  function missingCore(items) {
+    const miss = LOG.filter((e) => CORE_TYPES.includes(e.source_type) && e._re.length && !items.some((i) => itemMatches(e, i)));
+    if (!miss.length) return "";
+    return `<div class="src-groups missing"><h4>From the Chile source log, not consulted for this topic</h4><ul>${miss.map((e) => `<li>${esc(e.name)}</li>`).join("")}</ul></div>`;
+  }
+
+  /* ---------- sources page ---------- */
+  let srcType = "";
+  function renderSources() {
+    const types = [...new Set(LOG.map((e) => e.source_type))];
+    const counts = new Map(LOG.map((e) => [e.id, D.items.filter((i) => e._re.length && itemMatches(e, i)).length]));
+    $("#source-type-filter").innerHTML = [["", "All"]].concat(types.map((t) => [t, t])).map(([k, l]) =>
+      `<button type="button" class="fchip ${srcType === k ? "is-on" : ""}" data-k="${esc(k)}">${esc(l)} <span class="count">${k ? LOG.filter((e) => e.source_type === k).length : LOG.length}</span></button>`).join("");
+    $$("#source-type-filter .fchip").forEach((b) => b.addEventListener("click", () => { srcType = b.dataset.k; renderSources(); }));
+    const rows = LOG.filter((e) => !srcType || e.source_type === srcType);
+    $("#source-log").innerHTML = `<thead><tr><th>Source</th><th>Type</th><th>Owner</th><th>Format</th><th>Access</th><th>How the monitor reads it</th><th>Added by</th><th>Items in this run</th><th>Notes</th></tr></thead><tbody>` +
+      rows.map((e) => `<tr><td>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a>` : esc(e.name)}</td><td>${esc(e.source_type)}</td><td>${esc(e.owner)}</td><td>${esc(e.format)}</td><td><span class="acc ${accClass(e.access)}">${esc(e.access)}</span></td><td>${esc(e.how_read)}</td><td>${esc(e.added_by)}</td><td class="num">${e._re.length ? counts.get(e.id) : "—"}</td><td>${esc(e.notes)}</td></tr>`).join("") + `</tbody>`;
+    const core = LOG.filter((e) => CORE_TYPES.includes(e.source_type) && e._re.length);
+    const zero = core.filter((e) => !counts.get(e.id));
+    $("#source-gap").textContent = `${zero.length} of ${core.length} news, TV, talk-show, podcast and poll sources in the log produced no coded items in this run: ${zero.map((e) => e.name).join(", ")}. The next weekly run will read them directly.`;
+  }
 
   /* ---------- method ---------- */
   function renderMethod() {
@@ -407,7 +449,7 @@
       showView(currentView || "overview"); renderDrawer(id); return;
     }
     if (!$("#drawer").hidden) closeDrawer(false);
-    showView(["overview", "topics", "method", "data"].includes(h) ? h : "overview");
+    showView(["overview", "topics", "sources", "method", "data"].includes(h) ? h : "overview");
   }
   function showView(v) {
     currentView = v;
@@ -419,6 +461,6 @@
 
   /* ---------- init ---------- */
   renderTiles(); renderMap(); renderLevelLegend(); renderWeekly(); renderCalendar(); renderApproval(); renderContext();
-  renderGaps(); initMinistry(); renderCards(); renderMethod(); renderItems();
+  renderGaps(); initMinistry(); renderCards(); renderSources(); renderMethod(); renderItems();
   route();
 })();

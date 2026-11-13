@@ -8,6 +8,7 @@ This repository holds the static website and the data for the **Chile pilot run 
 
 - **Overview (decision-makers):** window map, week-by-week stream readiness, decision calendar, national mood, country context.
 - **Topics (evidence producers and policy entrepreneurs):** gaps where evidence is needed, topic cards with filters, a follow list, and a detail panel per topic with the policy-stream check and coded items.
+- **Sources:** the Chile source log, with how each source is read and how many items it produced. Each topic panel also lists the sources consulted for it.
 - **Method** and **Data** (downloads and a filterable table of the 89 coded items).
 
 ## Structure
@@ -20,6 +21,7 @@ data/chile-2026-11.js   run data loaded by the site (window.PWM_DATA)
 data/chile-2026-11.json same data as JSON
 data/topics.csv         topic summary grid
 data/coded-items.csv    coded items with sources
+data/sources/chile-sources.csv  Chile source log (edit this to add sources)
 scripts/build_data.py   regenerates the data files
 ```
 

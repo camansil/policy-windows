@@ -457,7 +457,12 @@ METHOD = dict(
     ],
 )
 
+SRC_CSV = os.path.join(OUT, "sources", "chile-sources.csv")
+with open(SRC_CSV, encoding="utf-8") as f:
+    SOURCE_LOG = list(csv.DictReader(f))
+
 data = dict(
+    sourceLog=SOURCE_LOG,
     meta=dict(country="Chile", iso="CL", run="2026-11", generated="2026-11-05",
               title="Policy Window Monitor — Chile", protocol="v0.3",
               note="Pilot run. Ratings are provisional: one analyst, no double coding. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
