@@ -84,8 +84,8 @@
   function renderMap() {
     const legend = $("#map-legend");
     legend.innerHTML = STATUS_ORDER.map((s) => `<span class="legend-item">${dot(s)}${esc(STATUS[s])}</span>`).join("") +
-      `<span class="legend-item"><span class="swatch zone-both"></span>Both streams signalling: potential window</span>` +
-      `<span class="legend-item"><span class="swatch zone-one"></span>One stream signalling: watch</span>`;
+      `<span class="legend-item"><span class="swatch zone-both"></span>Potential window: both streams at level 2 or 3</span>` +
+      `<span class="legend-item"><span class="swatch zone-one"></span>Watch: one stream at level 2 or 3</span>`;
     const map = $("#window-map");
     let html = "";
     for (let po = 3; po >= 0; po--) {
@@ -94,7 +94,8 @@
         const zone = p >= 2 && po >= 2 ? "zone-both" : (p >= 2 || po >= 2 ? "zone-one" : "");
         const items = D.topics.filter((t) => t.P === p && t.Po === po)
           .sort((a, b) => STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status));
-        html += `<div class="cell ${zone}" aria-label="Problem ${p}, politics ${po}">` +
+        const tag = p === 3 && po === 3 ? `<span class="zone-tag">Potential window</span>` : "";
+        html += `<div class="cell ${zone}${tag ? " has-tag" : ""}" aria-label="Problem ${p}, politics ${po}${zone === "zone-both" ? ": potential window" : ""}">${tag}` +
           items.map((t) => `<button type="button" class="chip ${t.status}" data-topic="${t.id}"><span class="chip-name">${esc(t.short)}</span></button>`).join("") +
           `</div>`;
       }

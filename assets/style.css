@@ -352,3 +352,12 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .decide select, .decide input { font: inherit; font-size: 13px; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface-1); color: var(--text-primary); }
 .decide input { flex: 1; min-width: 180px; }
 .review-out { width: 100%; min-height: 120px; font: 12px/1.4 ui-monospace, monospace; margin-top: 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2, var(--surface-1)); color: var(--text-primary); padding: 8px; }
+
+/* ---- Window zones in the matrix: clear colour for potential windows ---- */
+.cell.zone-both { background: color-mix(in srgb, var(--st-open) 20%, var(--surface-1)); border: 1.5px solid color-mix(in srgb, var(--st-open) 70%, transparent); }
+.cell.zone-one { background: color-mix(in srgb, var(--st-waiting) 9%, var(--surface-1)); border: 1px dashed color-mix(in srgb, var(--st-waiting) 55%, transparent); }
+.swatch.zone-both { background: color-mix(in srgb, var(--st-open) 20%, var(--surface-1)); border: 1.5px solid var(--st-open); }
+.swatch.zone-one { background: color-mix(in srgb, var(--st-waiting) 9%, var(--surface-1)); border: 1px dashed var(--st-waiting); }
+.cell { position: relative; }
+.zone-tag { position: absolute; top: 6px; right: 8px; font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--st-open); pointer-events: none; }
+.cell.has-tag { padding-top: 24px; }
