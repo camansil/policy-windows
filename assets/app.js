@@ -417,8 +417,9 @@
   function renderMethod() {
     const m = D.method;
     const li = (a) => a.map((x) => `<li>${esc(x)}</li>`).join("");
+    const nType = (t) => LOG.filter((e) => e.source_type.toLowerCase().startsWith(t.toLowerCase().slice(0, 14))).length;
     $("#method").innerHTML = `
-      <p class="lead">${esc(m.protocol)} applied to Chile for ${esc(m.period)}. ${esc(m.volume)}</p>
+      <p class="lead">${esc(m.framework)}</p>
       <article class="panel"><h2>Stream levels</h2>
         <table class="rules-table"><thead><tr><th>Level</th><th>Problem stream</th><th>Politics stream</th></tr></thead><tbody>
           <tr><td>${lvPill(0)} ${esc(LEVEL[0])}</td><td>No salient change</td><td>No change in approval, government action or congressional activity on the topic</td></tr>
@@ -426,15 +427,69 @@
           <tr><td>${lvPill(2)} ${esc(LEVEL[2])}</td><td>Indicator change, report, feedback or focusing event, corroborated by several sources; attention above the topic's baseline</td><td>A formal step (bill, announcement, working group, budget line) with national mood and approval not opposed</td></tr>
           <tr><td>${lvPill(3)} ${esc(LEVEL[3])}</td><td>Focusing event or record indicator with sustained attention, or the topic among the top "most important problems"; frames converging</td><td>Decisive use of agenda tools (urgency, budget item, passage in one chamber) with mood supportive or neutral</td></tr>
         </tbody></table>
-        <p class="panel-sub" style="margin-top:12px">A <b>potential window</b> is flagged when both streams are at level 2 or 3 in the same week. If the problem stream got there first it is a <b>problem window</b> (consequential coupling); if politics came first, a <b>political window</b> (doctrinal coupling). Topics with one stream at level 2 or 3 are on <b>watch</b>. Every open window is re-assessed weekly; closing reasons follow Kingdon. The policy stream is checked only once a window is flagged.</p>
+        <p class="panel-sub" style="margin-top:12px">A <b>potential window</b> is flagged when both streams are at level 2 or 3 in the same week. If the problem stream got there first it is a <b>problem window</b> (consequential coupling); if politics came first, a <b>political window</b> (doctrinal coupling). Topics with one stream at level 2 or 3 are on <b>watch</b>. Open windows are re-assessed every week; closing reasons follow Kingdon.</p>
       </article>
       <div class="method-grid">
+        <article class="panel"><h2>How a week is analysed</h2><ol>${li(m.process)}</ol></article>
+        <article class="panel"><h2>Rules</h2><ul>${li(m.rules)}</ul></article>
+        <article class="panel"><h2>What the monitor reads</h2>
+          <p class="panel-sub">Each country has its own source list, curated by people who know its media and politics.</p>
+          <table class="rules-table type-table"><thead><tr><th>Source type</th><th>${esc(D.meta.country)}</th><th>What it shows</th></tr></thead><tbody>
+          ${m.sourceTypes.map(([t, w]) => `<tr><td>${esc(t)}</td><td class="num">${nType(t) || "—"}</td><td>${esc(w)}</td></tr>`).join("")}</tbody></table></article>
+        <article class="panel"><h2>Limitations</h2><ul>${li(m.publicLimitations)}</ul></article>
+      </div>`;
+  }
+  function renderRun() {
+    const m = D.method;
+    const li = (a) => a.map((x) => `<li>${esc(x)}</li>`).join("");
+    $("#run").innerHTML = `
+      <p class="lead">${esc(m.protocol)} applied to ${esc(D.meta.country)} for ${esc(m.period)}. ${esc(m.volume)}</p>
+      <div class="method-grid">
         <article class="panel"><h2>Steps in this run</h2><ol>${li(m.steps)}</ol></article>
-        <article class="panel"><h2>Rules applied</h2><ul>${li(m.rules)}</ul></article>
-        <article class="panel"><h2>Limitations</h2><ul>${li(m.limitations)}</ul></article>
+        <article class="panel"><h2>Limitations of this run</h2><ul>${li(m.limitations)}</ul></article>
         <article class="panel"><h2>Validation</h2><ul>${li(m.validation)}</ul><h3 style="margin-top:14px">Next</h3><ul>${li(m.nextVersion)}</ul></article>
         ${(D.discovery || []).length ? `<article class="panel"><h2>Discovery net</h2><ul>${D.discovery.map((d) => `<li><b>${esc(d.week)}</b> ${esc(d.text)}</li>`).join("")}</ul></article>` : ""}
       </div>`;
+  }
+
+  /* ---------- back end: sub-navigation and adding sources ---------- */
+  const BACKEND = [["review", "Review signals"], ["sources", "Source log"], ["run", "This run"]];
+  function renderSubnav(v) {
+    $$(".subnav").forEach((n) => { n.innerHTML = BACKEND.map(([k, l]) => `<a href="#${k}" class="${k === v ? "is-on" : ""}"${k === v ? ' aria-current="page"' : ""}>${l}</a>`).join(""); });
+  }
+  const REPO_EDIT = "https://github.com/camansil/policy-windows/edit/main/data/sources/" + (D.meta.iso || "CL").toLowerCase() + ".csv";
+  function renderAddSource() {
+    const types = [...new Set(LOG.map((e) => e.source_type))];
+    const prefix = {}, maxN = {};
+    LOG.forEach((e) => { const m = /^([A-Z]+-[A-Z])(\d+)$/.exec(e.id); if (m) { prefix[e.source_type] = m[1]; maxN[m[1]] = Math.max(maxN[m[1]] || 0, +m[2]); } });
+    const f = (id, label, ph) => `<label>${label}<input id="as-${id}" type="text" placeholder="${esc(ph || "")}"></label>`;
+    $("#add-source").innerHTML = `<h2>Add a source</h2>
+      <p class="panel-sub">Three ways, all ending in the same file (<code>data/sources/${esc((D.meta.iso || "CL").toLowerCase())}.csv</code>), which the weekly run reads every Friday:</p>
+      <ol class="ways"><li>Fill in this form, copy the row, and paste it at the end of the log on GitHub (<a href="${REPO_EDIT}" target="_blank" rel="noopener">open the log for editing</a>), then commit.</li><li>Edit the log on GitHub directly.</li><li>Tell Claude in chat, and it adds the row.</li></ol>
+      <div class="add-grid">
+        ${f("name", "Name", "e.g. CIPER")}
+        <label>Source type<select id="as-type">${types.map((t) => `<option>${esc(t)}</option>`).join("")}</select></label>
+        ${f("owner", "Owner or publisher")}
+        ${f("format", "Format", "Text, Radio, TV, Podcast, Dataset")}
+        ${f("url", "URL", "https://")}
+        ${f("access", "Access", "Open, metered, paywall")}
+        ${f("how", "How to read it", "Headlines weekly; full text for matches")}
+        ${f("match", "Names it appears under (separate with |)", "CIPER|Ciper Chile")}
+        ${f("by", "Added by", "Your name")}
+        ${f("notes", "Notes")}
+      </div>
+      <div class="add-actions"><button type="button" class="btn" id="as-make">Make the row</button><a class="btn" href="${REPO_EDIT}" target="_blank" rel="noopener">Open the log on GitHub</a></div>
+      <textarea class="review-out" id="as-out" readonly hidden aria-label="New row for the source log"></textarea>`;
+    $("#as-make").addEventListener("click", () => {
+      const v = (k) => ($("#as-" + k).value || "").trim();
+      if (!v("name")) { $("#as-name").focus(); return; }
+      const ty = v("type"), pre = prefix[ty] || (D.meta.iso || "CL") + "-X";
+      const id = pre + String((maxN[pre] || 0) + 1).padStart(2, "0");
+      const q = (x) => (/[",\n]/.test(x) ? `"${x.replace(/"/g, '""')}"` : x);
+      const row = [id, v("name"), ty, v("owner"), v("format"), v("url"), v("access"), v("how"), v("match") || v("name"), v("by"), new Date().toISOString().slice(0, 10), v("notes")].map(q).join(",");
+      const out = $("#as-out"); out.hidden = false; out.value = row; out.select();
+      if (navigator.clipboard) navigator.clipboard.writeText(row).catch(() => {});
+    });
   }
 
   /* ---------- data table ---------- */
@@ -521,18 +576,20 @@
       showView(currentView || "overview"); renderDrawer(id); return;
     }
     if (!$("#drawer").hidden) closeDrawer(false);
-    showView(["overview", "topics", "sources", "method", "data", "review"].includes(h) ? h : "overview");
+    showView(["overview", "topics", "sources", "method", "data", "review", "run"].includes(h) ? h : "overview");
   }
   function showView(v) {
     currentView = v;
     $$(".view").forEach((s) => (s.hidden = s.id !== "view-" + v));
-    $$(".tabs a").forEach((a) => { a.classList.toggle("is-on", a.dataset.view === v); a.setAttribute("aria-current", a.dataset.view === v ? "page" : "false"); });
+    const tab = BACKEND.some(([k]) => k === v) ? "backend" : v;
+    $$(".tabs a").forEach((a) => { a.classList.toggle("is-on", a.dataset.view === tab); a.setAttribute("aria-current", a.dataset.view === tab ? "page" : "false"); });
+    if (tab === "backend") renderSubnav(v);
     if (v === "topics") renderCards();
   }
   window.addEventListener("hashchange", route);
 
   /* ---------- init ---------- */
   renderTiles(); renderMap(); renderLevelLegend(); renderWeekly(); renderCalendar(); renderApproval(); renderContext();
-  renderGaps(); initMinistry(); renderCards(); renderSources(); renderMethod(); renderItems(); renderReview();
+  renderGaps(); initMinistry(); renderCards(); renderSources(); renderAddSource(); renderMethod(); renderRun(); renderItems(); renderReview();
   route();
 })();

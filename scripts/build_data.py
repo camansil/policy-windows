@@ -493,6 +493,34 @@ windows = [t for t in TOPICS if t["status"] in ("problem", "political")]
 latest = weeks[-1]
 
 METHOD = dict(
+    framework="The monitor applies a modified version of Kingdon's Multiple Streams Framework, adapted with Zahariadis and, for Latin America's presidential systems, Sanjurjo (2020). Every week it reads a bounded list of sources for each country, rates the problem and politics streams for each topic, and flags a potential policy window when both show a signal. The policy stream (ideas, entrepreneurs, bills and their evidence) is analysed separately once a window is flagged.",
+    process=[
+        "Collect and transcribe the week's material from the country's source list: headlines and descriptions for everything, full text or transcripts only for items on monitored topics and for the weekly political review programmes.",
+        "Analyse the material for common themes against the concepts of the problem stream (focusing events, indicator changes, feedback, salience, frame consensus) and the politics stream (government approval, government intentions and agenda tools, national mood, organised forces, events within government). Each coded item keeps its context: source, programme, speaker and date.",
+        "Weigh each concept by corroboration: it gains strength when it appears in more than one independent source in the same week.",
+        "Propose a level for each stream and topic, with a short rationale citing the items behind it.",
+        "A reviewer reads the proposed signals and their rationales and approves, changes or rejects them.",
+        "Publish approved signals and levels.",
+    ],
+    sourceTypes=[
+        ["Written press and online news", "Focusing events, reports of indicators and feedback, government decisions"],
+        ["Radio and TV news, including morning shows", "Salience as the public meets it; ministers' and legislators' statements"],
+        ["Political interviews, talk shows and podcasts", "Statements that create attention; announced intentions; party positions"],
+        ["Opinion polls", "Most important problems (salience); approval and national mood"],
+        ["Key indicators and official reports", "Changes in growth, inflation, unemployment, investment, crime"],
+        ["Congress records", "Bills, urgencies, vetoes, votes and coalition behaviour"],
+        ["Executive documents and speeches", "Programme, presidential messages, budget, speeches at business and civil-society events"],
+        ["Lobby registers", "Organised interests' access to decision-makers"],
+        ["Calendar of moments", "Budget debate, scheduled votes, elections, anniversaries"],
+    ],
+    publicLimitations=[
+        "Windows are hard to anticipate; the monitor estimates likely windows and can be wrong.",
+        "Levels rest on reviewer judgement. Explicit level descriptions, quotes with context and corroboration reduce, but do not remove, subjectivity.",
+        "A bounded source list can miss what happens outside it; a discovery net for coverage spikes and reviewers' additions partly correct this.",
+        "Some sources are behind paywalls or only available as audio or video.",
+        "Media attention favours dramatic topics over technical ones; polls and indicators partly balance this.",
+        "A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal.",
+    ],
     period=f"8 September – 12 November 2026 ({len(weeks)} weeks)",
     protocol="Policy Window Monitor Protocol v0.4",
     levels=LEVELS,

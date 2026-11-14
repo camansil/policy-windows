@@ -31,10 +31,9 @@
     <nav class="wrap tabs" aria-label="Views">
       <a href="#overview" data-view="overview">Overview <span class="tab-sub">for decision-makers</span></a>
       <a href="#topics" data-view="topics">Topics <span class="tab-sub">for evidence producers</span></a>
-      <a href="#sources" data-view="sources">Sources</a>
       <a href="#method" data-view="method">Method</a>
       <a href="#data" data-view="data">Data</a>
-      <a href="#review" data-view="review" class="tab-review">Review <span class="tab-sub">reviewers</span></a>
+      <a href="#review" data-view="backend" class="tab-review">Back end <span class="tab-sub">reviewers</span></a>
     </nav>
   </header>
 
@@ -119,8 +118,10 @@
 
     <!-- SOURCES -->
     <section class="view" id="view-sources" aria-labelledby="h-sources" hidden>
+      <nav class="subnav" aria-label="Back end"></nav>
       <h1 id="h-sources" class="lead-title">Chile source log</h1>
-      <p class="lead">The outlets, programmes, podcasts, polls, indicators and moments the monitor watches in Chile. The log is curated by people who know the country and grows over time. The last column shows how many coded items in this run came from each source.</p>
+      <p class="lead">The outlets, programmes, podcasts, polls, indicators and moments the weekly run reads in Chile. The log is a running document: add a source whenever you learn of one. The last column shows how many coded items came from each source.</p>
+      <article class="panel" id="add-source"></article>
       <div class="filters" role="group" aria-label="Filter sources">
         <div class="chip-row" id="source-type-filter"></div>
       </div>
@@ -130,7 +131,7 @@
 
     <!-- METHOD -->
     <section class="view" id="view-method" aria-labelledby="h-method" hidden>
-      <h1 id="h-method" class="lead-title">How this run was made</h1>
+      <h1 id="h-method" class="lead-title">How the monitor works</h1>
       <div id="method"></div>
     </section>
 
@@ -160,9 +161,16 @@
     </section>
     <!-- REVIEW (reviewers' back end) -->
     <section class="view" id="view-review" aria-labelledby="h-review" hidden>
+      <nav class="subnav" aria-label="Back end"></nav>
       <h1 id="h-review" class="lead-title">Review the week's proposed signals</h1>
       <p class="lead">Each card is a proposed level for one stream of one topic, with the rationale and the coded items behind it. Approve, change or reject each one. Decisions are kept in this browser; copy them out when you finish so they can be applied to the data.</p>
       <div id="review"></div>
+    </section>
+    <!-- THIS RUN (back end) -->
+    <section class="view" id="view-run" aria-labelledby="h-run" hidden>
+      <nav class="subnav" aria-label="Back end"></nav>
+      <h1 id="h-run" class="lead-title">This run: steps, limitations and validation</h1>
+      <div id="run"></div>
     </section>
   </main>
 

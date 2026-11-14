@@ -8,9 +8,9 @@ This repository holds the static website and the data for the **Chile pilot** (f
 
 - **Overview (decision-makers):** window map, week-by-week problem and politics signals, decision calendar, government approval, country context.
 - **Topics (evidence producers, policy entrepreneurs, journalists):** gaps where evidence is needed, topic cards with filters, a follow list, and a detail panel per topic with the policy-stream check, sources consulted and coded items.
-- **Sources:** the country source log, with how each source is read and how many items it produced.
-- **Method** and **Data** (downloads and a filterable table of coded items with context and quotes).
-- **Review (reviewers):** the latest week's proposed signals, with rationale and evidence, to approve, change or reject.
+- **Method:** how the monitor works, in general terms: framework, stream levels, window rules, the weekly process, source types and limitations.
+- **Data:** downloads and a filterable table of coded items with context and quotes.
+- **Back end (reviewers):** *Review signals* (approve, change or reject the latest week's proposed signals), *Source log* (the country's sources, with a form to add one) and *This run* (steps, limitations and validation of the current run).
 
 ## Structure
 

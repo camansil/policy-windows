@@ -361,3 +361,14 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .cell { position: relative; }
 .zone-tag { position: absolute; top: 6px; right: 8px; font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--st-open); pointer-events: none; }
 .cell.has-tag { padding-top: 24px; }
+
+/* ---- Back end sub-navigation and add-source form ---- */
+.subnav { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 14px; }
+.subnav a { font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-secondary); text-decoration: none; }
+.subnav a.is-on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
+.add-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 14px; margin-top: 10px; }
+.add-grid label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--text-secondary); }
+.add-grid input, .add-grid select { font: inherit; font-size: 14px; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface-1); color: var(--text-primary); }
+.add-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+.ways { margin: 6px 0 0; padding-left: 18px; font-size: 14px; color: var(--text-secondary); }
+.type-table td:nth-child(2) { white-space: nowrap; text-align: right; }
