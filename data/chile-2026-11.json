@@ -657,6 +657,34 @@
    "added_by": "Cristian",
    "added_on": "2026-11-16",
    "notes": "Data consultancy. Weekly data stories with historical series (e.g. truckers' strikes since 1990) and an approval tracker; also publishes analyses in DF and the podcast El Prompt"
+  },
+  {
+   "id": "CL-N17",
+   "name": "Ex-Ante",
+   "source_type": "Written press and online news",
+   "owner": "CBR Servicios Periodísticos",
+   "format": "Text and podcast",
+   "url": "https://www.ex-ante.cl",
+   "access": "Open (free registration; free newsletters)",
+   "how_read": "Headlines and newsletters weekly; full text for matches",
+   "match": "Ex-Ante|Ex Ante",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Political news site; publishes every Criteria poll in full and political analysis (e.g. AC vote counts)"
+  },
+  {
+   "id": "CL-N18",
+   "name": "El Mostrador",
+   "source_type": "Written press and online news",
+   "owner": "El Mostrador",
+   "format": "Text",
+   "url": "https://www.elmostrador.cl",
+   "access": "Open (some content for members)",
+   "how_read": "Headlines weekly; full text for matches",
+   "match": "El Mostrador",
+   "added_by": "Claude (suggested)",
+   "added_on": "2026-11-16",
+   "notes": "Surfaced the fuel-bill withdrawal and strike updates missed in W9; also hosts Al Pan Pan (CL-P05). Keep or delete"
   }
  ],
  "meta": {
@@ -1528,7 +1556,7 @@
    "entrepreneurs": [
     "Opposition members of the mixed committee"
    ],
-   "changed": "Education reached the Cámara floor with its whole chapter rejected; the government announced it would restore funds. Politics stays at 2 because committee arithmetic suggests blocking.",
+   "changed": "Education reached the Cámara floor with its whole chapter rejected; the government announced it would restore funds. Politics stays at 2 because committee arithmetic suggests blocking. Students marched against the cuts on 11 Nov.",
    "closing": null,
    "reopen": null,
    "policyCheck": true
@@ -1838,7 +1866,7 @@
    "openWeek": 9,
    "closeWeek": null,
    "problem": "Sixth consecutive rise in fuel prices (+$40 per litre from 12 Nov). Gasoline rose 4.5% in October's CPI, which put annual inflation at 4.5%. Cadem (8 Nov): fuel prices and unemployment are the issues people most want the government to solve. A national truckers' strike from 10 Nov demanded lower fuel prices, a cut in the specific fuel tax and in tolls; talks with the government on 10–11 Nov ended without agreement.",
-   "politics": "After the extended political committee on 9 Nov, the President announced a bill capping each rise at $20 per litre for 90 days, with 'discusión inmediata' urgency and the backing of governing-party presidents and bench heads. Reactions in Congress were mixed. Truckers' organisations remain mobilised; the large federations were weighing whether to join.",
+   "politics": "After the extended political committee on 9 Nov, the President announced a bill capping each rise at $20 per litre for 90 days, with 'discusión inmediata'. It was filed on 10 Nov and withdrawn on 11 Nov to be adjusted, as talks with striking truckers continued. Truckers' organisations remain mobilised; the large federations were weighing whether to join.",
    "policy": "Executive bill to change Mepco; Hacienda considering fiscal savings to moderate rises. Bonuses for taxi drivers, school transport and artisanal fishers were extended in September.",
    "frames": "'Social urgency' (President) vs 'fuel is still cheap for the region' (Minister Mas).",
    "brokers": [],
@@ -1880,11 +1908,11 @@
     null,
     [
      3,
-     3
+     2
     ]
    ],
    "P": 3,
-   "Po": 3,
+   "Po": 2,
    "policyCheck": true
   }
  ],
@@ -2305,7 +2333,7 @@
    "Re-rated W1–W8 under v0.4: the policy level was dropped from the weekly grid and windows were re-flagged with the two-stream rule.",
    "Added one topic (fuel prices) through the discovery net."
   ],
-  "volume": "113 coded items in total; 25 new in W9.",
+  "volume": "117 coded items in total; 29 new in W9.",
   "rules": [
    "A potential window is flagged when the problem and politics streams are both at level 2 or 3 in the same week.",
    "Whichever stream reached level 2 first sets the coupling: problem window (consequential) or political window (doctrinal).",
@@ -2317,6 +2345,7 @@
   "limitations": [
    "W9 levels are proposed and await human review (Review tab). Earlier weeks were rated by one analyst without double coding.",
    "Floor results of the Cámara budget votes (10–12 Nov) were not yet available by chapter when this run was coded.",
+   "W9 collection searched by topic rather than sweeping each source: it missed the national truckers' strike, the withdrawal of the fuel bill and a student march, all added by the reviewer on 16 Nov. 25 of 33 logged news, TV, talk-show, podcast and poll sources produced no item. From W10 each run sweeps every source, records headlines scanned per source and runs a completeness check.",
    "Audio and video sources (talk shows, podcasts, radio) were read through their written coverage; no transcription yet.",
    "El Mercurio is behind a full paywall; La Tercera and El País are metered.",
    "Evidence states in policy checks come from analyst knowledge and need verification in Epistemonikos, Cochrane, Campbell or 3ie."
@@ -2363,7 +2392,7 @@
      "topic": "T21",
      "stream": "Politics",
      "prev": null,
-     "proposed": 3,
+     "proposed": 2,
      "concepts": [
       "Agenda tool used (urgency)",
       "Coalition or vote",
@@ -2374,9 +2403,12 @@
       "D96",
       "D100",
       "D111",
-      "D112"
+      "D112",
+      "D114",
+      "D115",
+      "D116"
      ],
-     "rationale": "The executive announced a bill with 'discusión inmediata', the strongest urgency, after agreeing it with governing-party leaders. Approval is low, but mood favours action on fuel prices, so no level is deducted. Problem came first (Cadem 8 Nov, bill 9 Nov), so this is a problem window. Truckers' organisations are mobilised and talks with the government ended without agreement on 10–11 Nov, so the decision is contested."
+     "rationale": "Proposed 3 on 13 Nov, corrected to 2 on 16 Nov. The executive announced the $20 cap bill with 'discusión inmediata' after agreeing it with governing-party leaders, but withdrew it on 11 Nov, less than a day after filing, to avoid disrupting talks with striking truckers. A formal step is still pending (re-filing with adjustments), and mood supports action on fuel prices, so politics stays at signal level. The window remains open; problem came first, so it is a problem window."
     },
     {
      "topic": "T04",
@@ -2513,6 +2545,19 @@
       "D94"
      ],
      "rationale": "Polls diverge: Cadem 29% (+3), Criteria 24% (−1). Approval stays low but is not moving sharply, so no topic's politics level is lowered on approval grounds this week."
+    },
+    {
+     "topic": "T14",
+     "stream": "Problem",
+     "prev": 2,
+     "proposed": 2,
+     "concepts": [
+      "Focusing event"
+     ],
+     "items": [
+      "D117"
+     ],
+     "rationale": "A student march against the education cuts confirms the problem stream at signal level; more marches are planned in November."
     }
    ]
   }
@@ -2529,6 +2574,14 @@
   {
    "week": "W9",
    "text": "Missed by collection: the national truckers' strike (10–11 Nov) was added by the reviewer on 16 Nov. The runbook now checks strikes, protests and blockades explicitly."
+  },
+  {
+   "week": "W9",
+   "text": "Also missed and added on 16 Nov: the withdrawal of the $20 fuel bill (11 Nov), which lowers T21 politics from 3 to 2; the Confech march against education cuts (11 Nov); the President's ENADE speech on fuel prices (28 Oct, W8)."
+  },
+  {
+   "week": "W9",
+   "text": "Audit of W9 collection: 21 items came from 10 sources, 8 of them from Emol; 25 of 33 logged news, radio, TV, talk-show, podcast and poll sources produced no item. Collection searched by topic instead of sweeping each source's headlines."
   }
  ],
  "stories": [
@@ -2536,7 +2589,7 @@
    "topic": "T21",
    "eyebrow": "Hacienda / Energía",
    "title": "Fuel prices open a problem window",
-   "text": "A sixth straight price rise, a national truckers' strike and the President's bill to cap rises at $20 per litre arrived in the same week. Both streams are at their strongest level."
+   "text": "A sixth straight price rise and a national truckers' strike pushed the problem stream to its strongest level. The President's $20 cap bill was filed and then withdrawn for changes, so politics sits one level lower."
   },
   {
    "topic": "T05",
@@ -2551,6 +2604,7 @@
    "text": "Cadem rose to 29%; Criteria fell to 24%, its lowest of the term, with disapproval at 67%."
   }
  ],
+ "coverage": {},
  "items": [
   {
    "id": "D01",
@@ -4356,6 +4410,70 @@
    "actor": "San Antonio port truckers",
    "strength": 2,
    "note": "San Antonio port truckers end a strike begun 28 Oct over freight rates and diesel; over 3,000 containers blocked",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D114",
+   "date": "2026-11-11",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/11/1216763/gobierno-retira-proyecto.html",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Agenda tool used (urgency)",
+   "actor": "Executive",
+   "strength": 3,
+   "note": "Government withdraws the $20 cap bill less than a day after filing it, to adjust it; no new filing date",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D115",
+   "date": "2026-11-11",
+   "source": "The Clinic",
+   "type": "News",
+   "url": "https://www.theclinic.cl/2026/11/11/la-moneda-contra-las-cuerdas-gobierno-no-logra-deponer-paro-de-camioneros-y-reconoce-que-retiro-proyecto-para-no-alterar-negociaciones/",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Organised forces",
+   "actor": "Claudio Alvarado, Minister of the Interior",
+   "strength": 2,
+   "note": "Government admits it withdrew the bill so as not to disrupt negotiations with the truckers",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D116",
+   "date": "2026-10-28",
+   "source": "Ex-Ante",
+   "type": "News",
+   "url": "https://www.ex-ante.cl/politica/kast-presidente-enade-permisologia/",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Government intention",
+   "actor": "President Kast",
+   "strength": 2,
+   "note": "At ENADE (ICARE) the President defends 'sincerar' fuel prices as a fiscal decision he knew would cost him in the polls",
+   "context": "Speech at ENADE 2026, 28 Oct. Added by reviewer on 16 Nov (missed by the W8 collection)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D117",
+   "date": "2026-11-11",
+   "source": "El Desconcierto",
+   "type": "News",
+   "url": "https://eldesconcierto.cl/actualidad/paro-camioneros-y-marchas-complican-santiago-las-rutas-afectadas-este-miercoles-11-noviembre-n5463933",
+   "topic": "T14",
+   "stream": "Problem",
+   "concept": "Focusing event",
+   "actor": "Confech (student federations)",
+   "strength": 2,
+   "note": "Student march at the Ministry of Education against cuts in the 2027 budget; more dates planned in November",
    "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
    "quote": "",
    "week": "W9"

@@ -446,15 +446,20 @@
   function renderSources() {
     const types = [...new Set(LOG.map((e) => e.source_type))];
     const counts = new Map(LOG.map((e) => [e.id, D.items.filter((i) => e._re.length && itemMatches(e, i)).length]));
+    const latestItems = D.items.filter((i) => i.week === LATEST.id);
+    const wk = new Map(LOG.map((e) => [e.id, latestItems.filter((i) => e._re.length && itemMatches(e, i)).length]));
+    const cov = D.coverage || {};
     $("#source-type-filter").innerHTML = [["", "All"]].concat(types.map((t) => [t, t])).map(([k, l]) =>
       `<button type="button" class="fchip ${srcType === k ? "is-on" : ""}" data-k="${esc(k)}">${esc(l)} <span class="count">${k ? LOG.filter((e) => e.source_type === k).length : LOG.length}</span></button>`).join("");
     $$("#source-type-filter .fchip").forEach((b) => b.addEventListener("click", () => { srcType = b.dataset.k; renderSources(); }));
     const rows = LOG.filter((e) => !srcType || e.source_type === srcType);
-    $("#source-log").innerHTML = `<thead><tr><th>Source</th><th>Type</th><th>Owner</th><th>Format</th><th>Access</th><th>How the monitor reads it</th><th>Added by</th><th>Items in this run</th><th>Notes</th></tr></thead><tbody>` +
-      rows.map((e) => `<tr><td>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a>` : esc(e.name)}</td><td>${esc(e.source_type)}</td><td>${esc(e.owner)}</td><td>${esc(e.format)}</td><td><span class="acc ${accClass(e.access)}">${esc(e.access)}</span></td><td>${esc(e.how_read)}</td><td>${esc(e.added_by)}</td><td class="num">${e._re.length ? counts.get(e.id) : "—"}</td><td>${esc(e.notes)}</td></tr>`).join("") + `</tbody>`;
+    $("#source-log").innerHTML = `<thead><tr><th>Source</th><th>Type</th><th>Owner</th><th>Format</th><th>Access</th><th>How the monitor reads it</th><th>Added by</th><th>${esc(LATEST.id)}: scanned · coded</th><th>All weeks: coded</th><th>Notes</th></tr></thead><tbody>` +
+      rows.map((e) => `<tr><td>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a>` : esc(e.name)}</td><td>${esc(e.source_type)}</td><td>${esc(e.owner)}</td><td>${esc(e.format)}</td><td><span class="acc ${accClass(e.access)}">${esc(e.access)}</span></td><td>${esc(e.how_read)}</td><td>${esc(e.added_by)}</td><td class="num${CORE_TYPES.includes(e.source_type) && e._re.length && !wk.get(e.id) ? " gapcell" : ""}">${cov[e.id] != null ? cov[e.id].scanned : "?"} · ${e._re.length ? wk.get(e.id) : "—"}</td><td class="num">${e._re.length ? counts.get(e.id) : "—"}</td><td>${esc(e.notes)}</td></tr>`).join("") + `</tbody>`;
     const core = LOG.filter((e) => CORE_TYPES.includes(e.source_type) && e._re.length);
-    const zero = core.filter((e) => !counts.get(e.id));
-    $("#source-gap").textContent = `${zero.length} of ${core.length} news, TV, talk-show, podcast and poll sources in the log produced no coded items in this run: ${zero.map((e) => e.name).join(", ")}. The next weekly run will read them directly.`;
+    const zero = core.filter((e) => !wk.get(e.id));
+    const notScanned = core.filter((e) => !cov[e.id] || !cov[e.id].scanned);
+    $("#source-gap").textContent = `${LATEST.id}: ${zero.length} of ${core.length} news, TV, talk-show, podcast and poll sources produced no coded item (${zero.map((e) => e.name).join(", ")}). ` +
+      (Object.keys(cov).length ? `${notScanned.length} were not scanned at all.` : `Headline scans were not recorded for ${LATEST.id}; from W10 each run records how many headlines it scanned per source ("?" means not recorded).`);
   }
 
   /* ---------- method ---------- */

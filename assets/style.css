@@ -389,3 +389,4 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .precedents li { border-left: 3px solid var(--border-strong); padding: 2px 0 2px 10px; font-size: 14px; }
 .precedents .src { font-size: 12px; color: var(--text-muted); }
 .na-fill { fill: var(--grid); }
+.gapcell { background: color-mix(in srgb, var(--st-opening) 14%, transparent); }

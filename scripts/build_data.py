@@ -442,6 +442,7 @@ weeks = list(WEEKS)
 reviews = []
 discovery = []
 stories = []
+coverage = {}
 generated = "2026-11-05"
 
 def week_of(date):
@@ -479,6 +480,7 @@ for wf in weekly_files:
     discovery += [dict(week=wk["id"], text=d) for d in W.get("discovery", [])]
     generated = W.get("generated", generated)
     stories = W.get("stories", [])
+    coverage = W.get("coverage", {})
 
 # Reviewer leads for weeks not yet run: dated polls and a short note shown on the site before the weekly run.
 interim = None
@@ -564,6 +566,7 @@ METHOD = dict(
     limitations=[
         f"{latest['id']} levels are proposed and await human review (Review tab). Earlier weeks were rated by one analyst without double coding.",
         "Floor results of the Cámara budget votes (10–12 Nov) were not yet available by chapter when this run was coded.",
+        "W9 collection searched by topic rather than sweeping each source: it missed the national truckers' strike, the withdrawal of the fuel bill and a student march, all added by the reviewer on 16 Nov. 25 of 33 logged news, TV, talk-show, podcast and poll sources produced no item. From W10 each run sweeps every source, records headlines scanned per source and runs a completeness check.",
         "Audio and video sources (talk shows, podcasts, radio) were read through their written coverage; no transcription yet.",
         "El Mercurio is behind a full paywall; La Tercera and El País are metered.",
         "Evidence states in policy checks come from analyst knowledge and need verification in Epistemonikos, Cochrane, Campbell or 3ie.",
@@ -595,7 +598,7 @@ data = dict(
               topicsHeadline="Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
               interim=interim, note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
     weeks=weeks, statusLabels=STATUS, levels=LEVELS, topics=TOPICS, policyChecks=POLICY_CHECKS,
-    calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery, stories=stories,
+    calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery, stories=stories, coverage=coverage,
     items=items,
 )
 

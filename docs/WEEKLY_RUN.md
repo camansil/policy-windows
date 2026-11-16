@@ -4,11 +4,17 @@ A weekly run covers one week, Friday to Thursday (W9 = 6–12 Nov 2026, W10 = 13
 
 ## 1. Collect
 
-- First read `data/weekly/CL/leads/<year>-W<nn>.md` if it exists: leads the reviewer added during the week. Check every lead and report what you could not confirm.
-- Check mobilisations explicitly every week: strikes, protests, blockades and stoppages (the W9 truckers' strike was missed because no source search covered it).
-- Read `data/sources/cl.csv`. For every news, radio/TV, talk-show, podcast and poll source, search the week's headlines and descriptions (stage 1). Fetch full text only for items that touch a monitored topic or show a coverage spike (stage 2).
-- Check the indicators due that week (IMACEC, IPC, unemployment, investment) and the Congress and executive calendar (urgencies, votes, budget steps, speeches at business events).
-- Note paywalls or sources you could not reach.
+Collection is a sweep of every source, not a search by topic. A topic-led search only finds what we already watch: in W9 it missed the national truckers' strike and the withdrawal of the fuel bill, although Emol, El Desconcierto and The Clinic (all in the log) covered both.
+
+- **Leads first.** Read `data/weekly/CL/leads/<year>-W<nn>.md` if it exists: leads the reviewer added during the week. Check every lead and report what you could not confirm.
+- **Stage 1, sweep every source.** For each row of `data/sources/cl.csv` (news, radio and TV, talk shows, podcasts, polls, data newsletters), list that source's headlines or episode titles for the week, without topic keywords: open its section page, RSS feed or episode list, or run a site-restricted search for the week's dates (for example `site:emol.com nacional 10 noviembre 2026`, one search per day for the busiest outlets). Record in the weekly file's `coverage` how many headlines you scanned per source id, e.g. `"CL-N03": {"scanned": 40}`; use 0 and a note when a source could not be reached.
+- **Mobilisations and events.** Check strikes, protests, blockades and stoppages, disasters and major crimes every week, by name and without topic keywords.
+- **Stage 2.** Fetch full text only for headlines that touch a monitored topic, show a coverage spike, or match the mobilisation check.
+- Check the indicators due that week (IMACEC, IPC, unemployment, investment) and the Congress and executive calendar (urgencies, bills filed or withdrawn, votes, budget steps, speeches at business events such as ENADE or CPC).
+
+## 1b. Completeness check
+
+Before proposing levels, list the ten stories that dominated the week according to independent weekly round-ups: the weekly review podcasts and shows (Animales Políticos, Tolerancia Cero, Estado Nacional), the data newsletters (Unholster DataDriven), Ex-Ante and El Mostrador newsletters, and each outlet's "most read" list. Every one of the ten must be coded or explicitly set aside, with a reason, in the weekly file's `completeness` list, e.g. `{"story": "Truckers' strike", "status": "coded", "items": ["D110"]}`. A dominant story that matches no topic goes to the discovery net.
 
 ## 2. Code
 
