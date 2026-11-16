@@ -669,6 +669,7 @@
   "protocol": "v0.4",
   "headline": "7 policy windows are open in Chile: 3 opened by a problem, 4 by politics. Fuel prices opened a new problem window this week.",
   "topicsHeadline": "Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
+  "interim": "Since W9: Criteria (15 Nov) puts approval at 18% and disapproval at 72%, the lowest of the term. 80% agree with the truckers' strike and 79% disagree with keeping Minister Rabat. Coded in the W10 run on Friday.",
   "note": "Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."
  },
  "weeks": [
@@ -2174,6 +2175,12 @@
    "disapprove": 69
   },
   {
+   "poll": "Cadem",
+   "date": "2026-11-08",
+   "approve": 29,
+   "disapprove": 68
+  },
+  {
    "poll": "Criteria",
    "date": "2026-10-11",
    "approve": 27,
@@ -2198,21 +2205,21 @@
    "disapprove": 65
   },
   {
-   "poll": "Cadem",
-   "date": "2026-11-08",
-   "approve": 29,
-   "disapprove": 68
-  },
-  {
    "poll": "Criteria",
    "date": "2026-11-08",
    "approve": 24,
    "disapprove": 67
+  },
+  {
+   "poll": "Criteria",
+   "date": "2026-11-15",
+   "approve": 18,
+   "disapprove": 72
   }
  ],
  "context": {
   "executive": "President José Antonio Kast (Partido Republicano), in office since 11 March 2026.",
-  "approvalNote": "Cadem: approval fell from 35% (September average) to 26% on 1 Nov, then rose to 29% on 8 Nov. Criteria fell to 24% on 8 Nov. The two polls moved in opposite directions this week.",
+  "approvalNote": "Criteria fell from 25% (1 Nov) and 24% (8 Nov) to 18% on 15 Nov, with disapproval at 72%: the lowest of the term. Cadem was 29% on 8 Nov.",
   "problems": [
    "Cadem (8 Nov): unemployment and fuel prices are the issues people most want the government to solve.",
    "Cadem (8 Nov): reasons for disapproval: sentence reductions 43%, rising unemployment 42%.",

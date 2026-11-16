@@ -480,6 +480,22 @@ for wf in weekly_files:
     generated = W.get("generated", generated)
     stories = W.get("stories", [])
 
+# Reviewer leads for weeks not yet run: dated polls and a short note shown on the site before the weekly run.
+interim = None
+done = {os.path.basename(f)[:-5] for f in weekly_files}
+for lf in sorted(glob.glob(os.path.join(OUT, "weekly", COUNTRY, "leads", "*.json"))):
+    with open(lf, encoding="utf-8") as f:
+        L = json.load(f)
+    approval += L.get("approval", [])
+    if os.path.basename(lf)[:-5] not in done:
+        interim = L.get("note")
+        if L.get("approvalNote"): context["approvalNote"] = L["approvalNote"]
+seen = set(); dedup = []
+for a in sorted(approval, key=lambda a: (a["poll"], a["date"])):
+    if (a["poll"], a["date"]) not in seen:
+        seen.add((a["poll"], a["date"])); dedup.append(a)
+approval = dedup
+
 for it in items:
     if not it["week"]:
         it["week"] = week_of(it["date"]) if len(it["date"]) == 10 else ""
@@ -577,7 +593,7 @@ data = dict(
               title="Policy Window Monitor — Chile", protocol="v0.4",
               headline=f"{len(windows)} policy windows are open in Chile: {n_prob} opened by a problem, {n_pol} by politics. Fuel prices opened a new problem window this week.",
               topicsHeadline="Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
-              note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
+              interim=interim, note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
     weeks=weeks, statusLabels=STATUS, levels=LEVELS, topics=TOPICS, policyChecks=POLICY_CHECKS,
     calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery, stories=stories,
     items=items,

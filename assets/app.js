@@ -50,6 +50,7 @@
   /* ---------- banner + footer ---------- */
   $("#run-banner").innerHTML =
     `<span class="pill">${esc(D.meta.country)}</span><span>Latest week: ${esc(LATEST.id)} (${esc(LATEST.label)})</span><span>Protocol ${esc(D.meta.protocol)}</span><span>${D.items.length} coded items · ${D.topics.length} topics</span>` +
+    (D.meta.interim ? `<span class="warn">${esc(D.meta.interim)}</span>` : "") +
     (proposedWeek ? `<span class="warn">${esc(proposedWeek)} levels are proposed and await <a href="#review">review</a>.</span>` : "");
   $("#h-overview").textContent = D.meta.headline || "";
   $("#h-topics").textContent = D.meta.topicsHeadline || "";
@@ -220,11 +221,11 @@
       `<span class="legend-item"><svg width="18" height="6" aria-hidden="true"><line x1="0" y1="3" x2="18" y2="3" stroke="var(--text-secondary)" stroke-width="2"/></svg>Approve</span>` +
       `<span class="legend-item"><svg width="18" height="6" aria-hidden="true"><line x1="0" y1="3" x2="18" y2="3" stroke="var(--text-secondary)" stroke-width="2" stroke-dasharray="4 3"/></svg>Disapprove</span>`;
     const W = 560, H = 300, l = 36, r = 104, t = 14, b = 30;
-    const x0 = dnum("2026-10-01"), x1 = dnum(D.meta.generated);
+    const x0 = dnum("2026-10-01"), x1 = Math.max(dnum(D.meta.generated), ...D.approval.map((a) => dnum(a.date)));
     const X = (iso) => l + (dnum(iso) - x0) / (x1 - x0) * (W - l - r);
-    const yMin = 20, yMax = 75, Y = (v) => t + (yMax - v) / (yMax - yMin) * (H - t - b);
+    const lo = Math.min(...D.approval.map((a) => a.approve)), yMin = Math.min(20, Math.floor((lo - 2) / 5) * 5), yMax = 75, Y = (v) => t + (yMax - v) / (yMax - yMin) * (H - t - b);
     const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Presidential approval and disapproval by poll, October to November 2026" });
-    [20, 30, 40, 50, 60, 70].forEach((v) => { svgEl("line", { x1: l, x2: W - r, y1: Y(v), y2: Y(v), class: "gridline" }, svg); svgText(svg, l - 6, Y(v) + 4, v + "%", { "text-anchor": "end" }); });
+    [10, 20, 30, 40, 50, 60, 70].filter((v) => v >= yMin).forEach((v) => { svgEl("line", { x1: l, x2: W - r, y1: Y(v), y2: Y(v), class: "gridline" }, svg); svgText(svg, l - 6, Y(v) + 4, v + "%", { "text-anchor": "end" }); });
     ["2026-10-01", "2026-10-15", "2026-11-01"].forEach((d) => svgText(svg, X(d), H - 8, fmtDate(d), { "text-anchor": "middle" }));
     svgEl("line", { x1: l, x2: W - r, y1: H - b, y2: H - b, class: "axisline" }, svg);
     const ends = [];
@@ -267,7 +268,8 @@
   function sparkApproval() {
     const W = 240, H = 60, pts = (p) => D.approval.filter((a) => a.poll === p).sort((a, b) => a.date.localeCompare(b.date));
     const all = D.approval.map((a) => dnum(a.date)), x0 = Math.min(...all), x1 = Math.max(...all);
-    const X = (d) => 4 + (dnum(d) - x0) / (x1 - x0 || 1) * (W - 8), Y = (v) => 4 + (40 - v) / 20 * (H - 8);
+    const vs = D.approval.map((a) => a.approve), vmin = Math.min(...vs) - 2, vmax = Math.max(...vs) + 2;
+    const X = (d) => 4 + (dnum(d) - x0) / (x1 - x0 || 1) * (W - 8), Y = (v) => 4 + (vmax - v) / (vmax - vmin) * (H - 8);
     const line = (p, c) => `<path d="${pts(p).map((a, i) => (i ? "L" : "M") + X(a.date).toFixed(1) + " " + Y(a.approve).toFixed(1)).join("")}" fill="none" stroke="${c}" stroke-width="2"/>`;
     return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="Approval by poll">${line("Cadem", "var(--st-open)")}${line("Criteria", "var(--st-opening)")}</svg><span class="spark-key">Approval: Cadem (blue), Criteria (orange)</span>`;
   }
