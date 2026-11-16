@@ -451,6 +451,40 @@ def week_of(date):
             return w["id"]
     return ""
 
+# Codebook (protocol 3.5): concept -> stream and plain-language definition, shown as hover help on the site.
+CONCEPTS = {
+    "Focusing event": ("Problem", "A sudden, visible event (a crisis, disaster, scandal, strike, or a vote that fails) that draws attention to a problem at once."),
+    "Indicator change": ("Problem", "A movement in a regular measure (inflation, unemployment, crime, growth, waiting lists) that shows a problem getting worse or better."),
+    "Feedback": ("Problem", "Evidence on how an existing programme or decision works: evaluations, audits, implementation failures, complaints."),
+    "Salience": ("Problem", "How much the public attends to the issue: its rank among the 'most important problems' in polls, or sustained heavy coverage."),
+    "Frame consensus": ("Problem", "Actors on different sides describe the issue the same way and agree it is a problem."),
+    "Government approval": ("Politics", "Approval of the President or government in polls. Low approval narrows room for unpopular moves; high approval widens it."),
+    "National mood": ("Politics", "Broad public sentiment that pushes for or against action, such as support for a demand or economic pessimism."),
+    "Agenda tool used (urgency)": ("Politics", "The executive puts a legislative urgency on a bill (simple, suma or discusión inmediata), forcing a timetable."),
+    "Agenda tool used (budget)": ("Politics", "Funding is added, cut or restored through the Budget Law or by decree."),
+    "Government intention": ("Politics", "The executive announces a plan, files a bill or makes a commitment in a speech."),
+    "Coalition or vote": ("Politics", "Party positions, vote counts and votes in Congress that show whether a measure can pass."),
+    "Organised forces": ("Politics", "Unions, business groups, NGOs and other organised interests mobilising, striking or lobbying."),
+    "Events within government": ("Politics", "Cabinet changes, resignations or internal disputes that shift who decides."),
+}
+# Labels used before Protocol v0.4 (weeks 1-8), mapped to the current codebook or given their own note.
+CONCEPT_ALIASES = {
+    "Indicator": "Indicator change", "Record indicator": "Indicator change", "Indicator easing": "Indicator change", "Report": "Feedback",
+    "Regulator action": "Feedback", "Frame": "Frame consensus", "Vote": "Coalition or vote", "Vote (blocking)": "Coalition or vote",
+    "Vote, one chamber": "Coalition or vote", "Coalition behaviour": "Coalition or vote", "Committee": "Coalition or vote", "Passage": "Coalition or vote",
+    "Agreement": "Coalition or vote", "Stalled": "Coalition or vote", "Budget tool": "Agenda tool used (budget)", "Budget amendment": "Agenda tool used (budget)",
+    "Urgency (discusión inmediata)": "Agenda tool used (urgency)", "Organised interests": "Organised forces", "Event within government": "Events within government",
+    "Bill (member's motion)": "Government intention", "Precondition met": "Government intention",
+}
+CONCEPT_OLD = {
+    "Problem broker": "v0.3 label: an actor who frames a condition as a public problem and pushes it onto the agenda.",
+    "Competing frame": "v0.3 label: actors describe the issue in conflicting ways (the opposite of frame consensus).",
+    "Entrepreneur": "v0.3 label (policy stream): a person or group pushing a specific proposal.",
+    "Idea mentioned": "v0.3 label (policy stream): a policy idea mentioned in public debate.",
+    "Idea adopted": "v0.3 label (policy stream): a policy idea taken up by a decision-maker.",
+    "Bill with specific intervention": "v0.3 label (policy stream): a bill that sets out a concrete intervention.",
+}
+
 COUNTRY = "CL"
 weekly_files = sorted(glob.glob(os.path.join(OUT, "weekly", COUNTRY, "*.json")))
 for wf in weekly_files:
@@ -562,13 +596,14 @@ METHOD = dict(
         "Executive signals take precedence over congressional ones.",
         "A level carries forward up to two weeks without new items, then drops one level.",
         "The policy stream is checked only for topics where a window has been flagged.",
+        "Budget topics count in the problem stream only when there is an event: a cut that draws coverage, a line rejected or not approved, a failed vote or a deadlock. Routine budget debate is technical and is coded in the politics stream (from W10, reviewer's rule).",
     ],
     limitations=[
         f"{latest['id']} levels are proposed and await human review (Review tab). Earlier weeks were rated by one analyst without double coding.",
-        "Floor results of the Cámara budget votes (10–12 Nov) were not yet available by chapter when this run was coded.",
         "W9 collection searched by topic rather than sweeping each source: it missed the national truckers' strike, the withdrawal of the fuel bill and a student march, all added by the reviewer on 16 Nov. 25 of 33 logged news, TV, talk-show, podcast and poll sources produced no item. From W10 each run sweeps every source, records headlines scanned per source and runs a completeness check.",
-        "Audio and video sources (talk shows, podcasts, radio) were read through their written coverage; no transcription yet.",
-        "El Mercurio is behind a full paywall; La Tercera and El País are metered.",
+        "W10 is a partial week (13–16 Nov), run early on Monday 16 Nov; the Friday run completes it.",
+        "Audio and video sources (talk shows, podcasts, radio) were read through their written coverage; no transcription yet. No written coverage was found for Tolerancia Cero (15 Nov), Radio Duna, Al Pan Pan, Lo Que Importa or the matinales this week.",
+        "El Mercurio is behind a full paywall. La Tercera (including Cómo te lo explico) and El País could not be fetched; their interviews were read through other outlets. The Clinic's pages did not load (coded from headlines).",
         "Evidence states in policy checks come from analyst knowledge and need verification in Epistemonikos, Cochrane, Campbell or 3ie.",
     ],
     validation=[
@@ -594,12 +629,15 @@ data = dict(
     sourceLog=SOURCE_LOG,
     meta=dict(country="Chile", iso="CL", run="2026-11", generated=generated, latestWeek=latest["id"],
               title="Policy Window Monitor — Chile", protocol="v0.4",
-              headline=f"{len(windows)} policy windows are open in Chile: {n_prob} opened by a problem, {n_pol} by politics. Fuel prices opened a new problem window this week.",
+              reviewUrl="https://claude.ai/artifact/RWMPPYMYwcmQ9hfegbZtPh",
+              headline=f"{len(windows)} policy windows are open in Chile: {n_prob} opened by a problem, {n_pol} by politics. The fuel-price window is likely to close this week with a law; approval fell to new lows.",
               topicsHeadline="Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
               interim=interim, note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
     weeks=weeks, statusLabels=STATUS, levels=LEVELS, topics=TOPICS, policyChecks=POLICY_CHECKS,
     calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery, stories=stories, coverage=coverage,
     items=items,
+    concepts={k: dict(stream=v[0], definition=v[1]) for k, v in CONCEPTS.items()},
+    conceptAliases=CONCEPT_ALIASES, conceptOld=CONCEPT_OLD,
 )
 
 ids = {t["id"] for t in TOPICS}

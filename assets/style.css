@@ -390,3 +390,16 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .precedents .src { font-size: 12px; color: var(--text-muted); }
 .na-fill { fill: var(--grid); }
 .gapcell { background: color-mix(in srgb, var(--st-opening) 14%, transparent); }
+
+/* concepts (codebook tags with hover help) */
+.concept { display: inline-block; font-size: 12px; font-weight: 500; line-height: 1.3; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface-2); color: var(--text-primary); cursor: help; white-space: nowrap; }
+.concept.c-problem { border-color: color-mix(in srgb, var(--st-opening) 55%, transparent); background: color-mix(in srgb, var(--st-opening) 10%, var(--surface-1)); }
+.concept.c-politics { border-color: color-mix(in srgb, var(--st-open) 55%, transparent); background: color-mix(in srgb, var(--st-open) 10%, var(--surface-1)); }
+.concept:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.framing { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0 4px; }
+.framing-label { font-size: 12.5px; font-weight: 600; color: var(--text-secondary); margin-right: 2px; }
+.concept-list { display: grid; grid-template-columns: max-content 1fr; gap: 8px 12px; margin: 6px 0 14px; font-size: 13.5px; }
+.concept-list dt { margin: 0; } .concept-list dd { margin: 0; color: var(--text-secondary); }
+.concept-panel h3 { font-size: 14px; margin: 12px 0 4px; }
+.review-link { background: color-mix(in srgb, var(--accent) 8%, var(--surface-1)); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+@media (max-width: 560px) { .concept-list { grid-template-columns: 1fr; } .concept { white-space: normal; } }

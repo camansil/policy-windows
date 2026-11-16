@@ -1,0 +1,319 @@
+<title>Policy Window Signal Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column of signal cards, a sticky header with the week tally, the codebook a click away. Palette and type follow the Policy Window Monitor site. */
+:root {
+  --bg: #f6f5f1; --surface: #fcfcfb; --surface-2: #f0efea; --border: #e2e0d8; --border-strong: #c9c7bd;
+  --fg: #0b0b0b; --fg-2: #52514e; --muted: #77766f; --accent: #2a78d6;
+  --problem: #eb6834; --politics: #2a78d6; --ok: #1e7f3c; --warn: #b8740f; --bad: #c0392b;
+  --l0: #e1e0da; --l0-ink: #52514e; --l1: #f4c95d; --l1-ink: #3d2e00; --l2: #93d29a; --l2-ink: #0f3d18; --l3: #1e7f3c; --l3-ink: #ffffff;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #2f2f2c; --border-strong: #45453f;
+  --fg: #f0efec; --fg-2: #c3c2b7; --muted: #9a998f; --accent: #3987e5;
+  --problem: #e7774a; --politics: #4b95ea; --ok: #5cc27a; --warn: #e0a43a; --bad: #e46a5c;
+  --l0: #33332f; --l0-ink: #c3c2b7; --l1: #b88a14; --l1-ink: #ffffff; --l2: #3f8d4c; --l2-ink: #ffffff; --l3: #6fcf86; --l3-ink: #0b2412;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121211; --surface: #1a1a19; --surface-2: #232321; --border: #2f2f2c; --border-strong: #45453f;
+  --fg: #f0efec; --fg-2: #c3c2b7; --muted: #9a998f; --accent: #3987e5;
+  --problem: #e7774a; --politics: #4b95ea; --ok: #5cc27a; --warn: #e0a43a; --bad: #e46a5c;
+  --l0: #33332f; --l0-ink: #c3c2b7; --l1: #b88a14; --l1-ink: #ffffff; --l2: #3f8d4c; --l2-ink: #ffffff; --l3: #6fcf86; --l3-ink: #0b2412;
+  color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--border); }
+header.top .wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding-block: 12px; }
+h1 { font-family: var(--font-display); font-size: 22px; line-height: 1.2; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); font-size: 13px; }
+.tally { display: flex; flex-wrap: wrap; gap: 6px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.tally span { padding: 2px 9px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
+.tally .t-approve { color: var(--ok); } .tally .t-change { color: var(--warn); } .tally .t-reject { color: var(--bad); }
+main { display: grid; gap: 16px; padding-block: 20px 60px; }
+.intro { display: grid; gap: 10px; color: var(--fg-2); }
+.intro p { margin: 0; max-width: 68ch; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, textarea, button { font: inherit; color: inherit; }
+select { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 6px; padding: 5px 8px; }
+.btn { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 14px; font-weight: 500; }
+.btn:hover { border-color: var(--fg-2); }
+.btn:focus-visible, select:focus-visible, textarea:focus-visible, .concept:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn.on-approve { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.btn.on-change { background: var(--warn); border-color: var(--warn); color: var(--surface); }
+.btn.on-reject { background: var(--bad); border-color: var(--bad); color: var(--surface); }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: grid; gap: 10px; min-width: 0; }
+.panel h2 { font-family: var(--font-display); font-size: 17px; margin: 0; }
+.signal { border-left: 4px solid var(--border-strong); }
+.signal.s-problem { border-left-color: var(--problem); } .signal.s-politics { border-left-color: var(--politics); }
+.signal.d-approve { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ok) 45%, transparent); }
+.signal.d-change { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warn) 45%, transparent); }
+.signal.d-reject { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--bad) 45%, transparent); }
+.sig-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; align-items: baseline; }
+.sig-head h3 { margin: 0; font-size: 16px; font-weight: 600; }
+.stream { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.s-problem .stream { color: var(--problem); } .s-politics .stream { color: var(--politics); }
+.lv { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 5px; font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; }
+.lv0 { background: var(--l0); color: var(--l0-ink); } .lv1 { background: var(--l1); color: var(--l1-ink); } .lv2 { background: var(--l2); color: var(--l2-ink); } .lv3 { background: var(--l3); color: var(--l3-ink); }
+.lvchange { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--fg-2); }
+.framing { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.framing-label { font-size: 12.5px; font-weight: 600; color: var(--fg-2); }
+.concept { font-size: 12.5px; font-weight: 500; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface-2); cursor: help; }
+.concept.c-problem { border-color: color-mix(in srgb, var(--problem) 55%, transparent); background: color-mix(in srgb, var(--problem) 10%, var(--surface)); }
+.concept.c-politics { border-color: color-mix(in srgb, var(--politics) 55%, transparent); background: color-mix(in srgb, var(--politics) 10%, var(--surface)); }
+.def { font-size: 13px; color: var(--fg-2); background: var(--surface-2); border-radius: 6px; padding: 6px 10px; }
+.rationale { margin: 0; max-width: 72ch; }
+details summary { cursor: pointer; font-size: 13.5px; color: var(--fg-2); }
+.ev { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 8px; font-size: 13.5px; }
+.ev .meta { color: var(--muted); font-size: 12.5px; }
+.ev a { color: var(--accent); }
+.quote { font-style: italic; }
+.decide { display: grid; gap: 8px; border-top: 1px dashed var(--border); padding-top: 10px; }
+.comment-box { display: grid; gap: 4px; }
+.comment-box label { font-size: 12.5px; font-weight: 600; color: var(--fg-2); }
+.comment-row { display: flex; gap: 8px; align-items: flex-start; }
+textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background: var(--bg); border: 1px solid var(--border-strong); border-radius: 6px; padding: 8px 10px; font-size: 14px; }
+.mic { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.mic svg { width: 18px; height: 18px; fill: none; stroke: var(--fg); stroke-width: 2; stroke-linecap: round; }
+.mic.live { background: var(--bad); border-color: var(--bad); } .mic.live svg { stroke: var(--surface); }
+.partial { font-size: 12.5px; color: var(--muted); font-style: italic; min-height: 1em; }
+.saved { font-size: 12px; color: var(--muted); }
+.empty { color: var(--muted); }
+.codebook dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; margin: 0; font-size: 13.5px; }
+.codebook dt { margin: 0; } .codebook dd { margin: 0; color: var(--fg-2); }
+.codebook h3 { font-size: 14px; margin: 6px 0 2px; }
+.status { padding: 10px 12px; border-radius: 8px; background: var(--surface-2); color: var(--fg-2); font-size: 14px; }
+@media (max-width: 560px) { .codebook dl { grid-template-columns: 1fr; } h1 { font-size: 19px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top"><div class="wrap">
+  <div><h1>Signal Review · Chile</h1><div class="sub" id="weeklabel">Policy Window Monitor, Protocol v0.4</div></div>
+  <div class="row"><label for="week" class="sub">Week</label><select id="week"></select></div>
+  <div class="tally" id="tally" aria-live="polite"></div>
+</div></header>
+
+<main class="wrap">
+  <section class="intro">
+    <p>Each card is one proposed signal: a level for one topic in one stream. Choose <b>Approve</b> if the level and its framing are right, <b>Change</b> to set a different level, or <b>Reject</b> if the signal should not count at all. Add a comment whenever the reasoning needs nuance; you can type it or tap the microphone and speak. Everything saves as you go, and the next weekly run reads your decisions and comments directly.</p>
+    <div class="status" id="status">Connecting to the review store…</div>
+  </section>
+
+  <section class="panel" id="weeknote-panel" hidden>
+    <h2>Notes for this week</h2>
+    <p class="sub" style="margin:0">New topics to add, how a topic should be framed, sources to check, anything that is not about a single signal.</p>
+    <div class="comment-box"><div class="comment-row">
+      <textarea id="weeknote" aria-label="Notes for this week" placeholder="e.g. Add the truckers' strike as its own topic; budget only counts as a problem when there are cuts"></textarea>
+      <button type="button" class="mic" data-mic="weeknote" aria-label="Dictate notes for this week"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    </div><div class="partial" id="partial-weeknote"></div><div class="saved" id="saved-weeknote"></div></div>
+  </section>
+
+  <div id="signals" style="display:grid;gap:16px"></div>
+
+  <details class="panel codebook" id="codebook">
+    <summary><b>Codebook:</b> what each concept means and what the levels mean</summary>
+    <div id="codebook-body"></div>
+  </details>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  const LEVEL = ["No signal", "Weak signal", "Signal", "Strong signal"];
+  const LEVEL_DEF = {
+    Problem: ["No salient change", "Attention without new data, from a single source", "Indicator change, report, feedback or focusing event, corroborated by several sources; attention above the topic's baseline", "Focusing event or record indicator with sustained attention, or the topic among the top 'most important problems'; frames converging"],
+    Politics: ["No change in approval, government action or congressional activity", "Statements only, or public demand without government action", "A formal step (bill, announcement, working group, budget line) with national mood and approval not opposed", "Decisive use of agenda tools (urgency, budget item, passage in one chamber) with mood supportive or neutral"],
+  };
+  const CONCEPTS = {
+    "Focusing event": ["Problem", "A sudden, visible event (a crisis, disaster, scandal, strike, or a vote that fails) that draws attention to a problem at once."],
+    "Indicator change": ["Problem", "A movement in a regular measure (inflation, unemployment, crime, growth, waiting lists) that shows a problem getting worse or better."],
+    "Feedback": ["Problem", "Evidence on how an existing programme or decision works: evaluations, audits, implementation failures, complaints."],
+    "Salience": ["Problem", "How much the public attends to the issue: its rank among the 'most important problems' in polls, or sustained heavy coverage."],
+    "Frame consensus": ["Problem", "Actors on different sides describe the issue the same way and agree it is a problem."],
+    "Government approval": ["Politics", "Approval of the President or government in polls. Low approval narrows room for unpopular moves; high approval widens it."],
+    "National mood": ["Politics", "Broad public sentiment that pushes for or against action, such as support for a demand or economic pessimism."],
+    "Agenda tool used (urgency)": ["Politics", "The executive puts a legislative urgency on a bill (simple, suma or discusión inmediata), forcing a timetable."],
+    "Agenda tool used (budget)": ["Politics", "Funding is added, cut or restored through the Budget Law or by decree."],
+    "Government intention": ["Politics", "The executive announces a plan, files a bill or makes a commitment in a speech."],
+    "Coalition or vote": ["Politics", "Party positions, vote counts and votes in Congress that show whether a measure can pass."],
+    "Organised forces": ["Politics", "Unions, business groups, NGOs and other organised interests mobilising, striking or lobbying."],
+    "Events within government": ["Politics", "Cabinet changes, resignations or internal disputes that shift who decides."],
+  };
+  const $ = (s, el) => (el || document).querySelector(s);
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const lv = (v) => v == null ? "" : `<span class="lv lv${v}" title="${esc(LEVEL[v])}">${v}</span>`;
+  const cTag = (name, key) => {
+    const c = CONCEPTS[name];
+    return `<button type="button" class="concept${c ? " c-" + c[0].toLowerCase() : ""}" data-def="${esc(key)}" data-name="${esc(name)}" aria-expanded="false" title="${esc(c ? c[1] : name)}">${esc(name)}</button>`;
+  };
+
+  // codebook
+  $("#codebook-body").innerHTML = ["Problem", "Politics"].map((st) =>
+    `<h3>${st} stream: concepts</h3><dl>${Object.entries(CONCEPTS).filter(([, v]) => v[0] === st).map(([k, v]) => `<dt><span class="concept c-${st.toLowerCase()}">${esc(k)}</span></dt><dd>${esc(v[1])}</dd>`).join("")}</dl>` +
+    `<h3>${st} stream: levels</h3><dl>${LEVEL_DEF[st].map((d, i) => `<dt>${lv(i)} ${esc(LEVEL[i])}</dt><dd>${esc(d)}</dd>`).join("")}</dl>`).join("");
+
+  let db = null, user = null, dict = null, meId = "";
+  let weeks = [], week = "", signals = [], decisions = {}, weekNote = null;
+  let unsubs = [];
+  const status = (msg) => { const el = $("#status"); el.textContent = msg; el.hidden = !msg; };
+
+  function tally() {
+    const t = { approve: 0, change: 0, reject: 0 };
+    signals.forEach((s) => { const d = decisions[s.id]; if (d && t[d.decision] != null) t[d.decision]++; });
+    const pending = signals.length - t.approve - t.change - t.reject;
+    $("#tally").innerHTML = signals.length ? `<span><b>${signals.length}</b> signals</span><span class="t-approve">${t.approve} approved</span><span class="t-change">${t.change} changed</span><span class="t-reject">${t.reject} rejected</span><span>${pending} pending</span>` : "";
+  }
+
+  function render() {
+    const host = $("#signals");
+    const w = weeks.find((x) => x.id === week);
+    $("#weeklabel").textContent = w ? `${w.id} · ${w.label}${w.partial ? " (partial)" : ""} · ${w.reviewStatus === "reviewed" ? "reviewed" : "awaiting review"}` : "Policy Window Monitor, Protocol v0.4";
+    $("#weeknote-panel").hidden = !week;
+    if (!signals.length) { host.innerHTML = week ? `<p class="empty">No signals for this week yet.</p>` : ""; tally(); return; }
+    const active = document.activeElement && document.activeElement.id;
+    host.innerHTML = (w && w.note ? `<p class="sub" style="margin:0">${esc(w.note)}</p>` : "") + signals.map((s, k) => {
+      const d = decisions[s.id] || {};
+      const st = (s.stream || "").toLowerCase();
+      const lvl = d.level != null ? d.level : s.proposed;
+      return `<article class="panel signal s-${st} ${d.decision ? "d-" + d.decision : ""}" data-id="${esc(s.id)}">
+        <div class="sig-head"><h3>${esc(s.topicName)} <span class="stream">${esc(s.stream)}</span></h3>
+          <span class="lvchange">${s.proposed == null ? "No level change proposed" : `${s.prev == null ? "New" : lv(s.prev) + " →"} ${lv(s.proposed)} ${esc(LEVEL[s.proposed])}`}</span></div>
+        <div class="framing"><span class="framing-label">How the ${esc(st)} stream is framed</span>${(s.concepts || []).map((c, j) => cTag(c, s.id + ":" + j)).join("")}</div>
+        <div class="def" id="def-${k}" hidden></div>
+        <p class="rationale">${esc(s.rationale)}</p>
+        ${(s.evidence || []).length ? `<details><summary>Evidence: ${s.evidence.length} coded item${s.evidence.length === 1 ? "" : "s"}</summary><ul class="ev">${s.evidence.map((e) =>
+          `<li><span class="concept${CONCEPTS[e.concept] ? " c-" + CONCEPTS[e.concept][0].toLowerCase() : ""}" title="${esc(CONCEPTS[e.concept] ? CONCEPTS[e.concept][1] : "")}">${esc(e.concept)}</span> ${esc(e.note)}${e.quote ? `<br><span class="quote">“${esc(e.quote)}”</span>` : ""}<br><span class="meta">${esc(e.date)} · ${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a>` : esc(e.source)}${e.context ? " · " + esc(e.context) : ""}</span></li>`).join("")}</ul></details>` : ""}
+        <div class="decide">
+          <div class="row" role="group" aria-label="Decision">
+            <button type="button" class="btn ${d.decision === "approve" ? "on-approve" : ""}" data-d="approve" aria-pressed="${d.decision === "approve"}">Approve</button>
+            <button type="button" class="btn ${d.decision === "change" ? "on-change" : ""}" data-d="change" aria-pressed="${d.decision === "change"}">Change</button>
+            <button type="button" class="btn ${d.decision === "reject" ? "on-reject" : ""}" data-d="reject" aria-pressed="${d.decision === "reject"}">Reject</button>
+            ${s.proposed == null ? "" : `<label class="sub" for="lv-${k}">Level</label><select id="lv-${k}" data-lv ${d.decision === "change" ? "" : "disabled"}>${[0, 1, 2, 3].map((v) => `<option value="${v}" ${v === lvl ? "selected" : ""}>${v} ${LEVEL[v]}</option>`).join("")}</select>`}
+          </div>
+          <div class="comment-box"><label for="c-${k}">Comment</label><div class="comment-row">
+            <textarea id="c-${k}" data-comment placeholder="Why, or what the framing misses">${esc(d.comment || "")}</textarea>
+            <button type="button" class="mic" data-mic="c-${k}" aria-label="Dictate a comment" ${dict ? "" : "hidden"}><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+          </div><div class="partial" id="partial-c-${k}"></div><div class="saved">${d.at ? "Saved " + new Date(d.at).toLocaleString() : ""}</div></div>
+        </div></article>`;
+    }).join("");
+    if (active && $("#" + active)) $("#" + active).focus();
+    tally();
+  }
+
+  async function saveDecision(id, patch) {
+    const cur = decisions[id] || {};
+    const next = Object.assign({ week, signal: id, decision: null, level: null, comment: "" }, cur, patch, { by: meId, at: new Date().toISOString() });
+    decisions[id] = next; render();
+    if (!db) return;
+    try { await db.doc("decisions/" + id).set(next); }
+    catch (e) { status("Could not save: " + (e && e.message ? e.message : "the review store refused the change") + ". Your choice is shown but not saved; try again."); }
+  }
+
+  $("#signals").addEventListener("click", (ev) => {
+    const card = ev.target.closest(".signal"); if (!card) return;
+    const id = card.dataset.id, s = signals.find((x) => x.id === id);
+    const c = ev.target.closest(".concept[data-def]");
+    if (c) {
+      const box = card.querySelector(".def"), name = c.dataset.name, open = c.getAttribute("aria-expanded") === "true";
+      card.querySelectorAll(".concept[data-def]").forEach((b) => b.setAttribute("aria-expanded", "false"));
+      if (open) { box.hidden = true; return; }
+      c.setAttribute("aria-expanded", "true");
+      box.innerHTML = `<b>${esc(name)}</b>${CONCEPTS[name] ? " · " + CONCEPTS[name][0] + " stream: " + esc(CONCEPTS[name][1]) : ""}`; box.hidden = false; return;
+    }
+    const b = ev.target.closest("[data-d]");
+    if (b) {
+      const d = b.dataset.d, cur = decisions[id] || {};
+      saveDecision(id, { decision: d, level: d === "reject" ? null : d === "change" ? (cur.level != null ? cur.level : s.proposed) : s.proposed });
+    }
+  });
+  $("#signals").addEventListener("change", (ev) => {
+    const card = ev.target.closest(".signal"); if (!card) return;
+    if (ev.target.matches("[data-lv]")) saveDecision(card.dataset.id, { level: +ev.target.value });
+    if (ev.target.matches("[data-comment]")) saveDecision(card.dataset.id, { comment: ev.target.value });
+  });
+
+  async function saveWeekNote() {
+    const v = $("#weeknote").value;
+    const doc = { week, comment: v, by: meId, at: new Date().toISOString() };
+    weekNote = doc;
+    $("#saved-weeknote").textContent = "Saved " + new Date(doc.at).toLocaleString();
+    if (!db) return;
+    try { await db.doc("weekNotes/" + week).set(doc); } catch (e) { status("Could not save the week's notes. Try again."); }
+  }
+  $("#weeknote").addEventListener("change", saveWeekNote);
+
+  // dictation: one mic at a time
+  let micTarget = null;
+  document.addEventListener("click", (ev) => {
+    const m = ev.target.closest("[data-mic]"); if (!m || !dict) return;
+    const target = m.dataset.mic;
+    if (micTarget === target) { dict.stop().catch(() => {}); return; }
+    if (micTarget) dict.stop().catch(() => {});
+    micTarget = target;
+    dict.start().catch((e) => {
+      micTarget = null; document.querySelectorAll(".mic.live").forEach((x) => x.classList.remove("live"));
+      if (e && e.code === "not_granted") { dict = null; document.querySelectorAll(".mic").forEach((x) => x.hidden = true); }
+    });
+  });
+  function initDictation() {
+    dict.onPartial(({ text }) => { const p = micTarget && $("#partial-" + micTarget); if (p) p.textContent = text; });
+    dict.onFinal(({ text }) => {
+      const ta = micTarget && $("#" + micTarget); if (!ta || !text) return;
+      ta.value = (ta.value ? ta.value.replace(/\s*$/, " ") : "") + text.trim();
+      const p = $("#partial-" + micTarget); if (p) p.textContent = "";
+      if (micTarget === "weeknote") saveWeekNote(); else { const card = ta.closest(".signal"); if (card) saveDecision(card.dataset.id, { comment: ta.value }); }
+    });
+    dict.onState(({ state }) => {
+      document.querySelectorAll(".mic").forEach((x) => x.classList.toggle("live", state === "listening" && x.dataset.mic === micTarget));
+      if (state !== "listening") { const p = micTarget && $("#partial-" + micTarget); if (p) p.textContent = ""; micTarget = state === "idle" ? null : micTarget; }
+    });
+    document.querySelectorAll(".mic").forEach((x) => x.hidden = false);
+  }
+
+  function loadWeek(id) {
+    unsubs.forEach((u) => { try { u(); } catch (e) {} }); unsubs = [];
+    week = id; signals = []; decisions = {}; render();
+    unsubs.push(db.collection("signals").where("week", "==", id).onSnapshot((snap) => {
+      signals = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.order || 0) - (b.order || 0)); render();
+    }, () => status("Could not load this week's signals.")));
+    unsubs.push(db.collection("decisions").where("week", "==", id).onSnapshot((snap) => {
+      const focused = document.activeElement && document.activeElement.matches && document.activeElement.matches("textarea[data-comment]");
+      decisions = {}; snap.docs.forEach((d) => { decisions[d.id] = d.data(); });
+      if (!focused) render(); else tally();
+    }));
+    unsubs.push(db.doc("weekNotes/" + id).onSnapshot((snap) => {
+      weekNote = snap.exists ? snap.data() : null;
+      if (document.activeElement !== $("#weeknote")) $("#weeknote").value = weekNote ? weekNote.comment || "" : "";
+      $("#saved-weeknote").textContent = weekNote && weekNote.at ? "Saved " + new Date(weekNote.at).toLocaleString() : "";
+    }));
+  }
+
+  $("#week").addEventListener("change", (e) => loadWeek(e.target.value));
+
+  async function boot() {
+    if (!window.claude || !window.claude.use) { status("Open this page on claude.ai, signed in, to review signals."); return; }
+    const timer = setTimeout(() => status("The review store is taking a while to answer. Reload the page if nothing appears."), 10000);
+    claude.use("dictation").then((d) => { if (d) { dict = d; initDictation(); } }).catch(() => {});
+    user = await claude.use("user");
+    if (user) { try { const me = await user.me(); meId = me && me.id || ""; } catch (e) {} }
+    db = await claude.use("db");
+    if (!db) { clearTimeout(timer); status("Sign in to claude.ai to load and save reviews."); return; }
+    db.collection("weeks").onSnapshot((snap) => {
+      clearTimeout(timer);
+      weeks = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (b.order || 0) - (a.order || 0));
+      if (!weeks.length) { status("No weeks have been loaded yet. The weekly run adds each new week here."); return; }
+      status("");
+      $("#week").innerHTML = weeks.map((w) => `<option value="${esc(w.id)}">${esc(w.id)} · ${esc(w.label)}</option>`).join("");
+      if (!week || !weeks.some((w) => w.id === week)) { const firstOpen = weeks.find((w) => w.reviewStatus !== "reviewed") || weeks[0]; $("#week").value = firstOpen.id; loadWeek(firstOpen.id); }
+      else { $("#week").value = week; render(); }
+    }, (e) => { clearTimeout(timer); status("Could not reach the review store" + (e && e.code === "not_granted" ? ": permission was declined." : ".")); });
+  }
+  boot();
+})();
+</script>

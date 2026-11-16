@@ -10,6 +10,7 @@ This repository holds the static website and the data for the **Chile pilot** (f
 - **Topics (evidence producers, policy entrepreneurs, journalists):** gaps where evidence is needed, topic cards with filters, a follow list, and a detail panel per topic with the policy-stream check, sources consulted and coded items.
 - **Method:** how the monitor works, in general terms: framework, stream levels, window rules, the weekly process, source types and limitations.
 - **Data:** downloads and a filterable table of coded items with context and quotes.
+- **Signal Review page (reviewers):** a private page on claude.ai where each week's signals are approved, changed or rejected, with typed or spoken comments that the next weekly run reads directly. Source: `review/signal-review.html`.
 - **Back end (reviewers):** *Review signals* (approve, change or reject the latest week's proposed signals), *Source log* (the country's sources, with a form to add one) and *This run* (steps, limitations and validation of the current run).
 
 ## Structure
@@ -26,6 +27,8 @@ data/sources/<iso>.csv        one source log per country (cl.csv = Chile)
 data/sources/_template.csv    empty log to start a new country
 data/weekly/<ISO>/<year>-W<nn>.json   one file per weekly run
 scripts/build_data.py         base run (W1-W8) + applies the weekly files, writes data/
+scripts/review_seed.py        writes a week's signals as documents for the Signal Review page
+review/signal-review.html     the Signal Review page (published on claude.ai)
 docs/WEEKLY_RUN.md            how to do a weekly run
 ```
 

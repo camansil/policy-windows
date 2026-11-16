@@ -1,0 +1,1559 @@
+{
+  "week": {
+    "id": "W10",
+    "label": "13–19 Nov",
+    "start": "2026-11-13",
+    "end": "2026-11-19"
+  },
+  "generated": "2026-11-16",
+  "protocol": "v0.4",
+  "reviewStatus": "proposed",
+  "partial": true,
+  "coveredTo": "2026-11-16",
+  "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection).",
+  "levels": {
+    "T01": [
+      3,
+      1
+    ],
+    "T02": [
+      1,
+      3
+    ],
+    "T03": [
+      1,
+      1
+    ],
+    "T04": [
+      3,
+      3
+    ],
+    "T05": [
+      1,
+      2
+    ],
+    "T06": [
+      2,
+      2
+    ],
+    "T07": [
+      2,
+      3
+    ],
+    "T08": [
+      3,
+      2
+    ],
+    "T09": [
+      1,
+      2
+    ],
+    "T10": [
+      1,
+      1
+    ],
+    "T11": [
+      1,
+      2
+    ],
+    "T12": [
+      0,
+      1
+    ],
+    "T13": [
+      1,
+      2
+    ],
+    "T14": [
+      2,
+      2
+    ],
+    "T15": [
+      1,
+      1
+    ],
+    "T16": [
+      1,
+      2
+    ],
+    "T17": [
+      1,
+      2
+    ],
+    "T18": [
+      1,
+      1
+    ],
+    "T19": [
+      0,
+      1
+    ],
+    "T20": [
+      0,
+      0
+    ],
+    "T21": [
+      3,
+      2
+    ],
+    "T22": [
+      2,
+      1
+    ],
+    "T23": [
+      1,
+      1
+    ]
+  },
+  "topicUpdates": {
+    "T04": {
+      "statusLabel": "Problem window",
+      "timing": "Accusation filed 12 Nov; review committee drawn 16 Nov; floor vote not yet set",
+      "changed": "Accusation filed (12 Nov) and its review committee drawn with an opposition majority (16 Nov). Proposed politics 2→3. The PDG caucus decides the vote.",
+      "politics": "The opposition filed a three-chapter accusation against Minister Rabat on 12 Nov; the review committee was drawn on 16 Nov with a 3–2 opposition majority. About 65 of the 78 votes needed; the PDG caucus (14) is undecided, UDI opposes, and Kast backs Rabat. 79% disagree with keeping him (Criteria, 15 Nov)."
+    },
+    "T05": {
+      "status": "closed",
+      "statusLabel": "Closed (attention faded)",
+      "closeWeek": 10,
+      "closing": "Attention faded as Fund E recovered",
+      "changed": "No coverage for a second week; window closed for attention faded."
+    },
+    "T06": {
+      "changed": "Reviewer lowered problem to 2 in W9. Pessimism on jobs is rising in Criteria, but coverage is thin. Q3 GDP (18 Nov) and INE (27 Nov) are next."
+    },
+    "T08": {
+      "changed": "Chamber rejected seven ministry lines and the debt authorisation (13 Nov). Problem proposed 2→3 under the new budget rule. Senate 17–19 Nov; deadline 29 Nov.",
+      "problem": "The Chamber dispatched Budget 2027 on 13 Nov after rejecting seven ministry lines (Education, Interior, Segegob, Mining, Women, Culture, Science) and the US$25bn borrowing authorisation, a defeat for the government.",
+      "politics": "Hacienda will try to restore the rejected lines in the Senate (17–19 Nov); deadline 29–30 Nov. The truckers' deal adds about US$700m while the consolidation target is kept. Approval is at 18–27%."
+    },
+    "T09": {
+      "status": "closing",
+      "statusLabel": "Closing: decision taken in the Chamber",
+      "closeWeek": 10,
+      "closing": "Decision taken (Chamber restored primary-care and Ricarte Soto funds, 13 Nov)",
+      "reopen": "A Senate cut or a new rejection",
+      "changed": "Chamber approved the Health budget and restored the cut funds; problem 2→1, politics 3→2."
+    },
+    "T14": {
+      "statusLabel": "Political window (blocking possible)",
+      "changed": "Education line rejected again; teachers' national strike called for 24 Nov. Restoration attempt in the Senate."
+    },
+    "T16": {
+      "status": "watch",
+      "statusLabel": "Watch: politics only",
+      "changed": "Toll refund for intercity buses doubled in the truckers' deal; No+TAG mobilised. Politics 1→2."
+    },
+    "T21": {
+      "statusLabel": "Problem window (decision imminent)",
+      "timing": "Bill under 'discusión inmediata'; law expected 17–19 Nov",
+      "changed": "Truckers' strike (9–12 Nov) ended with a deal: diesel −$142, rises frozen to 31 Mar 2027 (some sources say 7 Apr), cost US$550m–1bn. Bill passed the Chamber Finance committee unanimously on 16 Nov.",
+      "problem": "A national truckers' strike (9–12 Nov), joined by intercity buses and No+TAG, blocked highways over diesel prices after six consecutive rises. On 15 Nov, 97% had heard of it and about 80% backed it (Cadem, Criteria); 86% found it justified.",
+      "politics": "The government withdrew its $20 cap bill on 11 Nov and agreed with two truckers' confederations on 12 Nov: diesel −$142 per litre, rises frozen to 31 Mar 2027, wider tax and toll refunds (about US$700m). Independents and No+TAG stayed mobilised. The bill, under 'discusión inmediata', passed the Chamber Finance committee unanimously on 16 Nov; 66% back the measures."
+    }
+  },
+  "newTopics": [
+    {
+      "id": "T22",
+      "name": "Economic slowdown and technical recession",
+      "short": "Growth & recession",
+      "ministry": "Hacienda / Economía",
+      "cap": "1 Macroeconomics",
+      "status": "watch",
+      "statusLabel": "Watch: problem only",
+      "type": "—",
+      "coupling": "—",
+      "opened": null,
+      "timing": "Q3 GDP release 18 Nov",
+      "openWeek": null,
+      "closeWeek": null,
+      "problem": "The Central Bank expectations survey cut 2026 growth to 0% (10 Nov). The Finance Minister said the economy is 'technically' in recession after two quarterly contractions (11 Nov). Q3 GDP on 18 Nov.",
+      "politics": "No growth plan or bill. 60% expect the economy to worsen (Criteria, 15 Nov). The government's line is fiscal consolidation."
+    },
+    {
+      "id": "T23",
+      "name": "Child protection: waiting lists and Mejor Niñez funding",
+      "short": "Child protection",
+      "ministry": "Desarrollo Social / Justicia",
+      "cap": "13 Social Welfare",
+      "status": "none",
+      "statusLabel": "No window",
+      "type": "—",
+      "coupling": "—",
+      "opened": null,
+      "timing": "—",
+      "openWeek": null,
+      "closeWeek": null,
+      "problem": "The Children's Ombudsman's annual report: more than 41,000 children waiting for protection places, and cuts in 102 of 197 budget items (CIPER, 12 Nov).",
+      "politics": "No government response found."
+    }
+  ],
+  "policyChecks": {},
+  "approval": [
+    {
+      "poll": "Cadem",
+      "date": "2026-11-15",
+      "approve": 27,
+      "disapprove": 69
+    },
+    {
+      "poll": "Criteria",
+      "date": "2026-11-15",
+      "approve": 18,
+      "disapprove": 72
+    }
+  ],
+  "items": [
+    {
+      "id": "D161",
+      "date": "2026-11-15",
+      "source": "T13 (Mesa Central)",
+      "type": "Interview",
+      "url": "https://www.t13.cl/noticia/politica/maximo-pavez-fuerte-caida-aprobacion-del-presidente-kast-las-decisiones-esta-to-15-11-2026",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Máximo Pavez (Interior undersecretary)",
+      "strength": 1,
+      "note": "Responding to Criteria's 18% approval, Pavez said polls are snapshots and government decisions will reverse the trend, admitting the strike (about 3,500 trucks at peak) shaped negotiations.",
+      "context": "Mesa Central (Canal 13), interview with Máximo Pavez, Sun 15 Nov 2026",
+      "quote": "Las encuestas son fotos del momento, de la semana"
+    },
+    {
+      "id": "D162",
+      "date": "2026-11-15",
+      "source": "T13 (Mesa Central)",
+      "type": "Interview",
+      "url": "https://www.t13.cl/noticia/politica/elizalde-arremete-contra-quiroz-tras-caida-kast-encuestas-unicos-estan-felices-15-11-2026",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Álvaro Elizalde (former Interior minister, PS)",
+      "strength": 2,
+      "note": "Former minister blamed Finance Minister Quiroz's fuel hike for stalling consumption and Kast's fall to 18% in Criteria, saying only those whose taxes were cut are happy.",
+      "context": "Mesa Central (Canal 13), interview with Álvaro Elizalde, Sun 15 Nov 2026",
+      "quote": "Los únicos que están felices"
+    },
+    {
+      "id": "D163",
+      "date": "2026-11-15",
+      "source": "CNN Chile",
+      "type": "Poll",
+      "url": "https://www.cnnchile.com/mundo/cadem-aprobacion-kast-27-por-ciento-paro-camioneros/",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Cadem",
+      "strength": 2,
+      "note": "Cadem: Kast approval fell 2 points to 27% and disapproval rose to 69%; 52% dislike Kast and rate his government badly.",
+      "context": "Cadem Plaza Pública, reported by CNN Chile, Sun 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D164",
+      "date": "2026-11-15",
+      "source": "24 Horas (TVN)",
+      "type": "Poll",
+      "url": "https://www.24horas.cl/actualidad/politica/aprobacion-del-presidente-kast-cae-al-18-y-marca-su-peor-registro",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Criteria",
+      "strength": 3,
+      "note": "Criteria: Kast approval fell 6 points to 18%, his lowest since taking office, with disapproval at 72%.",
+      "context": "Agenda Criteria poll, reported by 24horas.cl, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D165",
+      "date": "2026-11-15",
+      "source": "CNN Chile (reproducing The Clinic interview)",
+      "type": "Interview",
+      "url": "https://www.cnnchile.com/pais/vocero-de-gobierno-descarta-influencia-del-segundo-piso-en-las-decisiones-del-ejecutivo-y-califica-cuestionamientos-como-un-mito-absoluto/",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Events within government",
+      "actor": "Gonzalo Arenas (government spokesperson)",
+      "strength": 1,
+      "note": "Spokesperson rejected coalition criticism that La Moneda's 'Segundo Piso' advisers drive decisions and mishandled the Rabat crisis.",
+      "context": "Interview with The Clinic, reproduced by CNN Chile, 15 Nov 2026",
+      "quote": "un mito absoluto"
+    },
+    {
+      "id": "D166",
+      "date": "2026-11-15",
+      "source": "Emol",
+      "type": "Poll",
+      "url": "https://www.emol.com/noticias/Nacional/2026/11/15/1217176/cadem-aprobacion-kast-cae.html",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Cadem Plaza Pública",
+      "strength": 3,
+      "note": "Cadem put Kast's approval at 27% (-2) and disapproval at 69% (+1), his lowest, in a week marked by the truckers' strike.",
+      "context": "Cadem Plaza Pública, second week of November, published Sun 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D167",
+      "date": "2026-11-15",
+      "source": "BioBioChile",
+      "type": "Poll",
+      "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/15/criteria-aprobacion-de-kast-se-desploma-a-minimo-historico-de-18-y-desaprobacion-alcanza-un-72.shtml",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Agenda Criteria",
+      "strength": 3,
+      "note": "Criteria put Kast's approval at a record low of 18% (-6) and disapproval at 72% (+5).",
+      "context": "Agenda Criteria, published 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D168",
+      "date": "2026-11-15",
+      "source": "El Periodista",
+      "type": "News",
+      "url": "https://www.elperiodista.cl/2026/11/kast-inicia-gira-por-asia-y-la-moneda-descarta-cambio-de-gabinete-a-su-regreso/",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Events within government",
+      "actor": "President Kast; Gonzalo Arenas, Undersecretary General of Government",
+      "strength": 1,
+      "note": "Kast landed in Hanoi to start his Asia tour (Vietnam, then APEC in Shenzhen with a Xi Jinping meeting on Tue 17 Nov) and La Moneda ruled out a cabinet change on his return.",
+      "context": "15 Nov 2026; Arenas in an interview with The Clinic",
+      "quote": "no tiene pensado ningún cambio de gabinete después de su gira"
+    },
+    {
+      "id": "D169",
+      "date": "2026-11-16",
+      "source": "El Desconcierto",
+      "type": "Poll",
+      "url": "https://eldesconcierto.cl/actualidad/bencinazo-crisis-economica-y-paro-camioneros-aprobacion-kast-llega-al-punto-mas-8-meses-n5464066",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Cadem; Criteria",
+      "strength": 3,
+      "note": "Kast's approval hit a low of 18% in Criteria (72% disapprove) and 27% in Cadem (69% disapprove) after the fuel-price rise and truckers' strike; Criteria also found growing economic pessimism.",
+      "context": "El Desconcierto, actualidad, 16 Nov 2026, reporting Criteria and Cadem Plaza Pública of 15 Nov",
+      "quote": "alcanzó su registro más bajo en ocho meses"
+    },
+    {
+      "id": "D170",
+      "date": "2026-11-16",
+      "source": "Radio Pauta",
+      "type": "Interview",
+      "url": "https://www.pauta.cl/actualidad/2026/11/16/juan-pablo-lavin-panel-ciudadano-advierte-que-el-crecimiento-sin-mas-empleo-puede-profundizar-el-malestar-social.html",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government approval",
+      "actor": "Juan Pablo Lavín, founder of Panel Ciudadano UDD",
+      "strength": 2,
+      "note": "Lavín said Panel Ciudadano approval of Kast fell from about 30% in June to 20% in November, driven by swing voters, and warned growth without jobs would deepen discontent.",
+      "context": "'Pauta de Análisis', Radio Pauta, 16 Nov 2026",
+      "quote": "la desconfianza y el malestar va a ser cada vez mayor"
+    },
+    {
+      "id": "D171",
+      "date": "2026-11-16",
+      "source": "T13",
+      "type": "News",
+      "url": "https://www.t13.cl/noticia/politica/presidente-kast-por-sus-dichos-contra-ho-chi-minh-quien-hablo-candidato-16-11-2026",
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "José Antonio Kast (President); Francisco Pérez Mackenna (Foreign minister)",
+      "strength": 2,
+      "note": "Kast's Asia tour (Vietnam, APEC in China with Xi bilateral, Japan, to 22 Nov) drew controversy after he laid a wreath for Ho Chi Minh, whom he had called a murderer in 2020.",
+      "context": "T13 report on Kast in Hanoi, 16 Nov 2026; also covered by 24horas and CNN Chile",
+      "quote": "Quien habló en ese momento era el candidato"
+    },
+    {
+      "id": "D172",
+      "date": "2026-11-16",
+      "source": "El Desconcierto",
+      "type": "Poll",
+      "url": "https://eldesconcierto.cl/actualidad/bencinazo-crisis-economica-y-paro-camioneros-aprobacion-kast-llega-al-punto-mas-8-meses-n5464066",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "National mood",
+      "actor": "Cadem; Criteria",
+      "strength": 3,
+      "note": "About 80% backed the truckers' strike (Cadem 79%, Criteria 80%), 84% said the government should have acted sooner, and 66% backed the diesel cut and fuel freeze.",
+      "context": "El Desconcierto, actualidad, 16 Nov 2026, reporting Cadem and Criteria of 15 Nov",
+      "quote": ""
+    },
+    {
+      "id": "D173",
+      "date": "2026-11-13",
+      "source": "Radio Pauta",
+      "type": "News",
+      "url": "https://www.pauta.cl/actualidad/2026/11/13/gobierno-logra-acuerdo-con-gremios-de-camioneros-pero-independientes-mantienen-la-movilizacion.html",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Organised forces",
+      "actor": "Fuerza del Norte; Confederación Centro-Sur; CNTC; CNDC; Cautín truck owners; No+TAG",
+      "strength": 2,
+      "note": "Fuerza del Norte and Centro-Sur accepted the deal and ended the strike, but independents in La Araucanía and Antofagasta and No+TAG stayed mobilised, demanding relief for petrol too.",
+      "context": "Actualidad, 13 Nov 2026",
+      "quote": "Las medidas requieren la aprobación del Congreso"
+    },
+    {
+      "id": "D174",
+      "date": "2026-11-15",
+      "source": "T13",
+      "type": "Poll",
+      "url": "https://www.t13.cl/noticia/politica/cadem-64-respalda-bloqueos-carreteras-realizados-durante-paro-camioneros-pese-a-15-11-2026",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "National mood",
+      "actor": "Cadem",
+      "strength": 2,
+      "note": "Cadem No. 704: 79% agreed with the truckers' strike, 86% found it justified and 64% supported the road blockades (88% of the left, 43% of the right), while 83% said it affected the country.",
+      "context": "Cadem Plaza Pública No. 704 (fieldwork 13 Nov), reported by T13, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D175",
+      "date": "2026-11-15",
+      "source": "CNN Chile",
+      "type": "Poll",
+      "url": "https://www.cnnchile.com/mundo/cadem-aprobacion-kast-27-por-ciento-paro-camioneros/",
+      "topic": "T21",
+      "stream": "Problem",
+      "concept": "Salience",
+      "actor": "Cadem Plaza Pública",
+      "strength": 2,
+      "note": "64% agreed with highway blockades to pressure the government; 43% rated the government's handling of the strike as bad and 84% said it should have acted before the conflict reached the roads.",
+      "context": "Cadem Plaza Pública, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D176",
+      "date": "2026-11-15",
+      "source": "BioBioChile",
+      "type": "Poll",
+      "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/15/criteria-aprobacion-de-kast-se-desploma-a-minimo-historico-de-18-y-desaprobacion-alcanza-un-72.shtml",
+      "topic": "T21",
+      "stream": "Problem",
+      "concept": "Salience",
+      "actor": "Agenda Criteria",
+      "strength": 2,
+      "note": "97% had heard of the truckers' strike, 80% agreed with it (72% even on the right) and 88% considered the demands justified.",
+      "context": "Agenda Criteria, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D177",
+      "date": "2026-11-15",
+      "source": "CNN Chile (Felipe PodKast)",
+      "type": "Podcast",
+      "url": "https://www.cnnchile.com/pais/matthei-critica-plan-seguridad-kast-puro-bluff/",
+      "topic": "T02",
+      "stream": "Problem",
+      "concept": "Feedback",
+      "actor": "Evelyn Matthei (former presidential candidate)",
+      "strength": 2,
+      "note": "Matthei dismissed the Kast government's security plan as pure bluff and said promising what cannot be delivered is deception.",
+      "context": "Felipe PodKast, reported by CNN Chile, c. 15 Nov 2026",
+      "quote": "Cuando tú prometes algo que no puedes cumplir, eso es un engaño"
+    },
+    {
+      "id": "D178",
+      "date": "2026-11-13",
+      "source": "Canal 9 (BioBio)",
+      "type": "News",
+      "url": "https://www.canal9.cl/episodios/2026/11/13/el-incierto-futuro-de-la-ac-contra-rabat-entre-los-votos-que-faltan-y-las-dudas-del-pdg",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Opposition; PDG caucus (Juan Valenzuela)",
+      "strength": 2,
+      "note": "The opposition has about 65 of the 78 votes needed to approve the accusation against Rabat, making the undecided 14-member PDG caucus pivotal.",
+      "context": "13 Nov 2026; accusation reported to the Chamber and committee formed from Mon 16 Nov",
+      "quote": ""
+    },
+    {
+      "id": "D179",
+      "date": "2026-11-15",
+      "source": "24 Horas (TVN, Estado Nacional) via Puranoticia",
+      "type": "Interview",
+      "url": "https://puranoticia.pnt.cl/nacional/presidente-de-la-udi-valora-acuerdo-con-camioneros-y-rechaza-acusacion",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Guillermo Ramírez (deputy, UDI president)",
+      "strength": 2,
+      "note": "UDI president called the sentence-reduction decrees a serious political error but said the constitutional accusation has no constitutional merit to remove Rabat, and criticised the Senate committee for not prioritising the government's bill on child-abuse sentences.",
+      "context": "Estado Nacional (TVN), interview with Guillermo Ramírez, Sun 15 Nov 2026, reported by Puranoticia",
+      "quote": "no hay mérito constitucional para destituir al ministro"
+    },
+    {
+      "id": "D180",
+      "date": "2026-11-15",
+      "source": "CNN Chile (reporting T13 Mesa Central)",
+      "type": "Interview",
+      "url": "https://www.cnnchile.com/pais/elizalde-defiende-fundamentos-de-acusacion-constitucional-contra-rabat-y-afirma-que-el-ministro-cometio-al-menos-cuatro-infracciones/",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Álvaro Elizalde (former Interior minister, PS)",
+      "strength": 2,
+      "note": "Elizalde argued Rabat committed at least four legal and constitutional infractions, including ignoring the 2022 law barring benefits for child sex offenders and giving Congress partial information.",
+      "context": "Mesa Central (Canal 13) interview with Álvaro Elizalde, reported by CNN Chile, 15 Nov 2026",
+      "quote": "ni siquiera la han leído"
+    },
+    {
+      "id": "D181",
+      "date": "2026-11-15",
+      "source": "T13 (Felipe PodKast)",
+      "type": "Podcast",
+      "url": "https://www.t13.cl/noticia/politica/matthei-por-permanencia-rabat-cargo-presidente-pinera-lo-hubiera-echado-15-11-2026",
+      "topic": "T04",
+      "stream": "Problem",
+      "concept": "Frame consensus",
+      "actor": "Evelyn Matthei (former presidential candidate, ex-mayor of Providencia)",
+      "strength": 2,
+      "note": "Matthei said Piñera would have fired Rabat for not consulting, contrasted the quick exits of female ministers, and called the crisis absurdly handled.",
+      "context": "Felipe PodKast (podcast of Felipe Kast), reported by T13, 15 Nov 2026",
+      "quote": "Pocas veces he visto una crisis llevada en forma tan absurda"
+    },
+    {
+      "id": "D182",
+      "date": "2026-11-15",
+      "source": "24 Horas (TVN)",
+      "type": "News",
+      "url": "https://www.24horas.cl/actualidad/politica/bancada-pdg-rechaza-presiones-vlado-mirosevic-por-rabat-acusan-hipocresia",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Lilian Betancurt, Roberto Arroyo (PDG deputies); Vlado Mirosevic (PL senator)",
+      "strength": 2,
+      "note": "PDG deputies, the swing bloc, refused to commit to the accusation against Rabat after Mirosevic accused Parisi of co-governing, saying they will review the evidence first.",
+      "context": "24horas.cl report, 15 Nov 2026",
+      "quote": "Primero analizaremos todos los antecedentes y después tomaremos una decisión responsable"
+    },
+    {
+      "id": "D183",
+      "date": "2026-11-15",
+      "source": "BioBioChile",
+      "type": "Poll",
+      "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/15/criteria-aprobacion-de-kast-se-desploma-a-minimo-historico-de-18-y-desaprobacion-alcanza-un-72.shtml",
+      "topic": "T04",
+      "stream": "Problem",
+      "concept": "Salience",
+      "actor": "Agenda Criteria",
+      "strength": 3,
+      "note": "79% disagreed with keeping Justice Minister Rabat (64% even on the right) and 72% supported his removal via the constitutional accusation.",
+      "context": "Agenda Criteria, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D184",
+      "date": "2026-11-16",
+      "source": "El Desconcierto",
+      "type": "Poll",
+      "url": "https://eldesconcierto.cl/actualidad/bencinazo-crisis-economica-y-paro-camioneros-aprobacion-kast-llega-al-punto-mas-8-meses-n5464066",
+      "topic": "T04",
+      "stream": "Problem",
+      "concept": "Salience",
+      "actor": "Criteria",
+      "strength": 2,
+      "note": "79% opposed Justice Minister Rabat staying in office (up 7 points), and 72% of those aware of the constitutional accusation backed removing him.",
+      "context": "El Desconcierto, actualidad, 16 Nov 2026, reporting Criteria of 15 Nov",
+      "quote": ""
+    },
+    {
+      "id": "D185",
+      "date": "2026-11-16",
+      "source": "El Desconcierto",
+      "type": "Interview",
+      "url": "https://eldesconcierto.cl/actualidad/partido-republicano-busca-explicar-una-campana-contra-kast-la-caida-historica-encuestas-n5464093",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Arturo Squella, president of Partido Republicano",
+      "strength": 1,
+      "note": "The Republican Party leader blamed an unfair campaign for the poll drop, defended Rabat and admitted the repeal bill should have been sent in May.",
+      "context": "El Desconcierto, 16 Nov 2026, quoting Squella's interview with Radio Duna",
+      "quote": "Ha existido una campaña muy injusta en contra del ministro"
+    },
+    {
+      "id": "D186",
+      "date": "2026-11-16",
+      "source": "Diario Financiero",
+      "type": "News",
+      "url": "https://www.df.cl/economia-y-politica/congreso/acusacion-constitucional-rabat-enfrentara-comision-revisora-con-mayoria-de",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Cámara de Diputados; opposition (Raúl Soto, PPD; Lorena Fries, FA; Lorena Pizarro, PC)",
+      "strength": 2,
+      "note": "The review committee for the constitutional accusation against Rabat was drawn with a 3-2 opposition majority; Kast keeps his full backing for the minister.",
+      "context": "Diario Financiero, Congreso section, 16 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D187",
+      "date": "2026-11-16",
+      "source": "24 Horas (TVN)",
+      "type": "News",
+      "url": "https://www.24horas.cl/actualidad/politica/kast-descarta-salida-ministro-rabat-acusacion-constitucional",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "José Antonio Kast (President)",
+      "strength": 2,
+      "note": "From Vietnam, Kast took responsibility and ratified full support for Rabat as the accusation was formally reported to the Chamber.",
+      "context": "Kast press point in Vietnam, reported by 24horas.cl, Mon 16 Nov 2026",
+      "quote": "No tengo considerado cambiarlo"
+    },
+    {
+      "id": "D188",
+      "date": "2026-11-16",
+      "source": "24 Horas (TVN)",
+      "type": "News",
+      "url": "https://www.24horas.cl/actualidad/politica/mayoria-opositora-revisara-en-comision-la-acusacion-constitucional-rabat",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Chamber of Deputies",
+      "strength": 2,
+      "note": "Review commission for the three-chapter accusation against Rabat was drawn by lot with a 3-2 opposition majority (Chandía, Pizarro, Verdugo, Soto, Fríes).",
+      "context": "24horas.cl report, Mon 16 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D189",
+      "date": "2026-11-16",
+      "source": "T13 (reporting Radio Infinita)",
+      "type": "Interview",
+      "url": "https://www.t13.cl/noticia/politica/vicepresidente-alvarado-se-muestra-optimista-ante-votacion-ac-contra-rabat-16-11-2026",
+      "topic": "T04",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Claudio Alvarado (vice president, interior/segpres biminister)",
+      "strength": 2,
+      "note": "Alvarado expects the coalition's 75 deputies to reject the accusation, framing the sentence reductions as a systemic flaw in the law rather than a constitutional breach.",
+      "context": "Radio Infinita interview with Claudio Alvarado, reported by T13 and CNN Chile, 16 Nov 2026",
+      "quote": "la cohesión en el oficialismo ha ido aumentando"
+    },
+    {
+      "id": "D190",
+      "date": "2026-11-15",
+      "source": "CNN Chile",
+      "type": "Poll",
+      "url": "https://www.cnnchile.com/pais/encuesta-criteria-aprobacion-al-presidente-kast-bajo-a-18-llegando-a-su-menor-registro-y-desaprobacion-subio-a-72/",
+      "topic": "T06",
+      "stream": "Politics",
+      "concept": "National mood",
+      "actor": "Criteria",
+      "strength": 2,
+      "note": "Criteria: 60% expect the economy to worsen in six months (+11), 46% expect their household situation to worsen and 53% expect job prospects to worsen (+7).",
+      "context": "Agenda Criteria poll, reported by CNN Chile, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D191",
+      "date": "2026-11-15",
+      "source": "BioBioChile",
+      "type": "Poll",
+      "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/15/criteria-aprobacion-de-kast-se-desploma-a-minimo-historico-de-18-y-desaprobacion-alcanza-un-72.shtml",
+      "topic": "T06",
+      "stream": "Politics",
+      "concept": "National mood",
+      "actor": "Agenda Criteria",
+      "strength": 2,
+      "note": "60% expect the economy to worsen in six months (+11 since October) and 53% expect job prospects to worsen.",
+      "context": "Agenda Criteria, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D192",
+      "date": "2026-11-13",
+      "source": "BioBioChile",
+      "type": "News",
+      "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/13/tras-derrota-en-la-camara-el-complejo-panorama-del-gobierno-para-salvar-presupuesto-2027-en-el-senado.shtml",
+      "topic": "T08",
+      "stream": "Problem",
+      "concept": "Focusing event",
+      "actor": "Chamber of Deputies; Finance Minister Jorge Quiroz; Sen. Iván Flores (DC); Sen. Daniela Cicardini (PS)",
+      "strength": 3,
+      "note": "The Chamber dispatched the 2027 budget to the Senate on 13 Nov after rejecting seven ministry lines and the new-debt authorisation, a defeat the government must reverse in the Senate.",
+      "context": "Nacional; Chamber floor vote ending early Fri 13 Nov 2026",
+      "quote": "es un presupuesto amarrete, restrictivo"
+    },
+    {
+      "id": "D193",
+      "date": "2026-11-13",
+      "source": "El Periodista",
+      "type": "News",
+      "url": "https://www.elperiodista.cl/2026/11/camara-despacha-presupuesto-2027-al-senado-tras-rechazar-recursos-de-seis-ministerios-y-endeudamiento-por-us25-mil-millones/",
+      "topic": "T08",
+      "stream": "Problem",
+      "concept": "Focusing event",
+      "actor": "Chamber of Deputies",
+      "strength": 2,
+      "note": "The Chamber rejected the Executive's authorisation to borrow up to US$25 billion and article 50 on starting public works, plus funds for IND, Senadis, Mejor Niñez, Labour sub-secretariats and the INDH.",
+      "context": "Chamber dispatch of Budget 2027, 13 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D194",
+      "date": "2026-11-16",
+      "source": "BioBioChile",
+      "type": "Interview",
+      "url": "https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/11/16/quiroz-sale-a-explicar-por-que-subsidian-los-precios-de-la-gasolina-ahora-y-no-durante-el-bencinazo.shtml",
+      "topic": "T08",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "Finance Minister Jorge Quiroz",
+      "strength": 1,
+      "note": "Quiroz said the extra fuel spending would not change fiscal consolidation, warned that dropping the target could hurt credit ratings, and said the 0.7% growth target was 'difícil'.",
+      "context": "BioBioChile economy, 16 Nov 2026, reporting Quiroz's interview with La Tercera Pulso",
+      "quote": "un dolorcillo de guata"
+    },
+    {
+      "id": "D195",
+      "date": "2026-11-16",
+      "source": "Diario Financiero",
+      "type": "News",
+      "url": "https://www.df.cl/economia-y-politica/congreso/claves-del-congreso-proyecto-de-presupuestos-aterriza-en-el-senado-con-el",
+      "topic": "T08",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Senado; Cámara de Diputados",
+      "strength": 2,
+      "note": "The 2027 budget reached the Senate with seven lines rejected by the Chamber (Education, Interior, Segegob, Mining, Women, Culture, Science); the Senate floor votes 17-19 Nov.",
+      "context": "Diario Financiero, 'Claves del Congreso', 16 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D196",
+      "date": "2026-11-16",
+      "source": "El Dínamo",
+      "type": "News",
+      "url": "https://www.eldinamo.cl/politica/2026/11/16/presupuesto-quiroz-llega-al-senado-con-siete-partidas-por-reponer",
+      "topic": "T08",
+      "stream": "Politics",
+      "concept": "Agenda tool used (budget)",
+      "actor": "Jorge Quiroz, Finance Minister",
+      "strength": 2,
+      "note": "Quiroz said the government will try to restore the rejected lines with adjustments in the Senate and offered a joint review of the 'Yo elijo mi PC' programme.",
+      "context": "Política; Quiroz statements after the Chamber vote, 13–16 Nov 2026",
+      "quote": "Quedan más y las veremos en el Senado."
+    },
+    {
+      "id": "D197",
+      "date": "2026-11-16",
+      "source": "El Ciudadano",
+      "type": "Interview",
+      "url": "https://www.elciudadano.com/politica/cuando-paran-los-camioneros-la-austeridad-queda-en-la-guantera-quiroz-justifica-gasto-fiscal-de-us700-millones/11/16/",
+      "topic": "T08",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "Jorge Quiroz, Finance Minister",
+      "strength": 2,
+      "note": "Quiroz put the fiscal cost of the truckers' deal at about US$700 million and defended it as pragmatic despite the austerity line.",
+      "context": "Interview with La Tercera (paywalled/blocked), reported by El Ciudadano, 16 Nov 2026",
+      "quote": "Para Hacienda siempre va a haber un dolorcillo de guata"
+    },
+    {
+      "id": "D198",
+      "date": "2026-11-13",
+      "source": "Radio Pauta",
+      "type": "News",
+      "url": "https://www.pauta.cl/actualidad/2026/11/13/camara-de-diputados-aprueba-el-presupuesto-2027-y-lo-despacha-al-senado.html",
+      "topic": "T09",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Chamber of Deputies; Executive",
+      "strength": 2,
+      "note": "The Chamber approved the Health budget 82–41, restoring primary-care variable costs, and approved an amendment raising Ricarte Soto Law funding that the Executive challenged with a constitutionality reservation.",
+      "context": "Actualidad; Chamber floor vote on Budget 2027, 13 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D199",
+      "date": "2026-11-13",
+      "source": "Radio Universidad de Chile",
+      "type": "News",
+      "url": "https://radio.uchile.cl/2026/11/13/colegio-de-profesores-convoca-a-movilizacion-nacional-para-el-24-de-noviembre/",
+      "topic": "T14",
+      "stream": "Politics",
+      "concept": "Organised forces",
+      "actor": "Colegio de Profesores (Mario Aguilar, national president)",
+      "strength": 2,
+      "note": "The teachers' union called a national strike and march for 24 Nov against the government's restrictive 2027 education budget after the Chamber rejected it.",
+      "context": "Colegio de Profesores announcement, 13 Nov 2026",
+      "quote": "gran marcha nacional docente"
+    },
+    {
+      "id": "D200",
+      "date": "2026-11-16",
+      "source": "El Dínamo",
+      "type": "News",
+      "url": "https://www.eldinamo.cl/politica/2026/11/16/presupuesto-quiroz-llega-al-senado-con-siete-partidas-por-reponer",
+      "topic": "T14",
+      "stream": "Problem",
+      "concept": "Focusing event",
+      "actor": "Chamber of Deputies; Finance Minister Jorge Quiroz",
+      "strength": 3,
+      "note": "The Executive's amendment to restore the Education ministry budget failed 72–72 on the Chamber floor, leaving Education among seven rejected lines (with Interior, Mining, Women, Culture, Segegob, Science) for the Senate.",
+      "context": "Política; Senate stage expected 17–19 Nov, legal deadline 29 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D201",
+      "date": "2026-11-15",
+      "source": "CNN Chile",
+      "type": "Poll",
+      "url": "https://www.cnnchile.com/mundo/cadem-aprobacion-kast-27-por-ciento-paro-camioneros/",
+      "topic": "T16",
+      "stream": "Politics",
+      "concept": "National mood",
+      "actor": "Cadem",
+      "strength": 1,
+      "note": "Cadem: 64% support raising the toll refund for intercity buses from 35% to 70%, part of the truckers' deal.",
+      "context": "Cadem Plaza Pública, reported by CNN Chile, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D202",
+      "date": "2026-11-13",
+      "source": "El Periodista",
+      "type": "News",
+      "url": "https://www.elperiodista.cl/2026/11/camara-despacha-presupuesto-2027-al-senado-tras-rechazar-recursos-de-seis-ministerios-y-endeudamiento-por-us25-mil-millones/",
+      "topic": "T17",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Chamber of Deputies; regional governors; Hacienda",
+      "strength": 1,
+      "note": "Regional governments' budget lines passed the Chamber without rejection, credited to the earlier Hacienda–governors agreement to restore regional funds.",
+      "context": "Chamber dispatch of Budget 2027, 13 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D203",
+      "date": "2026-11-13",
+      "source": "Meganoticias",
+      "type": "Interview",
+      "url": "https://www.meganoticias.cl/nacional/536304-sergio-perez-valora-acuerdo-con-gobierno-paro-de-camioneros-radio-infinita-13-11-2026.html",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Organised forces",
+      "actor": "Sergio Pérez, CNTC president",
+      "strength": 2,
+      "note": "The CNTC president said the government arrived late and the crisis could have been avoided with the same measures months earlier, and urged strikers to clear the roads.",
+      "context": "Radio Infinita interview with Juan Manuel Astorga, 13 Nov 2026",
+      "quote": "Esto podría haberse evitado hace dos o tres meses"
+    },
+    {
+      "id": "D204",
+      "date": "2026-11-15",
+      "source": "24 Horas (TVN, Estado Nacional)",
+      "type": "Interview",
+      "url": "https://www.24horas.cl/actualidad/politica/guillermo-ramirez-admite-momento-dificil-del-ejecutivo",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Guillermo Ramírez (deputy, UDI president)",
+      "strength": 2,
+      "note": "UDI president backed the truckers' deal and fuel freeze (fiscal cost near US$1bn), predicted broad support in both chambers for Tuesday's bill and endorsed restoring order against unions still blocking roads; he also called for government self-criticism over falling polls.",
+      "context": "Estado Nacional (TVN), interview with Guillermo Ramírez, Sun 15 Nov 2026",
+      "quote": "no tienen derecho a parar el tráfico"
+    },
+    {
+      "id": "D205",
+      "date": "2026-11-15",
+      "source": "T13 (Mesa Central)",
+      "type": "Interview",
+      "url": "https://www.t13.cl/noticia/politica/subsecretario-maximo-pavez-defiende-acuerdo-del-gobierno-camioneros-gran-parte-15-11-2026",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "Máximo Pavez (Interior undersecretary)",
+      "strength": 2,
+      "note": "Interior undersecretary defended the truckers' deal (reversal of $39/$42 rises plus $100 diesel cut, up to $142/litre, price ceiling to end-March), costed by Quiroz at US$500m, and said Mepco absorbed 1.4 trillion pesos Mar-Nov.",
+      "context": "Mesa Central (Canal 13), interview with Máximo Pavez, Sun 15 Nov 2026",
+      "quote": "Gran parte beneficia a toda la ciudadanía"
+    },
+    {
+      "id": "D206",
+      "date": "2026-11-15",
+      "source": "CNN Chile",
+      "type": "Poll",
+      "url": "https://www.cnnchile.com/mundo/cadem-aprobacion-kast-27-por-ciento-paro-camioneros/",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "National mood",
+      "actor": "Cadem",
+      "strength": 2,
+      "note": "Cadem: 66% back the $142 diesel cut and 66% back freezing fuel rises until 31 March 2027.",
+      "context": "Cadem Plaza Pública, reported by CNN Chile, 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D207",
+      "date": "2026-11-15",
+      "source": "CNN Chile",
+      "type": "News",
+      "url": "https://www.cnnchile.com/pais/congreso-busca-aprobar-este-martes-rebaja-de-142-al-diesel-tras-acuerdo-con-camioneros/",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Paulina Núñez (Senate president, RN); Carlos Bianchi (opposition); Máximo Pavez",
+      "strength": 2,
+      "note": "Both chambers coordinated to pass by Tuesday 17 Nov the bill cutting diesel $142, capping rises to 31 Mar 2027 and widening trucker tax and toll refunds.",
+      "context": "CNN Chile report, c. 15 Nov 2026 (links Cooperativa 15 Nov)",
+      "quote": ""
+    },
+    {
+      "id": "D208",
+      "date": "2026-11-15",
+      "source": "Emol",
+      "type": "Poll",
+      "url": "https://www.emol.com/noticias/Nacional/2026/11/15/1217176/cadem-aprobacion-kast-cae.html",
+      "topic": "T21",
+      "stream": "Problem",
+      "concept": "Salience",
+      "actor": "Cadem Plaza Pública",
+      "strength": 2,
+      "note": "86% saw the truckers' strike as justified, 79% backed it as pressure to lower fuel prices, 77% said the resources should have been used in March before the 'bencinazo', and 66% backed the $142 diesel cut.",
+      "context": "Cadem Plaza Pública, published 15 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D209",
+      "date": "2026-11-15",
+      "source": "El Dínamo",
+      "type": "Interview",
+      "url": "https://www.eldinamo.cl/politica/2026/11/15/pavez-defiende-acuerdo-con-camioneros-y-aborda-dura-caida-en-aprobacion-del-presidente-kast/",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "Máximo Pavez, Undersecretary of the Interior",
+      "strength": 2,
+      "note": "The Interior undersecretary defended the truckers' deal ($142 diesel and $39 petrol cuts, ceiling to 31 Mar 2027) as dialogue-based and urged caution about the poll fall.",
+      "context": "Mesa Central, Tele13 Radio/Canal 13, Sun 15 Nov 2026",
+      "quote": "propuestas concretas arriba de la mesa"
+    },
+    {
+      "id": "D210",
+      "date": "2026-11-16",
+      "source": "BioBioChile",
+      "type": "Interview",
+      "url": "https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/11/16/quiroz-sale-a-explicar-por-que-subsidian-los-precios-de-la-gasolina-ahora-y-no-durante-el-bencinazo.shtml",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Government intention",
+      "actor": "Finance Minister Jorge Quiroz",
+      "strength": 2,
+      "note": "Quiroz defended the US$700m truckers' deal and argued that subsidising fuel from March would have cost almost US$2bn more.",
+      "context": "BioBioChile economy, 16 Nov 2026, reporting Quiroz's interview with La Tercera Pulso",
+      "quote": "el costo total a la fecha sería de casi US$2.000 millones más"
+    },
+    {
+      "id": "D211",
+      "date": "2026-11-16",
+      "source": "Diario Financiero",
+      "type": "News",
+      "url": "https://www.df.cl/economia-y-politica/congreso/claves-del-congreso-proyecto-de-presupuestos-aterriza-en-el-senado-con-el",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Agenda tool used (urgency)",
+      "actor": "Cámara Hacienda committee; Senado",
+      "strength": 1,
+      "note": "The fuel-freeze bill goes to the Chamber's Finance committee on Monday, while the Senate holds a special session on the bill protecting small freight carriers, part of the strike deal.",
+      "context": "Diario Financiero, 'Claves del Congreso', 16 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D212",
+      "date": "2026-11-16",
+      "source": "24 Horas (TVN)",
+      "type": "News",
+      "url": "https://www.24horas.cl/actualidad/politica/rebaja-bencinas-fecha-cuanto-bajaran",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Jorge Quiroz (Finance minister); Chamber Finance Committee",
+      "strength": 2,
+      "note": "Chamber Finance Committee unanimously approved the fuel bill; Quiroz aimed for same-day dispatch so a $40 petrol cut and freeze apply from Thursday 19 Nov.",
+      "context": "24horas.cl report, Mon 16 Nov 2026",
+      "quote": "Esperamos que se despache hoy día"
+    },
+    {
+      "id": "D213",
+      "date": "2026-11-16",
+      "source": "CNN Chile Radio",
+      "type": "Interview",
+      "url": "https://www.cnnchile.com/lodijeronencnn/parisi-cuestiona-rumbo-gobierno-kast-tecnocracia-sentido-comun/",
+      "topic": "T21",
+      "stream": "Problem",
+      "concept": "Frame consensus",
+      "actor": "Franco Parisi (PDG leader)",
+      "strength": 1,
+      "note": "PDG leader criticised the government's technocratic fast pass-through of fuel prices that hurt small transporters, and blamed Kast for the Rabat case.",
+      "context": "CNN Chile Radio interview with Franco Parisi; listed 16 Nov 2026 (date not stated in text)",
+      "quote": "La tecnocracia le está ganando al sentido común"
+    },
+    {
+      "id": "D214",
+      "date": "2026-11-16",
+      "source": "La Nación",
+      "type": "News",
+      "url": "https://www.lanacion.cl/discusion-inmediata-en-el-congreso-para-el-proyecto-de-rebaja-del-diesel/",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Agenda tool used (urgency)",
+      "actor": "Executive; Senate president Paulina Núñez (RN)",
+      "strength": 3,
+      "note": "The diesel-cut bill implementing the truckers' deal entered Congress with 'discusión inmediata' urgency, aiming for Chamber passage on 16 Nov and Senate passage on 17 Nov.",
+      "context": "16 Nov 2026",
+      "quote": "tiene discusión inmediata"
+    },
+    {
+      "id": "D215",
+      "date": "2026-11-16",
+      "source": "Cooperativa",
+      "type": "News",
+      "url": "https://www.cooperativa.cl/noticias/pais/politica/agenda-legislativa/proyecto-que-rebaja-el-precio-de-los-combustibles-avanzo-en-la-comision/2026-11-16/145302.html",
+      "topic": "T21",
+      "stream": "Politics",
+      "concept": "Coalition or vote",
+      "actor": "Chamber Finance committee",
+      "strength": 2,
+      "note": "The Chamber Finance committee approved the fuel bill with cross-party support and sent it to the floor; the price cap now runs to 7 Apr 2027 to match three-week pricing cycles.",
+      "context": "Agenda legislativa, 16 Nov 2026",
+      "quote": ""
+    },
+    {
+      "id": "D216",
+      "date": "2026-11-16",
+      "source": "BioBioChile",
+      "type": "News",
+      "url": "https://www.biobiochile.cl/noticias/economia/actualidad-economica/2026/11/16/advierten-que-proyecto-que-frena-las-bencinas-obligaria-a-reasignar-recursos-fiscales-en-2027.shtml",
+      "topic": "T21",
+      "stream": "Problem",
+      "concept": "Feedback",
+      "actor": "Luis Conejeros (Rabbitts Capital); Undersecretary Karlfranz Koehler",
+      "strength": 1,
+      "note": "Cost estimates for the fuel measure rose from about US$500m to US$700–900m, and an economist warned Hacienda will have to reallocate 2027 spending to meet the structural balance target.",
+      "context": "Economy section, 16 Nov 2026",
+      "quote": "Hacienda va a tener que reasignar los gastos"
+    }
+  ],
+  "signals": [
+    {
+      "topic": "T21",
+      "stream": "Problem",
+      "prev": 3,
+      "proposed": 3,
+      "concepts": [
+        "Focusing event",
+        "Salience"
+      ],
+      "items": [
+        "D134",
+        "D126",
+        "D153",
+        "D208",
+        "D176"
+      ],
+      "rationale": "The truckers' national strike (9–12 Nov) is a focusing event covered by every logged outlet. Polls on 15 Nov show 97% heard of it and about 80% backed it (Cadem, Criteria), so fuel prices stay a top public concern. Level stays 3."
+    },
+    {
+      "topic": "T21",
+      "stream": "Politics",
+      "prev": 2,
+      "proposed": 3,
+      "concepts": [
+        "Government intention",
+        "Agenda tool used (urgency)",
+        "Coalition or vote",
+        "National mood"
+      ],
+      "items": [
+        "D156",
+        "D158",
+        "D214",
+        "D212",
+        "D204",
+        "D206"
+      ],
+      "rationale": "Raised from 2 (W9, after the bill's withdrawal). The government withdrew its $20 cap bill, settled with two truckers' confederations (diesel cut of $142, prices frozen to 31 Mar 2027) and filed the bill with 'discusión inmediata'. The Chamber Finance committee approved it unanimously on 16 Nov and UDI and the opposition back it; 66% support the measures. Law expected 17–19 Nov, so the window is likely to close next week with a decision taken."
+    },
+    {
+      "topic": "T04",
+      "stream": "Problem",
+      "prev": 3,
+      "proposed": 3,
+      "concepts": [
+        "Salience",
+        "Frame consensus"
+      ],
+      "items": [
+        "D183",
+        "D184",
+        "D181"
+      ],
+      "rationale": "Criteria (15 Nov): 79% disagree with keeping Justice Minister Rabat and 72% back his removal; Matthei, from the governing side, called the crisis badly handled. Attention remains high. Level stays 3."
+    },
+    {
+      "topic": "T04",
+      "stream": "Politics",
+      "prev": 2,
+      "proposed": 3,
+      "concepts": [
+        "Coalition or vote",
+        "Government intention"
+      ],
+      "items": [
+        "D141",
+        "D186",
+        "D188",
+        "D178",
+        "D182",
+        "D179",
+        "D187"
+      ],
+      "rationale": "Raised, following the reviewer's note that the accusation is now filed: the opposition filed it on 12 Nov and on 16 Nov the review committee was drawn with a 3–2 opposition majority. This is a formal step with a timetable. Not lowered for coalition arithmetic because the outcome is open: the opposition has about 65 of 78 votes and the PDG caucus (14) is undecided, while UDI says it has no merit and Kast backs Rabat."
+    },
+    {
+      "topic": "T06",
+      "stream": "Problem",
+      "prev": 2,
+      "proposed": 2,
+      "concepts": [
+        "Indicator change",
+        "Salience"
+      ],
+      "items": [
+        "D142",
+        "D143"
+      ],
+      "rationale": "Kept at the reviewed level of 2. The Central Bank job-ads index fell for a twelfth month (CIPER, 9 Nov), but, as the reviewer noted, unemployment drew little coverage this week. Q3 GDP (18 Nov) and INE unemployment (27 Nov) are the next tests. Growth and recession talk is now tracked separately as T22."
+    },
+    {
+      "topic": "T06",
+      "stream": "Politics",
+      "prev": 2,
+      "proposed": 2,
+      "concepts": [
+        "National mood"
+      ],
+      "items": [
+        "D190",
+        "D191"
+      ],
+      "rationale": "Criteria (15 Nov): 53% expect job prospects to worsen and 60% expect the economy to worsen (+11). Two outlets report it. No new government move on employment; level held at 2 on mood alone and would drop if nothing follows by W11."
+    },
+    {
+      "topic": "T08",
+      "stream": "Problem",
+      "prev": 2,
+      "proposed": 3,
+      "concepts": [
+        "Focusing event"
+      ],
+      "items": [
+        "D192",
+        "D193",
+        "D195",
+        "D145"
+      ],
+      "rationale": "Raised under the reviewer's new budget rule (problem only when there is a cut or a rejection): the Chamber dispatched the budget on 13 Nov after rejecting seven ministry lines and the authorisation to borrow up to US$25bn, which the press called a defeat for the government. Three outlets. Proposed at 3 as a test of the rule; 2 is defensible if this stays a Congress story without public attention."
+    },
+    {
+      "topic": "T08",
+      "stream": "Politics",
+      "prev": 2,
+      "proposed": 2,
+      "concepts": [
+        "Agenda tool used (budget)",
+        "Government intention"
+      ],
+      "items": [
+        "D196",
+        "D194",
+        "D197"
+      ],
+      "rationale": "Hacienda will try to restore the rejected lines in the Senate (17–19 Nov) before the 29 Nov deadline, and added about US$700m for the truckers' deal while defending the consolidation target. A scheduled Senate decision would be level 3; lowered by one because the Chamber vote shows blocking arithmetic and approval is at 18% (the reviewer's lead on executive-driven windows). Same level the reviewer set for W9."
+    },
+    {
+      "topic": "T09",
+      "stream": "Problem",
+      "prev": 2,
+      "proposed": 1,
+      "concepts": [
+        "Feedback"
+      ],
+      "items": [
+        "D198"
+      ],
+      "rationale": "Lowered: the Chamber approved the Health budget 82–41, restored primary-care funds and raised Ricarte Soto funding. With the cuts reversed there is no new event, matching the reviewer's view that this is 'not yet an issue'."
+    },
+    {
+      "topic": "T09",
+      "stream": "Politics",
+      "prev": 3,
+      "proposed": 2,
+      "concepts": [
+        "Coalition or vote",
+        "Agenda tool used (budget)"
+      ],
+      "items": [
+        "D198"
+      ],
+      "rationale": "Lowered: the decision was taken in the Chamber; the Senate step remains. Window proposed as closing (decision taken)."
+    },
+    {
+      "topic": "T14",
+      "stream": "Problem",
+      "prev": 2,
+      "proposed": 2,
+      "concepts": [
+        "Focusing event"
+      ],
+      "items": [
+        "D200",
+        "D147"
+      ],
+      "rationale": "The Education line was rejected again (72–72) and stays among the seven rejected lines; under the budget rule a rejection counts as a problem event. Two outlets."
+    },
+    {
+      "topic": "T14",
+      "stream": "Politics",
+      "prev": 2,
+      "proposed": 2,
+      "concepts": [
+        "Organised forces",
+        "Agenda tool used (budget)"
+      ],
+      "items": [
+        "D199",
+        "D196"
+      ],
+      "rationale": "The teachers' union called a national strike and march for 24 Nov over the education budget, and Hacienda offered to restore funds in the Senate. Level 2 (W9 politics is still pending review)."
+    },
+    {
+      "topic": "T16",
+      "stream": "Politics",
+      "prev": 1,
+      "proposed": 2,
+      "concepts": [
+        "Government intention",
+        "Organised forces",
+        "National mood"
+      ],
+      "items": [
+        "D148",
+        "D201"
+      ],
+      "rationale": "Raised: the truckers' deal doubles the toll refund for intercity buses (35% to 70%), No+TAG joined the blockades demanding lower tolls, and Cadem finds 64% support the refund. Problem stays at 1, so this is watch only."
+    },
+    {
+      "topic": "T22",
+      "stream": "Problem",
+      "prev": null,
+      "proposed": 2,
+      "concepts": [
+        "Indicator change",
+        "Frame consensus"
+      ],
+      "items": [
+        "D123",
+        "D124"
+      ],
+      "rationale": "New topic. The Central Bank expectations survey cut 2026 growth to 0% (10 Nov) and the Finance Minister said Chile is 'technically' in a recession (11 Nov). Indicator change corroborated by the government itself. Q3 GDP on 18 Nov will confirm or ease it."
+    },
+    {
+      "topic": "T22",
+      "stream": "Politics",
+      "prev": null,
+      "proposed": 1,
+      "concepts": [
+        "National mood"
+      ],
+      "items": [
+        "D170",
+        "D190"
+      ],
+      "rationale": "New topic. Pessimism is rising (60% expect the economy to worsen) and Panel Ciudadano warns of growth without jobs, but there is no government plan or bill on growth. Weak signal."
+    },
+    {
+      "topic": "T23",
+      "stream": "Problem",
+      "prev": null,
+      "proposed": 1,
+      "concepts": [
+        "Indicator change"
+      ],
+      "items": [
+        "D122"
+      ],
+      "rationale": "New topic, weak. The Children's Ombudsman reports more than 41,000 children waiting for protection places and cuts in 102 budget items. One source (CIPER, citing Emol)."
+    },
+    {
+      "topic": "Cross-cutting",
+      "stream": "Politics",
+      "prev": null,
+      "proposed": null,
+      "concepts": [
+        "Government approval",
+        "National mood"
+      ],
+      "items": [
+        "D164",
+        "D166",
+        "D167",
+        "D169",
+        "D170",
+        "D172"
+      ],
+      "rationale": "The big change the reviewer flagged: approval fell to 18% in Criteria (−6, lowest since taking office) and 27% in Cadem (−2), with Panel Ciudadano near 20%. The fall follows the fuel rise and the strike. Following the reviewer's lead, executive-driven windows were checked: Budget politics is held at 2 rather than 3 because of the Chamber defeat and low approval; the fuel deal (T21) is not lowered because 66% back it; the accusation (T04) is driven by the opposition with 72% support, so it is not lowered either."
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-11-17",
+      "end": "2026-11-19",
+      "label": "Fuel bill: Chamber floor, then Senate ('discusión inmediata')",
+      "short": "Fuel bill",
+      "lane": "Fuel prices",
+      "topic": "T21",
+      "key": true
+    },
+    {
+      "date": "2026-11-19",
+      "end": null,
+      "label": "Fuel price cut and freeze take effect (if law passes)",
+      "short": "Freeze starts",
+      "lane": "Fuel prices",
+      "topic": "T21"
+    },
+    {
+      "date": "2026-11-17",
+      "end": "2026-11-19",
+      "label": "Senate takes up Budget 2027; restoration of rejected lines",
+      "short": "Senate",
+      "lane": "Budget 2027",
+      "topic": "T08"
+    },
+    {
+      "date": "2026-11-29",
+      "end": null,
+      "label": "Budget deadline (29–30 Nov)",
+      "short": "Deadline",
+      "lane": "Budget 2027",
+      "topic": "T08",
+      "key": true
+    },
+    {
+      "date": "2026-11-24",
+      "end": null,
+      "label": "Teachers' national strike and march",
+      "short": "Teachers' strike",
+      "lane": "Education budget",
+      "topic": "T14"
+    },
+    {
+      "date": "2026-11-16",
+      "end": "2026-12-20",
+      "label": "Accusation against Rabat: review committee, then floor vote",
+      "short": "Accusation committee, vote",
+      "lane": "Sentence reductions",
+      "topic": "T04"
+    },
+    {
+      "date": "2026-11-17",
+      "end": "2027-01-31",
+      "label": "Sala Cuna: Hacienda committee and floor; target before Feb",
+      "short": "Hacienda committee, floor",
+      "lane": "Sala Cuna",
+      "topic": "T07"
+    },
+    {
+      "date": "2026-11-18",
+      "end": null,
+      "label": "Q3 GDP release (Banco Central)",
+      "short": "GDP Q3",
+      "lane": "Growth and employment",
+      "topic": "T22",
+      "key": true
+    },
+    {
+      "date": "2026-11-27",
+      "end": null,
+      "label": "INE unemployment, Aug–Oct",
+      "short": "INE",
+      "lane": "Growth and employment",
+      "topic": "T06"
+    },
+    {
+      "date": "2026-12-07",
+      "end": null,
+      "label": "November CPI (INE)",
+      "short": "CPI",
+      "lane": "Fuel prices",
+      "topic": "T21"
+    },
+    {
+      "date": "2026-12-15",
+      "end": null,
+      "label": "Monetary policy meeting (rate 4.5%)",
+      "short": "Rate decision",
+      "lane": "Growth and employment",
+      "topic": "T22"
+    },
+    {
+      "date": "2026-12-30",
+      "end": null,
+      "label": "INE unemployment, Sep–Nov",
+      "short": "INE",
+      "lane": "Growth and employment",
+      "topic": "T06"
+    }
+  ],
+  "context": {
+    "approvalNote": "Approval fell to new lows on 15 Nov: Criteria 18% (−6), Cadem 27% (−2). Both polls tie the fall to the fuel rise and the truckers' strike; about 80% backed the strike.",
+    "problems": [
+      "Cadem and Criteria (15 Nov): about 80% backed the truckers' strike; 84% say the government should have acted sooner.",
+      "Criteria (15 Nov): 79% disagree with keeping Justice Minister Rabat.",
+      "Criteria (15 Nov): 60% expect the economy to worsen in six months (+11)."
+    ],
+    "budget": "The Chamber dispatched Budget 2027 to the Senate on 13 Nov with seven ministry lines (Education, Interior, Segegob, Mining, Women, Culture, Science) and the US$25bn debt authorisation rejected. Senate 17–19 Nov; deadline 29–30 Nov.",
+    "cabinet": "Kast is on an Asia tour (Vietnam, APEC in Shenzhen with a Xi Jinping meeting on 17 Nov, Japan) to 22 Nov; his wreath for Ho Chi Minh drew criticism. La Moneda ruled out a cabinet change."
+  },
+  "coverage": {
+    "CL-N01": {
+      "scanned": 0,
+      "note": "La Tercera blocked fetching; interviews read through other outlets"
+    },
+    "CL-N02": {
+      "scanned": 0,
+      "note": "El Mercurio paywalled; not scanned"
+    },
+    "CL-N07": {
+      "scanned": 0,
+      "note": "El País Chile: site search rejected, nothing found"
+    },
+    "CL-N13": {
+      "scanned": 0,
+      "note": "Radio Duna: no written coverage found"
+    },
+    "CL-P05": {
+      "scanned": 0,
+      "note": "Al Pan Pan: no episodes found for the period"
+    },
+    "CL-T02": {
+      "scanned": 0,
+      "note": "Tolerancia Cero (15 Nov): no written coverage found"
+    },
+    "CL-L01": {
+      "scanned": 0,
+      "note": "InfoLobby could not be queried"
+    }
+  },
+  "completeness": [
+    {
+      "story": "Approval falls to 18% (Criteria) and 27% (Cadem)",
+      "status": "coded",
+      "items": [
+        "D164",
+        "D166",
+        "D167"
+      ]
+    },
+    {
+      "story": "Truckers' deal and the fuel-freeze bill",
+      "status": "coded",
+      "items": [
+        "D205",
+        "D212",
+        "D214"
+      ]
+    },
+    {
+      "story": "Accusation against Minister Rabat: committee drawn, PDG undecided",
+      "status": "coded",
+      "items": [
+        "D186",
+        "D188",
+        "D178"
+      ]
+    },
+    {
+      "story": "Budget 2027 reaches the Senate with seven lines and the debt authorisation rejected",
+      "status": "coded",
+      "items": [
+        "D192",
+        "D193",
+        "D195"
+      ]
+    },
+    {
+      "story": "Teachers' national strike called for 24 Nov",
+      "status": "coded",
+      "items": [
+        "D199"
+      ]
+    },
+    {
+      "story": "Kast's Asia tour and the Ho Chi Minh wreath",
+      "status": "coded",
+      "items": [
+        "D171"
+      ]
+    },
+    {
+      "story": "Economic pessimism and recession talk",
+      "status": "coded",
+      "items": [
+        "D190",
+        "D170"
+      ]
+    },
+    {
+      "story": "Matthei on security and the Rabat case (Felipe PodKast)",
+      "status": "coded",
+      "items": [
+        "D177",
+        "D181"
+      ]
+    },
+    {
+      "story": "Note",
+      "status": "set aside",
+      "reason": "Partial week: this list comes from the run's own searches, not from the weekly round-ups (Animales Políticos, Tolerancia Cero, Estado Nacional, DataDriven). The Friday run checks it against them."
+    }
+  ],
+  "discovery": [
+    "The truckers' strike is coded under T21 (fuel prices) rather than as a new topic, following the reviewer's W9 note. Its public-order side (the government's threat to use the State Security Law) is noted in T21.",
+    "New topics proposed: T22 Growth & recession (problem 2) and T23 Child protection (problem 1). Both await review.",
+    "Kast's Asia tour and the Ho Chi Minh wreath (16 Nov): coded as cross-cutting; likely a one-week story.",
+    "Coverage after 13 Nov is thinner in search results; Friday's run should fill the rest of the week."
+  ],
+  "stories": [
+    {
+      "kind": "approval",
+      "eyebrow": "Politics stream · all topics",
+      "title": "Approval falls to the lowest of the term",
+      "text": "Criteria put approval at 18% (−6) and Cadem at 27% (−2) on 15 Nov, after the fuel rise and the truckers' strike. About 80% backed the strike, and 60% expect the economy to worsen."
+    },
+    {
+      "topic": "T21",
+      "eyebrow": "Hacienda / Energía",
+      "title": "The truckers' deal sets up a fuel law",
+      "text": "The strike ended on 12 Nov with a $142 diesel cut and prices frozen until March, at a cost of about US$700m. The bill passed the Chamber Finance committee unanimously on 16 Nov, so the window is likely to close this week with a decision."
+    },
+    {
+      "topic": "T08",
+      "eyebrow": "Hacienda / Dipres",
+      "title": "The Chamber rejects seven budget lines",
+      "text": "Budget 2027 reached the Senate without Education, Interior, Science and four other lines, and without its US$25bn borrowing authorisation. Under the new budget rule this counts as a problem event; the Senate votes 17–19 Nov."
+    }
+  ]
+}

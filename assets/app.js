@@ -41,6 +41,28 @@
     el.addEventListener("blur", hideTip);
   }
 
+  /* ---------- concepts: codebook hover help ---------- */
+  const CONCEPTS = D.concepts || {}, CALIAS = D.conceptAliases || {}, COLD = D.conceptOld || {};
+  function conceptInfo(name) {
+    const k = CONCEPTS[name] ? name : CALIAS[name];
+    if (k && CONCEPTS[k]) return { key: k, stream: CONCEPTS[k].stream, def: CONCEPTS[k].definition };
+    if (COLD[name]) return { key: name, stream: "", def: COLD[name] };
+    return null;
+  }
+  const cTag = (name) => {
+    const c = conceptInfo(name);
+    return `<span class="concept${c && c.stream ? " c-" + c.stream.toLowerCase() : ""}" tabindex="0" data-concept="${esc(name)}">${esc(name)}</span>`;
+  };
+  const conceptTip = (name) => {
+    const c = conceptInfo(name);
+    if (!c) return `<b>${esc(name)}</b>`;
+    return `<b>${esc(c.key)}</b>${c.stream ? ` · ${esc(c.stream)} stream` : ""}${c.key !== name ? `<br><i>Earlier label: ${esc(name)}</i>` : ""}<br>${esc(c.def)}`;
+  };
+  document.addEventListener("mousemove", (e) => { const el = e.target.closest && e.target.closest("[data-concept]"); if (el) showTip(conceptTip(el.dataset.concept), e); });
+  document.addEventListener("mouseout", (e) => { if (e.target.closest && e.target.closest("[data-concept]")) hideTip(); });
+  document.addEventListener("focusin", (e) => { const el = e.target.closest && e.target.closest("[data-concept]"); if (el) { const r = el.getBoundingClientRect(); showTip(conceptTip(el.dataset.concept), { clientX: r.right, clientY: r.top }); } });
+  document.addEventListener("focusout", (e) => { if (e.target.closest && e.target.closest("[data-concept]")) hideTip(); });
+
   const lvPill = (v, title) => `<span class="lv l${v}" title="${esc(title || LEVEL[v])}">${v}</span>`;
   const dot = (st) => `<span class="dot ${st}" aria-hidden="true"></span>`;
   const badge = (t) => `<span class="badge">${dot(t.status)}${esc(t.statusLabel)}</span>`;
@@ -367,7 +389,7 @@
     if (location.hash.slice(1) !== name) { location.hash = name; return; }
     renderDrawer(id);
   }
-  const itemLi = (i) => `<li><span class="d">${esc(i.date || "n.d.")}<br>${esc(i.week || "")} · ${esc(i.stream)}</span><span>${esc(i.concept)}: ${esc(i.note)}` +
+  const itemLi = (i) => `<li><span class="d">${esc(i.date || "n.d.")}<br>${esc(i.week || "")} · ${esc(i.stream)}</span><span>${cTag(i.concept)} ${esc(i.note)}` +
     (i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : "") +
     `<br><span class="src">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a>${i.context ? " · " + esc(i.context) : ""} · strength ${i.strength}</span></span></li>`;
   function renderDrawer(id) {
@@ -481,6 +503,10 @@
       <div class="method-grid">
         <article class="panel"><h2>How a week is analysed</h2><ol>${li(m.process)}</ol></article>
         <article class="panel"><h2>Rules</h2><ul>${li(m.rules)}</ul></article>
+        <article class="panel concept-panel"><h2>Concepts: how each stream is framed</h2>
+          <p class="panel-sub">Every coded item is tagged with one concept. Hover over a concept anywhere on the site to see its definition.</p>
+          ${["Problem", "Politics"].map((st) => `<h3>${st} stream</h3><dl class="concept-list">${Object.entries(CONCEPTS).filter(([, v]) => v.stream === st).map(([k, v]) => `<dt>${cTag(k)}</dt><dd>${esc(v.definition)}</dd>`).join("")}</dl>`).join("")}
+        </article>
         <article class="panel"><h2>What the monitor reads</h2>
           <p class="panel-sub">Each country has its own source list, curated by people who know its media and politics.</p>
           <table class="rules-table type-table"><thead><tr><th>Source type</th><th>${esc(D.meta.country)}</th><th>What it shows</th></tr></thead><tbody>
@@ -549,7 +575,7 @@
       const tv = topicSel.value, sv = $("#item-stream").value;
       const rows = D.items.filter((i) => (!tv || i.topic === tv) && (!sv || i.stream === sv));
       $("#items").innerHTML = `<thead><tr><th>ID</th><th>Week</th><th>Date</th><th>Topic</th><th>Stream</th><th>Concept</th><th>Actor</th><th>Str.</th><th>Note</th><th>Context and quote</th><th>Source</th></tr></thead><tbody>` +
-        rows.slice().reverse().map((i) => `<tr><td class="num">${esc(i.id)}</td><td class="num">${esc(i.week)}</td><td class="num">${esc(i.date || "n.d.")}</td><td>${i.topic === "Cross-cutting" ? "Cross-cutting" : `<a href="#topic-${i.topic.toLowerCase()}">${esc(byId[i.topic].short)}</a>`}</td><td>${esc(i.stream)}</td><td>${esc(i.concept)}</td><td>${esc(i.actor)}</td><td class="num">${i.strength}</td><td>${esc(i.note)}</td><td>${esc(i.context)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}</td><td><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a></td></tr>`).join("") + `</tbody>`;
+        rows.slice().reverse().map((i) => `<tr><td class="num">${esc(i.id)}</td><td class="num">${esc(i.week)}</td><td class="num">${esc(i.date || "n.d.")}</td><td>${i.topic === "Cross-cutting" ? "Cross-cutting" : `<a href="#topic-${i.topic.toLowerCase()}">${esc(byId[i.topic].short)}</a>`}</td><td>${esc(i.stream)}</td><td>${cTag(i.concept)}</td><td>${esc(i.actor)}</td><td class="num">${i.strength}</td><td>${esc(i.note)}</td><td>${esc(i.context)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}</td><td><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a></td></tr>`).join("") + `</tbody>`;
     };
     topicSel.addEventListener("change", draw); $("#item-stream").addEventListener("change", draw); draw();
   }
@@ -571,6 +597,7 @@
     host.innerHTML = `
       <div class="review-head"><div class="review-tally"><span>Week <b>${esc(REVIEW.week)}</b> (${esc(REVIEW.label)})</span><span><b>${sigs.length}</b> signals</span><span><b>${tally.approve}</b> approved</span><span><b>${tally.change}</b> changed</span><span><b>${tally.reject}</b> rejected</span><span><b>${pending}</b> pending</span></div>
         <div><button type="button" class="btn" id="rv-copy">Copy decisions (CSV)</button> <button type="button" class="btn" id="rv-clear">Clear</button></div></div>
+      ${D.meta.reviewUrl ? `<p class="review-link">Review this week on the <a href="${esc(D.meta.reviewUrl)}" target="_blank" rel="noopener">review page</a>. There you can type or speak a comment on each signal, and the next weekly run reads your decisions and comments directly. This tab still works, but its decisions stay in your browser.</p>` : ""}
       <p class="note-line">${esc(REVIEW.note)}</p>
       ${sigs.map((sg, k) => {
         const d = decisions[sigKey(sg)] || {};
@@ -580,10 +607,10 @@
         return `<article class="signal ${cls}" data-k="${k}">
           <div class="signal-top"><h3>${t ? `<a href="#topic-${t.id.toLowerCase()}">${esc(t.short)}</a>` : "Cross-cutting"} · ${esc(sg.stream)}</h3>
             <span class="lvchange">${sg.proposed == null ? "No level change" : `${sg.prev == null ? "" : lvPill(sg.prev) + " →"} ${lvPill(sg.proposed)} ${esc(LEVEL[sg.proposed])}${sg.prev == null ? " (new)" : ""}`}</span></div>
-          <div class="ctx">Concepts: ${sg.concepts.map(esc).join(", ")}</div>
+          <div class="framing"><span class="framing-label">How the ${esc(sg.stream.toLowerCase())} stream is framed</span> ${sg.concepts.map(cTag).join(" ")}</div>
           <p class="rationale">${esc(sg.rationale)}</p>
           <details><summary>Evidence: ${sg.items.length} coded item${sg.items.length === 1 ? "" : "s"}</summary><ul class="ev">${sg.items.map((x) => itemById[x]).filter(Boolean).map((i) =>
-            `<li><b>${esc(i.concept)}</b>: ${esc(i.note)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}<br><span class="ctx">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · ${esc(i.date)}${i.context ? " · " + esc(i.context) : ""}</span></li>`).join("")}</ul></details>
+            `<li>${cTag(i.concept)} ${esc(i.note)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}<br><span class="ctx">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · ${esc(i.date)}${i.context ? " · " + esc(i.context) : ""}</span></li>`).join("")}</ul></details>
           <div class="decide" role="group" aria-label="Decision">
             <button type="button" class="btn ${d.decision === "approve" ? "is-on" : ""}" data-d="approve">Approve</button>
             <button type="button" class="btn ${d.decision === "change" ? "is-on" : ""}" data-d="change">Change</button>
