@@ -540,14 +540,11 @@
    "format": "Data",
    "url": "https://tramitacion.senado.cl/datos-abiertos-legislativos",
    "access": "Open",
-   "how_read": "Weekly: bills; urgencies; unusual votes (defections",
-   "match": " cross-party majorities)",
-   "added_by": "Senado|Cámara",
-   "added_on": "Claude (from protocol)",
-   "notes": "2026-11-13",
-   "null": [
-    ""
-   ]
+   "how_read": "Weekly: bills; urgencies; unusual votes (defections, cross-party majorities)",
+   "match": "Senado|Cámara",
+   "added_by": "Claude (from protocol)",
+   "added_on": "2026-11-13",
+   "notes": ""
   },
   {
    "id": "CL-E01",
