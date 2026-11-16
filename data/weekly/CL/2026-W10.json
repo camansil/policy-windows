@@ -10,7 +10,7 @@
   "reviewStatus": "proposed",
   "partial": true,
   "coveredTo": "2026-11-16",
-  "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection).",
+  "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection). Partly reviewed on 16 Nov: 4 of 17 signals decided (T04 politics kept at 2; T04 problem, T21 problem and politics approved). The Friday run keeps these decisions when it completes the week.",
   "levels": {
     "T01": [
       3,
@@ -26,7 +26,7 @@
     ],
     "T04": [
       3,
-      3
+      2
     ],
     "T05": [
       1,
@@ -109,7 +109,7 @@
     "T04": {
       "statusLabel": "Problem window",
       "timing": "Accusation filed 12 Nov; review committee drawn 16 Nov; floor vote not yet set",
-      "changed": "Accusation filed (12 Nov) and its review committee drawn with an opposition majority (16 Nov). Proposed politics 2→3. The PDG caucus decides the vote.",
+      "changed": "Accusation filed (12 Nov) and its review committee drawn with an opposition majority (16 Nov). Reviewer kept politics at 2: it is not clear the opposition has the support of its own coalition (about 65 of 78 votes; the PDG caucus undecided).",
       "politics": "The opposition filed a three-chapter accusation against Minister Rabat on 12 Nov; the review committee was drawn on 16 Nov with a 3–2 opposition majority. About 65 of the 78 votes needed; the PDG caucus (14) is undecided, UDI opposes, and Kast backs Rabat. 79% disagree with keeping him (Criteria, 15 Nov)."
     },
     "T05": {
@@ -147,9 +147,11 @@
     "T21": {
       "statusLabel": "Problem window (decision imminent)",
       "timing": "Bill under 'discusión inmediata'; law expected 17–19 Nov",
-      "changed": "Truckers' strike (9–12 Nov) ended with a deal: diesel −$142, rises frozen to 31 Mar 2027 (some sources say 7 Apr), cost US$550m–1bn. Bill passed the Chamber Finance committee unanimously on 16 Nov.",
+      "changed": "Truckers' strike (9–12 Nov) ended with a deal: diesel −$142, rises frozen to 31 Mar 2027 (some sources say 7 Apr), cost US$550m–1bn. Bill passed the Chamber Finance committee unanimously on 16 Nov. Reviewer: fuel prices are not necessarily tied to Mepco, so the topic now covers fuel prices broadly (the truckers' deal, the specific fuel tax, toll refunds); Mepco is one instrument among several.",
       "problem": "A national truckers' strike (9–12 Nov), joined by intercity buses and No+TAG, blocked highways over diesel prices after six consecutive rises. On 15 Nov, 97% had heard of it and about 80% backed it (Cadem, Criteria); 86% found it justified.",
-      "politics": "The government withdrew its $20 cap bill on 11 Nov and agreed with two truckers' confederations on 12 Nov: diesel −$142 per litre, rises frozen to 31 Mar 2027, wider tax and toll refunds (about US$700m). Independents and No+TAG stayed mobilised. The bill, under 'discusión inmediata', passed the Chamber Finance committee unanimously on 16 Nov; 66% back the measures."
+      "politics": "The government withdrew its $20 cap bill on 11 Nov and agreed with two truckers' confederations on 12 Nov: diesel −$142 per litre, rises frozen to 31 Mar 2027, wider tax and toll refunds (about US$700m). Independents and No+TAG stayed mobilised. The bill, under 'discusión inmediata', passed the Chamber Finance committee unanimously on 16 Nov; 66% back the measures.",
+      "name": "Fuel prices",
+      "short": "Fuel prices"
     }
   },
   "newTopics": [
@@ -1062,7 +1064,14 @@
         "D208",
         "D176"
       ],
-      "rationale": "The truckers' national strike (9–12 Nov) is a focusing event covered by every logged outlet. Polls on 15 Nov show 97% heard of it and about 80% backed it (Cadem, Criteria), so fuel prices stay a top public concern. Level stays 3."
+      "rationale": "The truckers' national strike (9–12 Nov) is a focusing event covered by every logged outlet. Polls on 15 Nov show 97% heard of it and about 80% backed it (Cadem, Criteria), so fuel prices stay a top public concern. Level stays 3.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "the fuel prices are not necessarily connected with the Mepco",
+        "by": "Cristian",
+        "at": "2026-11-16"
+      }
     },
     {
       "topic": "T21",
@@ -1083,7 +1092,14 @@
         "D204",
         "D206"
       ],
-      "rationale": "Raised from 2 (W9, after the bill's withdrawal). The government withdrew its $20 cap bill, settled with two truckers' confederations (diesel cut of $142, prices frozen to 31 Mar 2027) and filed the bill with 'discusión inmediata'. The Chamber Finance committee approved it unanimously on 16 Nov and UDI and the opposition back it; 66% support the measures. Law expected 17–19 Nov, so the window is likely to close next week with a decision taken."
+      "rationale": "Raised from 2 (W9, after the bill's withdrawal). The government withdrew its $20 cap bill, settled with two truckers' confederations (diesel cut of $142, prices frozen to 31 Mar 2027) and filed the bill with 'discusión inmediata'. The Chamber Finance committee approved it unanimously on 16 Nov and UDI and the opposition back it; 66% support the measures. Law expected 17–19 Nov, so the window is likely to close next week with a decision taken.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-16"
+      }
     },
     {
       "topic": "T04",
@@ -1099,7 +1115,14 @@
         "D184",
         "D181"
       ],
-      "rationale": "Criteria (15 Nov): 79% disagree with keeping Justice Minister Rabat and 72% back his removal; Matthei, from the governing side, called the crisis badly handled. Attention remains high. Level stays 3."
+      "rationale": "Criteria (15 Nov): 79% disagree with keeping Justice Minister Rabat and 72% back his removal; Matthei, from the governing side, called the crisis badly handled. Attention remains high. Level stays 3.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-16"
+      }
     },
     {
       "topic": "T04",
@@ -1119,7 +1142,14 @@
         "D179",
         "D187"
       ],
-      "rationale": "Raised, following the reviewer's note that the accusation is now filed: the opposition filed it on 12 Nov and on 16 Nov the review committee was drawn with a 3–2 opposition majority. This is a formal step with a timetable. Not lowered for coalition arithmetic because the outcome is open: the opposition has about 65 of 78 votes and the PDG caucus (14) is undecided, while UDI says it has no merit and Kast backs Rabat."
+      "rationale": "Raised, following the reviewer's note that the accusation is now filed: the opposition filed it on 12 Nov and on 16 Nov the review committee was drawn with a 3–2 opposition majority. This is a formal step with a timetable. Not lowered for coalition arithmetic because the outcome is open: the opposition has about 65 of 78 votes and the PDG caucus (14) is undecided, while UDI says it has no merit and Kast backs Rabat.",
+      "review": {
+        "decision": "change",
+        "final": 2,
+        "note": "not fully clear if it has support from its own coalition",
+        "by": "Cristian",
+        "at": "2026-11-16"
+      }
     },
     {
       "topic": "T06",
