@@ -559,14 +559,15 @@ METHOD = dict(
     ],
     sourceTypes=[
         ["Written press and online news", "Focusing events, reports of indicators and feedback, government decisions"],
+        ["Opinion pieces and columns", "Framing, problem brokers and elite positions, especially weekend opinion pages"],
         ["Radio and TV news, including morning shows", "Salience as the public meets it; ministers' and legislators' statements"],
         ["Political interviews, talk shows and podcasts", "Statements that create attention; announced intentions; party positions"],
-        ["Opinion polls", "Most important problems (salience); approval and national mood"],
+        ["Opinion polls", "Changes in the most important problems (salience); approval and national mood"],
         ["Key indicators and official reports", "Changes in growth, inflation, unemployment, investment, crime"],
-        ["Congress records", "Bills, urgencies, vetoes, votes and coalition behaviour"],
+        ["Congress records", "Bills, urgencies, unusual votes and coalition behaviour"],
         ["Executive documents and speeches", "Programme, presidential messages, budget, speeches at business and civil-society events"],
         ["Lobby registers", "Organised interests' access to decision-makers"],
-        ["Calendar of moments", "Budget debate, scheduled votes, elections, anniversaries"],
+        ["Calendar of moments", "Budget debate, scheduled votes, elections, anniversaries (for the timing dimension)"],
         ["Data journalism and analytics newsletters", "Indicator changes with historical precedent; poll aggregation"],
     ],
     publicLimitations=[

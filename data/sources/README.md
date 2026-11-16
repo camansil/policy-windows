@@ -8,9 +8,9 @@ The log is a running document: add a row whenever you learn of a source worth wa
 
 | Column | What to put |
 |---|---|
-| `id` | Country code + type letter + number, e.g. `CL-N08`. Letters: N news, radio and TV; T talk shows; P podcasts; S polls; I indicators; C Congress; E executive and events; L lobby; M moments; D data journalism and analytics newsletters |
+| `id` | Country code + type letter + number, e.g. `CL-N08`. Letters: N news, radio and TV; T talk shows; P podcasts; S polls; I indicators; C Congress; E executive and events; L lobby; M moments; D data journalism and analytics newsletters; O opinion pieces and columns |
 | `name` | Outlet, programme, podcast, poll or indicator |
-| `source_type` | One of: Written press and online news; Radio and TV news; Political interviews, talk shows and podcasts; Opinion polls and poll aggregators; Key indicators and official reports; Congress records; Executive documents and speeches; Lobby registers; Calendar of moments; Data journalism and analytics newsletters |
+| `source_type` | One of: Written press and online news; Radio and TV news; Political interviews, talk shows and podcasts; Opinion polls and poll aggregators; Key indicators and official reports; Congress records; Executive documents and speeches; Lobby registers; Calendar of moments; Data journalism and analytics newsletters; Opinion pieces and columns |
 | `owner` | Publisher, broadcaster or agency |
 | `format` | Web, radio, TV, podcast, PDF, dataset |
 | `url` | Main page or feed |

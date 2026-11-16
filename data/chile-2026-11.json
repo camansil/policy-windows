@@ -184,17 +184,59 @@
   },
   {
    "id": "CL-N14",
-   "name": "Matinales (news segments)",
+   "name": "Matinal Canal 13: Tu Día (news segments)",
    "source_type": "Radio and TV news",
-   "owner": "Mega, CHV, TVN, Canal 13",
+   "owner": "Canal 13",
    "format": "Video",
-   "url": "",
+   "url": "https://www.13.cl",
    "access": "Video only",
    "how_read": "Through articles and clips that quote the segments",
-   "match": "Matinal",
+   "match": "Tu Día|Matinal Canal 13",
    "added_by": "Cristian",
    "added_on": "2026-11-13",
-   "notes": "Which shows to include is to be confirmed (e.g. Mucho Gusto; Contigo en la Mañana; Buenos Días a Todos; Tu Día). Important for public perception of issues"
+   "notes": "Morning show news and political interviews; shape how ordinary people describe problems. Show name as last known; confirm it is current."
+  },
+  {
+   "id": "CL-N19",
+   "name": "Matinal TVN: Buenos Días a Todos (news segments)",
+   "source_type": "Radio and TV news",
+   "owner": "TVN",
+   "format": "Video",
+   "url": "https://www.tvn.cl",
+   "access": "Video only",
+   "how_read": "Through articles and clips that quote the segments",
+   "match": "Buenos Días a Todos|Matinal TVN",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Morning show news and political interviews; shape how ordinary people describe problems. Show name as last known; confirm it is current."
+  },
+  {
+   "id": "CL-N20",
+   "name": "Matinal Mega: Mucho Gusto (news segments)",
+   "source_type": "Radio and TV news",
+   "owner": "Mega",
+   "format": "Video",
+   "url": "https://www.mega.cl",
+   "access": "Video only",
+   "how_read": "Through articles and clips that quote the segments",
+   "match": "Mucho Gusto|Matinal Mega",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Morning show news and political interviews; shape how ordinary people describe problems. Show name as last known; confirm it is current."
+  },
+  {
+   "id": "CL-N21",
+   "name": "Matinal Chilevisión: Contigo en la Mañana (news segments)",
+   "source_type": "Radio and TV news",
+   "owner": "CHV",
+   "format": "Video",
+   "url": "https://www.chilevision.cl",
+   "access": "Video only",
+   "how_read": "Through articles and clips that quote the segments",
+   "match": "Contigo en la Mañana|Matinal Chilevisión",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Morning show news and political interviews; shape how ordinary people describe problems. Show name as last known; confirm it is current."
   },
   {
    "id": "CL-T01",
@@ -548,17 +590,17 @@
   },
   {
    "id": "CL-L01",
-   "name": "InfoLobby (Lobby Law register)",
+   "name": "Ley del Lobby register (and InfoLobby)",
    "source_type": "Lobby registers",
    "owner": "Consejo para la Transparencia",
    "format": "Data",
-   "url": "https://www.infolobby.cl",
+   "url": "https://www.leylobby.gob.cl",
    "access": "Open",
    "how_read": "Weekly: meetings by topic keyword",
    "match": "InfoLobby",
    "added_by": "Claude (from protocol)",
    "added_on": "2026-11-13",
-   "notes": ""
+   "notes": "Official register of lobby meetings by public authorities; InfoLobby (infolobby.cl, Consejo para la Transparencia) also aggregates it. URL from Cristian, 16 Nov"
   },
   {
    "id": "CL-M01",
@@ -685,6 +727,34 @@
    "added_by": "Claude (suggested)",
    "added_on": "2026-11-16",
    "notes": "Surfaced the fuel-bill withdrawal and strike updates missed in W9; also hosts Al Pan Pan (CL-P05). Keep or delete"
+  },
+  {
+   "id": "CL-O01",
+   "name": "El Mercurio opinion pages (Saturday and Sunday)",
+   "source_type": "Opinion pieces and columns",
+   "owner": "El Mercurio",
+   "format": "Text",
+   "url": "https://digital.elmercurio.com",
+   "access": "Paywall (subscription needed)",
+   "how_read": "Every weekend: titles and authors of columns and editorials; full text through a reviewer if behind the paywall",
+   "match": "El Mercurio columna|Columna El Mercurio",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Weekend columns and editorials set elite framing for the week"
+  },
+  {
+   "id": "CL-O02",
+   "name": "La Tercera opinion pages (Saturday and Sunday)",
+   "source_type": "Opinion pieces and columns",
+   "owner": "Copesa",
+   "format": "Text",
+   "url": "https://www.latercera.com/canal/opinion/",
+   "access": "Metered paywall",
+   "how_read": "Every weekend: titles and authors of columns and editorials; full text for matches",
+   "match": "La Tercera columna|Columna La Tercera",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Weekend columns, including Reportajes on Sunday"
   }
  ],
  "meta": {
@@ -2449,6 +2519,10 @@
     "Focusing events, reports of indicators and feedback, government decisions"
    ],
    [
+    "Opinion pieces and columns",
+    "Framing, problem brokers and elite positions, especially weekend opinion pages"
+   ],
+   [
     "Radio and TV news, including morning shows",
     "Salience as the public meets it; ministers' and legislators' statements"
    ],
@@ -2458,7 +2532,7 @@
    ],
    [
     "Opinion polls",
-    "Most important problems (salience); approval and national mood"
+    "Changes in the most important problems (salience); approval and national mood"
    ],
    [
     "Key indicators and official reports",
@@ -2466,7 +2540,7 @@
    ],
    [
     "Congress records",
-    "Bills, urgencies, vetoes, votes and coalition behaviour"
+    "Bills, urgencies, unusual votes and coalition behaviour"
    ],
    [
     "Executive documents and speeches",
@@ -2478,7 +2552,7 @@
    ],
    [
     "Calendar of moments",
-    "Budget debate, scheduled votes, elections, anniversaries"
+    "Budget debate, scheduled votes, elections, anniversaries (for the timing dimension)"
    ],
    [
     "Data journalism and analytics newsletters",

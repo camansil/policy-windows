@@ -18,8 +18,10 @@ Collection is a sweep of every source, not a search by topic. A topic-led search
 
 - **Leads first.** Read `data/weekly/CL/leads/<year>-W<nn>.md` if it exists: leads the reviewer added during the week. Check every lead and report what you could not confirm.
 - **Stage 1, sweep every source.** For each row of `data/sources/cl.csv` (news, radio and TV, talk shows, podcasts, polls, data newsletters), list that source's headlines or episode titles for the week, without topic keywords: open its section page, RSS feed or episode list, or run a site-restricted search for the week's dates (for example `site:emol.com nacional 10 noviembre 2026`, one search per day for the busiest outlets). Record in the weekly file's `coverage` how many headlines you scanned per source id, e.g. `"CL-N03": {"scanned": 40}`; use 0 and a note when a source could not be reached.
-- **Mobilisations and events.** Check strikes, protests, blockades and stoppages, disasters and major crimes every week, by name and without topic keywords.
+- **Mobilisations and events.** Check strikes, protests, blockades and stoppages, disasters and major crimes every week, by name and without topic keywords. Watch also for statements (cuñas) that are replayed and debated until they become the story: they can be focusing events, frames or politics-stream events.
 - **Stage 2.** Fetch full text only for headlines that touch a monitored topic, show a coverage spike, or match the mobilisation check.
+- **Weekend opinion pages.** Every week, list the titles and authors of the Saturday and Sunday columns and editorials in El Mercurio and La Tercera (CL-O01, CL-O02): they show framing and elite positions.
+- **Requests to a reviewer.** List every audio, video or paywalled item that matched a topic but could not be read (morning shows, talk shows, podcasts, El Mercurio) in the weekly file's `requests`, e.g. `{"source": "CL-T02", "item": "Tolerancia Cero, 15 Nov, interview with the Minister of Finance", "need": "transcript of the fuel-price segment"}`. The reviewer obtains the text or transcript; code it in the next run.
 - Check the indicators due that week (IMACEC, IPC, unemployment, investment) and the Congress and executive calendar (urgencies, bills filed or withdrawn, votes, budget steps, speeches at business events such as ENADE or CPC).
 
 - Budget topics (T08 Budget, T09 Health budget, T14 Education budget and any budget line): code the problem stream only for an event, such as a cut that draws coverage, a line rejected or not approved, a failed vote or a deadlock (concept: Focusing event). Routine budget debate is technical and goes in the politics stream (reviewer's rule, from W10).
@@ -42,6 +44,8 @@ Quotes: at most one short quote (under 15 words) per source, only when the exact
 - Lower politics by one when approval or national mood is clearly against the move, or coalition arithmetic suggests blocking. Executive signals take precedence over congressional ones.
 - A level carries forward up to two weeks without new items, then drops one level.
 - For each level that changed, each topic at level 2 or 3, and each new topic, add a `signals` entry with the rationale and the item ids behind it.
+
+**Calibration.** During the first weeks, every reviewer decision in the Review tab (approve, change, reject, with notes) is a worked example of what counts as a focusing event, an indicator change, a formal step, and so on. Before proposing levels, read the decisions exported for earlier weeks (`data/weekly/CL/reviews/`, when present) and follow them.
 
 ## 4. Update statuses
 

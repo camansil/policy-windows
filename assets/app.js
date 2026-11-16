@@ -492,12 +492,13 @@
     $("#method").innerHTML = `
       <p class="lead">${esc(m.framework)}</p>
       <article class="panel"><h2>Stream levels</h2>
-        <table class="rules-table"><thead><tr><th>Level</th><th>Problem stream</th><th>Politics stream</th></tr></thead><tbody>
-          <tr><td>${lvPill(0)} ${esc(LEVEL[0])}</td><td>No salient change</td><td>No change in approval, government action or congressional activity on the topic</td></tr>
-          <tr><td>${lvPill(1)} ${esc(LEVEL[1])}</td><td>Attention without new data, from a single source</td><td>Statements only, or public demand without government action</td></tr>
-          <tr><td>${lvPill(2)} ${esc(LEVEL[2])}</td><td>Indicator change, report, feedback or focusing event, corroborated by several sources; attention above the topic's baseline</td><td>A formal step (bill, announcement, working group, budget line) with national mood and approval not opposed</td></tr>
-          <tr><td>${lvPill(3)} ${esc(LEVEL[3])}</td><td>Focusing event or record indicator with sustained attention, or the topic among the top "most important problems"; frames converging</td><td>Decisive use of agenda tools (urgency, budget item, passage in one chamber) with mood supportive or neutral</td></tr>
-        </tbody></table>
+        <p class="panel-sub">Each stream is rated separately each week on the same four-level scale.</p>
+        <ul class="level-list">
+          <li>${lvPill(0)} <b>${esc(LEVEL[0])}:</b> no relevant change.</li>
+          <li>${lvPill(1)} <b>${esc(LEVEL[1])}:</b> attention or statements without new evidence or action, from a single source.</li>
+          <li>${lvPill(2)} <b>${esc(LEVEL[2])}:</b> a corroborated change: new evidence, an event or a formal step.</li>
+          <li>${lvPill(3)} <b>${esc(LEVEL[3])}:</b> a decisive change with sustained attention, such as a focusing event, a record indicator or a decisive use of the executive's agenda powers.</li>
+        </ul>
         <p class="panel-sub" style="margin-top:12px">A <b>potential window</b> is flagged when both streams are at level 2 or 3 in the same week. If the problem stream got there first it is a <b>problem window</b> (consequential coupling); if politics came first, a <b>political window</b> (doctrinal coupling). Topics with one stream at level 2 or 3 are on <b>watch</b>. Open windows are re-assessed every week; closing reasons follow Kingdon.</p>
       </article>
       <div class="method-grid">

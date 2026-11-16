@@ -403,3 +403,4 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .concept-panel h3 { font-size: 14px; margin: 12px 0 4px; }
 .review-link { background: color-mix(in srgb, var(--accent) 8%, var(--surface-1)); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
 @media (max-width: 560px) { .concept-list { grid-template-columns: 1fr; } .concept { white-space: normal; } }
+.level-list { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; }
