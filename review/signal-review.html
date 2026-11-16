@@ -89,19 +89,63 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
 .codebook dt { margin: 0; } .codebook dd { margin: 0; color: var(--fg-2); }
 .codebook h3 { font-size: 14px; margin: 6px 0 2px; }
 .status { padding: 10px 12px; border-radius: 8px; background: var(--surface-2); color: var(--fg-2); font-size: 14px; }
+.tabs { display: flex; gap: 6px; }
+.tab { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 999px; padding: 5px 14px; cursor: pointer; font-size: 14px; font-weight: 500; }
+.tab[aria-selected="true"] { background: var(--fg); color: var(--surface); border-color: var(--fg); }
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.topic { display: grid; gap: 12px; }
+.topic > h2 { font-family: var(--font-display); font-size: 20px; margin: 12px 0 0; padding-top: 12px; border-top: 2px solid var(--fg); }
+.streamgroup { display: grid; gap: 10px; }
+.step { font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 4px 0 0; }
+.signal.k-concept { padding: 12px 14px; gap: 8px; margin-left: 14px; }
+.signal.k-stream { background: var(--surface-2); }
+.sdots { display: inline-flex; gap: 3px; vertical-align: middle; } .sdots i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--fg-2); display: inline-block; } .sdots i.on { background: var(--fg-2); }
+.src { display: grid; gap: 8px; }
+.src-head { display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: space-between; align-items: baseline; }
+.src-head h3 { margin: 0; font-size: 15.5px; } .src-head a { color: var(--accent); }
+.pill { font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface-2); white-space: nowrap; }
+.pill.gap { border-color: var(--warn); color: var(--warn); }
+.srctype { font-family: var(--font-display); font-size: 17px; margin: 14px 0 0; }
+@media (max-width: 560px) { .signal.k-concept { margin-left: 0; } }
 @media (max-width: 560px) { .codebook dl { grid-template-columns: 1fr; } h1 { font-size: 19px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
 <header class="top"><div class="wrap">
   <div><h1>Signal Review · Chile</h1><div class="sub" id="weeklabel">Policy Window Monitor, Protocol v0.4</div></div>
-  <div class="row"><label for="week" class="sub">Week</label><select id="week"></select></div>
+  <div class="row"><label for="week" class="sub">Week</label><select id="week"></select>
+    <div class="tabs" role="tablist"><button type="button" class="tab" role="tab" id="tab-signals" aria-selected="true" data-view="signals">Signals</button><button type="button" class="tab" role="tab" id="tab-sources" aria-selected="false" data-view="sources">Sources read</button></div></div>
   <div class="tally" id="tally" aria-live="polite"></div>
 </div></header>
 
 <main class="wrap">
-  <section class="intro">
-    <p>Each card is one proposed signal: a level for one topic in one stream. Choose <b>Approve</b> if the level and its framing are right, <b>Change</b> to set a different level, or <b>Reject</b> if the signal should not count at all. Add a comment whenever the reasoning needs nuance; you can type it or tap the microphone and speak. Everything saves as you go, and the next weekly run reads your decisions and comments directly.</p>
+  <section class="intro" id="intro-signals">
+    <p>Review happens in two steps for each topic and stream. <b>Step 1, concept checks:</b> each card says how the topic is framed by one concept (for example, a focusing event, or a salient issue), why, and how strong the evidence is. <b>Step 2, stream level:</b> whether those concepts together are enough to drive the problem or the politics stream. Choose <b>Approve</b> if it is right, <b>Change</b> to set a different strength or level, or <b>Reject</b> if it should not count. Add a comment by typing or with the microphone. Everything saves as you go and the next weekly run reads it.</p>
+    <div class="status" id="status">Connecting to the review store…</div>
+  </section>
+  <section class="intro" id="intro-sources" hidden>
+    <p>Every source in the log, with what the run read from it this week and the items it coded. Use the comment box to say what is missing or misread, for example a programme you heard that is not reflected. The next run reads these comments.</p>
+  </section>
+
+  <section class="panel" id="weeknote-panel" hidden>
+    <h2>Notes for this week</h2>
+    <p class="sub" style="margin:0">New topics to add, how a topic should be framed, sources to check, anything that is not about a single signal.</p>
+    <div class="comment-box"><div class="comment-row">
+      <textarea id="weeknote" aria-label="Notes for this week" placeholder="e.g. Add a topic on pensions reform; the budget only counts as a problem when there are cuts"></textarea>
+      <button type="button" class="mic" data-mic="weeknote" aria-label="Dictate notes for this week" hidden><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    </div><div class="partial" id="partial-weeknote"></div><div class="saved" id="saved-weeknote"></div></div>
+  </section>
+
+  <div id="signals" style="display:grid;gap:16px"></div>
+  <div id="sources" style="display:grid;gap:12px" hidden></div>
+
+  <details class="panel codebook" id="codebook">
+    <summary><b>Codebook:</b> what each concept, strength and level means</summary>
+    <div id="codebook-body"></div>
+  </details>
+</main>
+
+Each card is one proposed signal: a level for one topic in one stream. Choose <b>Approve</b> if the level and its framing are right, <b>Change</b> to set a different level, or <b>Reject</b> if the signal should not count at all. Add a comment whenever the reasoning needs nuance; you can type it or tap the microphone and speak. Everything saves as you go, and the next weekly run reads your decisions and comments directly.</p>
     <div class="status" id="status">Connecting to the review store…</div>
   </section>
 
@@ -154,57 +198,117 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
   };
 
   // codebook
+  const STRENGTH = ["", "A mention, or a single source", "Substantive: two or more independent sources, or one first-hand source", "Decisive: an event, vote, poll or indicator that changes the stream by itself"];
+  const sdots = (n) => `<span class="sdots" title="Strength ${n}: ${esc(STRENGTH[n] || "")}">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
   $("#codebook-body").innerHTML = ["Problem", "Politics"].map((st) =>
     `<h3>${st} stream: concepts</h3><dl>${Object.entries(CONCEPTS).filter(([, v]) => v[0] === st).map(([k, v]) => `<dt><span class="concept c-${st.toLowerCase()}">${esc(k)}</span></dt><dd>${esc(v[1])}</dd>`).join("")}</dl>` +
-    `<h3>${st} stream: levels</h3><dl>${LEVEL_DEF[st].map((d, i) => `<dt>${lv(i)} ${esc(LEVEL[i])}</dt><dd>${esc(d)}</dd>`).join("")}</dl>`).join("");
+    `<h3>${st} stream: levels</h3><dl>${LEVEL_DEF[st].map((d, i) => `<dt>${lv(i)} ${esc(LEVEL[i])}</dt><dd>${esc(d)}</dd>`).join("")}</dl>`).join("") +
+    `<h3>Strength of a concept check</h3><dl>${[1, 2, 3].map((i) => `<dt>${sdots(i)} ${i}</dt><dd>${esc(STRENGTH[i])}</dd>`).join("")}</dl>`;
 
   let db = null, user = null, dict = null, meId = "";
-  let weeks = [], week = "", signals = [], decisions = {}, weekNote = null;
+  let weeks = [], week = "", signals = [], decisions = {}, weekNote = null, sources = [], sourceNotes = {}, view = "signals";
   let unsubs = [];
   const status = (msg) => { const el = $("#status"); el.textContent = msg; el.hidden = !msg; };
+  const dom = (id) => "x" + id.replace(/[^A-Za-z0-9_-]/g, "_");
+  const MIC = `<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>`;
 
   function tally() {
-    const t = { approve: 0, change: 0, reject: 0 };
-    signals.forEach((s) => { const d = decisions[s.id]; if (d && t[d.decision] != null) t[d.decision]++; });
-    const pending = signals.length - t.approve - t.change - t.reject;
-    $("#tally").innerHTML = signals.length ? `<span><b>${signals.length}</b> signals</span><span class="t-approve">${t.approve} approved</span><span class="t-change">${t.change} changed</span><span class="t-reject">${t.reject} rejected</span><span>${pending} pending</span>` : "";
+    const count = (kind) => { const xs = signals.filter((s) => (s.kind || "stream") === kind); return [xs.length, xs.filter((s) => decisions[s.id] && decisions[s.id].decision).length]; };
+    const [nc, dc] = count("concept"), [ns, ds] = count("stream");
+    $("#tally").innerHTML = signals.length ? `${nc ? `<span>Concept checks <b>${dc}</b>/${nc}</span>` : ""}<span>Stream levels <b>${ds}</b>/${ns}</span><span>${nc + ns - dc - ds} pending</span>` : "";
+  }
+
+  function evidence(s) {
+    return (s.evidence || []).length ? `<details><summary>Evidence: ${s.evidence.length} coded item${s.evidence.length === 1 ? "" : "s"}</summary><ul class="ev">${s.evidence.map((e) =>
+      `<li><span class="concept${CONCEPTS[e.concept] ? " c-" + CONCEPTS[e.concept][0].toLowerCase() : ""}" title="${esc(CONCEPTS[e.concept] ? CONCEPTS[e.concept][1] : "")}">${esc(e.concept)}</span> ${esc(e.note)}${e.quote ? `<br><span class="quote">“${esc(e.quote)}”</span>` : ""}<br><span class="meta">${esc(e.date)} · ${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a>` : esc(e.source)}${e.context ? " · " + esc(e.context) : ""}</span></li>`).join("")}</ul></details>` : "";
+  }
+  function decide(s, d, isConcept) {
+    const k = dom(s.id);
+    const cur = d.level != null ? d.level : (isConcept ? s.strength : s.proposed);
+    const opts = isConcept ? [1, 2, 3].map((v) => `<option value="${v}" ${v === cur ? "selected" : ""}>${v} ${["", "Mention", "Substantive", "Decisive"][v]}</option>`) : [0, 1, 2, 3].map((v) => `<option value="${v}" ${v === cur ? "selected" : ""}>${v} ${LEVEL[v]}</option>`);
+    const hasLevel = isConcept || s.proposed != null;
+    return `<div class="decide">
+      <div class="row" role="group" aria-label="Decision">
+        <button type="button" class="btn ${d.decision === "approve" ? "on-approve" : ""}" data-d="approve" aria-pressed="${d.decision === "approve"}">Approve</button>
+        <button type="button" class="btn ${d.decision === "change" ? "on-change" : ""}" data-d="change" aria-pressed="${d.decision === "change"}">Change</button>
+        <button type="button" class="btn ${d.decision === "reject" ? "on-reject" : ""}" data-d="reject" aria-pressed="${d.decision === "reject"}">Reject</button>
+        ${hasLevel ? `<label class="sub" for="lv-${k}">${isConcept ? "Strength" : "Level"}</label><select id="lv-${k}" data-lv ${d.decision === "change" ? "" : "disabled"}>${opts.join("")}</select>` : ""}
+      </div>
+      <div class="comment-box"><label for="c-${k}">Comment</label><div class="comment-row">
+        <textarea id="c-${k}" data-comment placeholder="${isConcept ? "Is this the right concept? What does the rationale miss?" : "Is this enough to drive the stream?"}">${esc(d.comment || "")}</textarea>
+        <button type="button" class="mic" data-mic="c-${k}" aria-label="Dictate a comment" ${dict ? "" : "hidden"}>${MIC}</button>
+      </div><div class="partial" id="partial-c-${k}"></div><div class="saved">${d.at ? "Saved " + new Date(d.at).toLocaleString() : ""}</div></div>
+    </div>`;
+  }
+  function conceptCard(s) {
+    const d = decisions[s.id] || {}, st = (s.stream || "").toLowerCase(), c = CONCEPTS[s.concept];
+    return `<article class="panel signal k-concept s-${st} ${d.decision ? "d-" + d.decision : ""}" data-id="${esc(s.id)}">
+      <div class="sig-head"><h3><span class="concept${c ? " c-" + c[0].toLowerCase() : ""}" title="${esc(c ? c[1] : "")}">${esc(s.concept)}</span></h3>
+        <span class="lvchange">Strength ${sdots(s.strength)} ${s.strength} of 3</span></div>
+      ${c ? `<div class="def">${esc(c[1])}</div>` : ""}
+      <p class="rationale">${esc(s.rationale)}</p>
+      ${evidence(s)}${decide(s, d, true)}</article>`;
+  }
+  function streamCard(s, hasChecks) {
+    const d = decisions[s.id] || {}, st = (s.stream || "").toLowerCase();
+    return `<article class="panel signal k-stream s-${st} ${d.decision ? "d-" + d.decision : ""}" data-id="${esc(s.id)}">
+      <div class="sig-head"><h3>${esc(s.stream)} stream level</h3>
+        <span class="lvchange">${s.proposed == null ? "No level change proposed" : `${s.prev == null ? "New" : lv(s.prev) + " →"} ${lv(s.proposed)} ${esc(LEVEL[s.proposed])}`}</span></div>
+      ${hasChecks ? "" : `<div class="framing"><span class="framing-label">Framed by</span>${(s.concepts || []).map((c) => `<span class="concept${CONCEPTS[c] ? " c-" + CONCEPTS[c][0].toLowerCase() : ""}" title="${esc(CONCEPTS[c] ? CONCEPTS[c][1] : "")}">${esc(c)}</span>`).join("")}</div>`}
+      <p class="rationale">${esc(s.rationale)}</p>
+      ${hasChecks ? "" : evidence(s)}${decide(s, d, false)}</article>`;
+  }
+
+  function renderSignals() {
+    const host = $("#signals");
+    if (!signals.length) { host.innerHTML = week ? `<p class="empty">No signals for this week yet.</p>` : ""; tally(); return; }
+    const w = weeks.find((x) => x.id === week);
+    const topics = []; signals.forEach((s) => { if (!topics.includes(s.topic)) topics.push(s.topic); });
+    host.innerHTML = (w && w.note ? `<p class="sub" style="margin:0">${esc(w.note)}</p>` : "") + topics.map((t) => {
+      const ts = signals.filter((s) => s.topic === t);
+      return `<section class="topic"><h2>${esc(ts[0].topicName)}</h2>${["Problem", "Politics"].map((st) => {
+        const checks = ts.filter((s) => s.kind === "concept" && s.stream === st), streams = ts.filter((s) => (s.kind || "stream") === "stream" && s.stream === st);
+        if (!checks.length && !streams.length) return "";
+        return `<div class="streamgroup s-${st.toLowerCase()}">${checks.length ? `<div class="step"><span class="stream">${st} stream</span> · Step 1 · ${checks.length} concept check${checks.length === 1 ? "" : "s"}</div>${checks.map(conceptCard).join("")}` : ""}
+          ${streams.length ? `<div class="step"><span class="stream">${st} stream</span> · ${checks.length ? "Step 2 · " : ""}Stream level</div>${streams.map((s) => streamCard(s, checks.length > 0)).join("")}` : ""}</div>`;
+      }).join("")}</section>`;
+    }).join("");
+    tally();
+  }
+
+  function renderSources() {
+    const host = $("#sources");
+    if (!sources.length) { host.innerHTML = `<p class="empty">The source log for this week has not been loaded yet.</p>`; return; }
+    const types = []; sources.forEach((s) => { if (!types.includes(s.type)) types.push(s.type); });
+    host.innerHTML = types.map((t) => `<h2 class="srctype">${esc(t)}</h2>` + sources.filter((s) => s.type === t).map((s) => {
+      const n = sourceNotes[s.id] || {}, k = dom(s.id), items = s.items || [];
+      const scanned = s.scanned == null ? `<span class="pill">Headlines scanned: not recorded</span>` : s.scanned === 0 ? `<span class="pill gap">Not read this week</span>` : `<span class="pill">${s.scanned} headlines scanned</span>`;
+      return `<article class="panel src" data-src="${esc(s.id)}">
+        <div class="src-head"><h3>${s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : esc(s.name)}</h3>
+          <span class="row">${scanned}<span class="pill ${items.length ? "" : "gap"}">${items.length} item${items.length === 1 ? "" : "s"} coded</span></span></div>
+        <div class="sub">${esc(s.how || "")}${s.access ? " · " + esc(s.access) : ""}${s.addedBy ? " · added by " + esc(s.addedBy) : ""}</div>
+        ${s.note ? `<div class="def">${esc(s.note)}</div>` : ""}
+        ${items.length ? `<details><summary>Items coded from this source</summary><ul class="ev">${items.map((e) => `<li><span class="concept${CONCEPTS[e.concept] ? " c-" + CONCEPTS[e.concept][0].toLowerCase() : ""}" title="${esc(CONCEPTS[e.concept] ? CONCEPTS[e.concept][1] : "")}">${esc(e.concept)}</span> <b>${esc(e.topicName)}</b>: ${esc(e.note)}<br><span class="meta">${esc(e.date)} · ${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">open</a>` : ""}${e.context ? " · " + esc(e.context) : ""}</span></li>`).join("")}</ul></details>` : ""}
+        <div class="comment-box"><label for="c-${k}">What is missing or misread?</label><div class="comment-row">
+          <textarea id="c-${k}" data-srcnote placeholder="e.g. Tuesday's episode discussed pensions and is not here">${esc(n.comment || "")}</textarea>
+          <button type="button" class="mic" data-mic="c-${k}" aria-label="Dictate a comment" ${dict ? "" : "hidden"}>${MIC}</button>
+        </div><div class="partial" id="partial-c-${k}"></div><div class="saved">${n.at ? "Saved " + new Date(n.at).toLocaleString() : ""}</div></div>
+      </article>`;
+    }).join("")).join("");
   }
 
   function render() {
-    const host = $("#signals");
     const w = weeks.find((x) => x.id === week);
     $("#weeklabel").textContent = w ? `${w.id} · ${w.label}${w.partial ? " (partial)" : ""} · ${w.reviewStatus === "reviewed" ? "reviewed" : "awaiting review"}` : "Policy Window Monitor, Protocol v0.4";
-    $("#weeknote-panel").hidden = !week;
-    if (!signals.length) { host.innerHTML = week ? `<p class="empty">No signals for this week yet.</p>` : ""; tally(); return; }
+    $("#weeknote-panel").hidden = !week || view !== "signals";
+    $("#signals").hidden = view !== "signals"; $("#sources").hidden = view !== "sources";
+    $("#intro-signals").hidden = view !== "signals"; $("#intro-sources").hidden = view !== "sources";
+    document.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === view)));
     const active = document.activeElement && document.activeElement.id;
-    host.innerHTML = (w && w.note ? `<p class="sub" style="margin:0">${esc(w.note)}</p>` : "") + signals.map((s, k) => {
-      const d = decisions[s.id] || {};
-      const st = (s.stream || "").toLowerCase();
-      const lvl = d.level != null ? d.level : s.proposed;
-      return `<article class="panel signal s-${st} ${d.decision ? "d-" + d.decision : ""}" data-id="${esc(s.id)}">
-        <div class="sig-head"><h3>${esc(s.topicName)} <span class="stream">${esc(s.stream)}</span></h3>
-          <span class="lvchange">${s.proposed == null ? "No level change proposed" : `${s.prev == null ? "New" : lv(s.prev) + " →"} ${lv(s.proposed)} ${esc(LEVEL[s.proposed])}`}</span></div>
-        <div class="framing"><span class="framing-label">How the ${esc(st)} stream is framed</span>${(s.concepts || []).map((c, j) => cTag(c, s.id + ":" + j)).join("")}</div>
-        <div class="def" id="def-${k}" hidden></div>
-        <p class="rationale">${esc(s.rationale)}</p>
-        ${(s.evidence || []).length ? `<details><summary>Evidence: ${s.evidence.length} coded item${s.evidence.length === 1 ? "" : "s"}</summary><ul class="ev">${s.evidence.map((e) =>
-          `<li><span class="concept${CONCEPTS[e.concept] ? " c-" + CONCEPTS[e.concept][0].toLowerCase() : ""}" title="${esc(CONCEPTS[e.concept] ? CONCEPTS[e.concept][1] : "")}">${esc(e.concept)}</span> ${esc(e.note)}${e.quote ? `<br><span class="quote">“${esc(e.quote)}”</span>` : ""}<br><span class="meta">${esc(e.date)} · ${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.source)}</a>` : esc(e.source)}${e.context ? " · " + esc(e.context) : ""}</span></li>`).join("")}</ul></details>` : ""}
-        <div class="decide">
-          <div class="row" role="group" aria-label="Decision">
-            <button type="button" class="btn ${d.decision === "approve" ? "on-approve" : ""}" data-d="approve" aria-pressed="${d.decision === "approve"}">Approve</button>
-            <button type="button" class="btn ${d.decision === "change" ? "on-change" : ""}" data-d="change" aria-pressed="${d.decision === "change"}">Change</button>
-            <button type="button" class="btn ${d.decision === "reject" ? "on-reject" : ""}" data-d="reject" aria-pressed="${d.decision === "reject"}">Reject</button>
-            ${s.proposed == null ? "" : `<label class="sub" for="lv-${k}">Level</label><select id="lv-${k}" data-lv ${d.decision === "change" ? "" : "disabled"}>${[0, 1, 2, 3].map((v) => `<option value="${v}" ${v === lvl ? "selected" : ""}>${v} ${LEVEL[v]}</option>`).join("")}</select>`}
-          </div>
-          <div class="comment-box"><label for="c-${k}">Comment</label><div class="comment-row">
-            <textarea id="c-${k}" data-comment placeholder="Why, or what the framing misses">${esc(d.comment || "")}</textarea>
-            <button type="button" class="mic" data-mic="c-${k}" aria-label="Dictate a comment" ${dict ? "" : "hidden"}><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
-          </div><div class="partial" id="partial-c-${k}"></div><div class="saved">${d.at ? "Saved " + new Date(d.at).toLocaleString() : ""}</div></div>
-        </div></article>`;
-    }).join("");
-    if (active && $("#" + active)) $("#" + active).focus();
-    tally();
+    if (view === "signals") renderSignals(); else { renderSources(); tally(); }
+    if (active && document.getElementById(active)) document.getElementById(active).focus();
   }
+  document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => { view = b.dataset.view; render(); }));
 
   async function saveDecision(id, patch) {
     const cur = decisions[id] || {};
@@ -214,28 +318,30 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
     try { await db.doc("decisions/" + id).set(next); }
     catch (e) { status("Could not save: " + (e && e.message ? e.message : "the review store refused the change") + ". Your choice is shown but not saved; try again."); }
   }
+  async function saveSourceNote(id, comment) {
+    const doc = { week, source: id, comment, by: meId, at: new Date().toISOString() };
+    sourceNotes[id] = doc;
+    if (!db) return;
+    try { await db.doc("sourceNotes/" + id).set(doc); } catch (e) { status("Could not save the comment on this source. Try again."); }
+  }
 
   $("#signals").addEventListener("click", (ev) => {
     const card = ev.target.closest(".signal"); if (!card) return;
     const id = card.dataset.id, s = signals.find((x) => x.id === id);
-    const c = ev.target.closest(".concept[data-def]");
-    if (c) {
-      const box = card.querySelector(".def"), name = c.dataset.name, open = c.getAttribute("aria-expanded") === "true";
-      card.querySelectorAll(".concept[data-def]").forEach((b) => b.setAttribute("aria-expanded", "false"));
-      if (open) { box.hidden = true; return; }
-      c.setAttribute("aria-expanded", "true");
-      box.innerHTML = `<b>${esc(name)}</b>${CONCEPTS[name] ? " · " + CONCEPTS[name][0] + " stream: " + esc(CONCEPTS[name][1]) : ""}`; box.hidden = false; return;
-    }
     const b = ev.target.closest("[data-d]");
-    if (b) {
-      const d = b.dataset.d, cur = decisions[id] || {};
-      saveDecision(id, { decision: d, level: d === "reject" ? null : d === "change" ? (cur.level != null ? cur.level : s.proposed) : s.proposed });
+    if (b && s) {
+      const d = b.dataset.d, cur = decisions[id] || {}, base = s.kind === "concept" ? s.strength : s.proposed;
+      saveDecision(id, { decision: d, level: d === "reject" ? null : d === "change" ? (cur.level != null ? cur.level : base) : base });
     }
   });
   $("#signals").addEventListener("change", (ev) => {
     const card = ev.target.closest(".signal"); if (!card) return;
     if (ev.target.matches("[data-lv]")) saveDecision(card.dataset.id, { level: +ev.target.value });
     if (ev.target.matches("[data-comment]")) saveDecision(card.dataset.id, { comment: ev.target.value });
+  });
+  $("#sources").addEventListener("change", (ev) => {
+    const card = ev.target.closest("[data-src]"); if (!card || !ev.target.matches("[data-srcnote]")) return;
+    saveSourceNote(card.dataset.src, ev.target.value).then(() => { const sv = card.querySelector(".saved"); if (sv) sv.textContent = "Saved " + new Date().toLocaleString(); });
   });
 
   async function saveWeekNote() {
@@ -248,7 +354,7 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
   }
   $("#weeknote").addEventListener("change", saveWeekNote);
 
-  // dictation: one mic at a time
+  // dictation: one microphone at a time; the spoken words become text in the comment box
   let micTarget = null;
   document.addEventListener("click", (ev) => {
     const m = ev.target.closest("[data-mic]"); if (!m || !dict) return;
@@ -262,30 +368,38 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
     });
   });
   function initDictation() {
-    dict.onPartial(({ text }) => { const p = micTarget && $("#partial-" + micTarget); if (p) p.textContent = text; });
+    dict.onPartial(({ text }) => { const p = micTarget && document.getElementById("partial-" + micTarget); if (p) p.textContent = text; });
     dict.onFinal(({ text }) => {
-      const ta = micTarget && $("#" + micTarget); if (!ta || !text) return;
+      const ta = micTarget && document.getElementById(micTarget); if (!ta || !text) return;
       ta.value = (ta.value ? ta.value.replace(/\s*$/, " ") : "") + text.trim();
-      const p = $("#partial-" + micTarget); if (p) p.textContent = "";
-      if (micTarget === "weeknote") saveWeekNote(); else { const card = ta.closest(".signal"); if (card) saveDecision(card.dataset.id, { comment: ta.value }); }
+      const p = document.getElementById("partial-" + micTarget); if (p) p.textContent = "";
+      if (micTarget === "weeknote") saveWeekNote();
+      else if (ta.matches("[data-srcnote]")) { const card = ta.closest("[data-src]"); if (card) saveSourceNote(card.dataset.src, ta.value); }
+      else { const card = ta.closest(".signal"); if (card) saveDecision(card.dataset.id, { comment: ta.value }); }
     });
     dict.onState(({ state }) => {
       document.querySelectorAll(".mic").forEach((x) => x.classList.toggle("live", state === "listening" && x.dataset.mic === micTarget));
-      if (state !== "listening") { const p = micTarget && $("#partial-" + micTarget); if (p) p.textContent = ""; micTarget = state === "idle" ? null : micTarget; }
+      if (state !== "listening") { const p = micTarget && document.getElementById("partial-" + micTarget); if (p) p.textContent = ""; if (state === "idle") micTarget = null; }
     });
     document.querySelectorAll(".mic").forEach((x) => x.hidden = false);
   }
 
+  const typing = () => { const a = document.activeElement; return a && a.matches && a.matches("textarea"); };
   function loadWeek(id) {
     unsubs.forEach((u) => { try { u(); } catch (e) {} }); unsubs = [];
-    week = id; signals = []; decisions = {}; render();
+    week = id; signals = []; decisions = {}; sources = []; sourceNotes = {}; render();
     unsubs.push(db.collection("signals").where("week", "==", id).onSnapshot((snap) => {
-      signals = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.order || 0) - (b.order || 0)); render();
+      signals = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.order || 0) - (b.order || 0)); if (!typing()) render();
     }, () => status("Could not load this week's signals.")));
     unsubs.push(db.collection("decisions").where("week", "==", id).onSnapshot((snap) => {
-      const focused = document.activeElement && document.activeElement.matches && document.activeElement.matches("textarea[data-comment]");
       decisions = {}; snap.docs.forEach((d) => { decisions[d.id] = d.data(); });
-      if (!focused) render(); else tally();
+      if (!typing()) render(); else tally();
+    }));
+    unsubs.push(db.collection("sources").where("week", "==", id).onSnapshot((snap) => {
+      sources = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.order || 0) - (b.order || 0)); if (!typing()) render();
+    }));
+    unsubs.push(db.collection("sourceNotes").where("week", "==", id).onSnapshot((snap) => {
+      sourceNotes = {}; snap.docs.forEach((d) => { sourceNotes[d.id] = d.data(); }); if (!typing() && view === "sources") render();
     }));
     unsubs.push(db.doc("weekNotes/" + id).onSnapshot((snap) => {
       weekNote = snap.exists ? snap.data() : null;

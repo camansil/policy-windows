@@ -404,3 +404,11 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .review-link { background: color-mix(in srgb, var(--accent) 8%, var(--surface-1)); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 8px; padding: 10px 12px; font-size: 14px; }
 @media (max-width: 560px) { .concept-list { grid-template-columns: 1fr; } .concept { white-space: normal; } }
 .level-list { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; }
+
+/* concept checks (one per topic, stream and concept) */
+.checks { list-style: none; margin: 6px 0 10px; padding: 0; display: grid; gap: 8px; }
+.checks li { border-left: 2px solid var(--border-strong); padding: 2px 0 2px 10px; }
+.checks p { margin: 4px 0 0; font-size: 13.5px; color: var(--text-secondary); max-width: 72ch; }
+.check-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sdots { display: inline-flex; gap: 3px; } .sdots i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--text-secondary); display: inline-block; } .sdots i.on { background: var(--text-secondary); }
+.check-details { margin-top: 6px; } .check-details summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-secondary); }

@@ -53,6 +53,16 @@
     const c = conceptInfo(name);
     return `<span class="concept${c && c.stream ? " c-" + c.stream.toLowerCase() : ""}" tabindex="0" data-concept="${esc(name)}">${esc(name)}</span>`;
   };
+  /* concept checks of the latest week: one per topic, stream and concept */
+  const CHECKS = (REVIEW && REVIEW.conceptSignals) || [];
+  const STRENGTH = ["", "Mention or single source", "Substantive, corroborated", "Decisive"];
+  const strengthDots = (n) => `<span class="sdots" title="Strength ${n}: ${STRENGTH[n] || ""}" aria-label="Strength ${n} of 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
+  const checksFor = (topic, stream) => CHECKS.filter((c) => c.topic === topic && c.stream === stream);
+  const checkList = (topic, stream) => {
+    const cs = checksFor(topic, stream);
+    if (!cs.length) return "";
+    return `<ul class="checks">${cs.map((c) => `<li><div class="check-head">${cTag(c.concept)} ${strengthDots(c.strength)} <span class="note">${c.items.length} item${c.items.length === 1 ? "" : "s"}</span></div><p>${esc(c.rationale)}</p></li>`).join("")}</ul>`;
+  };
   const conceptTip = (name) => {
     const c = conceptInfo(name);
     if (!c) return `<b>${esc(name)}</b>`;
@@ -408,7 +418,7 @@
         <div><dt>Opened by</dt><dd>${esc(isWin ? t.opened : "—")}</dd></div>
         <div><dt>Timing</dt><dd>${esc(t.timing)}</dd></div>
       </dl>
-      ${STREAMS.map(([k, n]) => `<div class="stream-block"><div class="sname">${n}<br>${lvPill(t[k])} <span class="note">${LEVEL[t[k]]}</span></div><p>${esc(t[{ P: "problem", Po: "politics" }[k]])}</p></div>`).join("")}
+      ${STREAMS.map(([k, n]) => `<div class="stream-block"><div class="sname">${n}<br>${lvPill(t[k])} <span class="note">${LEVEL[t[k]]}</span></div><div><p>${esc(t[{ P: "problem", Po: "politics" }[k]])}</p>${checksFor(t.id, n).length ? `<details class="check-details" open><summary>How the ${n.toLowerCase()} stream is framed in ${esc(LATEST.id)} (${checksFor(t.id, n).length} concept check${checksFor(t.id, n).length === 1 ? "" : "s"})</summary>${checkList(t.id, n)}</details>` : ""}</div></div>`).join("")}
       <section><h3>Week by week</h3><div class="mini-traj" style="--nweeks:${NW}">${traj}</div><p class="note">Top bar: problem. Bottom bar: politics.${proposedWeek ? " " + esc(proposedWeek) + " is proposed and awaits review." : ""}</p></section>
       <section><h3>What changed</h3><p>${esc(t.changed)}</p>
         ${t.closing ? `<p><b>Closing reason (Kingdon):</b> ${esc(t.closing)}. <b>Could reopen if:</b> ${esc(t.reopen)}.</p>` : ""}</section>
@@ -608,7 +618,7 @@
         return `<article class="signal ${cls}" data-k="${k}">
           <div class="signal-top"><h3>${t ? `<a href="#topic-${t.id.toLowerCase()}">${esc(t.short)}</a>` : "Cross-cutting"} · ${esc(sg.stream)}</h3>
             <span class="lvchange">${sg.proposed == null ? "No level change" : `${sg.prev == null ? "" : lvPill(sg.prev) + " →"} ${lvPill(sg.proposed)} ${esc(LEVEL[sg.proposed])}${sg.prev == null ? " (new)" : ""}`}</span></div>
-          <div class="framing"><span class="framing-label">How the ${esc(sg.stream.toLowerCase())} stream is framed</span> ${sg.concepts.map(cTag).join(" ")}</div>
+          ${checksFor(sg.topic, sg.stream).length ? `<div class="framing"><span class="framing-label">How the ${esc(sg.stream.toLowerCase())} stream is framed: ${checksFor(sg.topic, sg.stream).length} concept check${checksFor(sg.topic, sg.stream).length === 1 ? "" : "s"}</span></div>${checkList(sg.topic, sg.stream)}<div class="framing"><span class="framing-label">Stream level</span></div>` : `<div class="framing"><span class="framing-label">How the ${esc(sg.stream.toLowerCase())} stream is framed</span> ${sg.concepts.map(cTag).join(" ")}</div>`}
           <p class="rationale">${esc(sg.rationale)}</p>
           <details><summary>Evidence: ${sg.items.length} coded item${sg.items.length === 1 ? "" : "s"}</summary><ul class="ev">${sg.items.map((x) => itemById[x]).filter(Boolean).map((i) =>
             `<li>${cTag(i.concept)} ${esc(i.note)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}<br><span class="ctx">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · ${esc(i.date)}${i.context ? " · " + esc(i.context) : ""}</span></li>`).join("")}</ul></details>

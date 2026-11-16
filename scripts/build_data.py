@@ -510,7 +510,8 @@ for wf in weekly_files:
         it = dict(it); it.setdefault("context", ""); it.setdefault("quote", ""); it["week"] = wk["id"]
         items.append(it)
     reviews.append(dict(week=wk["id"], label=wk["label"], status=W.get("reviewStatus", "proposed"),
-                        note=W.get("note", ""), signals=W.get("signals", [])))
+                        note=W.get("note", ""), signals=W.get("signals", []),
+                        conceptSignals=W.get("conceptSignals", [])))
     discovery += [dict(week=wk["id"], text=d) for d in W.get("discovery", [])]
     generated = W.get("generated", generated)
     stories = W.get("stories", [])
@@ -597,6 +598,7 @@ METHOD = dict(
         "Executive signals take precedence over congressional ones.",
         "A level carries forward up to two weeks without new items, then drops one level.",
         "The policy stream is checked only for topics where a window has been flagged.",
+        "From W10 each stream level rests on concept checks: one check per topic and concept (for example, fuel prices as a focusing event, and separately as a salient issue), each with its own rationale, evidence and strength (1 a mention or single source; 2 substantive, from two or more independent sources or one first-hand source; 3 decisive). The reviewer approves the concept checks first and the stream level second.",
         "Budget topics count in the problem stream only when there is an event: a cut that draws coverage, a line rejected or not approved, a failed vote or a deadlock. Routine budget debate is technical and is coded in the politics stream (from W10, reviewer's rule).",
     ],
     limitations=[
