@@ -372,3 +372,20 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .add-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
 .ways { margin: 6px 0 0; padding-left: 18px; font-size: 14px; color: var(--text-secondary); }
 .type-table td:nth-child(2) { white-space: nowrap; text-align: right; }
+
+/* ---- This week in data (newsletter-style story cards) ---- */
+.stories-wrap { margin: 4px 0 18px; }
+.section-title { font-size: 18px; margin: 0 0 10px; }
+.story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.story { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+.story .eyebrow { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--st-open); font-weight: 600; }
+.story h3 { margin: 0; font-size: 16px; line-height: 1.3; }
+.story p { margin: 0; font-size: 14px; color: var(--text-secondary); }
+.story .spark { display: block; width: 100%; height: auto; }
+.story .spark-key { font-size: 11.5px; color: var(--text-muted); }
+.story a.more { font-size: 13.5px; font-weight: 600; margin-top: auto; }
+@media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; } }
+.precedents { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.precedents li { border-left: 3px solid var(--border-strong); padding: 2px 0 2px 10px; font-size: 14px; }
+.precedents .src { font-size: 12px; color: var(--text-muted); }
+.na-fill { fill: var(--grid); }

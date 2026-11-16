@@ -4,6 +4,8 @@ A weekly run covers one week, Friday to Thursday (W9 = 6–12 Nov 2026, W10 = 13
 
 ## 1. Collect
 
+- First read `data/weekly/CL/leads/<year>-W<nn>.md` if it exists: leads the reviewer added during the week. Check every lead and report what you could not confirm.
+- Check mobilisations explicitly every week: strikes, protests, blockades and stoppages (the W9 truckers' strike was missed because no source search covered it).
 - Read `data/sources/cl.csv`. For every news, radio/TV, talk-show, podcast and poll source, search the week's headlines and descriptions (stage 1). Fetch full text only for items that touch a monitored topic or show a coverage spike (stage 2).
 - Check the indicators due that week (IMACEC, IPC, unemployment, investment) and the Congress and executive calendar (urgencies, votes, budget steps, speeches at business events).
 - Note paywalls or sources you could not reach.
@@ -16,6 +18,7 @@ Quotes: at most one short quote (under 15 words) per source, only when the exact
 
 ## 3. Weigh and propose levels
 
+- Read each signal against the topic's `precedents` (past episodes on the same issue) and its normal level of attention. Add a precedent when a source gives one (for example, a data newsletter's historical series).
 - Give every topic a `[problem, politics]` level in `levels` (0 No signal, 1 Weak signal, 2 Signal, 3 Strong signal; descriptions in the protocol, section 3.6).
 - A concept gains strength when two or more independent sources show it in the same week.
 - Lower politics by one when approval or national mood is clearly against the move, or coalition arithmetic suggests blocking. Executive signals take precedence over congressional ones.
@@ -29,6 +32,8 @@ In `topicUpdates`, set `status` (`problem`, `political`, `watch`, `closing`, `cl
 New topics found through the discovery net go in `newTopics` (with ministry and CAP code). For a newly flagged window, add a `policyChecks` entry: ideas in circulation, entrepreneurs, bills, evidence state.
 
 Also update `approval` (new polls), `calendar` (the full list of coming decision points) and `context`.
+
+Write three `stories` for the Overview's "This week in data" cards: the week's most important changes, each with an `eyebrow` (ministry or stream), a short `title`, two sentences of `text`, and a `topic` id (or `"kind": "approval"` for a polling story). They double as the weekly brief.
 
 ## 5. Build, check, publish
 

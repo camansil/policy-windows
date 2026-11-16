@@ -216,30 +216,71 @@
   /* ---------- approval chart ---------- */
   function renderApproval() {
     const polls = [["Cadem", "var(--st-open)"], ["Criteria", "var(--st-opening)"]];
-    $("#approval-legend").innerHTML = polls.map(([p, c]) => `<span class="legend-item"><span class="swatch" style="background:${c};height:3px;width:16px"></span>${p}</span>`).join("");
-    const W = 560, H = 240, l = 36, r = 76, t = 14, b = 30;
+    $("#approval-legend").innerHTML = polls.map(([p, c]) => `<span class="legend-item"><span class="swatch" style="background:${c};height:3px;width:16px"></span>${p}</span>`).join("") +
+      `<span class="legend-item"><svg width="18" height="6" aria-hidden="true"><line x1="0" y1="3" x2="18" y2="3" stroke="var(--text-secondary)" stroke-width="2"/></svg>Approve</span>` +
+      `<span class="legend-item"><svg width="18" height="6" aria-hidden="true"><line x1="0" y1="3" x2="18" y2="3" stroke="var(--text-secondary)" stroke-width="2" stroke-dasharray="4 3"/></svg>Disapprove</span>`;
+    const W = 560, H = 300, l = 36, r = 104, t = 14, b = 30;
     const x0 = dnum("2026-10-01"), x1 = dnum(D.meta.generated);
     const X = (iso) => l + (dnum(iso) - x0) / (x1 - x0) * (W - l - r);
-    const yMin = 20, yMax = 40, Y = (v) => t + (yMax - v) / (yMax - yMin) * (H - t - b);
-    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Presidential approval by poll, October to November 2026" });
-    [20, 25, 30, 35, 40].forEach((v) => { svgEl("line", { x1: l, x2: W - r, y1: Y(v), y2: Y(v), class: "gridline" }, svg); svgText(svg, l - 6, Y(v) + 4, v + "%", { "text-anchor": "end" }); });
+    const yMin = 20, yMax = 75, Y = (v) => t + (yMax - v) / (yMax - yMin) * (H - t - b);
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Presidential approval and disapproval by poll, October to November 2026" });
+    [20, 30, 40, 50, 60, 70].forEach((v) => { svgEl("line", { x1: l, x2: W - r, y1: Y(v), y2: Y(v), class: "gridline" }, svg); svgText(svg, l - 6, Y(v) + 4, v + "%", { "text-anchor": "end" }); });
     ["2026-10-01", "2026-10-15", "2026-11-01"].forEach((d) => svgText(svg, X(d), H - 8, fmtDate(d), { "text-anchor": "middle" }));
     svgEl("line", { x1: l, x2: W - r, y1: H - b, y2: H - b, class: "axisline" }, svg);
+    const ends = [];
     polls.forEach(([p, c]) => {
       const pts = D.approval.filter((a) => a.poll === p).sort((a, b2) => a.date.localeCompare(b2.date));
-      svgEl("path", { d: pts.map((a, i) => (i ? "L" : "M") + X(a.date) + " " + Y(a.approve)).join(""), fill: "none", stroke: c, "stroke-width": 2, "stroke-linejoin": "round" }, svg);
-      pts.forEach((a) => {
-        svgEl("circle", { cx: X(a.date), cy: Y(a.approve), r: 4.5, fill: c, stroke: "var(--surface-1)", "stroke-width": 2 }, svg);
-        const hit = svgEl("circle", { cx: X(a.date), cy: Y(a.approve), r: 12, fill: "transparent", tabindex: 0, "aria-label": `${p} ${fmtDate(a.date)}: approve ${a.approve}%, disapprove ${a.disapprove}%` }, svg);
-        bindTip(hit, () => `<b>${p}</b> · ${fmtDate(a.date)}<br>Approve <b>${a.approve}%</b> · Disapprove ${a.disapprove}%`);
+      [["approve", null], ["disapprove", "5 4"]].forEach(([k, dash]) => {
+        const at = { d: pts.map((a, i) => (i ? "L" : "M") + X(a.date) + " " + Y(a[k])).join(""), fill: "none", stroke: c, "stroke-width": 2, "stroke-linejoin": "round" };
+        if (dash) at["stroke-dasharray"] = dash;
+        svgEl("path", at, svg);
+        pts.forEach((a) => {
+          svgEl("circle", { cx: X(a.date), cy: Y(a[k]), r: dash ? 3 : 4.5, fill: dash ? "var(--surface-1)" : c, stroke: dash ? c : "var(--surface-1)", "stroke-width": 2 }, svg);
+          const hit = svgEl("circle", { cx: X(a.date), cy: Y(a[k]), r: 11, fill: "transparent", tabindex: 0, "aria-label": `${p} ${fmtDate(a.date)}: approve ${a.approve}%, disapprove ${a.disapprove}%` }, svg);
+          bindTip(hit, () => `<b>${p}</b> · ${fmtDate(a.date)}<br>Approve <b>${a.approve}%</b> · Disapprove <b>${a.disapprove}%</b><br>Net ${a.approve - a.disapprove}`);
+        });
+        const last = pts[pts.length - 1];
+        ends.push({ y: Y(last[k]), x: X(last.date), text: `${p} ${last[k]}%`, k });
       });
-      const last = pts[pts.length - 1];
-      svgText(svg, X(last.date) + (p === "Criteria" ? -6 : 9), Y(last.approve) + (p === "Criteria" ? 18 : 4), `${p} ${last.approve}%`, { class: "t-strong", "text-anchor": p === "Criteria" ? "end" : "start" });
     });
+    // end labels, nudged apart so they never overlap
+    ends.sort((a, b2) => a.y - b2.y);
+    for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 14) ends[i].y = ends[i - 1].y + 14;
+    ends.forEach((e) => svgText(svg, W - r + 8, e.y + 4, e.text, { class: e.k === "approve" ? "t-strong" : "" }));
     const host = $("#approval"); host.innerHTML = ""; host.appendChild(svg);
-    $("#approval-table").innerHTML = `<table><thead><tr><th>Poll</th><th>Published</th><th>Approve</th><th>Disapprove</th></tr></thead><tbody>` +
-      D.approval.slice().sort((a, b2) => a.date.localeCompare(b2.date)).map((a) => `<tr><td>${a.poll}</td><td>${fmtDate(a.date)}</td><td>${a.approve}%</td><td>${a.disapprove}%</td></tr>`).join("") +
+    $("#approval-table").innerHTML = `<table><thead><tr><th>Poll</th><th>Published</th><th>Approve</th><th>Disapprove</th><th>Net</th></tr></thead><tbody>` +
+      D.approval.slice().sort((a, b2) => a.date.localeCompare(b2.date)).map((a) => `<tr><td>${a.poll}</td><td>${fmtDate(a.date)}</td><td>${a.approve}%</td><td>${a.disapprove}%</td><td>${a.approve - a.disapprove}</td></tr>`).join("") +
       `</tbody></table><p class="note">${esc(D.context.approvalNote)}</p>`;
+  }
+
+  /* ---------- this week in data: story cards ---------- */
+  function sparkLevels(t) {
+    const n = t.traj.length, cw = 22, gap = 3, W = n * (cw + gap), H = 30;
+    let g = "";
+    t.traj.forEach((lv, i) => {
+      const x = i * (cw + gap);
+      if (!lv) { g += `<rect x="${x}" y="0" width="${cw}" height="13" rx="2" class="na-fill"/><rect x="${x}" y="16" width="${cw}" height="13" rx="2" class="na-fill"/>`; return; }
+      g += `<rect x="${x}" y="0" width="${cw}" height="13" rx="2" style="fill:var(--l${lv[0]})"/><rect x="${x}" y="16" width="${cw}" height="13" rx="2" style="fill:var(--l${lv[1]})"/>`;
+    });
+    return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.short)}: problem and politics levels by week">${g}</svg><span class="spark-key">Problem (top) and politics (bottom), ${esc(D.weeks[0].id)}–${esc(LATEST.id)}</span>`;
+  }
+  function sparkApproval() {
+    const W = 240, H = 60, pts = (p) => D.approval.filter((a) => a.poll === p).sort((a, b) => a.date.localeCompare(b.date));
+    const all = D.approval.map((a) => dnum(a.date)), x0 = Math.min(...all), x1 = Math.max(...all);
+    const X = (d) => 4 + (dnum(d) - x0) / (x1 - x0 || 1) * (W - 8), Y = (v) => 4 + (40 - v) / 20 * (H - 8);
+    const line = (p, c) => `<path d="${pts(p).map((a, i) => (i ? "L" : "M") + X(a.date).toFixed(1) + " " + Y(a.approve).toFixed(1)).join("")}" fill="none" stroke="${c}" stroke-width="2"/>`;
+    return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="Approval by poll">${line("Cadem", "var(--st-open)")}${line("Criteria", "var(--st-opening)")}</svg><span class="spark-key">Approval: Cadem (blue), Criteria (orange)</span>`;
+  }
+  function renderStories() {
+    const st = D.stories || [];
+    $(".stories-wrap").hidden = !st.length;
+    $("#stories").innerHTML = st.map((x) => {
+      const t = x.topic && byId[x.topic];
+      return `<article class="story"><div class="eyebrow">${esc(x.eyebrow || "")}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>` +
+        (t ? sparkLevels(t) : x.kind === "approval" ? sparkApproval() : "") +
+        (t ? `<a class="more" href="#topic-${t.id.toLowerCase()}">See the topic →</a>` : x.kind === "approval" ? `<a class="more" href="#overview" data-scroll="approval">See the polls →</a>` : "") + `</article>`;
+    }).join("");
+    $$("#stories [data-scroll]").forEach((el) => el.addEventListener("click", (e) => { e.preventDefault(); const tgt = document.getElementById(el.dataset.scroll); if (tgt) tgt.scrollIntoView({ behavior: "smooth", block: "center" }); }));
   }
 
   /* ---------- context ---------- */
@@ -347,6 +388,7 @@
       <section><h3>Week by week</h3><div class="mini-traj" style="--nweeks:${NW}">${traj}</div><p class="note">Top bar: problem. Bottom bar: politics.${proposedWeek ? " " + esc(proposedWeek) + " is proposed and awaits review." : ""}</p></section>
       <section><h3>What changed</h3><p>${esc(t.changed)}</p>
         ${t.closing ? `<p><b>Closing reason (Kingdon):</b> ${esc(t.closing)}. <b>Could reopen if:</b> ${esc(t.reopen)}.</p>` : ""}</section>
+      ${(t.precedents || []).length ? `<section><h3>Precedents</h3><ul class="precedents">${t.precedents.map((p) => `<li>${esc(p.text)}<br><span class="src"><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.source)}</a> · ${esc(p.date)}</span></li>`).join("")}</ul></section>` : ""}
       <section><h3>Frames and actors</h3>
         <p><b>Frames:</b> ${esc(t.frames)}</p>
         <div class="check-grid">
@@ -589,7 +631,7 @@
   window.addEventListener("hashchange", route);
 
   /* ---------- init ---------- */
-  renderTiles(); renderMap(); renderLevelLegend(); renderWeekly(); renderCalendar(); renderApproval(); renderContext();
+  renderTiles(); renderStories(); renderMap(); renderLevelLegend(); renderWeekly(); renderCalendar(); renderApproval(); renderContext();
   renderGaps(); initMinistry(); renderCards(); renderSources(); renderAddSource(); renderMethod(); renderRun(); renderItems(); renderReview();
   route();
 })();

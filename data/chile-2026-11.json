@@ -643,6 +643,20 @@
    "added_by": "Cristian",
    "added_on": "2026-11-13",
    "notes": "Digital outlet; national and political news"
+  },
+  {
+   "id": "CL-D01",
+   "name": "Unholster DataDriven newsletter",
+   "source_type": "Data journalism and analytics newsletters",
+   "owner": "Unholster",
+   "format": "Email and web",
+   "url": "https://www.unholster.com",
+   "access": "Open (free subscription)",
+   "how_read": "Every edition (weekly; Saturdays): data stories and poll tracking",
+   "match": "Unholster|DataDriven",
+   "added_by": "Cristian",
+   "added_on": "2026-11-16",
+   "notes": "Data consultancy. Weekly data stories with historical series (e.g. truckers' strikes since 1990) and an approval tracker; also publishes analyses in DF and the podcast El Prompt"
   }
  ],
  "meta": {
@@ -1607,9 +1621,9 @@
    "frames": "Relief for households vs concession giveaway.",
    "brokers": [],
    "entrepreneurs": [],
-   "changed": "Decided through politics alone. The v0.4 rule would not have flagged it, because the problem stream stayed weak.",
+   "changed": "Decided through politics alone. The v0.4 rule would not have flagged it, because the problem stream stayed weak. Tolls and TAG returned as a demand of the truckers' strike (10–11 Nov): a possible reopening to watch.",
    "closing": "Decision taken",
-   "reopen": "Concession controversy",
+   "reopen": "Tolls become a condition for ending the truckers' strike",
    "policyCheck": false
   },
   {
@@ -1822,8 +1836,8 @@
    "timing": "Predictable (weekly price updates; bill under 'discusión inmediata')",
    "openWeek": 9,
    "closeWeek": null,
-   "problem": "Sixth consecutive rise in fuel prices (+$40 per litre from 12 Nov). Gasoline rose 4.5% in October's CPI, which put annual inflation at 4.5%. Cadem (8 Nov): fuel prices and unemployment are the issues people most want the government to solve.",
-   "politics": "After the extended political committee on 9 Nov, the President announced a bill capping each rise at $20 per litre for 90 days, with 'discusión inmediata' urgency and the backing of governing-party presidents and bench heads. Reactions in Congress were mixed.",
+   "problem": "Sixth consecutive rise in fuel prices (+$40 per litre from 12 Nov). Gasoline rose 4.5% in October's CPI, which put annual inflation at 4.5%. Cadem (8 Nov): fuel prices and unemployment are the issues people most want the government to solve. A national truckers' strike from 10 Nov demanded lower fuel prices, a cut in the specific fuel tax and in tolls; talks with the government on 10–11 Nov ended without agreement.",
+   "politics": "After the extended political committee on 9 Nov, the President announced a bill capping each rise at $20 per litre for 90 days, with 'discusión inmediata' urgency and the backing of governing-party presidents and bench heads. Reactions in Congress were mixed. Truckers' organisations remain mobilised; the large federations were weighing whether to join.",
    "policy": "Executive bill to change Mepco; Hacienda considering fiscal savings to moderate rises. Bonuses for taxi drivers, school transport and artisanal fishers were extended in September.",
    "frames": "'Social urgency' (President) vs 'fuel is still cheap for the region' (Minister Mas).",
    "brokers": [],
@@ -1831,9 +1845,29 @@
     "President José Antonio Kast",
     "Jorge Quiroz (Minister of Finance)"
    ],
-   "changed": "New topic this week. Entered through the discovery net: a coverage spike plus poll salience.",
+   "changed": "New topic this week. Entered through the discovery net (coverage spike plus poll salience); the truckers' strike was added by the reviewer.",
    "closing": null,
    "reopen": null,
+   "precedents": [
+    {
+     "text": "32 truckers' strikes in 36 years, plus announced strikes. In 24 of the 29 with a known date, diesel prices had been rising beforehand.",
+     "source": "Unholster, DataDriven newsletter",
+     "date": "2026-11-14",
+     "url": "https://www.unholster.com"
+    },
+    {
+     "text": "2008: a strike over the diesel tax ended with the government agreeing to refund 80% of the specific tax that year and 100% from 2009.",
+     "source": "El Desconcierto",
+     "date": "2020-08-27",
+     "url": "https://eldesconcierto.cl/2020/08/27/paro-de-camioneros-las-otras-oportunidades-en-que-el-gremio-ha-puesto-en-jaque-al-pais"
+    },
+    {
+     "text": "2022: a week-long strike ended with an agreement on fuel-price stabilisation, transport rates and security.",
+     "source": "CNN Chile",
+     "date": "2022-11-29",
+     "url": "https://www.cnnchile.com/pais/acuerdo-camioneros-gobierno-precio-diesel-mepco-descanso_20221129/"
+    }
+   ],
    "traj": [
     null,
     null,
@@ -2158,6 +2192,12 @@
    "disapprove": 64
   },
   {
+   "poll": "Criteria",
+   "date": "2026-11-01",
+   "approve": 25,
+   "disapprove": 65
+  },
+  {
    "poll": "Cadem",
    "date": "2026-11-08",
    "approve": 29,
@@ -2186,6 +2226,7 @@
   "process": [
    "Collect and transcribe the week's material from the country's source list: headlines and descriptions for everything, full text or transcripts only for items on monitored topics and for the weekly political review programmes.",
    "Analyse the material for common themes against the concepts of the problem stream (focusing events, indicator changes, feedback, salience, frame consensus) and the politics stream (government approval, government intentions and agenda tools, national mood, organised forces, events within government). Each coded item keeps its context: source, programme, speaker and date.",
+   "Read each signal against the topic's precedents (past episodes such as strikes, protests or earlier windows on the same issue) and its own baseline of attention.",
    "Weigh each concept by corroboration: it gains strength when it appears in more than one independent source in the same week.",
    "Propose a level for each stream and topic, with a short rationale citing the items behind it.",
    "A reviewer reads the proposed signals and their rationales and approves, changes or rejects them.",
@@ -2227,6 +2268,10 @@
    [
     "Calendar of moments",
     "Budget debate, scheduled votes, elections, anniversaries"
+   ],
+   [
+    "Data journalism and analytics newsletters",
+    "Indicator changes with historical precedent; poll aggregation"
    ]
   ],
   "publicLimitations": [
@@ -2253,7 +2298,7 @@
    "Re-rated W1–W8 under v0.4: the policy level was dropped from the weekly grid and windows were re-flagged with the two-stream rule.",
    "Added one topic (fuel prices) through the discovery net."
   ],
-  "volume": "109 coded items in total; 21 new in W9.",
+  "volume": "113 coded items in total; 25 new in W9.",
   "rules": [
    "A potential window is flagged when the problem and politics streams are both at level 2 or 3 in the same week.",
    "Whichever stream reached level 2 first sets the coupling: problem window (consequential) or political window (doctrinal).",
@@ -2295,14 +2340,17 @@
      "proposed": 3,
      "concepts": [
       "Indicator change",
-      "Salience"
+      "Salience",
+      "Focusing event"
      ],
      "items": [
       "D97",
       "D98",
-      "D91"
+      "D91",
+      "D110",
+      "D113"
      ],
-     "rationale": "A sixth consecutive price rise and gasoline's jump in October's CPI are indicator changes, corroborated by three sources. Cadem places fuel prices among the issues people most want solved, which meets the 'top concern' test for level 3."
+     "rationale": "A sixth consecutive price rise and gasoline's jump in October's CPI are indicator changes, corroborated by three sources. Cadem places fuel prices among the issues people most want solved, which meets the 'top concern' test for level 3. A national truckers' strike over fuel prices, the specific fuel tax and tolls (added by the reviewer) is a focusing event that confirms level 3."
     },
     {
      "topic": "T21",
@@ -2311,14 +2359,17 @@
      "proposed": 3,
      "concepts": [
       "Agenda tool used (urgency)",
-      "Coalition or vote"
+      "Coalition or vote",
+      "Organised forces"
      ],
      "items": [
       "D95",
       "D96",
-      "D100"
+      "D100",
+      "D111",
+      "D112"
      ],
-     "rationale": "The executive announced a bill with 'discusión inmediata', the strongest urgency, after agreeing it with governing-party leaders. Approval is low, but mood favours action on fuel prices, so no level is deducted. Problem came first (Cadem 8 Nov, bill 9 Nov), so this is a problem window."
+     "rationale": "The executive announced a bill with 'discusión inmediata', the strongest urgency, after agreeing it with governing-party leaders. Approval is low, but mood favours action on fuel prices, so no level is deducted. Problem came first (Cadem 8 Nov, bill 9 Nov), so this is a problem window. Truckers' organisations are mobilised and talks with the government ended without agreement on 10–11 Nov, so the decision is contested."
     },
     {
      "topic": "T04",
@@ -2467,6 +2518,30 @@
   {
    "week": "W9",
    "text": "Inflation (CPI 4.5%) and growth (Imacec +0.2%) are tracked as indicators inside T21 and T08 rather than as separate topics."
+  },
+  {
+   "week": "W9",
+   "text": "Missed by collection: the national truckers' strike (10–11 Nov) was added by the reviewer on 16 Nov. The runbook now checks strikes, protests and blockades explicitly."
+  }
+ ],
+ "stories": [
+  {
+   "topic": "T21",
+   "eyebrow": "Hacienda / Energía",
+   "title": "Fuel prices open a problem window",
+   "text": "A sixth straight price rise, a national truckers' strike and the President's bill to cap rises at $20 per litre arrived in the same week. Both streams are at their strongest level."
+  },
+  {
+   "topic": "T05",
+   "eyebrow": "Trabajo y Previsión Social",
+   "title": "The pension-fund window is closing",
+   "text": "Fund E recovered 8.4% between 24 October and 11 November and attention fell. The compensation bill is still pending."
+  },
+  {
+   "kind": "approval",
+   "eyebrow": "Politics stream · all topics",
+   "title": "Approval: two polls, two directions",
+   "text": "Cadem rose to 29%; Criteria fell to 24%, its lowest of the term, with disapproval at 67%."
   }
  ],
  "items": [
@@ -4211,6 +4286,70 @@
    "strength": 2,
    "note": "Government announces it will restore rejected funds",
    "context": "News report",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D110",
+   "date": "2026-11-10",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/10/1216698/dirigentes-camioneros-continuan-con-paro.html",
+   "topic": "T21",
+   "stream": "Problem",
+   "concept": "Focusing event",
+   "actor": "Truckers' organisations",
+   "strength": 3,
+   "note": "National truckers' strike continues after talks with the government; demands: lower fuel prices, specific fuel tax, TAG and tolls",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
+   "quote": "Estamos buscando la baja en los combustibles, el impuesto específico y los TAG y peajes",
+   "week": "W9"
+  },
+  {
+   "id": "D111",
+   "date": "2026-11-11",
+   "source": "El Desconcierto",
+   "type": "News",
+   "url": "https://eldesconcierto.cl/actualidad/camioneros-no-llegan-acuerdo-el-gobierno-y-seguiran-paro-indefinido-se-sumarian-mas-organizaciones-n5463958",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Organised forces",
+   "actor": "Truckers' organisations; Minister Claudio Alvarado",
+   "strength": 2,
+   "note": "No agreement after meeting the minister; strike indefinite; school vans and app drivers join in Talca",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D112",
+   "date": "2026-11-11",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Nacional/2026/11/11/1216778/gremios-camioneros-cntc-paro-transportistas.html",
+   "topic": "T21",
+   "stream": "Politics",
+   "concept": "Organised forces",
+   "actor": "CNTC and CNDC (large truckers' federations)",
+   "strength": 2,
+   "note": "Large federations that had not joined weigh joining the strike after meeting the government",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
+   "quote": "",
+   "week": "W9"
+  },
+  {
+   "id": "D113",
+   "date": "2026-11-06",
+   "source": "Emol",
+   "type": "News",
+   "url": "https://www.emol.com/noticias/Economia/2026/11/06/1216381/camioneros-san-antonio-deponen-paro.html",
+   "topic": "T21",
+   "stream": "Problem",
+   "concept": "Focusing event",
+   "actor": "San Antonio port truckers",
+   "strength": 2,
+   "note": "San Antonio port truckers end a strike begun 28 Oct over freight rates and diesel; over 3,000 containers blocked",
+   "context": "Added by reviewer on 16 Nov (missed by the W9 collection)",
    "quote": "",
    "week": "W9"
   }

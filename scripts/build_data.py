@@ -441,6 +441,7 @@ context = dict(CONTEXT)
 weeks = list(WEEKS)
 reviews = []
 discovery = []
+stories = []
 generated = "2026-11-05"
 
 def week_of(date):
@@ -477,6 +478,7 @@ for wf in weekly_files:
                         note=W.get("note", ""), signals=W.get("signals", [])))
     discovery += [dict(week=wk["id"], text=d) for d in W.get("discovery", [])]
     generated = W.get("generated", generated)
+    stories = W.get("stories", [])
 
 for it in items:
     if not it["week"]:
@@ -497,6 +499,7 @@ METHOD = dict(
     process=[
         "Collect and transcribe the week's material from the country's source list: headlines and descriptions for everything, full text or transcripts only for items on monitored topics and for the weekly political review programmes.",
         "Analyse the material for common themes against the concepts of the problem stream (focusing events, indicator changes, feedback, salience, frame consensus) and the politics stream (government approval, government intentions and agenda tools, national mood, organised forces, events within government). Each coded item keeps its context: source, programme, speaker and date.",
+        "Read each signal against the topic's precedents (past episodes such as strikes, protests or earlier windows on the same issue) and its own baseline of attention.",
         "Weigh each concept by corroboration: it gains strength when it appears in more than one independent source in the same week.",
         "Propose a level for each stream and topic, with a short rationale citing the items behind it.",
         "A reviewer reads the proposed signals and their rationales and approves, changes or rejects them.",
@@ -512,6 +515,7 @@ METHOD = dict(
         ["Executive documents and speeches", "Programme, presidential messages, budget, speeches at business and civil-society events"],
         ["Lobby registers", "Organised interests' access to decision-makers"],
         ["Calendar of moments", "Budget debate, scheduled votes, elections, anniversaries"],
+        ["Data journalism and analytics newsletters", "Indicator changes with historical precedent; poll aggregation"],
     ],
     publicLimitations=[
         "Windows are hard to anticipate; the monitor estimates likely windows and can be wrong.",
@@ -575,7 +579,7 @@ data = dict(
               topicsHeadline="Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
               note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
     weeks=weeks, statusLabels=STATUS, levels=LEVELS, topics=TOPICS, policyChecks=POLICY_CHECKS,
-    calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery,
+    calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery, stories=stories,
     items=items,
 )
 
