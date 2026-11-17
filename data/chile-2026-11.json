@@ -260,11 +260,11 @@
    "format": "Video",
    "url": "https://www.cnnchile.com",
    "access": "Video; written coverage open",
-   "how_read": "Articles on cnnchile.com quoting the interviews",
+   "how_read": "Every Sunday: interviews via articles on cnnchile.com, and every 'Minuto de confianza' (closing segment) read in full",
    "match": "Tolerancia Cero",
    "added_by": "Cristian",
    "added_on": "2026-11-13",
-   "notes": "Sunday political programme"
+   "notes": "Sunday political programme. Its closing segment, 'Minuto de confianza', is a one-minute solo commentary by a panellist on a topic of their choice; read every one, as it often anticipates topics before they reach the agenda (reviewer, 17 Nov). Published on cnnchile.com/lodijeronencnn"
   },
   {
    "id": "CL-T03",
@@ -2145,6 +2145,49 @@
    "P": 1,
    "Po": 0,
    "policyCheck": false
+  },
+  {
+   "id": "T24",
+   "name": "Science ministry: internal crisis and the science budget",
+   "short": "Science ministry",
+   "ministry": "Ciencia, Tecnología, Conocimiento e Innovación",
+   "cap": "17 Space, Science, Technology & Communications",
+   "status": "watch",
+   "statusLabel": "Watch: politics only",
+   "type": "—",
+   "coupling": "—",
+   "opened": null,
+   "timing": "President's decision on the ministry pending; Senate budget vote 17–19 Nov",
+   "openWeek": null,
+   "closeWeek": null,
+   "problem": "The Science line of Budget 2027 was rejected in the mixed committee; the university rectors' council (CRUCh) puts the 2027 budget at a 10% real cut on 2026, putting Fondequip, Fondef, FIU, InES and graduate scholarships at risk (El Mercurio, 2 Nov). The Academy of Sciences warns lost capacity could take decades to recover. Coverage this week is about the internal conflict, not the cuts.",
+   "politics": "An open conflict between Minister Lincolao and Undersecretary Rossi since late October (a Ley Karin complaint, adviser exits, dismissals on 13 Nov without the undersecretary's knowledge). La Moneda sent staff, Interior Minister Alvarado intervened (16 Nov) and the spokesperson said the ministry 'has not worked as we expected' (17 Nov). Hacienda rejected the minister's tax incentive in the AI bill.",
+   "frames": "Mismanagement and a divided team (government and press) vs. a budget cut that harms science (scientific community, CRUCh). Not converging.",
+   "brokers": [
+    "Academia Chilena de Ciencias (Sergio Lavandero)",
+    "CRUCh",
+    "Asociación de funcionarios del ministerio"
+   ],
+   "entrepreneurs": [],
+   "changed": "New topic, from the reviewer's lead. A change of people (Kingdon) can open a window: a new minister often brings a new agenda, here possibly a restored science budget or a different AI policy.",
+   "traj": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+     1,
+     2
+    ]
+   ],
+   "P": 1,
+   "Po": 2,
+   "policyCheck": false
   }
  ],
  "policyChecks": {
@@ -2416,6 +2459,14 @@
    "short": "INE",
    "lane": "Growth and employment",
    "topic": "T06"
+  },
+  {
+   "date": "2026-11-17",
+   "end": "2026-11-30",
+   "label": "President's decision on the Science ministry team (expected, no date)",
+   "short": "Science ministry decision",
+   "lane": "Science ministry",
+   "topic": "T24"
   }
  ],
  "approval": [
@@ -2584,7 +2635,7 @@
    "Re-rated W1–W8 under v0.4: the policy level was dropped from the weekly grid and windows were re-flagged with the two-stream rule.",
    "Added one topic (fuel prices) through the discovery net."
   ],
-  "volume": "216 coded items in total; 56 new in W10.",
+  "volume": "222 coded items in total; 62 new in W10.",
   "rules": [
    "A potential window is flagged when the problem and politics streams are both at level 2 or 3 in the same week.",
    "Whichever stream reached level 2 first sets the coupling: problem window (consequential) or political window (doctrinal).",
@@ -2910,7 +2961,7 @@
    "week": "W10",
    "label": "13–19 Nov",
    "status": "proposed",
-   "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection). Partly reviewed on 16 Nov: 4 of 19 stream levels decided (T04 politics kept at 2; T04 problem, T21 problem and politics approved). The Friday run keeps these decisions when it completes the week. A second model audited this file on 16 Nov; its corrections are applied and its judgement calls are listed in the review notes.",
+   "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection). Partly reviewed on 16 Nov: 4 of 19 stream levels decided (T04 politics kept at 2; T04 problem, T21 problem and politics approved). The Friday run keeps these decisions when it completes the week. A second model audited this file on 16 Nov; its corrections are applied and its judgement calls are listed in the review notes. Added 17 Nov: T24 Science ministry (reviewer's lead).",
    "signals": [
     {
      "topic": "T21",
@@ -3253,6 +3304,36 @@
       "D168"
      ],
      "rationale": "The big change the reviewer flagged: approval fell to 18% in Criteria (−6, lowest since taking office) and 27% in Cadem (−2), with Panel Ciudadano near 20%. The fall follows the fuel rise and the strike. Effect on topics: Budget politics is held at 2 rather than 3 (Chamber defeat and low approval); fuel prices is not lowered because 66% back the deal; sentence reductions stays at 2 as the reviewer set."
+    },
+    {
+     "topic": "T24",
+     "stream": "Problem",
+     "prev": null,
+     "proposed": 1,
+     "concepts": [
+      "Focusing event"
+     ],
+     "items": [],
+     "rationale": "New topic. Level 1: the science budget cut is real but drew little attention this week; the conflict, not the cut, is the story. Would rise to 2 if the scientific community or the Senate debate makes the cut visible."
+    },
+    {
+     "topic": "T24",
+     "stream": "Politics",
+     "prev": null,
+     "proposed": 2,
+     "concepts": [
+      "Events within government",
+      "Government intention"
+     ],
+     "items": [
+      "D217",
+      "D219",
+      "D220",
+      "D218",
+      "D221",
+      "D222"
+     ],
+     "rationale": "New topic. Level 2: the government has openly acknowledged the problem and the President's decision is pending, a formal step short of a decision. If the minister or undersecretary is replaced, a new team can bring a new agenda (Kingdon: change of people), so this is the place to watch for a window, especially if the science budget is restored in the Senate."
     }
    ],
    "conceptSignals": [
@@ -3677,6 +3758,41 @@
       "D196"
      ],
      "rationale": "Why government intention: Hacienda offered to restore education funds in the Senate and review the 'Yo elijo mi PC' programme (item coded under the Budget topic). One source, a promise, no amendment filed."
+    },
+    {
+     "id": "W10-T24-Politics-events-within-government",
+     "topic": "T24",
+     "stream": "Politics",
+     "concept": "Events within government",
+     "strength": 3,
+     "items": [
+      "D217",
+      "D219",
+      "D220",
+      "D218"
+     ],
+     "rationale": "Why events within government: the minister and the undersecretary are in open conflict (dismissals on 13 Nov without the undersecretary's knowledge), the Interior Minister stepped in on 16 Nov and the spokesperson said on 17 Nov that the ministry 'has not worked as we expected' and the President 'will decide'. Four outlets; the spokesperson's statement is first-hand and decisive, because it puts a change of people on the table."
+    },
+    {
+     "id": "W10-T24-Politics-government-intention",
+     "topic": "T24",
+     "stream": "Politics",
+     "concept": "Government intention",
+     "strength": 2,
+     "items": [
+      "D221",
+      "D222"
+     ],
+     "rationale": "Why government intention: the government dropped the minister's tax incentive from the AI bill after Hacienda objected, while the minister signs agreements with AI firms abroad. Two signals of what the executive intends on science and AI policy, pulling in different directions."
+    },
+    {
+     "id": "W10-T24-Problem-focusing-event",
+     "topic": "T24",
+     "stream": "Problem",
+     "concept": "Focusing event",
+     "strength": 1,
+     "items": [],
+     "rationale": "Why a focusing event: under the budget rule, the Science line rejected in the mixed committee and the 10% real cut reported by CRUCh are the kind of event that makes the budget a problem. Strength 1 for now: this week's coverage is about the conflict, not the cuts, and the evidence (El Mercurio, 2 Nov, citing CRUCh; and the mixed committee's rejection, coded under Budget) predates this week, so no item is cited here. The Friday run should code the Senate's decision on the line."
     }
    ]
   }
@@ -3733,6 +3849,10 @@
   {
    "week": "W10",
    "text": "Coverage after 13 Nov is thinner in search results; Friday's run should fill the rest of the week."
+  },
+  {
+   "week": "W10",
+   "text": "Science ministry crisis (reviewer's lead, 17 Nov): conflict between Minister Lincolao and Undersecretary Rossi, Interior intervention and the spokesperson's admission. Entered as T24 (watch, politics 2). The science budget cut (10% real per CRUCh) sits under the same topic."
   }
  ],
  "stories": [
@@ -7283,6 +7403,102 @@
    "note": "Cost estimates for the fuel measure rose from about US$500m to US$700–900m, and an economist warned Hacienda will have to reallocate 2027 spending to meet the structural balance target.",
    "context": "Economy section, 16 Nov 2026",
    "quote": "Hacienda va a tener que reasignar los gastos",
+   "week": "W10"
+  },
+  {
+   "id": "D217",
+   "date": "2026-11-14",
+   "source": "BioBioChile",
+   "type": "News",
+   "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/14/nueva-crisis-en-ciencias-ministra-lincolao-instruyo-despidos-sin-informarle-a-subsecretaria-rossi.shtml",
+   "topic": "T24",
+   "stream": "Politics",
+   "concept": "Events within government",
+   "actor": "Undersecretary Carolina Rossi; Minister Ximena Lincolao",
+   "strength": 2,
+   "note": "Undersecretary Rossi wrote to staff that three dismissals were made without her authorisation while Minister Lincolao was in the United States; the ministry denies the minister ordered them from abroad.",
+   "context": "BioBioChile, Nacional, 14 Nov 2026; Rossi's internal email of Friday 13 Nov",
+   "quote": "me hubiese gustado que me lo hubiesen informado",
+   "week": "W10"
+  },
+  {
+   "id": "D218",
+   "date": "2026-11-14",
+   "source": "The Clinic",
+   "type": "News",
+   "url": "https://www.theclinic.cl/2026/11/14/la-crisis-sin-fin-en-el-ministerio-de-ciencia-subsecretaria-rossi-acusa-despidos-sin-su-autorizacion-y-cuestiona-actuar-de-ministra-lincolao/",
+   "topic": "T24",
+   "stream": "Politics",
+   "concept": "Events within government",
+   "actor": "Undersecretary Carolina Rossi",
+   "strength": 1,
+   "note": "'The endless crisis in the Science ministry': the undersecretary questions the minister's conduct over the dismissals.",
+   "context": "The Clinic, 14 Nov 2026 (headline only; page did not load)",
+   "quote": "",
+   "week": "W10"
+  },
+  {
+   "id": "D219",
+   "date": "2026-11-16",
+   "source": "Cooperativa",
+   "type": "News",
+   "url": "https://www.cooperativa.cl/noticias/pais/gobierno/gabinete/alvarado-interviene-en-crisis-del-ministerio-de-ciencia-y-cita-a-ministra-lincolao/2026-11-16/164510.html",
+   "topic": "T24",
+   "stream": "Politics",
+   "concept": "Events within government",
+   "actor": "Interior Minister Claudio Alvarado",
+   "strength": 2,
+   "note": "Interior Minister Alvarado intervenes in the Science ministry crisis and calls Minister Lincolao to a meeting.",
+   "context": "Cooperativa, Gobierno / Gabinete, 16 Nov 2026 (headline)",
+   "quote": "",
+   "week": "W10"
+  },
+  {
+   "id": "D220",
+   "date": "2026-11-17",
+   "source": "BioBioChile",
+   "type": "News",
+   "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/17/vocero-de-gobierno-reconoce-problema-en-ministerio-de-ciencia-no-ha-funcionado-como-esperabamos.shtml",
+   "topic": "T24",
+   "stream": "Politics",
+   "concept": "Events within government",
+   "actor": "Gonzalo Arenas, government spokesperson",
+   "strength": 3,
+   "note": "The government spokesperson said the Science ministry 'has not worked as we expected', that La Moneda sent staff to help, and that the President has made his assessment and will decide.",
+   "context": "Interview with CNN Chile, reported by BioBioChile, 17 Nov 2026",
+   "quote": "no ha funcionado como esperábamos",
+   "week": "W10"
+  },
+  {
+   "id": "D221",
+   "date": "2026-11-17",
+   "source": "BioBioChile",
+   "type": "News",
+   "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/17/vocero-de-gobierno-reconoce-problema-en-ministerio-de-ciencia-no-ha-funcionado-como-esperabamos.shtml",
+   "topic": "T24",
+   "stream": "Politics",
+   "concept": "Government intention",
+   "actor": "Hacienda; Segpres; Minister Lincolao",
+   "strength": 2,
+   "note": "Lincolao's amendment to the AI bill, with 100% accelerated depreciation for tech firms, was rejected by Hacienda (fiscal cost, no prior coordination) and questioned by Segpres; the government's current version drops the incentive (per Ex-Ante).",
+   "context": "Same article, citing Ex-Ante",
+   "quote": "",
+   "week": "W10"
+  },
+  {
+   "id": "D222",
+   "date": "2026-11-16",
+   "source": "BioBioChile",
+   "type": "News",
+   "url": "https://www.biobiochile.cl/noticias/nacional/chile/2026/11/16/lincolao-firma-alianzas-con-gigantes-de-la-ia-en-eeuu-mientras-enfrenta-guerra-interna-en-la-moneda.shtml",
+   "topic": "T24",
+   "stream": "Politics",
+   "concept": "Government intention",
+   "actor": "Minister Ximena Lincolao",
+   "strength": 1,
+   "note": "Lincolao signs agreements with large AI firms in the United States (OpenAI among them) while facing an internal conflict with La Moneda.",
+   "context": "BioBioChile, 16 Nov 2026 (headline)",
+   "quote": "",
    "week": "W10"
   }
  ],
