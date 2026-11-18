@@ -12,6 +12,20 @@ Reviews happen on the **Signal Review page** on claude.ai (https://claude.ai/art
 - Signals left pending stay as proposed.
 - When completing a partial week, also read that week's own decisions: keep each decided signal's `review` and level unless the rest of the week brings new evidence, and say so in the rationale if you propose a change.
 
+## 0b. The week's frame (read first)
+
+Start every collection with the sources the log marks **WEEK FRAME**, before any other source, and code them first. They set the scene of the week:
+
+- the talk shows' opening review of the week and their closing editorial segments: Tolerancia Cero (every Monday; the opening review and each panellist's **Minuto de confianza**), Estado Nacional, Mesa Central;
+- the newspapers' editorials, and the weekend opinion pages;
+- La Tercera's weekly opinion digest (newsletter), when the reviewer forwards or pastes it.
+
+Use the full video where you can (YouTube pages, captions or transcripts; the reviewer's source notes give links), otherwise the written coverage. Write down the five to ten themes this frame puts on the table (`frame` list in the weekly file: theme, sources, what was said), then use it as the checklist for the rest of the sweep: every theme must be either coded under a topic, proposed as a new topic, or set aside with a reason.
+
+## Access rule
+
+Every source in the log that is not behind a paywall must be opened and read, not only searched. Record in `coverage` what was read (headlines scanned, episodes watched or read) and, for any source not read, why. For paywalled sources read the headlines and any digest; list the items you need in `requests` so the reviewer can paste or forward them. A source left unread two weeks in a row is flagged in the summary.
+
 ## 1. Collect
 
 Collection is a sweep of every source, not a search by topic. A topic-led search only finds what we already watch: in W9 it missed the national truckers' strike and the withdrawal of the fuel bill, although Emol, El Desconcierto and The Clinic (all in the log) covered both.
@@ -76,6 +90,10 @@ Also update `approval` (new polls), `calendar` (the full list of coming decision
 
 Write three `stories` for the Overview's "This week in data" cards: the week's most important changes, each with an `eyebrow` (ministry or stream), a short `title`, two sentences of `text`, and a `topic` id (or `"kind": "approval"` for a polling story). They double as the weekly brief.
 
+## 4b. Second-model check (every week)
+
+Before building, have a second model audit the week's file independently (a sub-agent, read-only): check that each concept check's items support that concept and strength, that no poll or event is counted twice, that items are cited only under their own topic and concept, that levels follow the rules, and spot-check at least eight load-bearing facts against their sources. Apply the clear corrections, list its judgement calls in the file's `audit` field (`applied` and `forReviewer`), and show them on the review page.
+
 ## 5. Build, check, publish
 
 ```
@@ -93,6 +111,10 @@ git add -A && git commit -m "Weekly run CL <year>-W<nn>" && git push origin main
 Set `reviewStatus` to `proposed`. Reviews are applied at the start of the next run (step 0). The site's Review tab still works, but its decisions stay in the reviewer's browser; if a reviewer uses it, they paste its CSV export into the conversation.
 
 A run done before the week has ended (for example on a Monday) sets `partial: true` and `coveredTo`; the Friday run completes that week and replaces the file.
+
+## Who edits what
+
+One session runs the weekly cycle and edits only `data/weekly/`, `data/sources/` and the review documents. Site design and scripts are changed in a separate session, which pulls first and does not touch weekly files. Always pull and rebase before committing.
 
 ## Monthly: source suggestions
 

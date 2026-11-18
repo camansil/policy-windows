@@ -43,7 +43,8 @@ def matches(row, item):
 for wid in ["W" + str(int(w.lstrip("Ww"))) for w in wanted]:
     W = files[wid]
     dump(f"weeks/{wid}.json", dict(label=W["week"]["label"], start=W["week"]["start"], end=W["week"]["end"], order=int(wid[1:]),
-                                   reviewStatus=W.get("reviewStatus", "proposed"), partial=bool(W.get("partial")), note=W.get("note", "")))
+                                   reviewStatus=W.get("reviewStatus", "proposed"), partial=bool(W.get("partial")), note=W.get("note", ""),
+                                   audit=(W.get("audit") or {}).get("forReviewer", []), frame=W.get("frame", [])))
     order = {}
     for k, s in enumerate(W["signals"]):
         order.setdefault(s["topic"], k * 100)

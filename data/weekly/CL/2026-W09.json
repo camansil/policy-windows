@@ -8,7 +8,7 @@
   "generated": "2026-11-13",
   "protocol": "v0.4",
   "reviewStatus": "reviewed",
-  "note": "Reviewed 16 Nov 2026: two levels changed (Employment problem 3→2; Budget politics 3→2), T21 politics kept at the corrected 2 (see its review note), and two Education signals left pending (the problem signal was added by the collection audit after the review). A second collection pass on 16 Nov added 43 items (D118–D160), mostly on the truckers' strike of 9–12 Nov; they support the reviewed levels and feed W10.",
+  "note": "Reviewed 16 Nov 2026: two levels changed (Employment problem 3→2; Budget politics 3→2), T21 politics set to 3 by the reviewer on 18 Nov; the two Education signals were approved at 2 on 18 Nov. A second collection pass on 16 Nov added 43 items (D118–D160), mostly on the truckers' strike of 9–12 Nov; they support the reviewed levels and feed W10.",
   "levels": {
     "T01": [
       3,
@@ -92,7 +92,7 @@
     ],
     "T21": [
       3,
-      2
+      3
     ]
   },
   "topicUpdates": {
@@ -1479,8 +1479,8 @@
       "rationale": "Proposed 3 on 13 Nov, corrected to 2 on 16 Nov. The executive announced the $20 cap bill with 'discusión inmediata' after agreeing it with governing-party leaders, but withdrew it on 11 Nov, less than a day after filing, to avoid disrupting talks with striking truckers. A formal step is still pending (re-filing with adjustments), and mood supports action on fuel prices, so politics stays at signal level. The window remains open; problem came first, so it is a problem window.",
       "review": {
         "decision": "approve",
-        "final": 2,
-        "note": "the most critical thing is that polls agree witht he trcuk drivers demands. [Approved at 3 on 16 Nov 14:56 UTC; the proposal was corrected to 2 later that day in the collection audit, after the bill's withdrawal was added. Final level 2; reviewer to confirm.]",
+        "final": 3,
+        "note": "the most critical thing is that polls agree witht he trcuk drivers demands. [Reviewer confirmed 3 on 18 Nov.]",
         "by": "Cristian",
         "at": "2026-11-16"
       }
@@ -1663,11 +1663,11 @@
       ],
       "rationale": "Education reached the floor rejected. A restoration is promised (level 3 step), lowered by one because the committee vote suggests it could be blocked again.",
       "review": {
-        "decision": "pending",
+        "decision": "approve",
         "final": 2,
         "note": "",
         "by": "Cristian",
-        "at": "2026-11-16"
+        "at": "2026-11-18"
       }
     },
     {
@@ -1704,11 +1704,11 @@
       ],
       "rationale": "A student march against the education cuts confirms the problem stream at signal level; more marches are planned in November.",
       "review": {
-        "decision": "pending",
+        "decision": "approve",
         "final": 2,
-        "note": "Added after the review (collection audit); not yet reviewed.",
+        "note": "",
         "by": "Cristian",
-        "at": "2026-11-16"
+        "at": "2026-11-18"
       }
     }
   ],

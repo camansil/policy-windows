@@ -90,6 +90,19 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
 .codebook h3 { font-size: 14px; margin: 6px 0 2px; }
 .status { padding: 10px 12px; border-radius: 8px; background: var(--surface-2); color: var(--fg-2); font-size: 14px; }
 .tabs { display: flex; gap: 6px; }
+.todo { display: grid; gap: 8px; }
+.todo ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.todo a { color: var(--accent); }
+.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; }
+.streambox { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.streambox > header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.streambox.s-problem > header { background: color-mix(in srgb, var(--problem) 12%, var(--surface)); }
+.streambox.s-politics > header { background: color-mix(in srgb, var(--politics) 12%, var(--surface)); }
+.streambox > header h3 { margin: 0; font-size: 15px; }
+.streambox .inner { display: grid; gap: 10px; padding: 12px 14px 14px; }
+.level-label { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 2px 0 0; }
+.tree { display: grid; gap: 10px; border-left: 2px dashed var(--border-strong); padding-left: 14px; margin-left: 4px; }
+.signal.k-concept { margin-left: 0; }
 .tab { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 999px; padding: 5px 14px; cursor: pointer; font-size: 14px; font-weight: 500; }
 .tab[aria-selected="true"] { background: var(--fg); color: var(--surface); border-color: var(--fg); }
 .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -127,6 +140,8 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
     <p>Every source in the log, with what the run read from it this week and the items it coded. Use the comment box to say what is missing or misread, for example a programme you heard that is not reflected. The next run reads these comments.</p>
   </section>
 
+  <section class="panel todo" id="todo" hidden></section>
+
   <section class="panel" id="weeknote-panel" hidden>
     <h2>Notes for this week</h2>
     <p class="sub" style="margin:0">New topics to add, how a topic should be framed, sources to check, anything that is not about a single signal.</p>
@@ -145,26 +160,6 @@ textarea { flex: 1; min-width: 0; min-height: 60px; resize: vertical; background
   </details>
 </main>
 
-Each card is one proposed signal: a level for one topic in one stream. Choose <b>Approve</b> if the level and its framing are right, <b>Change</b> to set a different level, or <b>Reject</b> if the signal should not count at all. Add a comment whenever the reasoning needs nuance; you can type it or tap the microphone and speak. Everything saves as you go, and the next weekly run reads your decisions and comments directly.</p>
-    <div class="status" id="status">Connecting to the review store…</div>
-  </section>
-
-  <section class="panel" id="weeknote-panel" hidden>
-    <h2>Notes for this week</h2>
-    <p class="sub" style="margin:0">New topics to add, how a topic should be framed, sources to check, anything that is not about a single signal.</p>
-    <div class="comment-box"><div class="comment-row">
-      <textarea id="weeknote" aria-label="Notes for this week" placeholder="e.g. Add the truckers' strike as its own topic; budget only counts as a problem when there are cuts"></textarea>
-      <button type="button" class="mic" data-mic="weeknote" aria-label="Dictate notes for this week"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
-    </div><div class="partial" id="partial-weeknote"></div><div class="saved" id="saved-weeknote"></div></div>
-  </section>
-
-  <div id="signals" style="display:grid;gap:16px"></div>
-
-  <details class="panel codebook" id="codebook">
-    <summary><b>Codebook:</b> what each concept means and what the levels mean</summary>
-    <div id="codebook-body"></div>
-  </details>
-</main>
 
 <script>
 (function () {
@@ -252,27 +247,58 @@ Each card is one proposed signal: a level for one topic in one stream. Choose <b
   function streamCard(s, hasChecks) {
     const d = decisions[s.id] || {}, st = (s.stream || "").toLowerCase();
     return `<article class="panel signal k-stream s-${st} ${d.decision ? "d-" + d.decision : ""}" data-id="${esc(s.id)}">
-      <div class="sig-head"><h3>${esc(s.stream)} stream level</h3>
+      <div class="sig-head"><h3>${esc(s.stream)} stream: overall level</h3>
         <span class="lvchange">${s.proposed == null ? "No level change proposed" : `${s.prev == null ? "New" : lv(s.prev) + " →"} ${lv(s.proposed)} ${esc(LEVEL[s.proposed])}`}</span></div>
       ${hasChecks ? "" : `<div class="framing"><span class="framing-label">Framed by</span>${(s.concepts || []).map((c) => `<span class="concept${CONCEPTS[c] ? " c-" + CONCEPTS[c][0].toLowerCase() : ""}" title="${esc(CONCEPTS[c] ? CONCEPTS[c][1] : "")}">${esc(c)}</span>`).join("")}</div>`}
       <p class="rationale">${esc(s.rationale)}</p>
       ${hasChecks ? "" : evidence(s)}${decide(s, d, false)}</article>`;
   }
 
+  let onlyPending = false;
+  const pend = (id) => !(decisions[id] && decisions[id].decision);
+  function renderTodo() {
+    const el = $("#todo"); if (!signals.length) { el.hidden = true; return; }
+    const cs = signals.filter((s) => s.kind === "concept"), ss = signals.filter((s) => (s.kind || "stream") === "stream");
+    const pc = cs.filter((s) => pend(s.id)), ps = ss.filter((s) => pend(s.id));
+    const topics = []; [...pc, ...ps].forEach((s) => { if (!topics.includes(s.topicName)) topics.push(s.topicName); });
+    const otherWeeks = weeks.filter((w) => w.id !== week && w.reviewStatus !== "reviewed");
+    const w = weeks.find((x) => x.id === week);
+    el.hidden = false;
+    el.innerHTML = `<h2>What needs you this week</h2>
+      <ul>
+        <li><b>${pc.length}</b> of ${cs.length} concept checks and <b>${ps.length}</b> of ${ss.length} stream levels are still to decide${topics.length ? `, in: ${topics.map(esc).join(", ")}` : ""}.</li>
+        ${otherWeeks.length ? `<li>Other weeks still open: ${otherWeeks.map((w) => esc(w.id)).join(", ")} (choose them in the Week menu).</li>` : ""}
+        <li>Check the <a href="#" data-goto="sources">Sources read</a> tab for anything missing from the programmes you follow.</li>
+        <li>Anything that is not about one signal goes in <b>Notes for this week</b> below.</li>
+        ${w && (w.audit || []).length ? `<li>The second-model check left these calls for you: <ul>${w.audit.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></li>` : ""}
+        <li>The status document with open decisions: <a href="https://claude.ai/artifact/E8wY11rpETyEhwfPvA1d1M" target="_blank" rel="noopener">Where things stand</a>. The expert catalogue: <a href="https://claude.ai/artifact/PDLg8PPUNRX9fEYfiBWEyv" target="_blank" rel="noopener">protocol</a>.</li>
+      </ul>
+      <label class="toggle"><input type="checkbox" id="only-pending" ${onlyPending ? "checked" : ""}> Show only what is still to decide</label>`;
+    $("#only-pending").addEventListener("change", (e) => { onlyPending = e.target.checked; render(); });
+    el.querySelector("[data-goto]").addEventListener("click", (e) => { e.preventDefault(); view = "sources"; render(); });
+  }
   function renderSignals() {
     const host = $("#signals");
+    renderTodo();
     if (!signals.length) { host.innerHTML = week ? `<p class="empty">No signals for this week yet.</p>` : ""; tally(); return; }
     const w = weeks.find((x) => x.id === week);
     const topics = []; signals.forEach((s) => { if (!topics.includes(s.topic)) topics.push(s.topic); });
     host.innerHTML = (w && w.note ? `<p class="sub" style="margin:0">${esc(w.note)}</p>` : "") + topics.map((t) => {
       const ts = signals.filter((s) => s.topic === t);
-      return `<section class="topic"><h2>${esc(ts[0].topicName)}</h2>${["Problem", "Politics"].map((st) => {
-        const checks = ts.filter((s) => s.kind === "concept" && s.stream === st), streams = ts.filter((s) => (s.kind || "stream") === "stream" && s.stream === st);
+      const boxes = ["Problem", "Politics"].map((st) => {
+        let checks = ts.filter((s) => s.kind === "concept" && s.stream === st), streams = ts.filter((s) => (s.kind || "stream") === "stream" && s.stream === st);
         if (!checks.length && !streams.length) return "";
-        return `<div class="streamgroup s-${st.toLowerCase()}">${checks.length ? `<div class="step"><span class="stream">${st} stream</span> · Step 1 · ${checks.length} concept check${checks.length === 1 ? "" : "s"}</div>${checks.map(conceptCard).join("")}` : ""}
-          ${streams.length ? `<div class="step"><span class="stream">${st} stream</span> · ${checks.length ? "Step 2 · " : ""}Stream level</div>${streams.map((s) => streamCard(s, checks.length > 0)).join("")}` : ""}</div>`;
-      }).join("")}</section>`;
-    }).join("");
+        const sm = streams[0];
+        if (onlyPending) { checks = checks.filter((s) => pend(s.id)); streams = streams.filter((s) => pend(s.id)); if (!checks.length && !streams.length) return ""; }
+        const lvtxt = sm && sm.proposed != null ? `${sm.prev == null ? "new" : lv(sm.prev) + " →"} ${lv(sm.proposed)} ${esc(LEVEL[sm.proposed])}` : "no level proposed";
+        return `<section class="streambox s-${st.toLowerCase()}"><header><h3><span class="stream">${st} stream</span></h3><span class="lvchange">Proposed: ${lvtxt}</span></header>
+          <div class="inner">
+            ${checks.length ? `<div class="level-label">1 · How it is framed: ${checks.length} concept${checks.length === 1 ? "" : "s"}</div><div class="tree">${checks.map(conceptCard).join("")}</div>` : ""}
+            ${streams.length ? `<div class="level-label">${checks.length ? "2 · " : ""}Overall: is this enough to drive the ${st.toLowerCase()} stream?</div>${streams.map((s) => streamCard(s, ts.some((x) => x.kind === "concept" && x.stream === st))).join("")}` : ""}
+          </div></section>`;
+      }).join("");
+      return boxes ? `<section class="topic"><h2>${esc(ts[0].topicName)}</h2>${boxes}</section>` : "";
+    }).join("") || `<p class="empty">Everything this week has a decision.</p>`;
     tally();
   }
 
@@ -305,6 +331,7 @@ Each card is one proposed signal: a level for one topic in one stream. Choose <b
     $("#intro-signals").hidden = view !== "signals"; $("#intro-sources").hidden = view !== "sources";
     document.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === view)));
     const active = document.activeElement && document.activeElement.id;
+    $("#todo").hidden = view !== "signals";
     if (view === "signals") renderSignals(); else { renderSources(); tally(); }
     if (active && document.getElementById(active)) document.getElementById(active).focus();
   }

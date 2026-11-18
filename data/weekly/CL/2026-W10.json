@@ -10,7 +10,7 @@
   "reviewStatus": "proposed",
   "partial": true,
   "coveredTo": "2026-11-16",
-  "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection). Partly reviewed on 16 Nov: 4 of 19 stream levels decided (T04 politics kept at 2; T04 problem, T21 problem and politics approved). The Friday run keeps these decisions when it completes the week. A second model audited this file on 16 Nov; its corrections are applied and its judgement calls are listed in the review notes. Added 17 Nov: T24 Science ministry (reviewer's lead).",
+  "note": "Partial week, run early on Mon 16 Nov at the reviewer's request: covers 13–16 Nov. The Friday run on 20 Nov completes W10 and replaces this file. First week with the budget rule (budget topics count in the problem stream only when there is a cut or a rejection). Partly reviewed on 16 Nov: 4 of 19 stream levels decided (T04 politics kept at 2; T04 problem, T21 problem and politics approved). The Friday run keeps these decisions when it completes the week. A second model audited this file on 16 Nov; its corrections are applied and its judgement calls are listed in the review notes. Added 17 Nov: T24 Science ministry (reviewer's lead). Reviewed on 18 Nov: all concept checks and stream levels decided (T24 government intention lowered to 1); the Friday run keeps these decisions.",
   "levels": {
     "T01": [
       3,
@@ -156,7 +156,7 @@
     "T21": {
       "statusLabel": "Problem window (decision imminent)",
       "timing": "Bill under 'discusión inmediata'; law expected 17–19 Nov",
-      "changed": "Truckers' strike (9–12 Nov) ended with a deal: diesel −$142, rises frozen until 7 Apr 2027 in the bill (the 12 Nov deal said 31 Mar); cost put at US$500m by Hacienda on 12 Nov, about US$700m on 16 Nov, and up to US$1bn by others. The bill passed the Chamber Finance committee unanimously on 16 Nov. Reviewer: fuel prices are not necessarily tied to Mepco, so the topic covers fuel prices broadly (the deal, the specific fuel tax, toll refunds); Mepco is one instrument among several.",
+      "changed": "Truckers' strike (9–12 Nov) ended with a deal: diesel −$142, rises frozen until 7 Apr 2027 in the bill (the 12 Nov deal said 31 Mar); cost put at US$500m by Hacienda on 12 Nov, about US$700m on 16 Nov, and up to US$1bn by others. The bill passed the Chamber Finance committee unanimously on 16 Nov. Reviewer: fuel prices are not necessarily tied to Mepco, so the topic covers fuel prices broadly (the deal, the specific fuel tax, toll refunds); Mepco is one instrument among several. Reviewer (18 Nov): the agreement with the government may itself have closed the window (decision taken); the Friday run checks whether the law passed and attention fell.",
       "problem": "A national truckers' strike (9–12 Nov), joined by intercity buses and No+TAG, blocked highways over diesel prices after six consecutive rises. On 15 Nov, 97% had heard of it and about 80% backed it (Cadem, Criteria); 86% found it justified.",
       "politics": "The government withdrew its $20 cap bill on 11 Nov and agreed with two truckers' confederations on 12 Nov: diesel −$142 per litre, wider tax and toll refunds, and rises frozen until 7 Apr 2027 in the bill (the 12 Nov deal said 31 Mar) (cost put at US$500m by Hacienda on 12 Nov, about US$700m on 16 Nov, and up to US$1bn by others). Independents and No+TAG stayed mobilised. The bill, under 'discusión inmediata', passed the Chamber Finance committee unanimously on 16 Nov; 66% back the measures.",
       "name": "Fuel prices",
@@ -1308,7 +1308,14 @@
         "D193",
         "D145"
       ],
-      "rationale": "Raised under the reviewer's budget rule (problem only when there is a cut or a rejection): the Chamber rejected ministry lines and the borrowing authorisation. Proposed at 3 as a test of the rule. The second check would set 2: one focusing-event check, part of it from W9, no measure of public attention, and a rejection that the Senate often reverses."
+      "rationale": "Raised under the reviewer's budget rule (problem only when there is a cut or a rejection): the Chamber rejected ministry lines and the borrowing authorisation. Proposed at 3 as a test of the rule. The second check would set 2: one focusing-event check, part of it from W9, no measure of public attention, and a rejection that the Senate often reverses.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T08",
@@ -1325,7 +1332,14 @@
         "D197",
         "D195"
       ],
-      "rationale": "Hacienda promises to restore the rejected lines in the Senate (17–19 Nov) before the 29 Nov deadline and keeps the consolidation target. A scheduled Senate decision would be level 3; lowered by one because the Chamber vote shows blocking arithmetic and approval is at 18–27%. Same level the reviewer set for W9."
+      "rationale": "Hacienda promises to restore the rejected lines in the Senate (17–19 Nov) before the 29 Nov deadline and keeps the consolidation target. A scheduled Senate decision would be level 3; lowered by one because the Chamber vote shows blocking arithmetic and approval is at 18–27%. Same level the reviewer set for W9.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T14",
@@ -1339,7 +1353,14 @@
         "D200",
         "D147"
       ],
-      "rationale": "Held at 2. The Education line stays rejected after the single 72–72 vote of 11 Nov; under the budget rule a rejection counts as a problem event. No new event this week."
+      "rationale": "Held at 2. The Education line stays rejected after the single 72–72 vote of 11 Nov; under the budget rule a rejection counts as a problem event. No new event this week.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T14",
@@ -1354,7 +1375,14 @@
         "D199",
         "D196"
       ],
-      "rationale": "Held at 2. The teachers' union called a national march and work stoppage for 24 Nov, and Hacienda offered to restore funds in the Senate. (The W9 level is still pending review.)"
+      "rationale": "Held at 2. The teachers' union called a national march and work stoppage for 24 Nov, and Hacienda offered to restore funds in the Senate. (The W9 level is still pending review.)",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T09",
@@ -1363,7 +1391,14 @@
       "proposed": 1,
       "concepts": [],
       "items": [],
-      "rationale": "Lowered: no problem-stream item this week. The Chamber restored primary-care funds and raised Ricarte Soto funding (coded in politics), so the cuts that made this a problem are reversed for now, matching the reviewer's view that this is 'not yet an issue'."
+      "rationale": "Lowered: no problem-stream item this week. The Chamber restored primary-care funds and raised Ricarte Soto funding (coded in politics), so the cuts that made this a problem are reversed for now, matching the reviewer's view that this is 'not yet an issue'.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T09",
@@ -1376,7 +1411,14 @@
       "items": [
         "D198"
       ],
-      "rationale": "Lowered: the Chamber approved the Health budget 82–41 with the funds restored; the Senate step remains and the executive objected to the Ricarte Soto amendment. Proposed as closing (decision taken); the second check suggests 'watch' instead, since the reviewer said this 'could become' an issue."
+      "rationale": "Lowered: the Chamber approved the Health budget 82–41 with the funds restored; the Senate step remains and the executive objected to the Ricarte Soto amendment. Proposed as closing (decision taken); the second check suggests 'watch' instead, since the reviewer said this 'could become' an issue.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T06",
@@ -1391,7 +1433,14 @@
         "D142",
         "D143"
       ],
-      "rationale": "Kept at the reviewed level of 2. The Central Bank job-ads index fell for a twelfth month (CIPER, 9 Nov), but, as the reviewer noted, unemployment drew little coverage this week. Q3 GDP (18 Nov) and INE unemployment (27 Nov) are the next tests. Growth and recession talk is now tracked separately as T22."
+      "rationale": "Kept at the reviewed level of 2. The Central Bank job-ads index fell for a twelfth month (CIPER, 9 Nov), but, as the reviewer noted, unemployment drew little coverage this week. Q3 GDP (18 Nov) and INE unemployment (27 Nov) are the next tests. Growth and recession talk is now tracked separately as T22.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T06",
@@ -1405,7 +1454,14 @@
         "D190",
         "D191"
       ],
-      "rationale": "Lowered from 2: the only politics evidence this week is pessimism about jobs in one poll, and mood without a government step is level 1 (the same rule applied to Growth & recession). With politics below 2 the employment window is proposed as closing. A second-check correction; the first draft held 2."
+      "rationale": "Lowered from 2: the only politics evidence this week is pessimism about jobs in one poll, and mood without a government step is level 1 (the same rule applied to Growth & recession). With politics below 2 the employment window is proposed as closing. A second-check correction; the first draft held 2.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T22",
@@ -1420,7 +1476,14 @@
         "D123",
         "D124"
       ],
-      "rationale": "New topic. The Central Bank expectations survey cut 2026 growth to 0% (10 Nov) and the Finance Minister said Chile is 'technically' in a recession (11 Nov). Level 2 rests on the indicator; Q3 GDP on 18 Nov will confirm or ease it."
+      "rationale": "New topic. The Central Bank expectations survey cut 2026 growth to 0% (10 Nov) and the Finance Minister said Chile is 'technically' in a recession (11 Nov). Level 2 rests on the indicator; Q3 GDP on 18 Nov will confirm or ease it.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T22",
@@ -1434,7 +1497,14 @@
         "D190",
         "D191"
       ],
-      "rationale": "New topic. Pessimism is rising (60% expect the economy to worsen) and Panel Ciudadano warns of growth without jobs, but there is no government plan or bill on growth. Weak signal."
+      "rationale": "New topic. Pessimism is rising (60% expect the economy to worsen) and Panel Ciudadano warns of growth without jobs, but there is no government plan or bill on growth. Weak signal.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T16",
@@ -1451,7 +1521,14 @@
         "D148",
         "D201"
       ],
-      "rationale": "Raised: the truckers' deal doubles the toll refund for intercity buses (35% to 70%), No+TAG joined the blockades demanding lower tolls, and Cadem finds 64% support the refund. Problem stays at 1, so this is watch only."
+      "rationale": "Raised: the truckers' deal doubles the toll refund for intercity buses (35% to 70%), No+TAG joined the blockades demanding lower tolls, and Cadem finds 64% support the refund. Problem stays at 1, so this is watch only.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T23",
@@ -1464,7 +1541,14 @@
       "items": [
         "D122"
       ],
-      "rationale": "New topic, weak. The Children's Ombudsman reports more than 41,000 children waiting for protection places and cuts in 102 budget items. One source (CIPER, citing Emol)."
+      "rationale": "New topic, weak. The Children's Ombudsman reports more than 41,000 children waiting for protection places and cuts in 102 budget items. One source (CIPER, citing Emol).",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T02",
@@ -1477,7 +1561,14 @@
       "items": [
         "D177"
       ],
-      "rationale": "No change. One critical statement on the security plan (feedback) is not enough to move the level."
+      "rationale": "No change. One critical statement on the security plan (feedback) is not enough to move the level.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T17",
@@ -1490,7 +1581,14 @@
       "items": [
         "D202"
       ],
-      "rationale": "No change. The regional lines passed, confirming the 4 Nov agreement; the topic stays closed."
+      "rationale": "No change. The regional lines passed, confirming the 4 Nov agreement; the topic stays closed.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "Cross-cutting",
@@ -1515,7 +1613,14 @@
         "D165",
         "D168"
       ],
-      "rationale": "The big change the reviewer flagged: approval fell to 18% in Criteria (−6, lowest since taking office) and 27% in Cadem (−2), with Panel Ciudadano near 20%. The fall follows the fuel rise and the strike. Effect on topics: Budget politics is held at 2 rather than 3 (Chamber defeat and low approval); fuel prices is not lowered because 66% back the deal; sentence reductions stays at 2 as the reviewer set."
+      "rationale": "The big change the reviewer flagged: approval fell to 18% in Criteria (−6, lowest since taking office) and 27% in Cadem (−2), with Panel Ciudadano near 20%. The fall follows the fuel rise and the strike. Effect on topics: Budget politics is held at 2 rather than 3 (Chamber defeat and low approval); fuel prices is not lowered because 66% back the deal; sentence reductions stays at 2 as the reviewer set.",
+      "review": {
+        "decision": "approve",
+        "final": null,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T24",
@@ -1526,7 +1631,14 @@
         "Focusing event"
       ],
       "items": [],
-      "rationale": "New topic. Level 1: the science budget cut is real but drew little attention this week; the conflict, not the cut, is the story. Would rise to 2 if the scientific community or the Senate debate makes the cut visible."
+      "rationale": "New topic. Level 1: the science budget cut is real but drew little attention this week; the conflict, not the cut, is the story. Would rise to 2 if the scientific community or the Senate debate makes the cut visible.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "topic": "T24",
@@ -1545,7 +1657,14 @@
         "D221",
         "D222"
       ],
-      "rationale": "New topic. Level 2: the government has openly acknowledged the problem and the President's decision is pending, a formal step short of a decision. If the minister or undersecretary is replaced, a new team can bring a new agenda (Kingdon: change of people), so this is the place to watch for a window, especially if the science budget is restored in the Senate."
+      "rationale": "New topic. Level 2: the government has openly acknowledged the problem and the President's decision is pending, a formal step short of a decision. If the minister or undersecretary is replaced, a new team can bring a new agenda (Kingdon: change of people), so this is the place to watch for a window, especially if the science budget is restored in the Senate.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     }
   ],
   "calendar": [
@@ -1775,7 +1894,8 @@
     "New topics proposed: T22 Growth & recession (problem 2) and T23 Child protection (problem 1). Both await review.",
     "Kast's Asia tour and the Ho Chi Minh wreath (16 Nov): coded as cross-cutting; likely a one-week story.",
     "Coverage after 13 Nov is thinner in search results; Friday's run should fill the rest of the week.",
-    "Science ministry crisis (reviewer's lead, 17 Nov): conflict between Minister Lincolao and Undersecretary Rossi, Interior intervention and the spokesperson's admission. Entered as T24 (watch, politics 2). The science budget cut (10% real per CRUCh) sits under the same topic."
+    "Science ministry crisis (reviewer's lead, 17 Nov): conflict between Minister Lincolao and Undersecretary Rossi, Interior intervention and the spokesperson's admission. Entered as T24 (watch, politics 2). The science budget cut (10% real per CRUCh) sits under the same topic.",
+    "Reviewer (18 Nov): add Meganoticias, El Dínamo, La Nación and Cooperativa to the source log; read newspaper editorials and La Tercera's weekly opinion digest; start each week from the talk shows' weekly review and closing segments."
   ],
   "stories": [
     {
@@ -1809,7 +1929,14 @@
         "D126",
         "D153"
       ],
-      "rationale": "Why a focusing event: the truckers' strike of 9–12 Nov was sudden and visible (highways blocked in several regions, buses and No+TAG joining) and put fuel prices in front of the whole country at once. It happened in W9; it is listed here because the deal, the bill and the polls of this week all follow from it. No new event since 13 Nov."
+      "rationale": "Why a focusing event: the truckers' strike of 9–12 Nov was sudden and visible (highways blocked in several regions, buses and No+TAG joining) and put fuel prices in front of the whole country at once. It happened in W9; it is listed here because the deal, the bill and the polls of this week all follow from it. No new event since 13 Nov.",
+      "review": {
+        "decision": "change",
+        "final": 3,
+        "note": "Yes, but just consider somewhere that the agreement with the govenrment might have closed the window",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Problem-salience",
@@ -1820,7 +1947,14 @@
       "items": [
         "D176"
       ],
-      "rationale": "Why salience: 97% had heard of the truckers' strike (Criteria, 15 Nov), which measures attention. Strength 2, one poll. The figures on agreement with the strikers (about 80%) are mood, not attention, and are counted once, under politics."
+      "rationale": "Why salience: 97% had heard of the truckers' strike (Criteria, 15 Nov), which measures attention. Strength 2, one poll. The figures on agreement with the strikers (about 80%) are mood, not attention, and are counted once, under politics.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Problem-frame-consensus",
@@ -1831,7 +1965,14 @@
       "items": [
         "D213"
       ],
-      "rationale": "Why frame consensus: actors on different sides now describe the March price pass-through as the mistake. This week that rests on one voice (the PDG leader); in W9 a centre-right senator said the same. Weak until more sides repeat it."
+      "rationale": "Why frame consensus: actors on different sides now describe the March price pass-through as the mistake. This week that rests on one voice (the PDG leader); in W9 a centre-right senator said the same. Weak until more sides repeat it.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Problem-feedback",
@@ -1842,7 +1983,14 @@
       "items": [
         "D216"
       ],
-      "rationale": "Why feedback: the first information on how the response performs. Cost estimates rose from about US$500m to US$700–900m and an economist warns of reallocations in 2027. One source."
+      "rationale": "Why feedback: the first information on how the response performs. Cost estimates rose from about US$500m to US$700–900m and an economist warns of reallocations in 2027. One source.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Politics-government-intention",
@@ -1857,7 +2005,14 @@
         "D209",
         "D210"
       ],
-      "rationale": "Why government intention: the executive signed a deal with two truckers' confederations (12 Nov) and three ministers or undersecretaries defended it in public this week. A written, costed commitment is the strongest form of intention."
+      "rationale": "Why government intention: the executive signed a deal with two truckers' confederations (12 Nov) and three ministers or undersecretaries defended it in public this week. A written, costed commitment is the strongest form of intention.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Politics-agenda-tool-used-urgency",
@@ -1869,7 +2024,14 @@
         "D214",
         "D211"
       ],
-      "rationale": "Why an agenda tool: the bill entered Congress with 'discusión inmediata', the strongest urgency, which forces both chambers to vote within days."
+      "rationale": "Why an agenda tool: the bill entered Congress with 'discusión inmediata', the strongest urgency, which forces both chambers to vote within days.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Politics-coalition-or-vote",
@@ -1883,7 +2045,14 @@
         "D207",
         "D204"
       ],
-      "rationale": "Why coalition or vote: the Chamber Finance committee approved the bill unanimously on 16 Nov, UDI backs it and both chambers coordinated to pass it by 17 Nov. Strength 2 rather than 3 because the floor votes had not happened by 16 Nov."
+      "rationale": "Why coalition or vote: the Chamber Finance committee approved the bill unanimously on 16 Nov, UDI backs it and both chambers coordinated to pass it by 17 Nov. Strength 2 rather than 3 because the floor votes had not happened by 16 Nov.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Politics-national-mood",
@@ -1896,7 +2065,14 @@
         "D174",
         "D206"
       ],
-      "rationale": "Why national mood: about 80% backed the strike (Cadem 79%, Criteria 80%) and 66% back the diesel cut and the freeze (Cadem). Two pollsters; the three items report the same two polls. The mood supports the move, so nothing is deducted from the politics level. This is the fact the reviewer called the most critical in W9."
+      "rationale": "Why national mood: about 80% backed the strike (Cadem 79%, Criteria 80%) and 66% back the diesel cut and the freeze (Cadem). Two pollsters; the three items report the same two polls. The mood supports the move, so nothing is deducted from the politics level. This is the fact the reviewer called the most critical in W9.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T21-Politics-organised-forces",
@@ -1908,7 +2084,14 @@
         "D173",
         "D203"
       ],
-      "rationale": "Why organised forces: two confederations accepted the deal and ended the strike, but independents in La Araucanía and Antofagasta and No+TAG stayed mobilised, and the largest confederation says the government acted late. Pressure is easing, not gone."
+      "rationale": "Why organised forces: two confederations accepted the deal and ended the strike, but independents in La Araucanía and Antofagasta and No+TAG stayed mobilised, and the largest confederation says the government acted late. Pressure is easing, not gone.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T04-Problem-salience",
@@ -1920,7 +2103,14 @@
         "D183",
         "D184"
       ],
-      "rationale": "Why salience: 79% disagree with keeping Minister Rabat (+7 points; 64% even on the right) and 72% back his removal (Criteria, 15 Nov), after Cadem made the reductions the top reason for disapproval in W9. One poll this week, reported by two outlets. The second check notes that 'disagree with keeping the minister' is closer to mood than to attention; the reviewer may prefer to count it under politics."
+      "rationale": "Why salience: 79% disagree with keeping Minister Rabat (+7 points; 64% even on the right) and 72% back his removal (Criteria, 15 Nov), after Cadem made the reductions the top reason for disapproval in W9. One poll this week, reported by two outlets. The second check notes that 'disagree with keeping the minister' is closer to mood than to attention; the reviewer may prefer to count it under politics.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T04-Problem-frame-consensus",
@@ -1931,7 +2121,14 @@
       "items": [
         "D181"
       ],
-      "rationale": "Why frame consensus: Matthei, from the governing side's sector, called the handling of the case absurd, so criticism is no longer only from the opposition. One source this week. (UDI's president also called the decrees 'a serious political error', coded under politics.)"
+      "rationale": "Why frame consensus: Matthei, from the governing side's sector, called the handling of the case absurd, so criticism is no longer only from the opposition. One source this week. (UDI's president also called the decrees 'a serious political error', coded under politics.)",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T04-Politics-coalition-or-vote",
@@ -1950,7 +2147,14 @@
         "D180",
         "D185"
       ],
-      "rationale": "Why coalition or vote: the accusation was filed (12 Nov) and its review committee drawn with a 3–2 opposition majority (16 Nov), which is a formal step. But the opposition has about 65 of the 78 votes, the PDG swing bloc (14) will not commit, and UDI and the governing coalition expect to reject it. Strength 2: step taken, outcome open."
+      "rationale": "Why coalition or vote: the accusation was filed (12 Nov) and its review committee drawn with a 3–2 opposition majority (16 Nov), which is a formal step. But the opposition has about 65 of the 78 votes, the PDG swing bloc (14) will not commit, and UDI and the governing coalition expect to reject it. Strength 2: step taken, outcome open.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T04-Politics-government-intention",
@@ -1961,7 +2165,14 @@
       "items": [
         "D187"
       ],
-      "rationale": "Why government intention: from Vietnam the President took responsibility and confirmed full support for Rabat. The executive intends to resist, not act; since executive signals take precedence, this holds the stream at 2."
+      "rationale": "Why government intention: from Vietnam the President took responsibility and confirmed full support for Rabat. The executive intends to resist, not act; since executive signals take precedence, this holds the stream at 2.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T06-Problem-indicator-change",
@@ -1972,7 +2183,14 @@
       "items": [
         "D142"
       ],
-      "rationale": "Why indicator change: the Central Bank's job-ads index fell for a twelfth month (W9, one source). No new labour indicator this week; INE publishes on 27 Nov. The stream level of 2 is carried from the reviewed W9."
+      "rationale": "Why indicator change: the Central Bank's job-ads index fell for a twelfth month (W9, one source). No new labour indicator this week; INE publishes on 27 Nov. The stream level of 2 is carried from the reviewed W9.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T06-Problem-salience",
@@ -1983,7 +2201,14 @@
       "items": [
         "D143"
       ],
-      "rationale": "Why salience: one talk-show episode on unemployment as the top concern (W9). As the reviewer noted, coverage this week is thin."
+      "rationale": "Why salience: one talk-show episode on unemployment as the top concern (W9). As the reviewer noted, coverage this week is thin.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T06-Politics-national-mood",
@@ -1995,7 +2220,14 @@
         "D190",
         "D191"
       ],
-      "rationale": "Why national mood: 53% expect job prospects to worsen (Criteria, 15 Nov), in two outlets. Mood only: no government move on employment this week, so by the same rule used for Growth & recession the stream level is 1."
+      "rationale": "Why national mood: 53% expect job prospects to worsen (Criteria, 15 Nov), in two outlets. Mood only: no government move on employment this week, so by the same rule used for Growth & recession the stream level is 1.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T08-Problem-focusing-event",
@@ -2008,7 +2240,14 @@
         "D193",
         "D145"
       ],
-      "rationale": "Why a focusing event: the Chamber sent the budget to the Senate with seven ministry lines (six on the Chamber floor in votes on 10–13 Nov: Education, Interior, Segegob, Mining, Women, Culture; Science had already lost its funds in the mixed committee) and without the authorisation to borrow up to US$25bn, which the press called a defeat for the government. Under the budget rule a rejection is the kind of event that makes the budget a problem. Caution from the second check: rejecting lines in the Chamber and restoring them in the Senate is a fairly common budget cycle, and there is no sign of public attention."
+      "rationale": "Why a focusing event: the Chamber sent the budget to the Senate with seven ministry lines (six on the Chamber floor in votes on 10–13 Nov: Education, Interior, Segegob, Mining, Women, Culture; Science had already lost its funds in the mixed committee) and without the authorisation to borrow up to US$25bn, which the press called a defeat for the government. Under the budget rule a rejection is the kind of event that makes the budget a problem. Caution from the second check: rejecting lines in the Chamber and restoring them in the Senate is a fairly common budget cycle, and there is no sign of public attention.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T08-Politics-government-intention",
@@ -2021,7 +2260,14 @@
         "D194",
         "D197"
       ],
-      "rationale": "Why government intention: the Finance Minister promised to restore the rejected lines in the Senate and keeps the consolidation target while paying about US$700m for the truckers' deal. Three outlets. It is a promise: no funds have been restored yet, so it is not coded as use of the budget tool."
+      "rationale": "Why government intention: the Finance Minister promised to restore the rejected lines in the Senate and keeps the consolidation target while paying about US$700m for the truckers' deal. Three outlets. It is a promise: no funds have been restored yet, so it is not coded as use of the budget tool.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T08-Politics-coalition-or-vote",
@@ -2032,7 +2278,14 @@
       "items": [
         "D195"
       ],
-      "rationale": "Why coalition or vote: the Chamber result shows the government lacks a majority for its budget as drafted. This arithmetic is the reason the stream is held at 2 instead of 3."
+      "rationale": "Why coalition or vote: the Chamber result shows the government lacks a majority for its budget as drafted. This arithmetic is the reason the stream is held at 2 instead of 3.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T09-Politics-coalition-or-vote",
@@ -2043,7 +2296,14 @@
       "items": [
         "D198"
       ],
-      "rationale": "Why coalition or vote: the Chamber approved the Health budget 82–41, restored primary-care funds and raised Ricarte Soto funding. A decision in one chamber; the Senate remains. No problem-stream item this week."
+      "rationale": "Why coalition or vote: the Chamber approved the Health budget 82–41, restored primary-care funds and raised Ricarte Soto funding. A decision in one chamber; the Senate remains. No problem-stream item this week.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T14-Problem-focusing-event",
@@ -2055,7 +2315,14 @@
         "D200",
         "D147"
       ],
-      "rationale": "Why a focusing event: the amendment to restore the Education budget failed 72–72 on 11 Nov, so Education stays rejected. One event (W9), reported by two outlets; the 16 Nov item is a recap, not a second rejection. A failed vote is an event under the budget rule. No measure of public attention yet."
+      "rationale": "Why a focusing event: the amendment to restore the Education budget failed 72–72 on 11 Nov, so Education stays rejected. One event (W9), reported by two outlets; the 16 Nov item is a recap, not a second rejection. A failed vote is an event under the budget rule. No measure of public attention yet.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T14-Politics-organised-forces",
@@ -2066,7 +2333,14 @@
       "items": [
         "D199"
       ],
-      "rationale": "Why organised forces: the teachers' union called a national march and work stoppage for 24 Nov over the education budget. One outlet, reporting the union's own call."
+      "rationale": "Why organised forces: the teachers' union called a national march and work stoppage for 24 Nov over the education budget. One outlet, reporting the union's own call.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T16-Politics-government-intention",
@@ -2077,7 +2351,14 @@
       "items": [
         "D158"
       ],
-      "rationale": "Why government intention: the truckers' deal doubles the toll refund for intercity buses, from 35% to 70% (W9 item coded under fuel prices). A commitment inside a signed deal."
+      "rationale": "Why government intention: the truckers' deal doubles the toll refund for intercity buses, from 35% to 70% (W9 item coded under fuel prices). A commitment inside a signed deal.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T16-Politics-organised-forces",
@@ -2088,7 +2369,14 @@
       "items": [
         "D148"
       ],
-      "rationale": "Why organised forces: No+TAG joined the blockades demanding lower tolls, a flat tariff and forgiveness of TAG debts, and said it had no agreement with the government (W9)."
+      "rationale": "Why organised forces: No+TAG joined the blockades demanding lower tolls, a flat tariff and forgiveness of TAG debts, and said it had no agreement with the government (W9).",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T16-Politics-national-mood",
@@ -2099,7 +2387,14 @@
       "items": [
         "D201"
       ],
-      "rationale": "Why national mood: 64% support the higher toll refund (Cadem). One poll question, one outlet."
+      "rationale": "Why national mood: 64% support the higher toll refund (Cadem). One poll question, one outlet.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T22-Problem-indicator-change",
@@ -2110,7 +2405,14 @@
       "items": [
         "D123"
       ],
-      "rationale": "Why indicator change: the Central Bank's expectations survey cut 2026 growth to 0% (10 Nov). A primary source; Q3 GDP on 18 Nov will confirm or ease it."
+      "rationale": "Why indicator change: the Central Bank's expectations survey cut 2026 growth to 0% (10 Nov). A primary source; Q3 GDP on 18 Nov will confirm or ease it.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T22-Problem-frame-consensus",
@@ -2121,7 +2423,14 @@
       "items": [
         "D124"
       ],
-      "rationale": "Why frame consensus: the Finance Minister himself said the economy is 'technically' in recession, adopting the critics' description. One actor, so strength 1; it becomes consensus if the opposition and business describe it the same way."
+      "rationale": "Why frame consensus: the Finance Minister himself said the economy is 'technically' in recession, adopting the critics' description. One actor, so strength 1; it becomes consensus if the opposition and business describe it the same way.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T22-Politics-national-mood",
@@ -2133,7 +2442,14 @@
         "D190",
         "D191"
       ],
-      "rationale": "Why national mood: 60% expect the economy to worsen in six months (+11), Criteria 15 Nov, in two outlets (items coded under Employment). The stream stays at 1 because mood without a government step is 'public demand without action' on the level scale."
+      "rationale": "Why national mood: 60% expect the economy to worsen in six months (+11), Criteria 15 Nov, in two outlets (items coded under Employment). The stream stays at 1 because mood without a government step is 'public demand without action' on the level scale.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T23-Problem-indicator-change",
@@ -2144,7 +2460,14 @@
       "items": [
         "D122"
       ],
-      "rationale": "Why indicator change: the Children's Ombudsman reports more than 41,000 children waiting for protection places. One source (CIPER, citing Emol)."
+      "rationale": "Why indicator change: the Children's Ombudsman reports more than 41,000 children waiting for protection places. One source (CIPER, citing Emol).",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T02-Problem-feedback",
@@ -2155,7 +2478,14 @@
       "items": [
         "D177"
       ],
-      "rationale": "Why feedback: Matthei called the government's security plan 'pure bluff', a judgement on how an existing plan performs. One voice, no data."
+      "rationale": "Why feedback: Matthei called the government's security plan 'pure bluff', a judgement on how an existing plan performs. One voice, no data.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T17-Politics-coalition-or-vote",
@@ -2166,7 +2496,14 @@
       "items": [
         "D202"
       ],
-      "rationale": "Why coalition or vote: regional budget lines passed the Chamber without rejection, credited to the earlier agreement with governors. Confirms a decision already taken."
+      "rationale": "Why coalition or vote: regional budget lines passed the Chamber without rejection, credited to the earlier agreement with governors. Confirms a decision already taken.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-Cross-cutting-Politics-government-approval",
@@ -2184,7 +2521,14 @@
         "D162",
         "D161"
       ],
-      "rationale": "Why government approval: Criteria 18% (−6), Cadem 27% (−2), both the lowest of the term, reported by seven outlets, with Panel Ciudadano near 20%. A decisive change that narrows room for unpopular moves."
+      "rationale": "Why government approval: Criteria 18% (−6), Cadem 27% (−2), both the lowest of the term, reported by seven outlets, with Panel Ciudadano near 20%. A decisive change that narrows room for unpopular moves.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-Cross-cutting-Politics-national-mood",
@@ -2195,7 +2539,14 @@
       "items": [
         "D172"
       ],
-      "rationale": "Why national mood: 84% said the government should have acted sooner on fuel prices. The public is against the government's handling but in favour of the measures now on the table. Same two polls as the fuel-prices mood check, so not counted as new evidence."
+      "rationale": "Why national mood: 84% said the government should have acted sooner on fuel prices. The public is against the government's handling but in favour of the measures now on the table. Same two polls as the fuel-prices mood check, so not counted as new evidence.",
+      "review": {
+        "decision": "approve",
+        "final": 2,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-Cross-cutting-Politics-events-within-government",
@@ -2207,7 +2558,14 @@
         "D165",
         "D168"
       ],
-      "rationale": "Why events within government: criticism of La Moneda's advisers from inside the coalition, the President abroad until 22 Nov, and no cabinet change. Mentions only."
+      "rationale": "Why events within government: criticism of La Moneda's advisers from inside the coalition, the President abroad until 22 Nov, and no cabinet change. Mentions only.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T14-Politics-government-intention",
@@ -2218,7 +2576,14 @@
       "items": [
         "D196"
       ],
-      "rationale": "Why government intention: Hacienda offered to restore education funds in the Senate and review the 'Yo elijo mi PC' programme (item coded under the Budget topic). One source, a promise, no amendment filed."
+      "rationale": "Why government intention: Hacienda offered to restore education funds in the Senate and review the 'Yo elijo mi PC' programme (item coded under the Budget topic). One source, a promise, no amendment filed.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T24-Politics-events-within-government",
@@ -2232,19 +2597,33 @@
         "D220",
         "D218"
       ],
-      "rationale": "Why events within government: the minister and the undersecretary are in open conflict (dismissals on 13 Nov without the undersecretary's knowledge), the Interior Minister stepped in on 16 Nov and the spokesperson said on 17 Nov that the ministry 'has not worked as we expected' and the President 'will decide'. Four outlets; the spokesperson's statement is first-hand and decisive, because it puts a change of people on the table."
+      "rationale": "Why events within government: the minister and the undersecretary are in open conflict (dismissals on 13 Nov without the undersecretary's knowledge), the Interior Minister stepped in on 16 Nov and the spokesperson said on 17 Nov that the ministry 'has not worked as we expected' and the President 'will decide'. Four outlets; the spokesperson's statement is first-hand and decisive, because it puts a change of people on the table.",
+      "review": {
+        "decision": "approve",
+        "final": 3,
+        "note": "I agree with you that this is the issue instead of the focusing event that I mentioned before. Maybe there is not enough from the problems stream",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T24-Politics-government-intention",
       "topic": "T24",
       "stream": "Politics",
       "concept": "Government intention",
-      "strength": 2,
+      "strength": 1,
       "items": [
         "D221",
         "D222"
       ],
-      "rationale": "Why government intention: the government dropped the minister's tax incentive from the AI bill after Hacienda objected, while the minister signs agreements with AI firms abroad. Two signals of what the executive intends on science and AI policy, pulling in different directions."
+      "rationale": "Why government intention: the government dropped the minister's tax incentive from the AI bill after Hacienda objected, while the minister signs agreements with AI firms abroad. Two signals of what the executive intends on science and AI policy, pulling in different directions.",
+      "review": {
+        "decision": "change",
+        "final": 1,
+        "note": "",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     },
     {
       "id": "W10-T24-Problem-focusing-event",
@@ -2253,7 +2632,14 @@
       "concept": "Focusing event",
       "strength": 1,
       "items": [],
-      "rationale": "Why a focusing event: under the budget rule, the Science line rejected in the mixed committee and the 10% real cut reported by CRUCh are the kind of event that makes the budget a problem. Strength 1 for now: this week's coverage is about the conflict, not the cuts, and the evidence (El Mercurio, 2 Nov, citing CRUCh; and the mixed committee's rejection, coded under Budget) predates this week, so no item is cited here. The Friday run should code the Senate's decision on the line."
+      "rationale": "Why a focusing event: under the budget rule, the Science line rejected in the mixed committee and the 10% real cut reported by CRUCh are the kind of event that makes the budget a problem. Strength 1 for now: this week's coverage is about the conflict, not the cuts, and the evidence (El Mercurio, 2 Nov, citing CRUCh; and the mixed committee's rejection, coded under Budget) predates this week, so no item is cited here. The Friday run should code the Senate's decision on the line.",
+      "review": {
+        "decision": "approve",
+        "final": 1,
+        "note": "I think the potential focusing event was the coverage of having problems with the viceminiter",
+        "by": "Cristian",
+        "at": "2026-11-18"
+      }
     }
   ],
   "audit": {
