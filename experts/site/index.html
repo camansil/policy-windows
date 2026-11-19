@@ -103,6 +103,7 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
             <option value="name">Name A–Z</option>
           </select>
         </div>
+        <label class="pmeta" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="all"> Also show researchers whose studies are not yet verified (no abstract to check the policy criterion)</label>
         <div class="chips" id="active"></div>
       </div>
       <div class="count" id="count"></div>
@@ -120,7 +121,7 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
   const $ = (s) => document.querySelector(s);
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const norm = (s) => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-  let C, G, byP = {}, byI = {}, state = { q: "", area: "", sub: "", inst: "", city: "", sort: "n" }, shown = 60;
+  let C, G, byP = {}, byI = {}, state = { q: "", area: "", sub: "", inst: "", city: "", sort: "n", all: false }, shown = 60;
 
   function opts(sel, label, values) { sel.innerHTML = `<option value="">${label}</option>` + values.map(([v, n]) => `<option value="${esc(v)}">${esc(v)} (${n})</option>`).join(""); }
   function countBy(fn) { const m = new Map(); C.people.forEach((p) => fn(p).forEach((v) => v && m.set(v, (m.get(v) || 0) + 1))); return [...m].sort((a, b) => b[1] - a[1]); }
@@ -130,7 +131,7 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
     svg.setAttribute("viewBox", `${-pad} ${-pad} ${G.w + 2 * pad} ${G.h + 2 * pad}`);
     const P = (lon, lat) => [(lon - G.x0) * G.k * G.sx, (G.y0 - lat) * G.sx];
     const cities = new Map();
-    C.institutions.forEach((b) => { if (b.lat == null || !b.n) return; const c = cities.get(b.city) || { city: b.city, lat: b.lat, lon: b.lon, n: 0 }; c.n += b.n; cities.set(b.city, c); });
+    C.institutions.forEach((b) => { const n = b.people.filter((id) => state.all || byP[id].nv).length; if (b.lat == null || !n) return; const c = cities.get(b.city) || { city: b.city, lat: b.lat, lon: b.lon, n: 0 }; c.n += n; cities.set(b.city, c); });
     const max = Math.max(...[...cities.values()].map((c) => c.n));
     svg.innerHTML = `<path d="${G.d}"/>` + [...cities.values()].sort((a, b) => b.n - a.n).map((c) => {
       const [x, y] = P(c.lon, c.lat), r = 3 + 14 * Math.sqrt(c.n / max);
@@ -144,6 +145,7 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
   }
 
   function matches(p) {
+    if (!state.all && !p.nv) return false;
     if (state.area && !p.areas.includes(state.area)) return false;
     if (state.sub && !p.subfields.includes(state.sub)) return false;
     if (state.inst && !p.insts.includes(state.inst)) return false;
@@ -167,7 +169,7 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
     $("#list").innerHTML = rows.length ? rows.slice(0, shown).map((p) => {
       const b = byI[p.inst];
       return `<button type="button" class="person" data-p="${esc(p.id)}">
-        <div class="phead"><span class="pname">${esc(p.name)}</span><span class="pmeta num">${p.n} publication${p.n === 1 ? "" : "s"} · latest ${p.last}</span></div>
+        <div class="phead"><span class="pname">${esc(p.name)}</span><span class="pmeta num">${p.nv} verified${p.n > p.nv ? ` + ${p.n - p.nv} to verify` : ""} · latest ${p.last}</span></div>
         <div class="pmeta">${esc(b.name)}${b.city ? ", " + esc(b.city) : ""}${p.orcid ? " · ORCID" : ""}</div>
         <div class="tags">${p.areas.map((a) => `<span class="tag">${esc(a)}</span>`).join("")}${p.keywords.slice(0, 4).map((k) => `<span class="tag k">${esc(k)}</span>`).join("")}</div>
       </button>`;
@@ -191,7 +193,8 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
       <div><h3>Specific topics</h3><div class="tags">${p.keywords.map((a) => `<span class="tag k">${esc(a)}</span>`).join("") || "—"}</div></div>
       <div><h3>Policy-relevant publications on Chile in the catalogue (${p.n})</h3>
         <ul class="works">${p.works.map((wid) => { const w = C.works[wid]; return `<li><span class="wt">${w.doi ? `<a href="https://doi.org/${esc(w.doi)}" target="_blank" rel="noopener">${esc(w.title)}</a>` : esc(w.title)}</span>
-          <span class="wm">${esc(w.year)}${w.venue ? " · " + esc(w.venue) : ""}${w.design ? " · " + esc(w.design) : ""} · found in ${esc(w.sources.join(", "))}</span>
+          <span class="wm">${esc(w.year)}${w.venue ? " · " + esc(w.venue) : ""}${w.design ? " · " + esc(w.design) : ""} · found in ${esc(w.sources.join(", "))} · ${w.status === "verified" ? "meets both criteria" : "policy relevance not yet verified"}</span>
+          ${w.evidence ? `<span class="wm">Policy relevance: ${esc(w.evidence)}</span>` : ""}
           <div class="tags">${w.area ? `<span class="tag">${esc(w.area)}</span>` : ""}${w.keywords.slice(0, 4).map((k) => `<span class="tag k">${esc(k)}</span>`).join("")}</div></li>`; }).join("")}</ul></div>
       ${co.size ? `<div><h3>Co-authors in the catalogue</h3><div class="coauth">${[...co].sort((a, b) => b[1] - a[1]).slice(0, 12).map(([cid, n]) => `<button type="button" class="chip" data-p="${esc(cid)}">${esc(byP[cid].name)} (${n})</button>`).join("")}</div></div>` : ""}
       <p class="note">Projects (ANID and others) are not linked yet. The full publication list, including work outside this catalogue, is on OpenAlex and ORCID.</p>`;
@@ -206,11 +209,11 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
     C = c; G = g;
     C.people.forEach((p) => { byP[p.id] = p; }); C.institutions.forEach((b) => { byI[b.id] = b; });
     const s = C.stats;
-    $("#stats").innerHTML = `<span><b class="num">${C.people.length}</b> researchers</span><span><b class="num">${C.institutions.length}</b> institutions in <b class="num">${new Set(C.institutions.map((b) => b.city)).size}</b> cities</span><span><b class="num">${s.included_with_cl_author}</b> publications with a Chile-based author</span><span><b class="num">${C.people.filter((p) => p.orcid).length}</b> with ORCID</span>`;
+    $("#stats").innerHTML = `<span><b class="num">${C.people.filter((p) => p.nv).length}</b> researchers with a verified study (${C.people.length} including unverified)</span><span><b class="num">${C.institutions.length}</b> institutions in <b class="num">${new Set(C.institutions.map((b) => b.city)).size}</b> cities</span><span><b class="num">${s.v03_verified}</b> studies meet both criteria</span><span><b class="num">${C.people.filter((p) => p.orcid).length}</b> with ORCID</span>`;
     opts($("#area"), "All research areas", countBy((p) => p.areas));
     opts($("#sub"), "All subfields", countBy((p) => p.subfields));
     $("#inst").innerHTML = `<option value="">All institutions</option>` + C.institutions.filter((b) => b.n).map((b) => `<option value="${esc(b.id)}">${esc(b.name)} (${b.n})</option>`).join("");
-    $("#foot").innerHTML = `<div><b>How this was built.</b> ${s.include + s.exclude + s.maybe} unique records from Web of Science, LILACS and Overton (search: Chile and policy) were screened on title and abstract: ${s.include} included as empirical, policy-relevant studies set in Chile, ${s.maybe} uncertain, ${s.exclude} excluded. ${s.included_linked} included records were linked to OpenAlex by DOI, which gives each author's identity, ORCID and institution; ${s.included_no_openalex} included records have no DOI and are not yet linked. Only authors with a Chilean institution on a paper are listed, at their latest Chilean institution.</div>
+    $("#foot").innerHTML = `<div><b>How this was built.</b> ${s.include + s.exclude + s.maybe} unique records from Web of Science, LILACS and Overton (search: Chile and policy). Criteria (v0.3): empirical research conducted in Chile, and an explicit mention of its relevance for public policy or programmes. ${s.v03_verified} records meet both on their abstract; ${s.v03_unverified} have no abstract, so the policy criterion is not yet verified; the rest were excluded. ${s.included_linked} kept records were linked to OpenAlex by DOI, which gives each author's identity, ORCID and institution; ${s.included_no_openalex} have no DOI and are not yet linked. Only authors with a Chilean institution on a paper are listed, at their latest Chilean institution.</div>
       <div>Areas come from the screening and are independent of the policy monitor's topics. Subfields are OpenAlex's. Screening was done by a model and is to be checked by a person. Generated ${esc(C.generated)}.</div>`;
     drawMap(); render();
   }).catch(() => { $("#stats").textContent = "The catalogue data could not be loaded. Reload the page."; });
@@ -218,5 +221,6 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
   let t; $("#q").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value.trim(); shown = 60; render(); }, 200); });
   ["area", "sub", "inst", "sort"].forEach((k) => $("#" + k).addEventListener("change", (e) => { state[k] = e.target.value; if (k === "inst") { state.city = ""; drawMap(); } shown = 60; render(); }));
   $("#more").addEventListener("click", () => { shown += 60; render(); });
+  $("#all").addEventListener("change", (e) => { state.all = e.target.checked; shown = 60; render(); drawMap(); });
 })();
 </script>

@@ -8,6 +8,12 @@ scr = {}
 for f in ("screening_round1.jsonl", "screening_round2.jsonl"):
     for l in open(os.path.join(D, f)):
         x = json.loads(l); scr[x["rid"]] = x
+# Criteria v0.3 (19 Nov): empirical research conducted in Chile AND explicit mention of policy/programme relevance in the abstract.
+v3 = {}
+p3 = os.path.join(D, "screening_round3_v03.jsonl")
+if os.path.exists(p3):
+    for l in open(p3):
+        x = json.loads(l); v3[x["rid"]] = x
 oa = json.load(open(os.path.join(D, "openalex_works.json")))
 inst = json.load(open(os.path.join(D, "openalex_institutions.json")))
 short = lambda u: (u or "").rsplit("/", 1)[-1]
@@ -16,15 +22,24 @@ works, people, insts = {}, {}, {}
 stats = collections.Counter()
 for rid, s in scr.items():
     stats[s["decision"]] += 1
-    if s["decision"] != "include": continue
-    r = recs[rid]; o = oa.get(r["doi"]) if r["doi"] else None
+    r = recs[rid]
+    if rid in v3:
+        status = "verified" if v3[rid]["decision"] == "in" else "out"
+    elif s["decision"] in ("include", "maybe") and not r["abstract"]:
+        status = "unverified"
+    else:
+        status = "out"
+    stats["v03_" + status] += 1
+    if status == "out": continue
+    o = oa.get(r["doi"]) if r["doi"] else None
     if not o: stats["included_no_openalex"] += 1; continue
     pt = o.get("primary_topic") or {}
     wid = rid
     w = dict(id=wid, title=o.get("title") or r["title"], year=o.get("publication_year") or r["year"], doi=r["doi"], venue=r["venue"],
              area=s.get("area", ""), keywords=s.get("keywords", []), design=s.get("design", ""),
              subfield=(pt.get("subfield") or {}).get("display_name", ""), field=(pt.get("field") or {}).get("display_name", ""),
-             topic=pt.get("display_name", ""), sources=r["sources"], cited=o.get("cited_by_count", 0), authors=[])
+             topic=pt.get("display_name", ""), sources=r["sources"], cited=o.get("cited_by_count", 0), authors=[],
+             status=status, evidence=(v3.get(rid) or {}).get("evidence", ""))
     any_cl = False
     for a in o.get("authorships", []):
         au = a.get("author") or {}; aid = short(au.get("id"))
@@ -53,6 +68,7 @@ for p in people.values():
         b = insts.setdefault(i, dict(id=i, name=x.get("display_name", i), city=g.get("city", ""), region=g.get("region", ""), lat=g.get("latitude"), lon=g.get("longitude"), type=x.get("type", ""), url=x.get("homepage_url", ""), people=[]))
         if i == best[0]: b["people"].append(p["id"])
     out_people.append(dict(id=p["id"], name=p["name"], orcid=p["orcid"], inst=best[0], insts=best, n=len(p["works"]),
+                           nv=sum(1 for w in p["works"] if works[w]["status"] == "verified"),
                            works=sorted(p["works"], key=lambda w: -int(works[w]["year"] or 0)),
                            areas=[a for a, _ in p["areas"].most_common(3)], subfields=[a for a, _ in p["subfields"].most_common(3)],
                            keywords=[k for k, _ in p["keywords"].most_common(6)], last=max(int(works[w]["year"] or 0) for w in p["works"])))
@@ -65,5 +81,5 @@ with open(os.path.join(D, "people.csv"), "w", newline="", encoding="utf-8") as f
     for p in out_people:
         b = insts[p["inst"]]
         wr.writerow([p["id"], p["name"], p["orcid"], b["name"], b["city"], p["n"], p["last"], "; ".join(p["areas"]), "; ".join(p["subfields"]), "; ".join(p["keywords"])])
-print(dict(stats), "people", len(out_people), "with orcid", sum(1 for p in out_people if p["orcid"]), "institutions", len(insts),
+print(dict(stats), "people", len(out_people), "with a verified work", sum(1 for p in out_people if p["nv"]), "with orcid", sum(1 for p in out_people if p["orcid"]), "institutions", len(insts),
       "cities", len({b["city"] for b in insts.values()}), "2+ works", sum(1 for p in out_people if p["n"] > 1))
