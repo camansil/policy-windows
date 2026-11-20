@@ -663,7 +663,7 @@
       showView(currentView || "overview"); renderDrawer(id); return;
     }
     if (!$("#drawer").hidden) closeDrawer(false);
-    showView(["overview", "topics", "sources", "method", "data", "review", "run"].includes(h) ? h : "overview");
+    showView(["overview", "topics", "researchers", "sources", "method", "data", "review", "run"].includes(h) ? h : "overview");
   }
   function showView(v) {
     currentView = v;
@@ -672,6 +672,8 @@
     $$(".tabs a").forEach((a) => { a.classList.toggle("is-on", a.dataset.view === tab); a.setAttribute("aria-current", a.dataset.view === tab ? "page" : "false"); });
     if (tab === "backend") renderSubnav(v);
     if (v === "topics") renderCards();
+    if (v === "researchers") { const f = $("#researchers-frame"); if (f && !f.getAttribute("src")) f.setAttribute("src", f.dataset.src); }
+    const rb = $("#run-banner"); if (rb) rb.style.display = v === "researchers" ? "none" : "";
   }
   window.addEventListener("hashchange", route);
 

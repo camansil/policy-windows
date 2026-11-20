@@ -57,6 +57,7 @@ select { flex: 1 1 180px; max-width: 100%; width: 100%; min-width: 0; }
 .more { justify-self: start; font: inherit; border: 1px solid var(--border-strong); background: var(--surface); border-radius: 8px; padding: 6px 14px; cursor: pointer; color: inherit; }
 .panel { position: fixed; z-index: 20; top: 0; right: 0; bottom: 0; width: min(560px, 100%); background: var(--surface); border-left: 1px solid var(--border); box-shadow: -10px 0 30px rgba(0,0,0,.12); overflow-y: auto;
   padding: calc(env(safe-area-inset-top, 0px) + 18px) max(18px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 24px) 18px; display: grid; gap: 14px; align-content: start; }
+[hidden] { display: none !important; }
 .panel h2 { font-family: var(--font-display); font-size: 24px; margin: 0; padding-right: 40px; }
 .panel h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 6px 0 0; }
 .close { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 14px); right: max(14px, env(safe-area-inset-right, 0px)); width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-strong); background: var(--surface); color: var(--fg); font-size: 18px; cursor: pointer; }

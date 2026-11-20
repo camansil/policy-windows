@@ -31,6 +31,7 @@
     <nav class="wrap tabs" aria-label="Views">
       <a href="#overview" data-view="overview">Overview <span class="tab-sub">for decision-makers</span></a>
       <a href="#topics" data-view="topics">Topics <span class="tab-sub">for evidence producers</span></a>
+      <a href="#researchers" data-view="researchers">Researchers <span class="tab-sub">map of evidence producers</span></a>
       <a href="#method" data-view="method">Method</a>
       <a href="#data" data-view="data">Data</a>
       <a href="#review" data-view="backend" class="tab-review">Back end <span class="tab-sub">reviewers</span></a>
@@ -135,6 +136,15 @@
     </section>
 
     <!-- METHOD -->
+    <!-- RESEARCHERS (expert catalogue, separate product; page lives in experts/site/) -->
+    <section class="view view-researchers" id="view-researchers" aria-labelledby="h-researchers" hidden>
+      <div class="researchers-head">
+        <h1 id="h-researchers" class="sr-only">Researchers</h1>
+        <p class="panel-sub">A separate product from the window monitor: researchers who published empirical studies conducted in Chile with explicit relevance for public policy or programmes. Matching researchers to open windows is done by a reviewer. <a href="experts/site/" target="_blank" rel="noopener">Open the map in its own page</a>.</p>
+      </div>
+      <iframe class="researchers-frame" id="researchers-frame" title="Map of researchers and evidence producers in Chile" data-src="experts/site/index.html" loading="lazy"></iframe>
+    </section>
+
     <section class="view" id="view-method" aria-labelledby="h-method" hidden>
       <h1 id="h-method" class="lead-title">How the monitor works</h1>
       <div id="method"></div>

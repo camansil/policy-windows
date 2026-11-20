@@ -412,3 +412,8 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 .check-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .sdots { display: inline-flex; gap: 3px; } .sdots i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--text-secondary); display: inline-block; } .sdots i.on { background: var(--text-secondary); }
 .check-details { margin-top: 6px; } .check-details summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+
+/* researchers tab (embeds experts/site/) */
+.researchers-head { margin: 12px 0 10px; }
+.researchers-head .panel-sub { max-width: 80ch; }
+.researchers-frame { display: block; width: 100%; height: calc(100dvh - 170px); min-height: 620px; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--surface-1); }

@@ -11,6 +11,7 @@ This repository holds the static website and the data for the **Chile pilot** (f
 - **Method:** how the monitor works, in general terms: framework, stream levels, window rules, the weekly process, source types and limitations.
 - **Data:** downloads and a filterable table of coded items with context and quotes.
 - **Signal Review page (reviewers):** a private page on claude.ai where each week's signals are approved, changed or rejected, with typed or spoken comments that the next weekly run reads directly. Source: `review/signal-review.html`.
+- **Researchers tab:** the map of researchers and evidence producers (expert catalogue), a separate product shown as its own tab. Source: `experts/site/`; built by `experts/scripts/build_catalogue.py`.
 - **Back end (reviewers):** *Review signals* (approve, change or reject the latest week's proposed signals), *Source log* (the country's sources, with a form to add one) and *This run* (steps, limitations and validation of the current run).
 
 ## Structure
