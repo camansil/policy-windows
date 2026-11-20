@@ -3266,6 +3266,32 @@
    "concepts": [],
    "items": [],
    "rationale": "New topic. No problem-stream evidence (no indicator, event or report) was found: the issue arrived through the budget vote. Level 0."
+  },
+  {
+   "topic": "T15",
+   "stream": "Politics",
+   "prev": 1,
+   "proposed": 1,
+   "concepts": [
+    "Government intention"
+   ],
+   "items": [
+    "D306"
+   ],
+   "rationale": "Held at 1. The Senate's education protocol commits a working group with CRUCh on a loan to replace the CAE: a promise to study, not a bill."
+  },
+  {
+   "topic": "T16",
+   "stream": "Problem",
+   "prev": 1,
+   "proposed": 1,
+   "concepts": [
+    "Indicator change"
+   ],
+   "items": [
+    "D257"
+   ],
+   "rationale": "Held at 1. The only problem-stream evidence is the CNE review lowering electricity bills by 4.4% in Jan–Jun 2027, which eases the problem; no toll event this week."
   }
  ],
  "calendar": [
