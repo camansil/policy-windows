@@ -669,4 +669,16 @@ with open(os.path.join(OUT, "topics.csv"), "w", encoding="utf-8", newline="") as
     w.writerow(["id", "topic", "ministry", "cap_major_topic", "problem", "politics", "status", "window_type", "coupling", "opened", "timing", "open_week", "close_week"])
     for t in TOPICS:
         w.writerow([t["id"], t["name"], t["ministry"], t["cap"], t["P"], t["Po"], t["statusLabel"], t["type"], t["coupling"], t["opened"], t["timing"], t.get("openWeek") or "", t.get("closeWeek") or ""])
+# Version stamps on index.html asset links, so browsers fetch new scripts after each push
+import hashlib, re
+_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_ix = os.path.join(_root, "index.html")
+_html = open(_ix, encoding="utf-8").read()
+for _a in ["assets/style.css", "assets/researchers.js", "assets/app.js", "data/chile-2026-11.js"]:
+    _f = os.path.join(_root, _a)
+    if os.path.exists(_f):
+        _v = hashlib.md5(open(_f, "rb").read()).hexdigest()[:8]
+        _html = re.sub(r'(["\'])' + re.escape(_a) + r'(\?v=[0-9a-f]+)?(["\'])', r"\g<1>" + _a + "?v=" + _v + r"\g<3>", _html)
+open(_ix, "w", encoding="utf-8").write(_html)
+
 print("ok", len(TOPICS), "topics", len(items), "items", len(weeks), "weeks", len(windows), "windows")

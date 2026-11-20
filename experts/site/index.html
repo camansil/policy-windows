@@ -219,7 +219,7 @@ footer { font-size: 13px; color: var(--muted); padding-block: 0 40px; display: g
     drawMap(); render();
   }).catch(() => { $("#stats").textContent = "The catalogue data could not be loaded. Reload the page."; });
 
-  let t; $("#q").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value.trim(); shown = 60; render(); }, 200); });
+  let t; $("#q").addEventListener("input", (e) => { const v = e.target.value; clearTimeout(t); t = setTimeout(() => { state.q = v.trim(); shown = 60; render(); }, 200); });
   ["area", "sub", "inst", "sort"].forEach((k) => $("#" + k).addEventListener("change", (e) => { state[k] = e.target.value; if (k === "inst") { state.city = ""; drawMap(); } shown = 60; render(); }));
   $("#more").addEventListener("click", () => { shown += 60; render(); });
   $("#all").addEventListener("change", (e) => { state.all = e.target.checked; shown = 60; render(); drawMap(); });

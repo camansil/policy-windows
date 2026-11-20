@@ -416,4 +416,4 @@ th.proposed small::after { content: " · proposed"; color: var(--st-opening); fo
 /* researchers tab (embeds experts/site/) */
 .researchers-head { margin: 12px 0 10px; }
 .researchers-head .panel-sub { max-width: 80ch; }
-.researchers-frame { display: block; width: 100%; height: calc(100dvh - 170px); min-height: 620px; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--surface-1); }
+.researchers-host { display: block; min-height: 400px; }

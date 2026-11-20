@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=5d5c9703">
 </head>
 <body>
 <div class="viz-root">
@@ -142,7 +142,7 @@
         <h1 id="h-researchers" class="sr-only">Researchers</h1>
         <p class="panel-sub">A separate product from the window monitor: researchers who published empirical studies conducted in Chile with explicit relevance for public policy or programmes. Matching researchers to open windows is done by a reviewer. <a href="experts/site/" target="_blank" rel="noopener">Open the map in its own page</a>.</p>
       </div>
-      <iframe class="researchers-frame" id="researchers-frame" title="Map of researchers and evidence producers in Chile" data-src="experts/site/index.html" loading="lazy"></iframe>
+      <div id="researchers-host" class="researchers-host"></div>
     </section>
 
     <section class="view" id="view-method" aria-labelledby="h-method" hidden>
@@ -200,7 +200,8 @@
   </aside>
   <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
 </div>
-<script src="data/chile-2026-11.js"></script>
-<script src="assets/app.js"></script>
+<script src="data/chile-2026-11.js?v=00096ffa"></script>
+<script src="assets/researchers.js?v=a79b7e02"></script>
+<script src="assets/app.js?v=1c29e3f2"></script>
 </body>
 </html>
