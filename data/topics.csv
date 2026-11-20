@@ -1,25 +1,26 @@
 id,topic,ministry,cap_major_topic,problem,politics,status,window_type,coupling,opened,timing,open_week,close_week
-T01,Organised crime & Rules on the Use of Force (RUF),Seguridad Pública,12 Law & Crime,3,1,Closed (decision 7 Oct),Political window,Doctrinal,"Politics, before the period",Predictable (vote 7 Oct),,5
+T01,Organised crime & Rules on the Use of Force (RUF),Seguridad Pública,12 Law & Crime,2,1,Closed (decision 7 Oct),Political window,Doctrinal,"Politics, before the period",Predictable (vote 7 Oct),,5
 T02,Calles sin Violencia replaced by Plan FOCO,Seguridad Pública,12 Law & Crime,1,3,Watch: politics only,—,—,"Politics, W4",Predictable (budget deadline 30 Nov),4,6
 T03,Migration: expulsions and detention,Interior,9 Immigration,1,1,Closed (law dispatched 20 Oct),Political window,Doctrinal,"Politics, W7",Predictable (vote 20 Oct),7,8
-T04,Administrative sentence reductions ('caso Rabat'),Justicia y DDHH,12 Law & Crime,3,2,Problem window,Problem window,Consequential,"Problem, W7",Accusation filed 12 Nov; review committee drawn 16 Nov; floor vote not yet set,7,
+T04,Administrative sentence reductions ('caso Rabat'),Justicia y DDHH,12 Law & Crime,3,2,Problem window,Problem window,Consequential,"Problem, W7",Rabat notified 17 Nov; defence due within 10 working days (he may file early); floor vote expected about 30 Nov–early Dec,7,
 T05,Pension funds D and E losses,Trabajo y Previsión Social,13 Social Welfare,1,2,Closed (attention faded),Problem window,Consequential,"Problem, W7",Unpredictable,7,10
 T06,Employment recovery,Trabajo y Previsión Social,5 Labor,2,1,Closing: no government move,Problem window,Consequential,"Problem, before the period","Predictable (SENCE budget, 30 Nov)",1,10
-T07,Sala Cuna Universal (Boletín 14.782-13),Trabajo / Mujer,5 Labor,2,3,Political window,Political window,Doctrinal (employment frame),"Politics, before the period",Predictable (target before Feb 2027),1,
-T08,Budget 2027 and fiscal consolidation,Hacienda / Dipres,1 Macroeconomics,3,2,Political window,Political window,Doctrinal,"Politics, W4",Predictable (30 Nov),4,
-T09,"Health budget: Ricarte Soto, immunisation, primary care",Salud,3 Health,1,2,Closing: decision taken in the Chamber,Political window,"Doctrinal, with problem counter-mobilisation","Politics, W4",Predictable (30 Nov),4,10
+T07,Sala Cuna Universal (Boletín 14.782-13),Trabajo / Mujer,5 Labor,2,3,Political window (decision imminent),Political window,Doctrinal (employment frame),"Politics, before the period",Senate third reading 24–25 Nov,1,
+T08,Budget 2027 and fiscal consolidation,Hacienda / Dipres,1 Macroeconomics,3,3,Political window (decision imminent),Political window,Doctrinal,"Politics, W4",Chamber third reading 23 Nov; mixed committee; deadline 29 Nov,4,
+T09,"Health budget: Ricarte Soto, immunisation, primary care",Salud,3 Health,1,2,Closed (decision taken in both chambers),Political window,"Doctrinal, with problem counter-mobilisation","Politics, W4",Predictable (30 Nov),4,10
 T10,Surgical waiting lists,Salud,3 Health,1,1,No window,—,—,—,Unpredictable,,
 T11,Primary-care mental health,Salud,3 Health,1,2,Watch: politics only,—,—,—,Predictable (30 Nov),,
 T12,Specific excise tax on vapes,Hacienda / Salud,3 Health,0,1,No window (bill not filed),—,—,Policy first (June),Unpredictable (no bill),,
 T13,Tobacco contraband and Customs,Hacienda,12 Law & Crime,1,2,"Closed (Ley 21.850, 17 Oct)",Political window,Doctrinal,Background,Predictable (30 Nov),,6
-T14,"Education budget (SLEP, Yo Elijo Mi PC, Junji/Junaeb)",Educación,6 Education,2,2,Political window (blocking possible),Political window,Doctrinal,"Politics, W4",Predictable (30 Nov),4,
+T14,"Education budget (SLEP, Yo Elijo Mi PC, Junji/Junaeb)",Educación,6 Education,2,3,Political window (decision imminent),Political window,Doctrinal,"Politics, W4",Senate vote on Education 19–20 Nov; teachers’ strike 24 Nov; third reading 23 Nov,4,
 T15,CAE/FES student debt,Educación,6 Education,1,1,No window,—,—,Policy first (2025),Unpredictable,,
 T16,Tolls and electricity tariffs,Obras Públicas / Energía,10 Transportation / 8 Energy,1,2,Watch: politics only,—,—,"Politics, W6",Predictable (1 Jan 2027),,8
 T17,Regional funding and Ley Cholito,Interior (Subdere),20 Government Operations,1,2,Closed (agreement 4 Nov; no window flagged),—,—,"Politics, W4",Predictable (30 Nov),,8
 T18,Storm emergency management,Interior / Senapred,15 Disasters,1,1,No window,—,—,—,Unpredictable,,
 T19,'Coalición de las Américas',Relaciones Exteriores,19 International Affairs,0,1,No window,—,—,—,Unpredictable,,
 T20,Targeting of social benefits,Desarrollo Social y Familia,13 Social Welfare,0,0,No signal found,—,—,—,—,,
-T21,Fuel prices,Hacienda / Energía,8 Energy,3,3,Problem window (decision imminent),Problem window,Consequential,"Problem, W9",Bill under 'discusión inmediata'; law expected 17–19 Nov,9,
-T22,Economic slowdown and technical recession,Hacienda / Economía,1 Macroeconomics,2,1,Watch: problem only,—,—,,Q3 GDP release 18 Nov,,
+T21,Fuel prices,Hacienda / Energía,8 Energy,3,3,Closed (decision taken: Ley 21.857),Problem window,Consequential,"Problem, W9",Law in force; cap until 7 Apr 2027,9,10
+T22,Economic slowdown and technical recession,Hacienda / Economía,1 Macroeconomics,3,1,Watch: problem only,—,—,,Imacec October 1 Dec; monetary policy meeting 15 Dec,,
 T23,Child protection: waiting lists and Mejor Niñez funding,Desarrollo Social / Justicia,13 Social Welfare,1,0,No window,—,—,,—,,
-T24,Science ministry: internal crisis and the science budget,"Ciencia, Tecnología, Conocimiento e Innovación","17 Space, Science, Technology & Communications",1,2,Watch: politics only,—,—,,President's decision on the ministry pending; Senate budget vote 17–19 Nov,,
+T24,Science ministry: internal crisis and the science budget,"Ciencia, Tecnología, Conocimiento e Innovación","17 Space, Science, Technology & Communications",1,2,Watch: politics only,—,—,,—,,
+T25,Public funding of gender-affirming care for minors,Salud,3 Health,0,2,Watch: politics only,—,—,,Budget third reading 23 Nov; mixed committee,,
