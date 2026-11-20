@@ -6,13 +6,14 @@ This repository holds the static website and the data for the **Chile pilot** (f
 
 ## Views
 
-- **Overview (decision-makers):** window map, week-by-week problem and politics signals, decision calendar, government approval, country context.
-- **Topics (evidence producers, policy entrepreneurs, journalists):** gaps where evidence is needed, topic cards with filters, a follow list, and a detail panel per topic with the policy-stream check, sources consulted and coded items.
-- **Method:** how the monitor works, in general terms: framework, stream levels, window rules, the weekly process, source types and limitations.
-- **Data:** downloads and a filterable table of coded items with context and quotes.
-- **Signal Review page (reviewers):** a private page on claude.ai where each week's signals are approved, changed or rejected, with typed or spoken comments that the next weekly run reads directly. Source: `review/signal-review.html`.
-- **Researchers tab:** the map of researchers and evidence producers (expert catalogue), a separate product shown as its own tab. Source: `experts/site/` (also usable as its own page); built by `experts/scripts/build_catalogue.py`. After changing `experts/site/index.html`, run `python3 scripts/build_researchers_tab.py` to regenerate `assets/researchers.js`. `scripts/build_data.py` stamps `?v=` versions on the asset links in `index.html` so browsers load new scripts after a push.
-- **Back end (reviewers):** *Review signals* (approve, change or reject the latest week's proposed signals), *Source log* (the country's sources, with a form to add one) and *This run* (steps, limitations and validation of the current run).
+- **Overview (decision-makers):** a short explanation of the monitor, this week at a glance, the window map with a plain-language guide, one box per potential window (each with *What changed since last week* and *Explore the topic*), week-by-week problem and politics signals, the decision points of the next four weeks, government approval and country context.
+- **Weekly report:** what changed since last week, topic by topic, with the concept checks and level rationales behind each level.
+- **Topics (evidence producers, policy entrepreneurs, journalists):** two entry points, *On the agenda now* (potential windows and topics with one strong stream) and *All topics*, with filters, a follow list and a detail panel per topic.
+- **Method:** how the monitor works, in general terms.
+- **Data:** downloads and a filterable table of coded items.
+- **Country menu:** Chile; Colombia shows a "pilot in preparation" page until its first reviewed runs.
+
+The reviewers' back end (source logs, leads, Signal Review page, runbook) is in [camansil/back-end](https://github.com/camansil/back-end). The map of researchers is in [camansil/country-researchers](https://github.com/camansil/country-researchers).
 
 ## Structure
 
@@ -20,28 +21,20 @@ This repository holds the static website and the data for the **Chile pilot** (f
 index.html                    the site (no build step)
 assets/style.css              styles (light and dark)
 assets/app.js                 rendering and interaction
-data/chile-2026-11.js         data loaded by the site (window.PWM_DATA)
+data/chile-2026-11.js         data loaded by the site (window.PWM_DATA), without the back-end fields
 data/chile-2026-11.json       same data as JSON
 data/topics.csv               topic summary grid
 data/coded-items.csv          coded items with sources, context and quotes
-data/sources/<iso>.csv        one source log per country (cl.csv = Chile)
-data/sources/_template.csv    empty log to start a new country
-data/weekly/<ISO>/<year>-W<nn>.json   one file per weekly run
-scripts/build_data.py         base run (W1-W8) + applies the weekly files, writes data/
-scripts/review_seed.py        writes a week's signals as documents for the Signal Review page
-review/signal-review.html     the Signal Review page (published on claude.ai)
-docs/WEEKLY_RUN.md            how to do a weekly run
+data/weekly/<ISO>/<year>-W<nn>.json   one file per weekly run (with the week's report)
+scripts/build_data.py         base run (W1-W8) + applies the weekly files; writes data/ here and data/cl.js in the back end
 ```
 
-Run `python3 scripts/build_data.py` after any change.
+Clone `camansil/back-end` next to this repository before running `python3 scripts/build_data.py`: the build reads the source log and leads from it.
 
-## Adding a source
 
-Add a row to the country's log in `data/sources/` (see `data/sources/README.md`). The weekly run reads the log, and the Sources tab shows it.
+## Adding a source, weekly runs
 
-## Weekly run
-
-See `docs/WEEKLY_RUN.md`. In short: collect the week from the source log, code items, propose levels with a rationale, write `data/weekly/CL/<year>-W<nn>.json`, rebuild, check the site, push. A reviewer then approves, changes or rejects the proposed signals in the Review tab.
+Sources and the weekly runbook are in the back end (`sources/<iso>.csv`, `docs/WEEKLY_RUN.md`). Runs happen on Thursday (half of the sources that need transcription) and Friday (the rest, levels, review page); the reviewer reviews on Friday.
 
 ## Publish on GitHub Pages
 

@@ -82,35 +82,29 @@
   /* ---------- banner + footer ---------- */
   $("#run-banner").innerHTML =
     `<span class="pill">${esc(D.meta.country)}</span><span>Latest week: ${esc(LATEST.id)} (${esc(LATEST.label)})</span><span>Protocol ${esc(D.meta.protocol)}</span><span>${D.items.length} coded items · ${D.topics.length} topics</span>` +
-    (D.meta.interim ? `<span class="warn">${esc(D.meta.interim)}</span>` : "") +
-    (proposedWeek ? `<span class="warn">${esc(proposedWeek)} levels are proposed and await <a href="#review">review</a>.</span>` : "");
-  $("#h-overview").textContent = D.meta.headline || "";
-  $("#h-topics").textContent = D.meta.topicsHeadline || "";
+    (proposedWeek ? `<span class="warn">${esc(proposedWeek)} levels are proposed and still under review.</span>` : "");
+  $$("[data-country]").forEach((el) => { el.textContent = D.meta.country; });
+  const PREV = NW > 1 ? NW - 2 : null;
+  const prevLv = (t) => (PREV != null && t.traj[PREV]) ? t.traj[PREV] : null;
+  const isWindow = (t) => t.status === "problem" || t.status === "political";
+  const onAgenda = (t) => ["problem", "political", "watch", "closing"].includes(t.status);
+  const arrow = (a, b) => a == null ? `<span class="chg new">new</span>` : b > a ? `<span class="chg up" aria-label="up from ${a}">▲ from ${a}</span>` : b < a ? `<span class="chg down" aria-label="down from ${a}">▼ from ${a}</span>` : `<span class="chg same">=</span>`;
   $("#footer").innerHTML = `<p>${esc(D.meta.note)}</p><p>Policy Window Monitor applies Kingdon's Multiple Streams Framework, adapted for Latin America, to weekly data. Data and code are open. Generated ${esc(D.meta.generated)}.</p>`;
 
 
-  /* ---------- source log ---------- */
-  const LOG = D.sourceLog || [];
-  const reEsc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  LOG.forEach((e) => { e._re = (e.match || "").split("|").filter(Boolean).map((m) => new RegExp("(^|[^\\p{L}\\p{N}])" + reEsc(m.trim()) + "($|[^\\p{L}\\p{N}])", "iu")); });
-  const itemMatches = (e, i) => e._re.some((r) => r.test(i.source) || r.test(i.actor));
-  const CORE_TYPES = ["Written press and online news", "Radio and TV news", "Political interviews, talk shows and podcasts", "Opinion polls and poll aggregators"];
-  const accClass = (a) => /paywall|subscription/i.test(a) ? "closed" : (/^open/i.test(a) ? "open" : "");
 
-  /* ---------- tiles ---------- */
-  function renderTiles() {
-    const groups = [
-      ["problem", "Problem windows"],
-      ["political", "Political windows"],
-      ["watch", "Watch"],
-      ["closing", "Closing or closed"],
-      ["none", "No window"],
-    ];
-    $("#tiles").innerHTML = groups.map(([st, label]) => {
-      const list = D.topics.filter((t) => (st === "closing" ? t.status === "closing" || t.status === "closed" : t.status === st));
-      return `<button type="button" class="tile" data-status="${st}"><div class="tile-label">${dot(st)}${label}</div><div class="tile-num">${list.length}</div><div class="tile-names">${list.map((t) => esc(t.short)).join(" · ")}</div></button>`;
-    }).join("");
-    $$("#tiles .tile").forEach((b) => b.addEventListener("click", () => { activeStatus = b.dataset.status; location.hash = "topics"; renderCards(); }));
+  /* ---------- this week at a glance ---------- */
+  function renderHeroNow() {
+    const wins = D.topics.filter(isWindow).sort((a, b) => (b.P + b.Po) - (a.P + a.Po));
+    const watch = D.topics.filter((t) => t.status === "watch");
+    const closed = D.topics.filter((t) => (t.status === "closing" || t.status === "closed") && t.closeWeek === NW);
+    $("#hero-now").innerHTML = `<div class="now-week">${esc(LATEST.id)} · ${esc(LATEST.label)}</div>
+      <a class="now-big" href="#h-windows" data-jump="h-windows"><span class="now-num">${wins.length}</span><span class="now-lab">potential window${wins.length === 1 ? "" : "s"} this week</span></a>
+      <ul class="now-list">${wins.map((t) => `<li><button type="button" data-topic="${t.id}">${dot(t.status)}${esc(t.short)}</button></li>`).join("")}</ul>
+      <div class="now-row"><span><b>${watch.length}</b> on watch</span>${closed.length ? `<span><b>${closed.length}</b> closed or closing this week</span>` : ""}</div>
+      <a class="now-link" href="#report">What changed since last week →</a>`;
+    $$("#hero-now [data-topic]").forEach((b) => b.addEventListener("click", () => openTopic(b.dataset.topic)));
+    $$("[data-jump]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); const el = document.getElementById(a.dataset.jump); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }));
   }
 
   /* ---------- window map ---------- */
@@ -135,6 +129,7 @@
     }
     html += `<div></div>` + [0, 1, 2, 3].map((p) => `<div class="map-collab"><b>${p}</b>${LEVEL[p]}</div>`).join("");
     map.innerHTML = html;
+    requestAnimationFrame(() => { const w = map.closest(".map-wrap"); if (w && w.scrollWidth > w.clientWidth) w.scrollLeft = w.scrollWidth; });
     $$(".chip", map).forEach((c) => {
       const t = byId[c.dataset.topic];
       c.addEventListener("click", () => openTopic(t.id));
@@ -246,6 +241,16 @@
     const host = $("#calendar"); host.innerHTML = ""; host.appendChild(svg);
   }
 
+  function renderNext() {
+    const today = D.meta.generated, end = new Date(Date.parse(today + "T12:00:00Z") + 28 * 864e5).toISOString().slice(0, 10);
+    const evs = D.calendar.filter((e) => (e.end || e.date) >= today && e.date <= end).sort((a, b) => a.date.localeCompare(b.date));
+    $("#next-list").innerHTML = evs.length ? evs.map((e) => {
+      const t = e.topic && byId[e.topic];
+      return `<li><span class="nd">${fmtDate(e.date)}${e.end ? "–" + fmtDate(e.end) : ""}</span><span class="nl">${esc(e.label)}</span>${t ? `<button type="button" class="nt" data-topic="${t.id}">${dot(t.status)}${esc(t.short)} <span class="note">${esc(t.statusLabel)}</span></button>` : ""}</li>`;
+    }).join("") : `<li class="note">No scheduled decision points in the next four weeks.</li>`;
+    $$("#next-list [data-topic]").forEach((b) => b.addEventListener("click", () => openTopic(b.dataset.topic)));
+  }
+
   /* ---------- approval chart ---------- */
   function renderApproval() {
     const polls = [["Cadem", "var(--st-open)"], ["Criteria", "var(--st-opening)"]];
@@ -286,35 +291,59 @@
       `</tbody></table><p class="note">${esc(D.context.approvalNote)}</p>`;
   }
 
-  /* ---------- this week in data: story cards ---------- */
-  function sparkLevels(t) {
-    const n = t.traj.length, cw = 22, gap = 3, W = n * (cw + gap), H = 30;
-    let g = "";
-    t.traj.forEach((lv, i) => {
-      const x = i * (cw + gap);
-      if (!lv) { g += `<rect x="${x}" y="0" width="${cw}" height="13" rx="2" class="na-fill"/><rect x="${x}" y="16" width="${cw}" height="13" rx="2" class="na-fill"/>`; return; }
-      g += `<rect x="${x}" y="0" width="${cw}" height="13" rx="2" style="fill:var(--l${lv[0]})"/><rect x="${x}" y="16" width="${cw}" height="13" rx="2" style="fill:var(--l${lv[1]})"/>`;
-    });
-    return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.short)}: problem and politics levels by week">${g}</svg><span class="spark-key">Problem (top) and politics (bottom), ${esc(D.weeks[0].id)}–${esc(LATEST.id)}</span>`;
+  /* ---------- potential windows: one box per topic ---------- */
+  const REPORT = D.report || {};
+  function renderWindowCards() {
+    const wins = D.topics.filter(isWindow).sort((a, b) => (b.P + b.Po) - (a.P + a.Po) || a.id.localeCompare(b.id));
+    const closing = D.topics.filter((t) => t.status === "closing");
+    $("#windows-sub").textContent = wins.length
+      ? `Topics with both streams at level 2 or 3 in ${LATEST.id}.` + (closing.length ? ` ${closing.map((t) => t.short).join(", ")} ${closing.length === 1 ? "is" : "are"} closing.` : "")
+      : `No topic has both streams at level 2 or 3 in ${LATEST.id}.`;
+    $("#window-cards").innerHTML = wins.map((t) => {
+      const pv = prevLv(t);
+      return `<article class="wcard ${t.status}">
+        <div class="wcard-top">${badge(t)}<span class="meta">${esc(t.ministry)}</span></div>
+        <h3>${esc(t.name)}</h3>
+        <div class="wstreams"><span>Problem ${lvPill(t.P)} ${arrow(pv ? pv[0] : null, t.P)}</span><span>Politics ${lvPill(t.Po)} ${arrow(pv ? pv[1] : null, t.Po)}</span></div>
+        <p class="wtiming"><b>Next:</b> ${esc(t.timing)}</p>
+        <div class="wactions">
+          <a class="btn" href="#report" data-report="${t.id}">What changed since last week</a>
+          <button type="button" class="btn primary" data-topic="${t.id}">Explore the topic</button>
+        </div>
+      </article>`;
+    }).join("") || `<p class="empty">No potential windows this week. See the topics on watch.</p>`;
+    $$("#window-cards [data-topic]").forEach((b) => b.addEventListener("click", () => openTopic(b.dataset.topic)));
+    $$("[data-report]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); goReport(a.dataset.report); }));
   }
-  function sparkApproval() {
-    const W = 240, H = 60, pts = (p) => D.approval.filter((a) => a.poll === p).sort((a, b) => a.date.localeCompare(b.date));
-    const all = D.approval.map((a) => dnum(a.date)), x0 = Math.min(...all), x1 = Math.max(...all);
-    const vs = D.approval.map((a) => a.approve), vmin = Math.min(...vs) - 2, vmax = Math.max(...vs) + 2;
-    const X = (d) => 4 + (dnum(d) - x0) / (x1 - x0 || 1) * (W - 8), Y = (v) => 4 + (vmax - v) / (vmax - vmin) * (H - 8);
-    const line = (p, c) => `<path d="${pts(p).map((a, i) => (i ? "L" : "M") + X(a.date).toFixed(1) + " " + Y(a.approve).toFixed(1)).join("")}" fill="none" stroke="${c}" stroke-width="2"/>`;
-    return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="Approval by poll">${line("Cadem", "var(--st-open)")}${line("Criteria", "var(--st-opening)")}</svg><span class="spark-key">Approval: Cadem (blue), Criteria (orange)</span>`;
-  }
-  function renderStories() {
-    const st = D.stories || [];
-    $(".stories-wrap").hidden = !st.length;
-    $("#stories").innerHTML = st.map((x) => {
-      const t = x.topic && byId[x.topic];
-      return `<article class="story"><div class="eyebrow">${esc(x.eyebrow || "")}</div><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p>` +
-        (t ? sparkLevels(t) : x.kind === "approval" ? sparkApproval() : "") +
-        (t ? `<a class="more" href="#topic-${t.id.toLowerCase()}">See the topic →</a>` : x.kind === "approval" ? `<a class="more" href="#overview" data-scroll="approval">See the polls →</a>` : "") + `</article>`;
-    }).join("");
-    $$("#stories [data-scroll]").forEach((el) => el.addEventListener("click", (e) => { e.preventDefault(); const tgt = document.getElementById(el.dataset.scroll); if (tgt) tgt.scrollIntoView({ behavior: "smooth", block: "center" }); }));
+
+  /* ---------- weekly report: what changed since last week ---------- */
+  let reportTarget = null;
+  function goReport(id) { reportTarget = id; if (location.hash !== "#report") location.hash = "report"; else scrollReport(); }
+  function scrollReport() { if (!reportTarget) { window.scrollTo(0, 0); return; } const el = document.getElementById("rep-" + reportTarget); reportTarget = null; if (el) el.scrollIntoView({ block: "start" }); }
+  function renderReport() {
+    const prevW = PREV != null ? D.weeks[PREV] : null;
+    const changed = D.topics.filter((t) => { const pv = prevLv(t), cur = t.traj[NW - 1]; return REPORT.topics && REPORT.topics[t.id] || !pv || (cur && (pv[0] !== cur[0] || pv[1] !== cur[1])) || t.openWeek === NW || t.closeWeek === NW; })
+      .sort((a, b) => STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status) || a.id.localeCompare(b.id));
+    const sig = (t, st) => (REVIEW ? REVIEW.signals : []).find((x) => x.topic === t.id && x.stream === st);
+    const stream = (t, st, k, i) => {
+      const pv = prevLv(t), s = sig(t, st);
+      return `<div class="rep-stream"><div class="rep-sh">${st} ${lvPill(t[k])} ${arrow(pv ? pv[i] : null, t[k])}</div>
+        ${checksFor(t.id, st).length ? checkList(t.id, st) : ""}
+        ${s ? `<p class="rationale"><b>Level:</b> ${esc(s.rationale)}</p>` : `<p class="note">No new evidence this week; the level carries forward.</p>`}</div>`;
+    };
+    $("#report-body").innerHTML = `
+      <p class="lead">${esc(LATEST.id)} (${esc(LATEST.label)})${prevW ? ` compared with ${esc(prevW.id)} (${esc(prevW.label)})` : ""}. This is the technical version: each topic's levels, the concept checks behind them, and what to watch next. ${proposedWeek ? "Levels are proposed and under review." : "Levels were reviewed by a person."}</p>
+      ${REPORT.intro ? `<article class="panel rep-intro"><h2>The week in brief</h2><p>${esc(REPORT.intro)}</p></article>` : ""}
+      <nav class="rep-toc" aria-label="Topics in this report">${changed.map((t) => `<a href="#report" data-goto="${t.id}">${dot(t.status)}${esc(t.short)}</a>`).join("")}</nav>
+      ${changed.map((t) => `<article class="panel rep-topic" id="rep-${t.id}">
+        <div class="rep-head"><div><div class="meta">${esc(t.id)} · ${esc(t.ministry)}</div><h2>${esc(t.name)}</h2></div>${badge(t)}</div>
+        ${REPORT.topics && REPORT.topics[t.id] ? `<p class="rep-sum">${esc(REPORT.topics[t.id])}</p>` : `<p class="rep-sum">${esc(t.changed)}</p>`}
+        <details class="check-details"><summary>Evidence: concept checks and level rationales</summary>
+          ${stream(t, "Problem", "P", 0)}${stream(t, "Politics", "Po", 1)}</details>
+        <div class="wactions"><button type="button" class="btn primary" data-topic="${t.id}">Explore the topic</button></div>
+      </article>`).join("")}`;
+    $$("#report-body [data-topic]").forEach((b) => b.addEventListener("click", () => openTopic(b.dataset.topic)));
+    $$("#report-body [data-goto]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); reportTarget = a.dataset.goto; scrollReport(); }));
   }
 
   /* ---------- context ---------- */
@@ -341,11 +370,11 @@
     $$("#gaps button").forEach((b) => b.addEventListener("click", () => openTopic(b.dataset.topic)));
   }
 
-  let activeStatus = "all", activeMinistry = "", query = "";
+  let activeStatus = "agenda", activeMinistry = "", query = "";
   function renderFilters() {
-    const opts = [["all", "All"], ["following", "Following"], ["problem", STATUS.problem], ["political", STATUS.political], ["watch", STATUS.watch], ["closing", "Closing or closed"], ["none", STATUS.none]];
-    const count = (k) => k === "all" ? D.topics.length : k === "following" ? following.size : D.topics.filter((t) => (k === "closing" ? ["closing", "closed"].includes(t.status) : t.status === k)).length;
-    $("#status-filter").innerHTML = opts.map(([k, l]) => `<button type="button" class="fchip ${activeStatus === k ? "is-on" : ""}" data-k="${k}" aria-pressed="${activeStatus === k}">${["all", "following"].includes(k) ? "" : dot(k)}${esc(l)} <span class="count">${count(k)}</span></button>`).join("");
+    const opts = [["agenda", "On the agenda now"], ["all", "All"], ["following", "Following"], ["problem", STATUS.problem], ["political", STATUS.political], ["watch", STATUS.watch], ["closing", "Closing or closed"], ["none", STATUS.none]];
+    const count = (k) => k === "all" ? D.topics.length : k === "following" ? following.size : k === "agenda" ? D.topics.filter(onAgenda).length : D.topics.filter((t) => (k === "closing" ? ["closing", "closed"].includes(t.status) : t.status === k)).length;
+    $("#status-filter").innerHTML = opts.map(([k, l]) => `<button type="button" class="fchip ${activeStatus === k ? "is-on" : ""}" data-k="${k}" aria-pressed="${activeStatus === k}">${["all", "following", "agenda"].includes(k) ? "" : dot(k)}${esc(l)} <span class="count">${count(k)}</span></button>`).join("");
     $$("#status-filter .fchip").forEach((b) => b.addEventListener("click", () => { activeStatus = b.dataset.k; renderCards(); }));
   }
   function initMinistry() {
@@ -356,7 +385,8 @@
   }
   function matches(t) {
     if (activeStatus === "following" && !following.has(t.id)) return false;
-    if (!["all", "following"].includes(activeStatus)) {
+    if (activeStatus === "agenda" && !onAgenda(t)) return false;
+    if (!["all", "following", "agenda"].includes(activeStatus)) {
       if (activeStatus === "closing" ? !["closing", "closed"].includes(t.status) : t.status !== activeStatus) return false;
     }
     if (activeMinistry && t.ministry !== activeMinistry) return false;
@@ -369,6 +399,10 @@
   }
   function renderCards() {
     renderFilters();
+    $$("#topic-mode .seg-btn").forEach((b) => b.classList.toggle("is-on", b.dataset.mode === activeStatus));
+    $("#topics-lead").textContent = activeStatus === "agenda"
+      ? "Topics with a potential window or one strong stream this week, the ones decision-makers and evidence producers can act on now. Follow a topic to keep it at the top in your browser."
+      : "Every topic the monitor follows, including closed windows and topics with no signal, so you can see how close each one is to the agenda. Follow a topic to keep it at the top in your browser.";
     const list = D.topics.filter(matches).sort((a, b) =>
       (following.has(b.id) - following.has(a.id)) || STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status) || a.id.localeCompare(b.id));
     $("#cards").innerHTML = list.length ? list.map((t) => `
@@ -439,7 +473,6 @@
       </section>` : `<section><h3>Policy stream</h3><p class="note">The policy stream is checked only once a window is flagged for a topic.${t.policy ? " Noted so far: " + esc(t.policy) : ""}</p></section>`}
       <section><h3>Sources consulted (${new Set(items.map((i) => i.source)).size})</h3>
         <div class="src-groups">${srcGroups(items)}</div>
-        ${missingCore(items)}
       </section>
       <section><h3>Coded items (${items.length})</h3>
         ${items.length ? `<ul class="item-list">${items.map(itemLi).join("")}</ul>` : `<p class="note">No items coded for this topic.</p>`}
@@ -467,38 +500,16 @@
     items.forEach((i) => { (byType[i.type] = byType[i.type] || {}); byType[i.type][i.source] = (byType[i.type][i.source] || 0) + 1; });
     return Object.keys(byType).sort().map((ty) => `<h4>${esc(ty)}</h4><ul>${Object.entries(byType[ty]).sort((a, b) => b[1] - a[1]).map(([n, c]) => `<li>${esc(n)}<b>×${c}</b></li>`).join("")}</ul>`).join("");
   }
-  function missingCore(items) {
-    const miss = LOG.filter((e) => CORE_TYPES.includes(e.source_type) && e._re.length && !items.some((i) => itemMatches(e, i)));
-    if (!miss.length) return "";
-    return `<div class="src-groups missing"><h4>From the Chile source log, not consulted for this topic</h4><ul>${miss.map((e) => `<li>${esc(e.name)}</li>`).join("")}</ul></div>`;
-  }
 
-  /* ---------- sources page ---------- */
-  let srcType = "";
-  function renderSources() {
-    const types = [...new Set(LOG.map((e) => e.source_type))];
-    const counts = new Map(LOG.map((e) => [e.id, D.items.filter((i) => e._re.length && itemMatches(e, i)).length]));
-    const latestItems = D.items.filter((i) => i.week === LATEST.id);
-    const wk = new Map(LOG.map((e) => [e.id, latestItems.filter((i) => e._re.length && itemMatches(e, i)).length]));
-    const cov = D.coverage || {};
-    $("#source-type-filter").innerHTML = [["", "All"]].concat(types.map((t) => [t, t])).map(([k, l]) =>
-      `<button type="button" class="fchip ${srcType === k ? "is-on" : ""}" data-k="${esc(k)}">${esc(l)} <span class="count">${k ? LOG.filter((e) => e.source_type === k).length : LOG.length}</span></button>`).join("");
-    $$("#source-type-filter .fchip").forEach((b) => b.addEventListener("click", () => { srcType = b.dataset.k; renderSources(); }));
-    const rows = LOG.filter((e) => !srcType || e.source_type === srcType);
-    $("#source-log").innerHTML = `<thead><tr><th>Source</th><th>Type</th><th>Owner</th><th>Format</th><th>Access</th><th>How the monitor reads it</th><th>Added by</th><th>${esc(LATEST.id)}: scanned · coded</th><th>All weeks: coded</th><th>Notes</th></tr></thead><tbody>` +
-      rows.map((e) => `<tr><td>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a>` : esc(e.name)}</td><td>${esc(e.source_type)}</td><td>${esc(e.owner)}</td><td>${esc(e.format)}</td><td><span class="acc ${accClass(e.access)}">${esc(e.access)}</span></td><td>${esc(e.how_read)}</td><td>${esc(e.added_by)}</td><td class="num${CORE_TYPES.includes(e.source_type) && e._re.length && !wk.get(e.id) ? " gapcell" : ""}">${cov[e.id] != null ? cov[e.id].scanned : "?"} · ${e._re.length ? wk.get(e.id) : "—"}</td><td class="num">${e._re.length ? counts.get(e.id) : "—"}</td><td>${esc(e.notes)}</td></tr>`).join("") + `</tbody>`;
-    const core = LOG.filter((e) => CORE_TYPES.includes(e.source_type) && e._re.length);
-    const zero = core.filter((e) => !wk.get(e.id));
-    const notScanned = core.filter((e) => !cov[e.id] || !cov[e.id].scanned);
-    $("#source-gap").textContent = `${LATEST.id}: ${zero.length} of ${core.length} news, TV, talk-show, podcast and poll sources produced no coded item (${zero.map((e) => e.name).join(", ")}). ` +
-      (Object.keys(cov).length ? `${notScanned.length} were not scanned at all.` : `Headline scans were not recorded for ${LATEST.id}; from W10 each run records how many headlines it scanned per source ("?" means not recorded).`);
-  }
+
+
 
   /* ---------- method ---------- */
   function renderMethod() {
     const m = D.method;
     const li = (a) => a.map((x) => `<li>${esc(x)}</li>`).join("");
-    const nType = (t) => LOG.filter((e) => e.source_type.toLowerCase().startsWith(t.toLowerCase().slice(0, 14))).length;
+    const STC = D.sourceTypeCounts || {};
+    const nType = (t) => Object.entries(STC).filter(([k]) => k.toLowerCase().startsWith(t.toLowerCase().slice(0, 14))).reduce((a, [, v]) => a + v, 0);
     $("#method").innerHTML = `
       <p class="lead">${esc(m.framework)}</p>
       <article class="panel"><h2>Stream levels</h2>
@@ -525,58 +536,7 @@
         <article class="panel"><h2>Limitations</h2><ul>${li(m.publicLimitations)}</ul></article>
       </div>`;
   }
-  function renderRun() {
-    const m = D.method;
-    const li = (a) => a.map((x) => `<li>${esc(x)}</li>`).join("");
-    $("#run").innerHTML = `
-      <p class="lead">${esc(m.protocol)} applied to ${esc(D.meta.country)} for ${esc(m.period)}. ${esc(m.volume)}</p>
-      <div class="method-grid">
-        <article class="panel"><h2>Steps in this run</h2><ol>${li(m.steps)}</ol></article>
-        <article class="panel"><h2>Limitations of this run</h2><ul>${li(m.limitations)}</ul></article>
-        <article class="panel"><h2>Validation</h2><ul>${li(m.validation)}</ul><h3 style="margin-top:14px">Next</h3><ul>${li(m.nextVersion)}</ul></article>
-        ${(D.discovery || []).length ? `<article class="panel"><h2>Discovery net</h2><ul>${D.discovery.map((d) => `<li><b>${esc(d.week)}</b> ${esc(d.text)}</li>`).join("")}</ul></article>` : ""}
-      </div>`;
-  }
 
-  /* ---------- back end: sub-navigation and adding sources ---------- */
-  const BACKEND = [["review", "Review signals"], ["sources", "Source log"], ["run", "This run"]];
-  function renderSubnav(v) {
-    $$(".subnav").forEach((n) => { n.innerHTML = BACKEND.map(([k, l]) => `<a href="#${k}" class="${k === v ? "is-on" : ""}"${k === v ? ' aria-current="page"' : ""}>${l}</a>`).join(""); });
-  }
-  const REPO_EDIT = "https://github.com/camansil/policy-windows/edit/main/data/sources/" + (D.meta.iso || "CL").toLowerCase() + ".csv";
-  function renderAddSource() {
-    const types = [...new Set(LOG.map((e) => e.source_type))];
-    const prefix = {}, maxN = {};
-    LOG.forEach((e) => { const m = /^([A-Z]+-[A-Z])(\d+)$/.exec(e.id); if (m) { prefix[e.source_type] = m[1]; maxN[m[1]] = Math.max(maxN[m[1]] || 0, +m[2]); } });
-    const f = (id, label, ph) => `<label>${label}<input id="as-${id}" type="text" placeholder="${esc(ph || "")}"></label>`;
-    $("#add-source").innerHTML = `<h2>Add a source</h2>
-      <p class="panel-sub">Three ways, all ending in the same file (<code>data/sources/${esc((D.meta.iso || "CL").toLowerCase())}.csv</code>), which the weekly run reads every Friday:</p>
-      <ol class="ways"><li>Fill in this form, copy the row, and paste it at the end of the log on GitHub (<a href="${REPO_EDIT}" target="_blank" rel="noopener">open the log for editing</a>), then commit.</li><li>Edit the log on GitHub directly.</li><li>Tell Claude in chat, and it adds the row.</li></ol>
-      <div class="add-grid">
-        ${f("name", "Name", "e.g. CIPER")}
-        <label>Source type<select id="as-type">${types.map((t) => `<option>${esc(t)}</option>`).join("")}</select></label>
-        ${f("owner", "Owner or publisher")}
-        ${f("format", "Format", "Text, Radio, TV, Podcast, Dataset")}
-        ${f("url", "URL", "https://")}
-        ${f("access", "Access", "Open, metered, paywall")}
-        ${f("how", "How to read it", "Headlines weekly; full text for matches")}
-        ${f("match", "Names it appears under (separate with |)", "CIPER|Ciper Chile")}
-        ${f("by", "Added by", "Your name")}
-        ${f("notes", "Notes")}
-      </div>
-      <div class="add-actions"><button type="button" class="btn" id="as-make">Make the row</button><a class="btn" href="${REPO_EDIT}" target="_blank" rel="noopener">Open the log on GitHub</a></div>
-      <textarea class="review-out" id="as-out" readonly hidden aria-label="New row for the source log"></textarea>`;
-    $("#as-make").addEventListener("click", () => {
-      const v = (k) => ($("#as-" + k).value || "").trim();
-      if (!v("name")) { $("#as-name").focus(); return; }
-      const ty = v("type"), pre = prefix[ty] || (D.meta.iso || "CL") + "-X";
-      const id = pre + String((maxN[pre] || 0) + 1).padStart(2, "0");
-      const q = (x) => (/[",\n]/.test(x) ? `"${x.replace(/"/g, '""')}"` : x);
-      const row = [id, v("name"), ty, v("owner"), v("format"), v("url"), v("access"), v("how"), v("match") || v("name"), v("by"), new Date().toISOString().slice(0, 10), v("notes")].map(q).join(",");
-      const out = $("#as-out"); out.hidden = false; out.value = row; out.select();
-      if (navigator.clipboard) navigator.clipboard.writeText(row).catch(() => {});
-    });
-  }
 
   /* ---------- data table ---------- */
   function renderItems() {
@@ -591,69 +551,9 @@
     topicSel.addEventListener("change", draw); $("#item-stream").addEventListener("change", draw); draw();
   }
 
-  /* ---------- review (reviewers' back end) ---------- */
-  const RKEY = "pwm-review-" + (D.meta.iso || "CL") + "-" + (REVIEW ? REVIEW.week : "");
-  let decisions = {};
-  try { decisions = JSON.parse(localStorage.getItem(RKEY) || "{}"); } catch (e) { /* storage unavailable */ }
-  const saveDecisions = () => { try { localStorage.setItem(RKEY, JSON.stringify(decisions)); } catch (e) { /* ignore */ } };
-  const sigKey = (sg) => sg.topic + ":" + sg.stream;
-  function renderReview() {
-    const host = $("#review");
-    if (!REVIEW || !REVIEW.signals.length) { host.innerHTML = `<p class="empty">No proposed signals waiting for review.</p>`; return; }
-    const sigs = REVIEW.signals;
-    const tally = { approve: 0, change: 0, reject: 0 };
-    sigs.forEach((sg) => { const d = decisions[sigKey(sg)]; if (d) tally[d.decision]++; });
-    const pending = sigs.length - tally.approve - tally.change - tally.reject;
-    const lvOpt = (sel) => [0, 1, 2, 3].map((v) => `<option value="${v}" ${v === sel ? "selected" : ""}>${v} ${esc(LEVEL[v])}</option>`).join("");
-    host.innerHTML = `
-      <div class="review-head"><div class="review-tally"><span>Week <b>${esc(REVIEW.week)}</b> (${esc(REVIEW.label)})</span><span><b>${sigs.length}</b> signals</span><span><b>${tally.approve}</b> approved</span><span><b>${tally.change}</b> changed</span><span><b>${tally.reject}</b> rejected</span><span><b>${pending}</b> pending</span></div>
-        <div><button type="button" class="btn" id="rv-copy">Copy decisions (CSV)</button> <button type="button" class="btn" id="rv-clear">Clear</button></div></div>
-      ${D.meta.reviewUrl ? `<p class="review-link">Review this week on the <a href="${esc(D.meta.reviewUrl)}" target="_blank" rel="noopener">review page</a>. There you can type or speak a comment on each signal, and the next weekly run reads your decisions and comments directly. This tab still works, but its decisions stay in your browser.</p>` : ""}
-      <p class="note-line">${esc(REVIEW.note)}</p>
-      ${sigs.map((sg, k) => {
-        const d = decisions[sigKey(sg)] || {};
-        const t = byId[sg.topic];
-        const cls = d.decision === "approve" ? "approved" : d.decision === "change" ? "changed" : d.decision === "reject" ? "rejected" : "";
-        const prev = sg.prev == null ? "new" : `${sg.prev}`;
-        return `<article class="signal ${cls}" data-k="${k}">
-          <div class="signal-top"><h3>${t ? `<a href="#topic-${t.id.toLowerCase()}">${esc(t.short)}</a>` : "Cross-cutting"} · ${esc(sg.stream)}</h3>
-            <span class="lvchange">${sg.proposed == null ? "No level change" : `${sg.prev == null ? "" : lvPill(sg.prev) + " →"} ${lvPill(sg.proposed)} ${esc(LEVEL[sg.proposed])}${sg.prev == null ? " (new)" : ""}`}</span></div>
-          ${checksFor(sg.topic, sg.stream).length ? `<div class="framing"><span class="framing-label">How the ${esc(sg.stream.toLowerCase())} stream is framed: ${checksFor(sg.topic, sg.stream).length} concept check${checksFor(sg.topic, sg.stream).length === 1 ? "" : "s"}</span></div>${checkList(sg.topic, sg.stream)}<div class="framing"><span class="framing-label">Stream level</span></div>` : `<div class="framing"><span class="framing-label">How the ${esc(sg.stream.toLowerCase())} stream is framed</span> ${sg.concepts.map(cTag).join(" ")}</div>`}
-          <p class="rationale">${esc(sg.rationale)}</p>
-          <details><summary>Evidence: ${sg.items.length} coded item${sg.items.length === 1 ? "" : "s"}</summary><ul class="ev">${sg.items.map((x) => itemById[x]).filter(Boolean).map((i) =>
-            `<li>${cTag(i.concept)} ${esc(i.note)}${i.quote ? `<br><span class="quote">“${esc(i.quote)}”</span>` : ""}<br><span class="ctx">${esc(i.actor)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.source)}</a> · ${esc(i.date)}${i.context ? " · " + esc(i.context) : ""}</span></li>`).join("")}</ul></details>
-          <div class="decide" role="group" aria-label="Decision">
-            <button type="button" class="btn ${d.decision === "approve" ? "is-on" : ""}" data-d="approve">Approve</button>
-            <button type="button" class="btn ${d.decision === "change" ? "is-on" : ""}" data-d="change">Change</button>
-            <button type="button" class="btn ${d.decision === "reject" ? "is-on" : ""}" data-d="reject">Reject</button>
-            ${sg.proposed == null ? "" : `<label class="sr-only" for="lv-${k}">Level</label><select id="lv-${k}" data-lv ${d.decision === "change" ? "" : "disabled"}>${lvOpt(d.level != null ? d.level : sg.proposed)}</select>`}
-            <label class="sr-only" for="nt-${k}">Note</label><input id="nt-${k}" data-note type="text" placeholder="Note (optional)" value="${esc(d.note || "")}">
-          </div></article>`;
-      }).join("")}
-      <textarea class="review-out" id="rv-out" readonly hidden aria-label="Decisions as CSV"></textarea>`;
-    $$(".signal", host).forEach((card) => {
-      const sg = sigs[+card.dataset.k], key = sigKey(sg);
-      const upd = (patch) => { decisions[key] = Object.assign({ decision: null, level: sg.proposed, note: "" }, decisions[key] || {}, patch); saveDecisions(); };
-      $$("[data-d]", card).forEach((b) => b.addEventListener("click", () => { upd({ decision: b.dataset.d, at: new Date().toISOString() }); renderReview(); }));
-      const sel = $("[data-lv]", card); if (sel) sel.addEventListener("change", () => upd({ level: +sel.value }));
-      const nt = $("[data-note]", card); nt.addEventListener("change", () => upd({ note: nt.value }));
-    });
-    $("#rv-copy").addEventListener("click", () => {
-      const q = (x) => `"${String(x == null ? "" : x).replace(/"/g, '""')}"`;
-      const rows = [["week", "topic", "stream", "proposed", "decision", "final_level", "note", "decided_at"]].concat(sigs.map((sg) => {
-        const d = decisions[sigKey(sg)] || {};
-        const fin = d.decision === "reject" ? "" : d.decision === "change" ? d.level : sg.proposed;
-        return [REVIEW.week, sg.topic, sg.stream, sg.proposed, d.decision || "pending", fin, d.note || "", d.at || ""];
-      }));
-      const csv = rows.map((r) => r.map(q).join(",")).join("\n");
-      const out = $("#rv-out"); out.hidden = false; out.value = csv; out.select();
-      if (navigator.clipboard) navigator.clipboard.writeText(csv).catch(() => {});
-    });
-    $("#rv-clear").addEventListener("click", () => { decisions = {}; saveDecisions(); renderReview(); });
-  }
-
   /* ---------- routing ---------- */
   let currentView = "overview";
+  const VIEWS = ["overview", "report", "topics", "method", "data", "colombia"];
   function route() {
     const h = location.hash.slice(1);
     const m = /^topic-(t\d+)$/.exec(h);
@@ -663,22 +563,26 @@
       showView(currentView || "overview"); renderDrawer(id); return;
     }
     if (!$("#drawer").hidden) closeDrawer(false);
-    showView(["overview", "topics", "researchers", "sources", "method", "data", "review", "run"].includes(h) ? h : "overview");
+    showView(VIEWS.includes(h) ? h : "overview");
   }
   function showView(v) {
+    const was = currentView;
     currentView = v;
     $$(".view").forEach((s) => (s.hidden = s.id !== "view-" + v));
-    const tab = BACKEND.some(([k]) => k === v) ? "backend" : v;
-    $$(".tabs a").forEach((a) => { a.classList.toggle("is-on", a.dataset.view === tab); a.setAttribute("aria-current", a.dataset.view === tab ? "page" : "false"); });
-    if (tab === "backend") renderSubnav(v);
+    $$(".tabs a").forEach((a) => { a.classList.toggle("is-on", a.dataset.view === v); a.setAttribute("aria-current", a.dataset.view === v ? "page" : "false"); });
+    $("#country-select").value = v === "colombia" ? "CO" : "CL";
+    const rb = $("#run-banner"); if (rb) rb.style.display = v === "colombia" ? "none" : "";
     if (v === "topics") renderCards();
-    if (v === "researchers" && window.PWM_initResearchers) window.PWM_initResearchers($("#researchers-host"));
-    const rb = $("#run-banner"); if (rb) rb.style.display = v === "researchers" ? "none" : "";
+    if (v === "report") scrollReport();
+    else if (v !== was) window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", route);
+  $("#country-select").addEventListener("change", (e) => { location.hash = e.target.value === "CO" ? "colombia" : "overview"; });
+  $$(".explore-card[data-mode], #topic-mode .seg-btn").forEach((b) => b.addEventListener("click", () => { activeStatus = b.dataset.mode; renderCards(); }));
 
   /* ---------- init ---------- */
-  renderTiles(); renderStories(); renderMap(); renderLevelLegend(); renderWeekly(); renderCalendar(); renderApproval(); renderContext();
-  renderGaps(); initMinistry(); renderCards(); renderSources(); renderAddSource(); renderMethod(); renderRun(); renderItems(); renderReview();
+  renderHeroNow(); renderMap(); renderWindowCards(); renderLevelLegend(); renderWeekly(); renderNext(); renderCalendar(); renderApproval(); renderContext();
+  $("#n-agenda").textContent = D.topics.filter(onAgenda).length + " topics"; $("#n-all").textContent = D.topics.length + " topics"; $("#n-week").textContent = LATEST.id;
+  renderReport(); renderGaps(); initMinistry(); renderCards(); renderMethod(); renderItems();
   route();
 })();

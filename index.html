@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Policy Window Monitor — Chile</title>
-<meta name="description" content="Weekly monitor of likely policy windows in Latin America and the Caribbean. Chile pilot run, 8 September – 5 November 2026.">
+<meta name="description" content="Weekly monitor of likely policy windows in Latin America and the Caribbean, starting with Chile.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=5d5c9703">
+<link rel="stylesheet" href="assets/style.css?v=7f7e30df">
 </head>
 <body>
 <div class="viz-root">
@@ -22,7 +22,7 @@
         <label for="country-select" class="sr-only">Country</label>
         <select id="country-select" aria-label="Country">
           <option value="CL" selected>Chile</option>
-          <option disabled>Colombia (coming soon)</option>
+          <option value="CO">Colombia (pilot in preparation)</option>
           <option disabled>Mexico (coming soon)</option>
           <option disabled>Brazil (coming soon)</option>
         </select>
@@ -30,11 +30,10 @@
     </div>
     <nav class="wrap tabs" aria-label="Views">
       <a href="#overview" data-view="overview">Overview <span class="tab-sub">for decision-makers</span></a>
+      <a href="#report" data-view="report">Weekly report <span class="tab-sub">what changed</span></a>
       <a href="#topics" data-view="topics">Topics <span class="tab-sub">for evidence producers</span></a>
-      <a href="#researchers" data-view="researchers">Researchers <span class="tab-sub">map of evidence producers</span></a>
       <a href="#method" data-view="method">Method</a>
       <a href="#data" data-view="data">Data</a>
-      <a href="#review" data-view="backend" class="tab-review">Back end <span class="tab-sub">reviewers</span></a>
     </nav>
   </header>
 
@@ -43,35 +42,52 @@
 
     <!-- OVERVIEW -->
     <section class="view" id="view-overview" aria-labelledby="h-overview">
-      <h1 id="h-overview" class="lead-title"></h1>
+      <div class="hero">
+        <div class="hero-text">
+          <h1 id="h-overview" class="lead-title">Policy windows in <span data-country>Chile</span>, week by week</h1>
+          <p class="lead">Policies tend to change when three things line up: a problem people see as urgent, political conditions that allow action, and a solution ready to use (Kingdon's <i>multiple streams</i>). Every week this monitor reads <span data-country>Chile</span>'s news, political programmes, polls, indicators and Congress, and rates the first two for each topic on the agenda. When both are strong at the same time, a <b>policy window</b> may be open: a short period when change is more likely.</p>
+          <ol class="howto">
+            <li><span class="howto-k">Problem stream</span>Is the issue seen as a problem? Events, data, reports, public attention. Rated 0 to 3.</li>
+            <li><span class="howto-k">Politics stream</span>Can politics act on it? Government plans, votes, approval, organised pressure. Rated 0 to 3.</li>
+            <li><span class="howto-k">Potential window</span>Both streams at 2 or 3 in the same week.</li>
+          </ol>
+        </div>
+        <aside class="hero-now" id="hero-now" aria-label="This week at a glance"></aside>
+      </div>
 
-      <div class="tiles" id="tiles"></div>
+      <article class="panel" id="map-panel">
+        <div class="map-layout">
+          <div class="map-main">
+            <h2>Where the windows are</h2>
+            <div class="legend" id="map-legend"></div>
+            <div class="map-wrap">
+              <div class="map-y-title"><span>Politics stream →</span></div>
+              <div class="map" id="window-map" role="group" aria-label="Window map: topics by problem and politics level"></div>
+            </div>
+            <div class="map-x-title">Problem stream →</div>
+            <p class="map-swipe">Swipe left to see the topics with weaker signals.</p>
+          </div>
+          <div class="map-explain">
+            <h3>How to read the map</h3>
+            <p>Each label is a topic, placed by its two levels this week.</p>
+            <p><b>Further right:</b> the issue is more clearly seen as a problem.<br><b>Further up:</b> politics is more ready to act on it.</p>
+            <p>The <b>shaded top-right corner</b> holds the potential windows. Topics with one strong stream are on <b>watch</b>: a window can open there quickly if the other stream moves.</p>
+            <p>Click a topic to see why it sits there.</p>
+          </div>
+        </div>
+      </article>
 
-      <section class="stories-wrap" aria-labelledby="h-stories">
-        <h2 id="h-stories" class="section-title">This week in data</h2>
-        <div class="story-grid" id="stories"></div>
+      <section aria-labelledby="h-windows">
+        <h2 id="h-windows" class="section-title">Potential windows this week</h2>
+        <p class="section-sub" id="windows-sub"></p>
+        <div class="window-grid" id="window-cards"></div>
       </section>
 
       <article class="panel">
         <div class="panel-head">
           <div>
-            <h2>Where the windows are</h2>
-            <p class="panel-sub">Each topic placed by its problem and politics levels in the latest week. A potential window needs both streams at level 2 or higher (shaded zone).</p>
-          </div>
-        </div>
-        <div class="legend" id="map-legend"></div>
-        <div class="map-wrap">
-          <div class="map-y-title"><span>Politics stream →</span></div>
-          <div class="map" id="window-map" role="group" aria-label="Window map: topics by problem and politics readiness"></div>
-        </div>
-        <div class="map-x-title">Problem stream →</div>
-      </article>
-
-      <article class="panel">
-        <div class="panel-head">
-          <div>
             <h2>Problem and politics signals, week by week</h2>
-            <p class="panel-sub">Each cell shows the problem (top) and politics (bottom) level for that week. Hatched cells were not observed. The latest week is proposed and awaits review.</p>
+            <p class="panel-sub">Each cell shows the problem (top) and politics (bottom) level for that week. Hatched cells were not observed.</p>
           </div>
           <div class="seg" role="group" aria-label="Sort topics">
             <button type="button" class="seg-btn is-on" data-sort="status">By status</button>
@@ -83,10 +99,20 @@
       </article>
 
       <article class="panel">
-        <h2>Decision points ahead</h2>
-        <p class="panel-sub">Scheduled moments when open windows will be settled. Click a lane to open its topic.</p>
-        <div id="calendar" class="chart"></div>
+        <h2>Decision points ahead: when could a window be used or close?</h2>
+        <p class="panel-sub">A window is short. Scheduled moments, such as votes, deadlines, data releases and anniversaries, are when a topic that is a potential window or on watch can be decided, or lose its chance. The list shows the next four weeks; the timeline shows the months ahead. Click a topic to open it.</p>
+        <ul class="next-list" id="next-list"></ul>
+        <details class="table-view"><summary>Show the timeline</summary><div id="calendar" class="chart"></div></details>
       </article>
+
+      <section class="explore" aria-labelledby="h-explore">
+        <h2 id="h-explore" class="section-title">Explore the topics</h2>
+        <div class="explore-grid">
+          <a class="explore-card" href="#topics" data-mode="agenda"><span class="explore-k">On the agenda now</span><span class="explore-n" id="n-agenda"></span><span>Topics with a potential window or one strong stream this week.</span></a>
+          <a class="explore-card" href="#topics" data-mode="all"><span class="explore-k">All topics</span><span class="explore-n" id="n-all"></span><span>Every topic the monitor follows, open or closed, and how close each is to the agenda.</span></a>
+          <a class="explore-card" href="#report"><span class="explore-k">Weekly report</span><span class="explore-n" id="n-week"></span><span>What changed since last week, topic by topic, with the evidence behind each level.</span></a>
+        </div>
+      </section>
 
       <div class="two-col">
         <article class="panel">
@@ -105,8 +131,12 @@
 
     <!-- TOPICS -->
     <section class="view" id="view-topics" aria-labelledby="h-topics" hidden>
-      <h1 id="h-topics" class="lead-title"></h1>
-      <p class="lead">Follow a topic to keep it at the top of this page in your browser. Email alerts are planned for the next version.</p>
+      <h1 id="h-topics" class="lead-title">Topics</h1>
+      <div class="seg big" role="group" aria-label="Which topics" id="topic-mode">
+        <button type="button" class="seg-btn" data-mode="agenda">On the agenda now</button>
+        <button type="button" class="seg-btn" data-mode="all">All topics</button>
+      </div>
+      <p class="lead" id="topics-lead"></p>
 
       <div class="gaps" id="gaps"></div>
 
@@ -122,27 +152,18 @@
       <div class="cards" id="cards"></div>
     </section>
 
-    <!-- SOURCES -->
-    <section class="view" id="view-sources" aria-labelledby="h-sources" hidden>
-      <nav class="subnav" aria-label="Back end"></nav>
-      <h1 id="h-sources" class="lead-title">Chile source log</h1>
-      <p class="lead">The outlets, programmes, podcasts, polls, indicators and moments the weekly run reads in Chile. The log is a running document: add a source whenever you learn of one. The last column shows how many coded items came from each source.</p>
-      <article class="panel" id="add-source"></article>
-      <div class="filters" role="group" aria-label="Filter sources">
-        <div class="chip-row" id="source-type-filter"></div>
-      </div>
-      <div class="items-scroll tall"><table class="items" id="source-log"></table></div>
-      <p class="note-line" id="source-gap"></p>
+    <!-- WEEKLY REPORT -->
+    <section class="view" id="view-report" aria-labelledby="h-report" hidden>
+      <h1 id="h-report" class="lead-title">What changed since last week</h1>
+      <div id="report-body"></div>
     </section>
 
-    <!-- METHOD -->
-    <!-- RESEARCHERS (expert catalogue, separate product; page lives in experts/site/) -->
-    <section class="view view-researchers" id="view-researchers" aria-labelledby="h-researchers" hidden>
-      <div class="researchers-head">
-        <h1 id="h-researchers" class="sr-only">Researchers</h1>
-        <p class="panel-sub">A separate product from the window monitor: researchers who published empirical studies conducted in Chile with explicit relevance for public policy or programmes. Matching researchers to open windows is done by a reviewer. <a href="experts/site/" target="_blank" rel="noopener">Open the map in its own page</a>.</p>
-      </div>
-      <div id="researchers-host" class="researchers-host"></div>
+    <!-- COLOMBIA -->
+    <section class="view" id="view-colombia" aria-labelledby="h-colombia" hidden>
+      <h1 id="h-colombia" class="lead-title">Colombia: pilot in preparation</h1>
+      <article class="panel"><p>The monitor will follow Colombia with the same method as Chile: a country source list (press, radio and TV, political programmes, polls, indicators, Congress and the executive), weekly ratings of the problem and politics streams for each topic, and a review by a person who knows the country.</p>
+      <p>A first source list has been drafted and is being checked by a reviewer in Colombia. Weekly results will appear here once the first runs are reviewed.</p>
+      <p><a href="#overview" id="back-chile">Back to Chile</a></p></article>
     </section>
 
     <section class="view" id="view-method" aria-labelledby="h-method" hidden>
@@ -174,19 +195,6 @@
         <div class="items-scroll"><table class="items" id="items"></table></div>
       </article>
     </section>
-    <!-- REVIEW (reviewers' back end) -->
-    <section class="view" id="view-review" aria-labelledby="h-review" hidden>
-      <nav class="subnav" aria-label="Back end"></nav>
-      <h1 id="h-review" class="lead-title">Review the week's proposed signals</h1>
-      <p class="lead">Each card is a proposed level for one stream of one topic, with the rationale and the coded items behind it. Approve, change or reject each one. Decisions are kept in this browser; copy them out when you finish so they can be applied to the data.</p>
-      <div id="review"></div>
-    </section>
-    <!-- THIS RUN (back end) -->
-    <section class="view" id="view-run" aria-labelledby="h-run" hidden>
-      <nav class="subnav" aria-label="Back end"></nav>
-      <h1 id="h-run" class="lead-title">This run: steps, limitations and validation</h1>
-      <div id="run"></div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -200,8 +208,7 @@
   </aside>
   <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
 </div>
-<script src="data/chile-2026-11.js?v=37449614"></script>
-<script src="assets/researchers.js?v=a79b7e02"></script>
-<script src="assets/app.js?v=1c29e3f2"></script>
+<script src="data/chile-2026-11.js?v=6dbe5135"></script>
+<script src="assets/app.js?v=b3ae4539"></script>
 </body>
 </html>

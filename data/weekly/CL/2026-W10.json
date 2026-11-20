@@ -7,8 +7,8 @@
  },
  "generated": "2026-11-20",
  "protocol": "v0.4",
- "reviewStatus": "proposed",
- "note": "Full week 13–19 Nov, completed on Fri 20 Nov; replaces the partial file of 16 Nov and keeps its items (D161–D222), ids and the reviewer's decisions of 16 and 18 Nov. New items D223–D310 cover 13–19 Nov. Where new evidence changes a decided check or level, the rationale says so and the reviewer is asked to decide again: T08 politics 2→3, T14 politics 2→3, T22 problem 2→3, T01 problem 3→2, and the concept checks marked 'Update (20 Nov)'. Status changes: T21 Fuel prices closed (decision taken: Ley 21.857), T09 Health budget closed (decision taken in both chambers). New topic T25 (public funding of gender-affirming care for minors). Events after Thu 19 Nov (the Senate's dispatch of the budget at 02:17 on 20 Nov, the Agriculture line rejected 14–14, the Science line restored) are left for W11.",
+ "reviewStatus": "reviewed",
+ "note": "Full week 13–19 Nov, completed on Fri 20 Nov; replaces the partial file of 16 Nov and keeps its items (D161–D222), ids and the reviewer's decisions of 16 and 18 Nov. New items D223–D310 cover 13–19 Nov. Where new evidence changes a decided check or level, the rationale says so and the reviewer is asked to decide again: T08 politics 2→3, T14 politics 2→3, T22 problem 2→3, T01 problem 3→2, and the concept checks marked 'Update (20 Nov)'. Status changes: T21 Fuel prices closed (decision taken: Ley 21.857), T09 Health budget closed (decision taken in both chambers). New topic T25 (public funding of gender-affirming care for minors). Events after Thu 19 Nov (the Senate's dispatch of the budget at 02:17 on 20 Nov, the Agriculture line rejected 14–14, the Science line restored) are left for W11. Reviewed 20 Nov 2026: the reviewer approved all remaining proposals, including the full-week updates (T08 and T14 politics 3, T22 problem 3, T01 problem 2); the three earlier changes stand (T04 politics 2, T21 focusing event, T24 government intention 1).",
  "levels": {
   "T01": [
    2,
@@ -2833,10 +2833,10 @@
    "rationale": "Hacienda promises to restore the rejected lines in the Senate (17–19 Nov) before the 29 Nov deadline and keeps the consolidation target. A scheduled Senate decision would be level 3; lowered by one because the Chamber vote shows blocking arithmetic and approval is at 18–27%. Same level the reviewer set for W9. Update (20 Nov): the Senate restored the borrowing authorisation 31–10 after a cross-party deal (US$160m for the FAPP, health and education protocols) and approved most lines. Raised to 3: the executive built a majority in the second chamber, and the remaining steps (third reading 23 Nov, mixed committee, deadline 29 Nov) are scheduled. Approval at 18–27% argued for holding at 2, but the vote shows the government can pass its budget. The reviewer may prefer to keep 2. Proposed 2→3; the reviewer decided 2 on the partial week, so this level needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -2880,10 +2880,10 @@
    "rationale": "Held at 2. The teachers' union called a national march and work stoppage for 24 Nov, and Hacienda offered to restore funds in the Senate. (The W9 level is still pending review.) Update (20 Nov): Hacienda's cross-party education protocol (19 Nov) restores CLP 35bn for Yo Elijo Mi PC and adds higher-education funds; the teachers' strike of 24 Nov is confirmed and the CUT–Confech march drew protests at 24 points. Raised to 3: a decisive executive budget step plus organised pressure; government intention alone stays at 1. Proposed 2→3; the reviewer decided 2 on the partial week, so this level needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -2990,10 +2990,10 @@
    "rationale": "New topic. The Central Bank expectations survey cut 2026 growth to 0% (10 Nov) and the Finance Minister said Chile is 'technically' in a recession (11 Nov). Level 2 rests on the indicator; Q3 GDP on 18 Nov will confirm or ease it. Update (20 Nov): Q3 GDP fell 1.1% y/y and 1.8% q/q (Central Bank, 18 Nov), investment fell 6.7%, and economists expect a negative 2026. Raised to 3 on a decisive indicator. The revision of Q2 to 0.0% means the data do not show a 'technical recession', contrary to the Finance Minister's 11 Nov remark. Proposed 2→3; the reviewer decided 2 on the partial week, so this level needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -3218,7 +3218,14 @@
     "D275",
     "D274"
    ],
-   "rationale": "The Chamber approved Sala Cuna Universal 132–0 (12 abstentions) and its financing 114–1–29 on 18 Nov, and Rau promised a 20% co-payment cap. Stays 3; the Senate's third reading is due 24–25 Nov, so a decision is imminent."
+   "rationale": "The Chamber approved Sala Cuna Universal 132–0 (12 abstentions) and its financing 114–1–29 on 18 Nov, and Rau promised a 20% co-payment cap. Stays 3; the Senate's third reading is due 24–25 Nov, so a decision is imminent.",
+   "review": {
+    "decision": "approve",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "topic": "T07",
@@ -3227,7 +3234,14 @@
    "proposed": 2,
    "concepts": [],
    "items": [],
-   "rationale": "Carried at 2 with no problem-stream item this week (the problem case rests on female unemployment, coded under T06). Under the carry-forward rule it should drop to 1 after two weeks without items; held at 2 for the reviewer to decide, since a drop would end the window just before the Senate vote."
+   "rationale": "Carried at 2 with no problem-stream item this week (the problem case rests on female unemployment, coded under T06). Under the carry-forward rule it should drop to 1 after two weeks without items; held at 2 for the reviewer to decide, since a drop would end the window just before the Senate vote.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "topic": "T01",
@@ -3242,7 +3256,14 @@
     "D236",
     "D237"
    ],
-   "rationale": "Lowered from a long-carried 3: this week's evidence is a government series showing homicides and violent robberies down 18–19%, and one nightclub shooting with little follow-up. The topic stays closed."
+   "rationale": "Lowered from a long-carried 3: this week's evidence is a government series showing homicides and violent robberies down 18–19%, and one nightclub shooting with little follow-up. The topic stays closed.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "topic": "T25",
@@ -3256,7 +3277,14 @@
     "D293",
     "D294"
    ],
-   "rationale": "New topic. The government's budget indication to stop public funding of gender-affirming care for minors failed on two 21–21 ties in the Senate (18 Nov), and Libertario deputies threatened an accusation against the Health Minister. A visible split inside the governing bloc on a government initiative: level 2."
+   "rationale": "New topic. The government's budget indication to stop public funding of gender-affirming care for minors failed on two 21–21 ties in the Senate (18 Nov), and Libertario deputies threatened an accusation against the Health Minister. A visible split inside the governing bloc on a government initiative: level 2.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "topic": "T25",
@@ -3265,7 +3293,14 @@
    "proposed": 0,
    "concepts": [],
    "items": [],
-   "rationale": "New topic. No problem-stream evidence (no indicator, event or report) was found: the issue arrived through the budget vote. Level 0."
+   "rationale": "New topic. No problem-stream evidence (no indicator, event or report) was found: the issue arrived through the budget vote. Level 0.",
+   "review": {
+    "decision": "approve",
+    "final": 0,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "topic": "T15",
@@ -3278,7 +3313,14 @@
    "items": [
     "D306"
    ],
-   "rationale": "Held at 1. The Senate's education protocol commits a working group with CRUCh on a loan to replace the CAE: a promise to study, not a bill."
+   "rationale": "Held at 1. The Senate's education protocol commits a working group with CRUCh on a loan to replace the CAE: a promise to study, not a bill.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "topic": "T16",
@@ -3291,7 +3333,14 @@
    "items": [
     "D257"
    ],
-   "rationale": "Held at 1. The only problem-stream evidence is the CNE review lowering electricity bills by 4.4% in Jan–Jun 2027, which eases the problem; no toll event this week."
+   "rationale": "Held at 1. The only problem-stream evidence is the CNE review lowering electricity bills by 4.4% in Jan–Jun 2027, which eases the problem; no toll event this week.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   }
  ],
  "calendar": [
@@ -3841,10 +3890,10 @@
    "rationale": "Why frame consensus: actors on different sides now describe the March price pass-through as the mistake. This week that rests on one voice (the PDG leader); in W9 a centre-right senator said the same. Weak until more sides repeat it. Update (20 Nov): Carlos Peña ('blackmail') and Eugenio Tironi ('capitulation') in El Mercurio share the opposition's frame that the government yielded to pressure; the frame now crosses sides, though it is about the deal, not about whether fuel prices are a problem. Strength proposed 1→2; the reviewer decided 1 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 1,
-    "note": "",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 1 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -3865,10 +3914,10 @@
    "rationale": "Why feedback: the first information on how the response performs. Cost estimates rose from about US$500m to US$700–900m and an economist warns of reallocations in 2027. One source. Update (20 Nov): six independent voices (DF's editorial, former Finance Minister Briones, Sen. Vodanovic on Estado Nacional, Sen. Huenchumilla, former minister Tohá, a BioBio column) judge the deal's design: about US$820m for one sector, larger refunds for big carriers, rewards for blockades. This is evidence on how the decision works, so feedback, now from several sources. Strength proposed 1→2; the reviewer decided 1 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 1,
-    "note": "",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 1 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -3933,10 +3982,10 @@
    "rationale": "Why coalition or vote: the Chamber Finance committee approved the bill unanimously on 16 Nov, UDI backs it and both chambers coordinated to pass it by 17 Nov. Strength 2 rather than 3 because the floor votes had not happened by 16 Nov. Update (20 Nov): the Chamber passed the bill 125–3 and the Senate 33 in favour on 16 Nov; only the 50% refund tier for large carriers split the Senate Finance committee (3–2). Votes this large decide the stream by themselves. Strength proposed 2→3; the reviewer decided 2 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4090,10 +4139,10 @@
    "rationale": "Why indicator change: the Central Bank's job-ads index fell for a twelfth month (W9, one source). No new labour indicator this week; INE publishes on 27 Nov. The stream level of 2 is carried from the reviewed W9. Update (20 Nov): Q3 national accounts show household consumption slowing to 0.7% (2.5% in Q1), read as a sign of weak labour income. A second indicator alongside the job-ads index, from an official release. Strength proposed 1→2; the reviewer decided 1 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 1,
-    "note": "",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 1 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4190,10 +4239,10 @@
    "rationale": "Why coalition or vote: the Chamber result shows the government lacks a majority for its budget as drafted. This arithmetic is the reason the stream is held at 2 instead of 3. Update (20 Nov): the Senate approved most lines on 17–19 Nov and restored the borrowing (up to about US$25bn; US$25.6bn per Radio UChile) authorisation 31–10 after a deal that brought PC, DC and PPD senators on board (US$160m for the pension reform's FAPP fund and health commitments). Municipal security funds were rejected and go to a mixed committee. The 'Caso Firmas' (travel permits of two senators withdrawn, allegedly to change the quorum; the prosecutor opened an inquiry) shows how tight the arithmetic is. The restoration vote is decisive, so the check rises. Strength proposed 2→3; the reviewer decided 2 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4325,10 +4374,10 @@
    "rationale": "Why indicator change: the Central Bank's expectations survey cut 2026 growth to 0% (10 Nov). A primary source; Q3 GDP on 18 Nov will confirm or ease it. Update (20 Nov): the Central Bank's Q3 national accounts (18 Nov): GDP −1.1% y/y and −1.8% q/q, investment −6.7%. One release, reported by several outlets and counted once. It is decisive for attention to growth. It does not confirm a 'technical recession': Q2 was revised from −0.2% to 0.0% y/y and +0.1% q/q, so there are not two consecutive falls. Strength proposed 2→3; the reviewer decided 2 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4344,10 +4393,10 @@
    "rationale": "Why frame consensus: the Finance Minister himself said the economy is 'technically' in recession, adopting the critics' description. One actor, so strength 1; it becomes consensus if the opposition and business describe it the same way. Update (20 Nov): economists at XTB, SURA, Itaú and Principal now expect 2026 to close negative (Jan–Sep −0.5%); the government (Economy Minister Mas, Undersecretary Vallebona) also calls the figure bad. Government and analysts describe the problem the same way. Strength proposed 1→2; the reviewer decided 1 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 1,
-    "note": "",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 1 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4443,10 +4492,10 @@
    "rationale": "Why national mood: 84% said the government should have acted sooner on fuel prices. The public is against the government's handling but in favour of the measures now on the table. Same two polls as the fuel-prices mood check, so not counted as new evidence. Update (20 Nov): Alfredo Joignant's closing segment on Tolerancia Cero (16 Nov) read the fall to 18% as a 40-point drop in under a year; Claudio Orrego (podcast Cómo te lo explico) said the government is 'playing with fire' by breaking promises. Commentary, not new measures; strength unchanged. Audit (20 Nov): D172 (the Cadem and Criteria strike polls) is coded under T21 and is no longer cited here; what remains is commentary, so strength proposed 2→1 (the reviewer decided 2 on the partial week).",
    "review": {
     "decision": "approve",
-    "final": 2,
-    "note": "",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 2 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4468,10 +4517,10 @@
    "rationale": "Why events within government: criticism of La Moneda's advisers from inside the coalition, the President abroad until 22 Nov, and no cabinet change. Mentions only. Update (20 Nov): two remarks were replayed until they became the story: Agriculture Minister Campos on cheap fruit (Quiroz apologised for him on 16 Nov; he refused; a Libertario deputy asked for his removal) and the spokesperson's 'cúmulo de deseos' about the PDG (apology on 17 Nov, the PDG demanded a retraction). A UDI-bench deputy called some ministers 'un cero a la izquierda'; Kast ruled out a cabinet change. Several outlets, so the check rises. Strength proposed 1→2; the reviewer decided 1 on the partial week, so this check needs a new decision.",
    "review": {
     "decision": "approve",
-    "final": 1,
-    "note": "",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk) (was decided at 1 on 2026-11-18 before the full-week update)",
     "by": "Cristian",
-    "at": "2026-11-18"
+    "at": "2026-11-20"
    }
   },
   {
@@ -4530,7 +4579,14 @@
    "items": [
     "D282"
    ],
-   "rationale": "Why indicator change: ENAP's weekly estimate put diesel down $141.9 and petrol down $38.7 per litre from Thu 19 Nov, the first fall in almost four months. One official series reported by one outlet; it shows the problem easing, which supports a lower problem level from W11."
+   "rationale": "Why indicator change: ENAP's weekly estimate put diesel down $141.9 and petrol down $38.7 per litre from Thu 19 Nov, the first fall in almost four months. One official series reported by one outlet; it shows the problem easing, which supports a lower problem level from W11.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T21-Politics-agenda-tool-used-budget",
@@ -4541,7 +4597,14 @@
    "items": [
     "D245"
    ],
-   "rationale": "Why agenda tool (budget): Dipres's financial report costs the law at CLP 820,587m (about US$820m), financed from the Treasury and the sale of Treasury assets: funding added by law. One official source."
+   "rationale": "Why agenda tool (budget): Dipres's financial report costs the law at CLP 820,587m (about US$820m), financed from the Treasury and the sale of Treasury assets: funding added by law. One official source.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T16-Problem-indicator-change",
@@ -4552,7 +4615,14 @@
    "items": [
     "D257"
    ],
-   "rationale": "Why indicator change: the CNE's node-price review lowers regulated electricity bills by 4.4% on average for Jan–Jun 2027 in 13 of 16 regions (rises in Los Ríos, Los Lagos and Magallanes). An official measure easing the problem; one outlet. It argues against raising the problem level."
+   "rationale": "Why indicator change: the CNE's node-price review lowers regulated electricity bills by 4.4% on average for Jan–Jun 2027 in 13 of 16 regions (rises in Los Ríos, Los Lagos and Magallanes). An official measure easing the problem; one outlet. It argues against raising the problem level.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T04-Problem-feedback",
@@ -4563,7 +4633,14 @@
    "items": [
     "D270"
    ],
-   "rationale": "Why feedback: a Supreme Court order of about 17 Nov told the Justice ministry to decide a sentence-reduction request from a convicted child rapist 'a la brevedad'. It is evidence on how the reduction procedure works in practice. One outlet, but a first-hand court decision; strength 2."
+   "rationale": "Why feedback: a Supreme Court order of about 17 Nov told the Justice ministry to decide a sentence-reduction request from a convicted child rapist 'a la brevedad'. It is evidence on how the reduction procedure works in practice. One outlet, but a first-hand court decision; strength 2.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T08-Politics-agenda-tool-used-budget",
@@ -4574,7 +4651,14 @@
    "items": [
     "D277"
    ],
-   "rationale": "Why agenda tool (budget): facing an opposition threat of a constitutional accusation, Quiroz put 2.2 million UTM (about US$160m) for the pension reform's FAPP fund explicitly into the 2027 budget. Funding added by the executive; one outlet (a second, T13, reports the same announcement and is not counted)."
+   "rationale": "Why agenda tool (budget): facing an opposition threat of a constitutional accusation, Quiroz put 2.2 million UTM (about US$160m) for the pension reform's FAPP fund explicitly into the 2027 budget. Funding added by the executive; one outlet (a second, T13, reports the same announcement and is not counted).",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T08-Politics-organised-forces",
@@ -4585,7 +4669,14 @@
    "items": [
     "D241"
    ],
-   "rationale": "Why organised forces: public-sector unions opened pay talks on 16 Nov demanding 6.3% nominal (at least 2% real); Quiroz suspended one session because of the budget. One source; the pay round is a separate decision due later in the year."
+   "rationale": "Why organised forces: public-sector unions opened pay talks on 16 Nov demanding 6.3% nominal (at least 2% real); Quiroz suspended one session because of the budget. One source; the pay round is a separate decision due later in the year.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T09-Politics-agenda-tool-used-budget",
@@ -4596,7 +4687,14 @@
    "items": [
     "D278"
    ],
-   "rationale": "Why agenda tool (budget): the Senate approved the Health line 38–1 after Hacienda added CLP 28bn for the Ricarte Soto Law, reversing the cut. Funding restored through the Budget Law in the second chamber, which settles the line: decisive. The 21–21 vote on gender-affirming care inside the same line is coded under T25."
+   "rationale": "Why agenda tool (budget): the Senate approved the Health line 38–1 after Hacienda added CLP 28bn for the Ricarte Soto Law, reversing the cut. Funding restored through the Budget Law in the second chamber, which settles the line: decisive. The 21–21 vote on gender-affirming care inside the same line is coded under T25.",
+   "review": {
+    "decision": "approve",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T14-Politics-agenda-tool-used-budget",
@@ -4607,7 +4705,14 @@
    "items": [
     "D303"
    ],
-   "rationale": "Why agenda tool (budget): on 19 Nov Hacienda signed a cross-party protocol with the Senate's fourth mixed subcommittee: CLP 35bn back for Yo Elijo Mi PC (redesign promised for 2028) and extra higher-education funds. An executive funding decision that unblocks the line the Chamber rejected; decisive by itself. (The Senate approved Education 25–2 after midnight; that vote is W11.)"
+   "rationale": "Why agenda tool (budget): on 19 Nov Hacienda signed a cross-party protocol with the Senate's fourth mixed subcommittee: CLP 35bn back for Yo Elijo Mi PC (redesign promised for 2028) and extra higher-education funds. An executive funding decision that unblocks the line the Chamber rejected; decisive by itself. (The Senate approved Education 25–2 after midnight; that vote is W11.)",
+   "review": {
+    "decision": "approve",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T15-Politics-government-intention",
@@ -4618,7 +4723,14 @@
    "items": [
     "D306"
    ],
-   "rationale": "Why government intention: the Education protocol commits a working group with the rectors' council (CRUCh) in early 2027 on degree length, gratuidad fees and an income-contingent loan to replace the CAE. A written commitment, one source; it is a promise to study, not a bill, so the stream stays at 1."
+   "rationale": "Why government intention: the Education protocol commits a working group with the rectors' council (CRUCh) in early 2027 on degree length, gratuidad fees and an income-contingent loan to replace the CAE. A written commitment, one source; it is a promise to study, not a bill, so the stream stays at 1.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T07-Politics-coalition-or-vote",
@@ -4631,7 +4743,14 @@
     "D273",
     "D275"
    ],
-   "rationale": "Why coalition or vote: the Chamber's Finance committee approved the financing (17 Nov) and the floor approved the bill 132–0 with 12 abstentions and the financing 114–1–29 (18 Nov). The left objected to drawing on unemployment insurance but abstained rather than block. A decisive vote; the Senate's third reading is due 24–25 Nov."
+   "rationale": "Why coalition or vote: the Chamber's Finance committee approved the financing (17 Nov) and the floor approved the bill 132–0 with 12 abstentions and the financing 114–1–29 (18 Nov). The left objected to drawing on unemployment insurance but abstained rather than block. A decisive vote; the Senate's third reading is due 24–25 Nov.",
+   "review": {
+    "decision": "approve",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T07-Politics-government-intention",
@@ -4642,7 +4761,14 @@
    "items": [
     "D274"
    ],
-   "rationale": "Why government intention: Labour Minister Rau pledged a 20% cap on family co-payments in a later bill to secure votes. A commitment, one source."
+   "rationale": "Why government intention: Labour Minister Rau pledged a 20% cap on family co-payments in a later bill to secure votes. A commitment, one source.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T22-Problem-salience",
@@ -4653,7 +4779,14 @@
    "items": [
     "D288"
    ],
-   "rationale": "Why salience: El Desconcierto framed the release as a deepening economic crisis. One outlet's emphasis; heavy and sustained coverage, or a poll ranking, would raise it."
+   "rationale": "Why salience: El Desconcierto framed the release as a deepening economic crisis. One outlet's emphasis; heavy and sustained coverage, or a poll ranking, would raise it.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T22-Politics-government-intention",
@@ -4664,7 +4797,14 @@
    "items": [
     "D286"
    ],
-   "rationale": "Why government intention: the Economy Minister said the contraction 'nos exige redoblar esfuerzos' on unblocking investment projects. A statement with no plan, bill or measure: a mention."
+   "rationale": "Why government intention: the Economy Minister said the contraction 'nos exige redoblar esfuerzos' on unblocking investment projects. A statement with no plan, bill or measure: a mention.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T22-Politics-coalition-or-vote",
@@ -4676,7 +4816,14 @@
     "D283",
     "D289"
    ],
-   "rationale": "Why coalition or vote: the PPD announced an interpellation of Quiroz over the economy and jobs (it needs a third of deputies), reported by two outlets. A parliamentary step by the opposition, not a vote on a measure; strength 2."
+   "rationale": "Why coalition or vote: the PPD announced an interpellation of Quiroz over the economy and jobs (it needs a third of deputies), reported by two outlets. A parliamentary step by the opposition, not a vote on a measure; strength 2.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T24-Problem-feedback",
@@ -4687,7 +4834,14 @@
    "items": [
     "D291"
    ],
-   "rationale": "Why feedback: Deputy Araya asked the Comptroller whether the ministry could legally sign the OpenAI memorandum, and Senator Ibáñez sent formal requests. Oversight of a ministry decision; one outlet, strength 1."
+   "rationale": "Why feedback: Deputy Araya asked the Comptroller whether the ministry could legally sign the OpenAI memorandum, and Senator Ibáñez sent formal requests. Oversight of a ministry decision; one outlet, strength 1.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T01-Problem-focusing-event",
@@ -4698,7 +4852,14 @@
    "items": [
     "D236"
    ],
-   "rationale": "Why focusing event: a shooting at a central Santiago nightclub (16 Nov) left one dead and seven injured. Sudden and violent, but one outlet and no follow-up coverage; strength 1."
+   "rationale": "Why focusing event: a shooting at a central Santiago nightclub (16 Nov) left one dead and seven injured. Sudden and violent, but one outlet and no follow-up coverage; strength 1.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T01-Problem-indicator-change",
@@ -4709,7 +4870,14 @@
    "items": [
     "D237"
    ],
-   "rationale": "Why indicator change: government figures show homicides down 18% and violent robberies down 19% year on year, and irregular northern-border entries down 85%. Official series (one source); they show the problem easing."
+   "rationale": "Why indicator change: government figures show homicides down 18% and violent robberies down 19% year on year, and irregular northern-border entries down 85%. Official series (one source); they show the problem easing.",
+   "review": {
+    "decision": "approve",
+    "final": 2,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-T25-Politics-coalition-or-vote",
@@ -4721,7 +4889,14 @@
     "D293",
     "D294"
    ],
-   "rationale": "Why coalition or vote: the government's budget indication (filed 14 Nov) to bar public funding of cross-sex hormones and some surgeries for under-18s tied 21–21 twice in the Senate (18 Nov) and fell; Libertario deputies then threatened an accusation against Health Minister Chomalí. Two outlets; a failed vote is decisive for this week."
+   "rationale": "Why coalition or vote: the government's budget indication (filed 14 Nov) to bar public funding of cross-sex hormones and some surgeries for under-18s tied 21–21 twice in the Senate (18 Nov) and fell; Libertario deputies then threatened an accusation against Health Minister Chomalí. Two outlets; a failed vote is decisive for this week.",
+   "review": {
+    "decision": "approve",
+    "final": 3,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-Cross-cutting-Politics-coalition-or-vote",
@@ -4732,7 +4907,14 @@
    "items": [
     "D265"
    ],
-   "rationale": "Why coalition or vote: the Partido Nacional Libertario openly mocked Kast's wreath at Ho Chi Minh's mausoleum, a rift inside the governing bloc. One outlet; a mention of strain, not a vote."
+   "rationale": "Why coalition or vote: the Partido Nacional Libertario openly mocked Kast's wreath at Ho Chi Minh's mausoleum, a rift inside the governing bloc. One outlet; a mention of strain, not a vote.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   },
   {
    "id": "W10-Cross-cutting-Politics-government-intention",
@@ -4745,7 +4927,14 @@
     "D247",
     "D250"
    ],
-   "rationale": "Why government intention: the Asia tour produced a strategic partnership with Vietnam and two agreements with China (17 Nov Xi bilateral). Foreign-policy commitments with no domestic topic attached; strength 1."
+   "rationale": "Why government intention: the Asia tour produced a strategic partnership with Vietnam and two agreements with China (17 Nov Xi bilateral). Foreign-policy commitments with no domestic topic attached; strength 1.",
+   "review": {
+    "decision": "approve",
+    "final": 1,
+    "note": "Approved 20 Nov (reviewer approved all remaining proposals in bulk)",
+    "by": "Cristian",
+    "at": "2026-11-20"
+   }
   }
  ],
  "audit": {
@@ -4934,5 +5123,21 @@
    "said": "Editorials ask whether the fuel deal fits the fiscal path while the Senate repairs the budget the Chamber cut.",
    "use": "Coded under T08 and T14 (D301, D303, D277)."
   }
- ]
+ ],
+ "report": {
+  "intro": "In W10 (13–19 Nov) four topics had both streams at level 2 or higher: the constitutional accusation over sentence reductions (T04), a problem window, and three political windows set by the budget and legislative calendar: Sala Cuna Universal (T07), the 2027 Budget and fiscal path (T08) and the Education budget (T14). Two windows closed with decisions: fuel prices (T21), with Ley 21.857 published on 17 Nov, and the health budget (T09), approved 38–1 in the Senate. Employment (T06) is closing as its politics stream fell to 1. Growth (T22) reached level 3 in the problem stream after Q3 GDP fell 1.1% year on year, but with no government plan its politics stream stays at 1. The week's frame was the fall in presidential approval (Criteria 18%, Cadem 27%) and the handling of the Rabat case, which weigh on every window that depends on the executive.",
+  "topics": {
+   "T04": "Problem 3, politics 2, unchanged. The accusation committee was constituted on 17 Nov (chair Raúl Soto, PPD) and Minister Rabat was notified. The count is on a knife-edge: 75 for, 76 against and 4 undecided (El Mercurio, 17 Nov), with the PDG's deputies decisive after the government spokesperson called the party 'un cúmulo de deseos'. Criteria (15 Nov): 79% disagree with keeping Rabat. The reviewer kept politics at 2 because support within the governing coalition is unclear. Watch: Rabat's defence, due within ten working days of 17 Nov, and the floor vote expected around 30 Nov to early December.",
+   "T07": "Problem 2, politics 3, unchanged. The Chamber approved Sala Cuna Universal 132–0 with 12 abstentions, and its financing 114–1–29, on 18 Nov; the minister promised a 20% cap on co-payments in a later bill. Watch: the Senate's third reading on 24–25 Nov, which can close the window with a decision.",
+   "T08": "Both streams rose from 2 to 3. The Senate restored the borrowing authorisation 31–10 after a deal with the PC, DC and PPD (US$160m for the FAPP plus health and education protocols) and approved most budget lines on 17–19 Nov; municipal security funds went to a mixed committee. The rejections and repairs of whole lines are the week's focusing events under the budget rule. Watch: the Chamber's third reading on 23 Nov and the 29 Nov deadline.",
+   "T14": "Problem 2, politics rose from 2 to 3. Hacienda signed a cross-party education protocol on 19 Nov (CLP 35bn for Yo Elijo Mi PC, higher-education funds and a CRUCh working group on the CAE). The CUT–Confech march of 18 Nov and the teachers' strike called for 24 Nov keep organised pressure on. Watch: the strike on 24 Nov and the budget's third reading.",
+   "T06": "Problem 2, politics fell from 2 to 1: the window is closing. Q3 household consumption slowed to 0.7%, but there was no new government step on employment. Watch: INE unemployment for August–October on 27 Nov and the SENCE budget by 30 Nov.",
+   "T21": "Closed with a decision. Ley 21.857 passed the Chamber 125–3 and the Senate on 16 Nov and was published on 17 Nov; diesel fell $141.9 and petrol $38.7 a litre from 19 Nov, at a cost of US$820m (Dipres). Critics on the left and right called it a reward for the blockades. The cap runs to 7 Apr 2027, a date that could reopen the topic.",
+   "T09": "Closed with a decision: the Senate approved the Health line 38–1 on 18 Nov after Hacienda added CLP 28bn for the Ricarte Soto law. The 21–21 vote on gender-affirming care for minors is now tracked as its own topic (T25).",
+   "T22": "On watch at problem 3, politics 1. Q3 GDP fell 1.1% year on year and 1.8% on the quarter (18 Nov), with investment down 6.7%; the PPD announced an interpellation of Finance Minister Quiroz. There is no growth plan, so politics stays weak. Watch: Imacec for October (1 Dec) and the Central Bank's rate decision (15 Dec).",
+   "T24": "On watch at problem 1, politics 2. Undersecretary Rossi resigned (19 Nov) and Minister Lincolao stayed with the Interior Ministry's backing: a change of people that settles the conflict rather than opening an agenda. The Senate restored the Science budget line.",
+   "T25": "New topic, found through a coverage spike on 18–20 Nov in seven outlets: public funding of gender-affirming care for minors, after a 21–21 Senate vote on a budget indication. Politics 2, problem 0.",
+   "T01": "Closed. The problem stream fell from 3 to 2: government figures show homicides down 18% and violent robberies down 19%, against one nightclub shooting (16 Nov)."
+  }
+ }
 }

@@ -1,8 +1,0 @@
-{
- "week": "W10",
- "note": "Since W9: Criteria (15 Nov) puts approval at 18% and disapproval at 72%, the lowest of the term. 80% agree with the truckers' strike and 79% disagree with keeping Minister Rabat. Coded in the W10 run on Friday.",
- "approval": [
-  {"poll": "Criteria", "date": "2026-11-15", "approve": 18, "disapprove": 72}
- ],
- "approvalNote": "Criteria fell from 25% (1 Nov) and 24% (8 Nov) to 18% on 15 Nov, with disapproval at 72%: the lowest of the term. Cadem was 29% on 8 Nov."
-}

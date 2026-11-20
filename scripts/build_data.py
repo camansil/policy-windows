@@ -14,6 +14,13 @@ Outputs (data/):
 import csv, glob, json, os, sys
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
+# The reviewers' back end (source logs, leads, review page) lives in its own repository, cloned next to this one:
+#   camansil/policy-windows  (this repo, the public site)
+#   camansil/back-end        (sources/<iso>.csv, leads/<ISO>/, data/<iso>.js written here)
+# Override the location with the PWM_BACKEND environment variable.
+BACKEND = os.environ.get("PWM_BACKEND") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "back-end")
+if not os.path.isdir(os.path.join(BACKEND, "sources")):
+    sys.exit(f"Back-end repository not found at {os.path.abspath(BACKEND)}: clone camansil/back-end next to policy-windows, or set PWM_BACKEND.")
 os.makedirs(OUT, exist_ok=True)
 
 WEEKS = [
@@ -441,6 +448,8 @@ context = dict(CONTEXT)
 weeks = list(WEEKS)
 reviews = []
 discovery = []
+run_extras = {}
+report = {}
 stories = []
 coverage = {}
 generated = "2026-11-05"
@@ -515,12 +524,14 @@ for wf in weekly_files:
     discovery += [dict(week=wk["id"], text=d) for d in W.get("discovery", [])]
     generated = W.get("generated", generated)
     stories = W.get("stories", [])
+    report = W.get("report") or {}
     coverage = W.get("coverage", {})
+    run_extras = {k: W.get(k) for k in ("requests", "audit", "frame", "completeness") if W.get(k) is not None}
 
 # Reviewer leads for weeks not yet run: dated polls and a short note shown on the site before the weekly run.
 interim = None
 done = {os.path.basename(f)[:-5] for f in weekly_files}
-for lf in sorted(glob.glob(os.path.join(OUT, "weekly", COUNTRY, "leads", "*.json"))):
+for lf in sorted(glob.glob(os.path.join(BACKEND, "leads", COUNTRY, "*.json"))):
     with open(lf, encoding="utf-8") as f:
         L = json.load(f)
     approval += L.get("approval", [])
@@ -622,7 +633,7 @@ METHOD = dict(
     ],
 )
 
-SRC_CSV = os.path.join(OUT, "sources", "cl.csv")
+SRC_CSV = os.path.join(BACKEND, "sources", "cl.csv")
 with open(SRC_CSV, encoding="utf-8") as f:
     SOURCE_LOG = list(csv.DictReader(f))
 
@@ -635,9 +646,9 @@ data = dict(
               reviewUrl="https://claude.ai/artifact/RWMPPYMYwcmQ9hfegbZtPh",
               headline=f"{len(windows)} policy windows are open in Chile: {n_prob} opened by a problem, {n_pol} by politics. The fuel-price window is likely to close this week with a law; approval fell to new lows.",
               topicsHeadline="Three windows have no evidence-based alternative in circulation yet, including the new one on fuel prices.",
-              interim=interim, note="Pilot run. The latest week's levels are proposed and await review. A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
+              interim=interim, note=("Pilot run. The latest week's levels are proposed and await review." if (reviews and reviews[-1]["status"] == "proposed") else "Pilot run. Levels are reviewed by a person each week.") + " A flagged window is a likely opening, not a certainty, and not an endorsement of any proposal."),
     weeks=weeks, statusLabels=STATUS, levels=LEVELS, topics=TOPICS, policyChecks=POLICY_CHECKS,
-    calendar=calendar, approval=approval, context=context, method=METHOD, reviews=reviews, discovery=discovery, stories=stories, coverage=coverage,
+    calendar=calendar, approval=approval, context=context, method=METHOD, report=report, reviews=reviews, discovery=discovery, stories=stories, coverage=coverage,
     items=items,
     concepts={k: dict(stream=v[0], definition=v[1]) for k, v in CONCEPTS.items()},
     conceptAliases=CONCEPT_ALIASES, conceptOld=CONCEPT_OLD,
@@ -653,11 +664,29 @@ for r in reviews:
         for x in sg["items"]:
             assert x in item_ids, (sg, x)
 
+# Back end: everything, including the source log, coverage, the run's requests and audit.
+full = dict(data, run=run_extras)
+os.makedirs(os.path.join(BACKEND, "data"), exist_ok=True)
+with open(os.path.join(BACKEND, "data", "cl.js"), "w", encoding="utf-8") as f:
+    f.write("(window.PWM_BACKEND = window.PWM_BACKEND || {}).CL = ")
+    json.dump(full, f, ensure_ascii=False)
+    f.write(";\n")
+
+# Public site: no source log, coverage, discovery net or run details.
+public = {k: v for k, v in data.items() if k not in ("sourceLog", "coverage", "discovery")}
+public["meta"] = {k: v for k, v in data["meta"].items() if k not in ("reviewUrl", "headline", "topicsHeadline", "interim")}
+public["method"] = {k: v for k, v in data["method"].items() if k not in ("steps", "limitations", "validation", "nextVersion", "protocol", "period", "volume")}
+_types = {}
+for row in SOURCE_LOG:
+    _types[row["source_type"]] = _types.get(row["source_type"], 0) + 1
+public["sourceTypeCounts"] = _types
+public["reviews"] = [dict(r, signals=[{k: v for k, v in sg.items() if k != "review"} for sg in r["signals"]],
+                          conceptSignals=[{k: v for k, v in c.items() if k != "review"} for c in r["conceptSignals"]]) for r in reviews]
 with open(os.path.join(OUT, "chile-2026-11.json"), "w", encoding="utf-8") as f:
-    json.dump(data, f, ensure_ascii=False, indent=1)
+    json.dump(public, f, ensure_ascii=False, indent=1)
 with open(os.path.join(OUT, "chile-2026-11.js"), "w", encoding="utf-8") as f:
     f.write("window.PWM_DATA = ")
-    json.dump(data, f, ensure_ascii=False)
+    json.dump(public, f, ensure_ascii=False)
     f.write(";\n")
 with open(os.path.join(OUT, "coded-items.csv"), "w", encoding="utf-8", newline="") as f:
     cols = ["id", "week", "date", "source", "type", "url", "topic", "stream", "concept", "actor", "strength", "note", "context", "quote"]
@@ -674,7 +703,7 @@ import hashlib, re
 _root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _ix = os.path.join(_root, "index.html")
 _html = open(_ix, encoding="utf-8").read()
-for _a in ["assets/style.css", "assets/researchers.js", "assets/app.js", "data/chile-2026-11.js"]:
+for _a in ["assets/style.css", "assets/app.js", "data/chile-2026-11.js"]:
     _f = os.path.join(_root, _a)
     if os.path.exists(_f):
         _v = hashlib.md5(open(_f, "rb").read()).hexdigest()[:8]
